@@ -1,0 +1,2357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAAA — Singapore Aircargo Agents Association</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red-600: #c41e3a;
+            --red-700: #9b1b2f;
+            --red-50: #fef2f2;
+            --red-100: #fee2e2;
+            --blue-600: #1e40af;
+            --blue-700: #1e3a8a;
+            --blue-50: #eff6ff;
+            --slate-50: #f8fafc;
+            --slate-100: #f1f5f9;
+            --slate-200: #e2e8f0;
+            --slate-300: #cbd5e1;
+            --slate-400: #94a3b8;
+            --slate-500: #64748b;
+            --slate-600: #475569;
+            --slate-700: #334155;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+            --white: #ffffff;
+            --radius-sm: 8px;
+            --radius: 12px;
+            --radius-lg: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--slate-800);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--slate-200);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--slate-900);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--slate-600);
+            border-radius: var(--radius-sm);
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--red-600);
+            background: var(--red-50);
+        }
+
+        .nav-links .btn-primary {
+            color: white;
+        }
+
+        .nav-links .btn-primary:hover {
+            color: white;
+            background: var(--red-700);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--red-600);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--red-700);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(196, 30, 58, 0.25);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--slate-700);
+            border: 1px solid var(--slate-300);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--red-400);
+            color: var(--red-600);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-outline-white:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Hero */
+        .hero {
+            background: #0f0f1a;
+            padding: 80px 0 120px;
+            position: relative;
+            overflow: hidden;
+            min-height: 640px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            height: 140%;
+            width: auto;
+            max-width: none;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .hero-fade {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                #0f0f1a 0%,
+                rgba(15,15,26,0.97) 20%,
+                rgba(15,15,26,0.88) 35%,
+                rgba(15,15,26,0.65) 50%,
+                rgba(15,15,26,0.35) 62%,
+                rgba(15,15,26,0.15) 72%,
+                transparent 85%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #ff6b7a;
+            margin-bottom: 24px;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--red-600);
+            border-radius: 50%;
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.7); }
+            50% { box-shadow: 0 0 0 8px rgba(196, 30, 58, 0); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 20px;
+            max-width: 520px;
+        }
+
+        .hero h1 .accent {
+            color: #ff6b7a;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 32px;
+            max-width: 480px;
+            line-height: 1.6;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--white);
+            padding: 60px 0;
+            position: relative;
+            border-bottom: 1px solid var(--slate-200);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 16px;
+        }
+
+        .stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--red-600);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--slate-600);
+            font-weight: 500;
+        }
+
+        /* Section Base */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            margin-bottom: 48px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--red-50);
+            color: var(--red-600);
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            color: var(--slate-900);
+            margin-bottom: 16px;
+        }
+
+        .section-title .accent {
+            color: var(--red-600);
+        }
+
+        .section-desc {
+            color: var(--slate-600);
+            font-size: 17px;
+            max-width: 560px;
+            line-height: 1.6;
+        }
+
+        /* Featured News & Announcements Ticker */
+        .ticker-section {
+            background: var(--white);
+            padding: 40px 0;
+            border-bottom: 1px solid var(--slate-200);
+        }
+
+        .ticker-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .ticker-box {
+            padding: 24px;
+            background: var(--slate-50);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--slate-200);
+        }
+
+        .ticker-box-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .ticker-box-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--slate-700);
+        }
+
+        .ticker-box-link {
+            font-size: 13px;
+            color: var(--red-600);
+            font-weight: 600;
+        }
+
+        .ticker-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--slate-200);
+            align-items: flex-start;
+        }
+
+        .ticker-item:last-child {
+            border-bottom: none;
+        }
+
+        .ticker-thumb {
+            width: 80px;
+            height: 60px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+            flex-shrink: 0;
+            background: var(--slate-100);
+        }
+
+        .ticker-item-date {
+            font-size: 12px;
+            color: var(--red-600);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .ticker-item-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--slate-800);
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .ticker-item-desc {
+            font-size: 14px;
+            color: var(--slate-500);
+            line-height: 1.5;
+        }
+
+        .ticker-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--red-600);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--slate-600);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .about-feature {
+            padding: 20px;
+            background: var(--slate-50);
+            border-radius: var(--radius);
+            border: 1px solid var(--slate-100);
+        }
+
+        .about-feature-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--red-600);
+            margin-bottom: 8px;
+        }
+
+        .about-feature h4 {
+            font-size: 15px;
+            margin-bottom: 6px;
+            color: var(--slate-800);
+        }
+
+        .about-feature p {
+            font-size: 14px;
+            color: var(--slate-600);
+            margin: 0;
+        }
+
+        /* Services */
+        .services-section {
+            background: var(--slate-50);
+        }
+
+        .services-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 48px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--slate-200);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            border-color: var(--red-200);
+            transform: translateY(-4px);
+        }
+
+        .service-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--red-600);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--slate-800);
+        }
+
+        .service-card p {
+            font-size: 15px;
+            color: var(--slate-600);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .service-link {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--red-600);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .service-card:hover .service-link {
+            gap: 10px;
+        }
+
+        /* Training Section — Scalable Tabs + Compact Rows + Pagination */
+        .training-section {
+            background: var(--white);
+        }
+
+        .training-header {
+            margin-bottom: 32px;
+        }
+
+        .training-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .training-tab {
+            padding: 10px 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--slate-500);
+            background: var(--slate-100);
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .training-tab:hover {
+            background: var(--slate-200);
+            color: var(--slate-800);
+        }
+
+        .training-tab.active {
+            background: var(--red-600);
+            color: white;
+        }
+
+        .training-count {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--slate-400);
+            margin-left: 6px;
+            display: inline-block;
+        }
+
+        .training-tab.active .training-count {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .training-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: white;
+        }
+
+        .training-row {
+            display: grid;
+            grid-template-columns: 48px 1fr 180px;
+            gap: 20px;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--slate-100);
+            align-items: start;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .training-row:last-child {
+            border-bottom: none;
+        }
+
+        .training-row:hover {
+            background: var(--slate-50);
+        }
+
+        .training-row .number {
+            width: 36px;
+            height: 36px;
+            background: var(--red-50);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            color: var(--red-600);
+            flex-shrink: 0;
+        }
+
+        .training-row .content .function {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--slate-900);
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .training-row .content .title {
+            font-size: 13px;
+            color: var(--slate-500);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .training-row .content .meta {
+            display: flex;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--slate-400);
+            font-weight: 500;
+        }
+
+        .training-row .action {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .training-row .action .btn-small {
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+
+        .training-row .action .btn-small.primary {
+            background: var(--red-600);
+            color: white;
+        }
+
+        .training-row .action .btn-small.muted {
+            background: var(--slate-100);
+            color: var(--slate-500);
+        }
+
+        .training-pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 32px;
+        }
+
+        .training-pagination button {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--slate-600);
+            background: white;
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .training-pagination button:hover {
+            border-color: var(--red-600);
+            color: var(--red-600);
+        }
+
+        .training-pagination button.active {
+            background: var(--red-600);
+            color: white;
+            border-color: var(--red-600);
+        }
+
+        .training-pagination button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .training-pagination .pagination-arrow {
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        /* Events Section */
+        .events-section {
+            background: var(--red-50);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+        }
+
+        .events-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 32px;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--slate-200);
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            border-color: var(--red-200);
+        }
+
+        .event-banner {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .event-body {
+            padding: 24px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .event-date {
+            text-align: center;
+            flex-shrink: 0;
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--red-50), #fff);
+            border-radius: var(--radius);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--red-100);
+        }
+
+        .event-date .day {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--red-600);
+            line-height: 1;
+        }
+
+        .event-date .month {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--slate-500);
+            font-weight: 600;
+        }
+
+        .event-content h4 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--slate-800);
+        }
+
+        .event-content p {
+            font-size: 15px;
+            color: var(--slate-600);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .event-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+            color: var(--slate-500);
+            font-weight: 500;
+        }
+
+        /* Members */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .member-stat {
+            background: white;
+            padding: 40px 24px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            border: 1px solid var(--slate-200);
+            transition: all 0.3s;
+        }
+
+        .member-stat:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px);
+            border-color: var(--red-200);
+        }
+
+        .member-stat .number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--red-600);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .member-stat .label {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--slate-800);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .member-stat .sublabel {
+            font-size: 14px;
+            color: var(--slate-500);
+        }
+
+        /* Partners */
+        .partners-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .partners-title .tag {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--slate-500);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .partners-title h3 {
+            font-size: 2rem;
+            color: var(--slate-800);
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .partner-item {
+            background: white;
+            padding: 16px 12px;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.06);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px;
+        }
+
+        .partner-item:hover {
+            border-color: var(--red-200);
+            background: var(--slate-50);
+        }
+
+        .partner-logo {
+            width: 72px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .partner-text-logo {
+            width: 72px;
+            height: 72px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: white;
+            font-size: 13px;
+            text-align: center;
+            line-height: 1.2;
+            padding: 4px;
+        }
+
+        .partner-item h4 {
+            font-size: 1rem;
+            margin-bottom: 2px;
+            color: var(--slate-800);
+            line-height: 1.3;
+        }
+
+        .partner-item p {
+            font-size: 13px;
+            color: var(--slate-500);
+            line-height: 1.4;
+        }
+
+        /* Member Logo Marquee */
+        .member-marquee-section {
+            padding: 48px 0 64px;
+        }
+
+        .member-marquee-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .member-marquee-header .tag {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--slate-500);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .member-marquee-header h3 {
+            font-size: 2rem;
+            color: var(--slate-800);
+        }
+
+        .member-carousel-wrapper {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-strips {
+            display: flex;
+            width: max-content;
+            animation: member-scroll 40s linear infinite;
+            align-items: center;
+        }
+
+        .member-strips:hover {
+            animation-play-state: paused;
+        }
+
+        .member-strips img {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            margin-right: 32px;
+            flex-shrink: 0;
+        }
+
+        @keyframes member-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Contact */
+        .contact-section {
+            background: var(--slate-800);
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .contact-info .section-title {
+            color: white;
+        }
+
+        .contact-info > p {
+            color: var(--slate-300);
+            margin-bottom: 40px;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .contact-item .icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--red-400);
+        }
+
+        .contact-item .detail .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--slate-400);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .contact-item .detail .value {
+            color: white;
+            font-weight: 500;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .social-links a {
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            color: white;
+        }
+
+        .social-links a:hover {
+            background: var(--red-600);
+            border-color: var(--red-600);
+            transform: translateY(-2px);
+        }
+
+        .icon svg,
+        .social-links a svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+        }
+
+        .contact-form h3 {
+            font-size: 1.5rem;
+            margin-bottom: 28px;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--slate-400);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-sm);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--red-400);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--slate-500);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--slate-900);
+            color: white;
+            padding: 60px 0 24px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand .icon {
+            width: 40px;
+            height: 40px;
+            background: var(--red-600);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .footer-brand .text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .footer-about {
+            color: var(--slate-400);
+            font-size: 15px;
+            line-height: 1.7;
+            max-width: 300px;
+        }
+
+        .footer-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--slate-500);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--slate-400);
+            font-size: 15px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom .copyright {
+            font-size: 13px;
+            color: var(--slate-500);
+        }
+
+        .footer-bottom .legal {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom .legal a {
+            font-size: 13px;
+            color: var(--slate-500);
+            transition: color 0.3s;
+        }
+
+        .footer-bottom .legal a:hover {
+            color: white;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: var(--slate-700);
+            padding: 8px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-grid,
+            .about-grid,
+            .contact-grid,
+            .ticker-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .training-row {
+                grid-template-columns: 36px 1fr;
+                gap: 16px;
+            }
+
+            .training-row .action {
+                grid-column: 2;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .members-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .services-header,
+            .events-header-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .stat-value {
+                font-size: 2.5rem;
+            }
+
+            .about-features,
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .partners-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 24px;
+            }
+
+            .event-card {
+                flex-direction: column;
+            }
+
+            .ticker-thumb {
+                width: 60px;
+                height: 45px;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .hero {
+                padding: 60px 0;
+                min-height: 520px;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--slate-50);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--slate-300);
+            border-radius: 100px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--slate-400);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-inner">
+                <a href="#" class="logo">
+                    <img src="images/saaa-logo.png" alt="SAAA Logo" class="logo-img">
+                </a>
+                
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#training">Training</a>
+                    <a href="#events">Events</a>
+                    <a href="#members">Members</a>
+                    <a href="#contact" class="btn btn-primary">Contact</a>
+                </div>
+
+                <button class="mobile-menu-btn">Menu</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <img src="images/hero2.jpg" alt="Air cargo excellence" class="hero-bg">
+        <div class="hero-fade"></div>
+        <div class="container">
+            <div class="hero-grid">
+                <div>
+                    <div class="hero-badge">
+                        <span class="dot"></span>
+                        <span>IATA Accredited Association</span>
+                    </div>
+                    
+                    <h1>
+                        Advancing Air Cargo <span class="accent">Excellence</span> in Singapore
+                    </h1>
+                    
+                    <p>
+                        Representing over 200 member companies, SAAA is the trusted voice of Singapore's airfreight industry, driving compliance and professional standards since 1985.
+                    </p>
+                    
+                    <div class="hero-actions">
+                        <a href="#services" class="btn btn-primary">Our Services</a>
+                        <a href="#about" class="btn btn-outline-white">About SAAA</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar with Animated Numbers -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" data-target="200" data-suffix="+">0</div>
+                    <div class="stat-label">Member Companies</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" data-target="35" data-suffix="+">0</div>
+                    <div class="stat-label">Years of Service</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" data-target="5000" data-suffix="+">0</div>
+                    <div class="stat-label">Professionals Trained</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" data-target="100" data-suffix="%">0</div>
+                    <div class="stat-label">IATA Compliance</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured News & Announcements Ticker -->
+    <section class="ticker-section">
+        <div class="container">
+            <div class="ticker-grid">
+                <div class="ticker-box">
+                    <div class="ticker-box-header">
+                        <div class="ticker-box-title">Featured News</div>
+                        <a href="#" class="ticker-box-link">View All</a>
+                    </div>
+                    
+                    <div class="ticker-item">
+                        <img class="ticker-thumb" src="https://placehold.co/160x120/c41e3a/ffffff?text=CBTA" alt="CBTA News">
+                        <div>
+                            <div class="ticker-item-date">June 2025</div>
+                            <div class="ticker-item-title">CBTA Framework Implementation Update</div>
+                            <div class="ticker-item-desc">Revised Dangerous Goods training courses incorporating the CBTA framework are now mandatory for all members.</div>
+                        </div>
+                    </div>
+
+                    <div class="ticker-item">
+                        <img class="ticker-thumb" src="https://placehold.co/160x120/475569/ffffff?text=STC" alt="STC News">
+                        <div>
+                            <div class="ticker-item-date">May 2025</div>
+                            <div class="ticker-item-title">Standard Trading Conditions 2025</div>
+                            <div class="ticker-item-desc">Updated STC now available for all members. Please review the latest terms and conditions.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticker-box">
+                    <div class="ticker-box-header">
+                        <div class="ticker-box-title">Announcements</div>
+                        <a href="#" class="ticker-box-link">View All</a>
+                    </div>
+                    
+                    <div class="ticker-item">
+                        <img class="ticker-thumb" src="https://placehold.co/160x120/1e3a8a/ffffff?text=MAG" alt="Perspectives Magazine">
+                        <div>
+                            <div class="ticker-item-date">NEW</div>
+                            <div class="ticker-item-title">Contribution of Articles in Perspectives <span class="ticker-badge">New</span></div>
+                            <div class="ticker-item-desc">Interested parties can now contribute articles and advertisements in Perspectives magazine. Contact us for the application form.</div>
+                        </div>
+                    </div>
+
+                    <div class="ticker-item">
+                        <img class="ticker-thumb" src="https://placehold.co/160x120/334155/ffffff?text=NET" alt="Networking Event">
+                        <div>
+                            <div class="ticker-item-date">UPCOMING</div>
+                            <div class="ticker-item-title">SAAA-Empire Bison Business Networking</div>
+                            <div class="ticker-item-desc">28 April 2026 — Registrations are currently open for member companies! Email saaasin@saaa.org.sg.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <div class="section-tag">About SAAA</div>
+                    <h2 class="section-title">
+                        The Premier Voice of <span class="accent">Singapore's</span> Air Cargo Industry
+                    </h2>
+                    <p>
+                        Founded in 1985, the Singapore Aircargo Agents Association (SAAA) serves as the representative body for airfreight forwarding companies in Singapore.
+                    </p>
+                    <p>
+                        We work closely with government agencies, international aviation bodies, and industry stakeholders to advance the interests of our members and ensure Singapore remains a leading air cargo hub in Asia.
+                    </p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 8px;">Our History</a>
+                </div>
+                
+                <div>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="about-feature-number">01</div>
+                            <h4>Advocacy</h4>
+                            <p>Representing member interests in policy discussions with government agencies.</p>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-number">02</div>
+                            <h4>Standardization</h4>
+                            <p>Developing industry standards and best practices for air cargo handling.</p>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-number">03</div>
+                            <h4>Development</h4>
+                            <p>Professional training and certification programs for industry professionals.</p>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-number">04</div>
+                            <h4>Networking</h4>
+                            <p>Facilitating business connections and knowledge sharing among members.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section services-section">
+        <div class="container">
+            <div class="services-header">
+                <div>
+                    <div class="section-tag">Services</div>
+                    <h2 class="section-title">
+                        Comprehensive <span class="accent">Cargo</span> Solutions
+                    </h2>
+                </div>
+                <p class="section-desc">
+                    From documentation to compliance, we provide essential services that keep Singapore's air cargo industry operating at world-class standards.
+                </p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-number">01</span>
+                    <h3>Neutral Airway Bill</h3>
+                    <p>Standardized airway bill documentation facilitating seamless cargo processing across all member operations, ensuring consistency and compliance.</p>
+                    <span class="service-link">Learn more</span>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-number">02</span>
+                    <h3>Bar Code Labels</h3>
+                    <p>GS1-compliant barcode label generation and management systems for efficient cargo tracking, handling, and supply chain visibility.</p>
+                    <span class="service-link">Learn more</span>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-number">03</span>
+                    <h3>Permits & Certificate of Origin</h3>
+                    <p>Certificate of Origin processing and permit facilitation services for smooth customs clearance and regulatory compliance.</p>
+                    <span class="service-link">Learn more</span>
+                </div>
+
+                <div class="service-card">
+                    <span class="service-number">04</span>
+                    <h3>Facilities & Infrastructure</h3>
+                    <p>Access to shared facilities and infrastructure for member companies to optimize operational efficiency and reduce costs.</p>
+                    <span class="service-link">Learn more</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Section — Scalable Tabs + Compact Rows + Pagination -->
+    <section id="training" class="section training-section">
+        <div class="container">
+            <div class="training-header">
+                <div class="section-tag">Training & Courses</div>
+                <h2 class="section-title">
+                    IATA CBTA Dangerous Goods <span class="accent">Training</span>
+                </h2>
+                <p class="section-desc">
+                    Competency-based training programs designed to meet international standards. Book and purchase courses online.
+                </p>
+            </div>
+
+            <div class="training-tabs">
+                <button class="training-tab active" data-tab="all">All Programs<span class="training-count">12</span></button>
+                <button class="training-tab" data-tab="initial">Initial<span class="training-count">6</span></button>
+                <button class="training-tab" data-tab="recurrent">Recurrent<span class="training-count">6</span></button>
+            </div>
+            
+            <div class="training-list" id="training-list">
+                <div class="training-row" data-category="initial">
+                    <div class="number">01</div>
+                    <div class="content">
+                        <div class="function">Preparing Dangerous Goods Consignment</div>
+                        <div class="title">Transport of Dangerous Goods by Air – Initial as per the IATA Dangerous Goods Training Guidance 7.1 (Supervised assessment)</div>
+                        <div class="meta">
+                            <span>4/5 Days</span>
+                            <span>Classroom/Virtual</span>
+                        </div>
+                    </div>
+                    <div class="action"><span class="btn-small primary">Book Now</span></div>
+                </div>
+
+                <div class="training-row" data-category="initial">
+                    <div class="number">02</div>
+                    <div class="content">
+                        <div class="function">Processing or Accepting Goods Presented as General Cargo</div>
+                        <div class="title">Transport of Dangerous Goods by Air – Initial as per the IATA Dangerous Goods Training Guidance 7.2 (Supervised assessment)</div>
+                        <div class="meta">
+                            <span>1 Day</span>
+                            <span>Classroom/Virtual</span>
+                        </div>
+                    </div>
+                    <div class="action"><span class="btn-small primary">Book Now</span></div>
+                </div>
+
+                <div class="training-row" data-category="initial">
+                    <div class="number">03</div>
+                    <div class="content">
+                        <div class="function">Processing or Accepting Dangerous Goods Consignments</div>
+                        <div class="title">Transport of Dangerous Goods by Air – Initial as per the IATA Dangerous Goods Training Guidance 7.3 (Supervised Assessment)</div>
+                        <div class="meta">
+                            <span>4/5 Days</span>
+                            <span>Classroom/Virtual</span>
+                        </div>
+                    </div>
+                    <div class="action"><span class="btn-small primary">Book Now</span></div>
+                </div>
+
+                <div class="training-row" data-category="initial">
+                    <div class="number">04</div>
+                    <div class="content">
+                        <div class="function">Handling Cargo in a Warehouse, Loading and Unloading Unit Load Devices and Loading and Unloading Aircraft Cargo Compartments</div>
+                        <div class="title">Transport of Dangerous Goods by Air – Initial as per IATA DGR function 7.4 (Supervised Assessment)</div>
+                        <div class="meta">
+                            <span>1 Day</span>
+                            <span>Classroom/Virtual</span>
+                        </div>
+                    </div>
+                    <div class="action"><span class="btn-small primary">Book Now</span></div>
+                </div>
+
+                <div class="training-row" data-category="initial">
+                    <div class="number">05</div>
+                    <div class="content">
+                        <div class="function">Security Screening and Control of Dangerous Goods</div>
+                        <div class="title">Transport of Dangerous Goods by Air – Initial as per IATA DGR function 7.5 (Supervised Assessment)</div>
+                        <div class="meta">
+                            <span>2 Days</span>
+                            <span>Classroom/Virtual</span>
+                        </div>
+                    </div>
+                    <div class="action"><span class="btn-small primary">Book Now</span></div>
+                </div>
+
+                <div class="training-row" data-category="initial">
+                    <div class="number">06</div>
+                    <div class="content">
+                        <div class="function">Loading, Segregation and Inspection of Dangerous Goods on Aircraft</div>
+                        <div class="title">Transport of Dangerous Goods by Air – Initial as per IATA DGR function 7.6 (Supervised Assessment)</div>
+                        <div class="meta">
+                            <span>2 Days</span>
+                            <span>Classroom/Virtual</span>
+                        </div>
+                    </div>
+                    <div class="action"><span class="btn-small primary">Book Now</span></div>
+                </div>
+
+                <div class="training-row" data-category="recurrent">
+                    <div class="number">07</div>
+                    <div class="content">
+                        <div class="function">Preparing Dangerous Goods Consignment (Recurrent)</div>
+                        <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.1 (Supervised Assessment)</div>
+                        <div class="meta">
+                            <span>3 Days</span>
+                            <span>Classroom/Virtual</span>
+                        </div>
+                    </div>
+                    <div class="action"><span class="btn-small muted">Opening Soon</span></div>
+                </div>
+
+                <div class="training-row" data-category="recurrent">
+                    <div class="number">08</div>
+                    <div class="content">
+                        <div class="function">Processing or Accepting Goods Presented as General Cargo (Recurrent)</div>
+                        <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.2 (Supervised Assessment)</div>
+                        <div class="meta">
+                            <span>1 Day</span>
+                            <span>Classroom/Virtual</span>
+                        </div>
+                    </div>
+                    <div class="action"><span class="btn-small muted">Opening Soon</span></div>
+                </div>
+
+                <div class="training-row" data-category="recurrent">
+                    <div class="number">09</div>
+                    <div class="content">
+                        <div class="function">Processing or Accepting Dangerous Goods Consignments (Recurrent)</div>
+                        <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.3 (Supervised Assessment)</div>
+                        <div class="meta">
+                            <span>3 Days</span>
+                            <span>Classroom/Virtual</span>
+                        </div>
+                    </div>
+                    <div class="action"><span class="btn-small primary">Book Now</span></div>
+                </div>
+
+                <div class="training-row" data-category="recurrent">
+                    <div class="number">10</div>
+                    <div class="content">
+                        <div class="function">Handling Cargo in a Warehouse, Loading and Unloading Unit Load Devices and Loading and Unloading Aircraft Cargo Compartments (Recurrent)</div>
+                        <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.4 (Supervised Assessment)</div>
+                        <div class="meta">
+                            <span>1 Day</span>
+                            <span>Classroom/Virtual</span>
+                        </div>
+                    </div>
+                    <div class="action"><span class="btn-small muted">Opening Soon</span></div>
+                </div>
+
+                <div class="training-row" data-category="recurrent">
+                    <div class="number">11</div>
+                    <div class="content">
+                        <div class="function">Security Screening and Control of Dangerous Goods (Recurrent)</div>
+                        <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.5 (Supervised Assessment)</div>
+                        <div class="meta">
+                            <span>2 Days</span>
+                            <span>Classroom/Virtual</span>
+                        </div>
+                    </div>
+                    <div class="action"><span class="btn-small muted">Opening Soon</span></div>
+                </div>
+
+                <div class="training-row" data-category="recurrent">
+                    <div class="number">12</div>
+                    <div class="content">
+                        <div class="function">Loading, Segregation and Inspection of Dangerous Goods on Aircraft (Recurrent)</div>
+                        <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.6 (Supervised Assessment)</div>
+                        <div class="meta">
+                            <span>2 Days</span>
+                            <span>Classroom/Virtual</span>
+                        </div>
+                    </div>
+                    <div class="action"><span class="btn-small muted">Opening Soon</span></div>
+                </div>
+            </div>
+
+            <div class="training-pagination" id="training-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <section id="events" class="section events-section">
+        <div class="container">
+            <div class="events-header-row">
+                <div>
+                    <div class="section-tag">Upcoming Events</div>
+                    <h2 class="section-title" style="margin-bottom: 0;">
+                        Events & <span class="accent">Networking</span>
+                    </h2>
+                </div>
+                <a href="#" class="btn btn-secondary">View All Events</a>
+            </div>
+            
+            <div class="event-card">
+                <img class="event-banner" src="https://placehold.co/800x360/c41e3a/ffffff?text=Networking+Event" alt="SAAA Networking Event">
+                <div class="event-body">
+                    <div class="event-date">
+                        <div class="day">28</div>
+                        <div class="month">Apr</div>
+                    </div>
+                    <div class="event-content">
+                        <h4>SAAA-Empire Bison Business Networking</h4>
+                        <p>Exclusive networking event for member companies. Build connections and explore collaboration opportunities in the air cargo ecosystem.</p>
+                        <div class="event-meta">
+                            <span>2:00 PM</span>
+                            <span>SAAA Office</span>
+                            <span style="color: var(--red-600); font-weight: 700;">Register Now</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <img class="event-banner" src="https://placehold.co/800x360/1e3a8a/ffffff?text=Workshop" alt="CBTA Workshop">
+                <div class="event-body">
+                    <div class="event-date">
+                        <div class="day">15</div>
+                        <div class="month">May</div>
+                    </div>
+                    <div class="event-content">
+                        <h4>CBTA Dangerous Goods Workshop</h4>
+                        <p>Comprehensive training session on competency-based dangerous goods handling in line with the latest IATA regulations.</p>
+                        <div class="event-meta">
+                            <span>9:00 AM</span>
+                            <span>Training Centre</span>
+                            <span style="color: var(--red-600); font-weight: 700;">Register Now</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <img class="event-banner" src="https://placehold.co/800x360/334155/ffffff?text=AGM+2026" alt="Annual General Meeting">
+                <div class="event-body">
+                    <div class="event-date">
+                        <div class="day">22</div>
+                        <div class="month">Jun</div>
+                    </div>
+                    <div class="event-content">
+                        <h4>Annual General Meeting 2026</h4>
+                        <p>Annual gathering of all SAAA members. Review achievements, elect new council members, and discuss industry outlook.</p>
+                        <div class="event-meta">
+                            <span>10:00 AM</span>
+                            <span>Convention Hall</span>
+                            <span style="color: var(--slate-400); font-weight: 700;">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members -->
+    <section id="members" class="section">
+        <div class="container">
+            <div style="text-align: center; max-width: 560px; margin: 0 auto 48px;">
+                <div class="section-tag">Membership</div>
+                <h2 class="section-title" style="margin: 0 auto 16px;">
+                    Trusted by Industry <span class="accent">Leaders</span>
+                </h2>
+                <p class="section-desc">
+                    Over 200 member companies trust SAAA to represent their interests and advance the air cargo profession.
+                </p>
+            </div>
+
+            <div class="members-grid">
+                <div class="member-stat">
+                    <div class="number">150+</div>
+                    <div class="label">Ordinary Members</div>
+                    <div class="sublabel">Freight forwarders & agents</div>
+                </div>
+                <div class="member-stat">
+                    <div class="number">30+</div>
+                    <div class="label">Associate Members</div>
+                    <div class="sublabel">Airlines & service providers</div>
+                </div>
+                <div class="member-stat">
+                    <div class="number">20+</div>
+                    <div class="label">Honorary Members</div>
+                    <div class="sublabel">Industry veterans</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Member Logo Marquee -->
+    <section class="member-marquee-section">
+        <div class="container">
+            <div class="member-marquee-header">
+                <div class="tag">Our Members</div>
+                <h3>Trusted by Leading Air Cargo Companies</h3>
+            </div>
+            <div class="member-carousel-wrapper">
+                <div class="member-strips">
+                    <img src="images/members/clients-slide-01.jpg" alt="Member companies">
+                    <img src="images/members/clients-slide-02.jpg" alt="Member companies">
+                    <img src="images/members/clients-slide-03.jpg" alt="Member companies">
+                    <img src="images/members/clients-slide-04.jpg" alt="Member companies">
+                    <img src="images/members/clients-slide-05.jpg" alt="Member companies">
+                    <img src="images/members/clients-slide-06.jpg" alt="Member companies">
+                    <img src="images/members/clients-slide-07.jpg" alt="Member companies">
+                    <img src="images/members/clients-slide-08.jpg" alt="Member companies">
+                    <img src="images/members/clients-slide-01.jpg" alt="Member companies">
+                    <img src="images/members/clients-slide-02.jpg" alt="Member companies">
+                    <img src="images/members/clients-slide-03.jpg" alt="Member companies">
+                    <img src="images/members/clients-slide-04.jpg" alt="Member companies">
+                    <img src="images/members/clients-slide-05.jpg" alt="Member companies">
+                    <img src="images/members/clients-slide-06.jpg" alt="Member companies">
+                    <img src="images/members/clients-slide-07.jpg" alt="Member companies">
+                    <img src="images/members/clients-slide-08.jpg" alt="Member companies">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="section">
+        <div class="container">
+            <div style="padding-top: 0; text-align: center;">
+                <div class="partners-title">
+                    <div class="tag">Strategic Partners</div>
+                    <h3>In Collaboration With</h3>
+                </div>
+                <div class="partners-grid">
+                    <div class="partner-item">
+                        <div class="partner-logo"><img src="images/iata-logo.svg" alt="IATA Logo"></div>
+                        <h4>IATA</h4>
+                        <p>International Air Transport Association</p>
+                    </div>
+                    <div class="partner-item">
+                        <div class="partner-logo"><img src="images/caas-logo.png" alt="CAAS Logo"></div>
+                        <h4>CAAS</h4>
+                        <p>Civil Aviation Authority of Singapore</p>
+                    </div>
+                    <div class="partner-item">
+                        <div class="partner-logo"><img src="images/icao-logo.svg" alt="ICAO Logo"></div>
+                        <h4>ICAO</h4>
+                        <p>International Civil Aviation Organization</p>
+                    </div>
+                    <div class="partner-item">
+                        <div class="partner-logo"><img src="images/esg-logo.jpg" alt="Enterprise Singapore Logo"></div>
+                        <h4>Enterprise Singapore</h4>
+                        <p>Government agency for business growth</p>
+                    </div>
+                    <div class="partner-item">
+                        <div class="partner-logo"><img src="images/partners/imda-crest.png" alt="IMDA Logo"></div>
+                        <h4>IMDA</h4>
+                        <p>Infocomm Media Development Authority</p>
+                    </div>
+                    <div class="partner-item">
+                        <div class="partner-logo"><img src="images/partners/mindef-partner.png" alt="MINDEF Logo"></div>
+                        <h4>MINDEF</h4>
+                        <p>Ministry of Defence Singapore</p>
+                    </div>
+                    <div class="partner-item">
+                        <div class="partner-logo"><img src="images/partners/wsg-logo.png" alt="WSG Logo"></div>
+                        <h4>WSG</h4>
+                        <p>Workforce Singapore</p>
+                    </div>
+                    <div class="partner-item">
+                        <div class="partner-logo"><img src="images/partners/sats-logo.svg" alt="SATS Logo"></div>
+                        <h4>SATS</h4>
+                        <p>SATS Ltd</p>
+                    </div>
+                    <div class="partner-item">
+                        <div class="partner-logo"><img src="images/partners/dnata-logo.jpg" alt="dnata Logo"></div>
+                        <h4>dnata</h4>
+                        <p>dnata Singapore</p>
+                    </div>
+                    <div class="partner-item">
+                        <div class="partner-logo"><img src="images/partners/rp-logo.jpg" alt="Republic Polytechnic Logo"></div>
+                        <h4>Republic Polytechnic</h4>
+                        <p>Education & Training</p>
+                    </div>
+                    <div class="partner-item">
+                        <div class="partner-logo"><img src="images/partners/tp-partner.png" alt="Temasek Polytechnic Logo"></div>
+                        <h4>Temasek Polytechnic</h4>
+                        <p>Education & Training</p>
+                    </div>
+                    <div class="partner-item">
+                        <div class="partner-logo"><img src="images/partners/ccn-partner.png" alt="Cargo Community Network Logo"></div>
+                        <h4>Cargo Community Network</h4>
+                        <p>Air Cargo Technology</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="section-tag" style="background: rgba(196, 30, 58, 0.15); color: #fca5a5;">Contact</div>
+                    <h2 class="section-title">
+                        Get in <span style="color: #fca5a5;">Touch</span>
+                    </h2>
+                    <p>
+                        Whether you're interested in membership, training programs, or partnership opportunities, our team is ready to assist you.
+                    </p>
+
+                    <div class="contact-item">
+                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                        <div class="detail">
+                            <div class="label">Email</div>
+                            <div class="value">saaasin@saaa.org.sg</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.96 12.96 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.96 12.96 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                        <div class="detail">
+                            <div class="label">Phone</div>
+                            <div class="value">(+65) 6545 4620</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                        <div class="detail">
+                            <div class="label">Address</div>
+                            <div class="value">Singapore Aircargo Agents Association</div>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Send us a message</h3>
+                    <form onsubmit="event.preventDefault(); alert('Thank you for your message. We will get back to you soon.');">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" placeholder="John">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" placeholder="Doe">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="john@company.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Company</label>
+                            <input type="text" placeholder="Your company name">
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea rows="4" placeholder="How can we help you?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <img src="images/saaa-logo.png" alt="SAAA Logo" style="height: 32px; margin-bottom: 12px;">
+                    </div>
+                    <p class="footer-about">
+                        The Singapore Aircargo Agents Association — representing the collective interests of airfreight forwarders since 1985.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="footer-title">Quick Links</div>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#training">Training</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#members">Members</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="footer-title">Resources</div>
+                    <ul class="footer-links">
+                        <li><a href="#">Latest News</a></li>
+                        <li><a href="#">Announcements</a></li>
+                        <li><a href="#">Publications</a></li>
+                        <li><a href="#">Media Gallery</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="footer-title">Contact</div>
+                    <ul class="footer-links">
+                        <li>saaasin@saaa.org.sg</li>
+                        <li>(+65) 6545 4620</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">&copy; 2026 Singapore Aircargo Agents Association. All rights reserved.</div>
+                <div style="font-size: 12px; color: var(--slate-500);">Powered by <a href="#" style="color: var(--slate-400); text-decoration: none; font-weight: 600;">Flying Cape Technologies</a></div>
+                <div class="legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Animated Counter
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const suffix = element.getAttribute('data-suffix') || '';
+            const duration = 2000; // 2 seconds
+            const start = 0;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing function (ease-out)
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(start + (target - start) * easeOut);
+                
+                element.textContent = current + suffix;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = target + suffix;
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        // Intersection Observer for counters
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-value').forEach(counter => {
+            counterObserver.observe(counter);
+        });
+
+        // Training Tabs + Pagination
+        (function() {
+            const list = document.getElementById('training-list');
+            const pagination = document.getElementById('training-pagination');
+            const tabs = document.querySelectorAll('.training-tab');
+            const allRows = Array.from(list.querySelectorAll('.training-row'));
+            const itemsPerPage = 6;
+
+            let currentTab = 'all';
+            let currentPage = 1;
+
+            function getFilteredRows() {
+                if (currentTab === 'all') return allRows;
+                return allRows.filter(row => row.dataset.category === currentTab);
+            }
+
+            function render() {
+                const filtered = getFilteredRows();
+                const totalPages = Math.ceil(filtered.length / itemsPerPage);
+                if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
+
+                // Show/hide rows
+                allRows.forEach(row => row.style.display = 'none');
+                const start = (currentPage - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                filtered.slice(start, end).forEach(row => row.style.display = '');
+
+                // Update tab counts
+                tabs.forEach(tab => {
+                    const tabName = tab.dataset.tab;
+                    const count = tabName === 'all' ? allRows.length : allRows.filter(r => r.dataset.category === tabName).length;
+                    tab.querySelector('.training-count').textContent = count;
+                });
+
+                // Render pagination
+                pagination.innerHTML = '';
+                if (totalPages <= 1) return;
+
+                // Prev
+                const prevBtn = document.createElement('button');
+                prevBtn.innerHTML = '&larr;';
+                prevBtn.className = 'pagination-arrow';
+                prevBtn.disabled = currentPage === 1;
+                prevBtn.addEventListener('click', () => { currentPage--; render(); });
+                pagination.appendChild(prevBtn);
+
+                // Page numbers
+                for (let i = 1; i <= totalPages; i++) {
+                    const btn = document.createElement('button');
+                    btn.textContent = i;
+                    if (i === currentPage) btn.classList.add('active');
+                    btn.addEventListener('click', () => { currentPage = i; render(); });
+                    pagination.appendChild(btn);
+                }
+
+                // Next
+                const nextBtn = document.createElement('button');
+                nextBtn.innerHTML = '&rarr;';
+                nextBtn.className = 'pagination-arrow';
+                nextBtn.disabled = currentPage === totalPages;
+                nextBtn.addEventListener('click', () => { currentPage++; render(); });
+                pagination.appendChild(nextBtn);
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    currentTab = tab.dataset.tab;
+                    currentPage = 1;
+                    render();
+                });
+            });
+
+            render();
+        })();
+    </script>
+</body>
+</html>
