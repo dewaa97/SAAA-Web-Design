@@ -105,6 +105,7 @@
             color: var(--slate-900);
         }
 
+
         .nav-links {
             display: flex;
             align-items: center;
@@ -510,9 +511,6 @@
         }
 
         .services-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
             margin-bottom: 48px;
         }
 
@@ -581,11 +579,24 @@
             margin-bottom: 32px;
         }
 
+        .training-tabs-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            margin-bottom: 24px;
+        }
+
+        .training-tabs-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
         .training-tabs {
             display: flex;
             gap: 8px;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            width: max-content;
+            min-width: 100%;
         }
 
         .training-tab {
@@ -717,6 +728,13 @@
         .training-row .action .btn-small.muted {
             background: var(--slate-100);
             color: var(--slate-500);
+        }
+
+        .training-empty {
+            padding: 60px 24px;
+            text-align: center;
+            color: var(--slate-400);
+            font-size: 15px;
         }
 
         .training-pagination {
@@ -1369,7 +1387,6 @@
                 grid-template-columns: 1fr 1fr;
             }
 
-            .services-header,
             .events-header-row {
                 flex-direction: column;
                 align-items: flex-start;
@@ -1703,21 +1720,25 @@
             <div class="training-header">
                 <div class="section-tag">Training & Courses</div>
                 <h2 class="section-title">
-                    IATA CBTA Dangerous Goods <span class="accent">Training</span>
+                    SAAA <span class="accent">Training Courses</span>
                 </h2>
                 <p class="section-desc">
-                    Competency-based training programs designed to meet international standards. Book and purchase courses online.
+                    Competency-based training programs covering dangerous goods regulations, airfreight operations, and industry best practices. Browse our full catalog below.
                 </p>
             </div>
 
-            <div class="training-tabs">
-                <button class="training-tab active" data-tab="all">All Programs<span class="training-count">12</span></button>
-                <button class="training-tab" data-tab="initial">Initial<span class="training-count">6</span></button>
-                <button class="training-tab" data-tab="recurrent">Recurrent<span class="training-count">6</span></button>
+            <div class="training-tabs-scroll">
+                <div class="training-tabs">
+                    <button class="training-tab active" data-tab="all">All Programs<span class="training-count">12</span></button>
+                    <button class="training-tab" data-tab="dg-fam">DG Familiarization<span class="training-count">0</span></button>
+                    <button class="training-tab" data-tab="cbta-dg">CBTA DG Functions<span class="training-count">12</span></button>
+                    <button class="training-tab" data-tab="cbta-dg-spec">CBTA DG (Spec)<span class="training-count">0</span></button>
+                    <button class="training-tab" data-tab="airfreight">Airfreight Industry<span class="training-count">0</span></button>
+                </div>
             </div>
             
             <div class="training-list" id="training-list">
-                <div class="training-row" data-category="initial">
+                <div class="training-row" data-category="cbta-dg">
                     <div class="number">01</div>
                     <div class="content">
                         <div class="function">Preparing Dangerous Goods Consignment</div>
@@ -1730,7 +1751,7 @@
                     <div class="action"><span class="btn-small primary">Book Now</span></div>
                 </div>
 
-                <div class="training-row" data-category="initial">
+                <div class="training-row" data-category="cbta-dg">
                     <div class="number">02</div>
                     <div class="content">
                         <div class="function">Processing or Accepting Goods Presented as General Cargo</div>
@@ -1743,7 +1764,7 @@
                     <div class="action"><span class="btn-small primary">Book Now</span></div>
                 </div>
 
-                <div class="training-row" data-category="initial">
+                <div class="training-row" data-category="cbta-dg">
                     <div class="number">03</div>
                     <div class="content">
                         <div class="function">Processing or Accepting Dangerous Goods Consignments</div>
@@ -1756,7 +1777,7 @@
                     <div class="action"><span class="btn-small primary">Book Now</span></div>
                 </div>
 
-                <div class="training-row" data-category="initial">
+                <div class="training-row" data-category="cbta-dg">
                     <div class="number">04</div>
                     <div class="content">
                         <div class="function">Handling Cargo in a Warehouse, Loading and Unloading Unit Load Devices and Loading and Unloading Aircraft Cargo Compartments</div>
@@ -1769,7 +1790,7 @@
                     <div class="action"><span class="btn-small primary">Book Now</span></div>
                 </div>
 
-                <div class="training-row" data-category="initial">
+                <div class="training-row" data-category="cbta-dg">
                     <div class="number">05</div>
                     <div class="content">
                         <div class="function">Security Screening and Control of Dangerous Goods</div>
@@ -1782,7 +1803,7 @@
                     <div class="action"><span class="btn-small primary">Book Now</span></div>
                 </div>
 
-                <div class="training-row" data-category="initial">
+                <div class="training-row" data-category="cbta-dg">
                     <div class="number">06</div>
                     <div class="content">
                         <div class="function">Loading, Segregation and Inspection of Dangerous Goods on Aircraft</div>
@@ -1795,7 +1816,7 @@
                     <div class="action"><span class="btn-small primary">Book Now</span></div>
                 </div>
 
-                <div class="training-row" data-category="recurrent">
+                <div class="training-row" data-category="cbta-dg">
                     <div class="number">07</div>
                     <div class="content">
                         <div class="function">Preparing Dangerous Goods Consignment (Recurrent)</div>
@@ -1808,7 +1829,7 @@
                     <div class="action"><span class="btn-small muted">Opening Soon</span></div>
                 </div>
 
-                <div class="training-row" data-category="recurrent">
+                <div class="training-row" data-category="cbta-dg">
                     <div class="number">08</div>
                     <div class="content">
                         <div class="function">Processing or Accepting Goods Presented as General Cargo (Recurrent)</div>
@@ -1821,7 +1842,7 @@
                     <div class="action"><span class="btn-small muted">Opening Soon</span></div>
                 </div>
 
-                <div class="training-row" data-category="recurrent">
+                <div class="training-row" data-category="cbta-dg">
                     <div class="number">09</div>
                     <div class="content">
                         <div class="function">Processing or Accepting Dangerous Goods Consignments (Recurrent)</div>
@@ -1834,7 +1855,7 @@
                     <div class="action"><span class="btn-small primary">Book Now</span></div>
                 </div>
 
-                <div class="training-row" data-category="recurrent">
+                <div class="training-row" data-category="cbta-dg">
                     <div class="number">10</div>
                     <div class="content">
                         <div class="function">Handling Cargo in a Warehouse, Loading and Unloading Unit Load Devices and Loading and Unloading Aircraft Cargo Compartments (Recurrent)</div>
@@ -1847,7 +1868,7 @@
                     <div class="action"><span class="btn-small muted">Opening Soon</span></div>
                 </div>
 
-                <div class="training-row" data-category="recurrent">
+                <div class="training-row" data-category="cbta-dg">
                     <div class="number">11</div>
                     <div class="content">
                         <div class="function">Security Screening and Control of Dangerous Goods (Recurrent)</div>
@@ -1860,7 +1881,7 @@
                     <div class="action"><span class="btn-small muted">Opening Soon</span></div>
                 </div>
 
-                <div class="training-row" data-category="recurrent">
+                <div class="training-row" data-category="cbta-dg">
                     <div class="number">12</div>
                     <div class="content">
                         <div class="function">Loading, Segregation and Inspection of Dangerous Goods on Aircraft (Recurrent)</div>
@@ -2299,16 +2320,43 @@
 
                 // Show/hide rows
                 allRows.forEach(row => row.style.display = 'none');
-                const start = (currentPage - 1) * itemsPerPage;
-                const end = start + itemsPerPage;
-                filtered.slice(start, end).forEach(row => row.style.display = '');
+                
+                // Remove existing empty message
+                let emptyMsg = list.querySelector('.training-empty');
+                if (emptyMsg) emptyMsg.remove();
 
-                // Update tab counts
+                // Update tab counts and hide 0-count tabs
                 tabs.forEach(tab => {
                     const tabName = tab.dataset.tab;
                     const count = tabName === 'all' ? allRows.length : allRows.filter(r => r.dataset.category === tabName).length;
                     tab.querySelector('.training-count').textContent = count;
+                    tab.style.display = (tabName !== 'all' && count === 0) ? 'none' : '';
                 });
+
+                // Fallback to "all" if current tab is hidden
+                const activeTab = document.querySelector('.training-tab.active');
+                if (activeTab && activeTab.style.display === 'none') {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    const allTab = document.querySelector('.training-tab[data-tab="all"]');
+                    if (allTab) allTab.classList.add('active');
+                    currentTab = 'all';
+                    currentPage = 1;
+                    render();
+                    return;
+                }
+
+                if (filtered.length === 0) {
+                    const msg = document.createElement('div');
+                    msg.className = 'training-empty';
+                    msg.textContent = 'No courses available in this category yet.';
+                    list.appendChild(msg);
+                    pagination.innerHTML = '';
+                    return;
+                }
+
+                const start = (currentPage - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                filtered.slice(start, end).forEach(row => row.style.display = '');
 
                 // Render pagination
                 pagination.innerHTML = '';
