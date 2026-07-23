@@ -83,7 +83,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 72px;
+            height: 80px;
         }
 
         .logo {
@@ -93,7 +93,7 @@
         }
 
         .logo-img {
-            height: 40px;
+            height: 72px;
             width: auto;
             display: block;
         }
@@ -126,13 +126,14 @@
             background: var(--red-50);
         }
 
-        .nav-links .btn-primary {
-            color: white;
+        .nav-links a svg {
+            display: block;
+            color: var(--slate-400);
+            transition: color 0.2s;
         }
 
-        .nav-links .btn-primary:hover {
-            color: white;
-            background: var(--red-700);
+        .nav-links a:hover svg {
+            color: var(--red-600);
         }
 
         .btn {
@@ -326,6 +327,10 @@
             padding: 80px 0;
         }
 
+        .section[id] {
+            scroll-margin-top: 80px;
+        }
+
         .section-header {
             margin-bottom: 48px;
         }
@@ -460,7 +465,7 @@
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            gap: 60px;
             align-items: start;
         }
 
@@ -510,64 +515,73 @@
             background: var(--slate-50);
         }
 
-        .services-header {
-            margin-bottom: 48px;
+        .services-intro {
+            max-width: 820px;
+            margin-bottom: 28px;
         }
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+        .services-intro .section-desc {
+            max-width: none;
         }
 
-        .service-card {
-            background: white;
-            padding: 32px;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--slate-200);
-            transition: all 0.3s;
-            cursor: pointer;
+        .services-contact-group + .services-contact-group {
+            margin-top: 40px;
         }
 
-        .service-card:hover {
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-            border-color: var(--red-200);
-            transform: translateY(-4px);
+        .services-contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px 28px;
+            margin-bottom: 14px;
+            font-size: 14px;
+            color: var(--slate-700);
         }
 
-        .service-number {
-            font-family: 'Space Grotesk', sans-serif;
+        .services-contact-label {
             font-size: 13px;
             font-weight: 700;
             color: var(--red-600);
-            margin-bottom: 16px;
-            display: block;
+            letter-spacing: 1px;
         }
 
-        .service-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 12px;
-            color: var(--slate-800);
-        }
-
-        .service-card p {
-            font-size: 15px;
-            color: var(--slate-600);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .service-link {
+        .services-contact-phone,
+        .services-contact-email {
             font-size: 14px;
-            font-weight: 600;
-            color: var(--red-600);
+            font-weight: 500;
+            color: var(--slate-700);
+        }
+
+        .services-contact-item {
             display: inline-flex;
             align-items: center;
             gap: 6px;
         }
 
-        .service-card:hover .service-link {
-            gap: 10px;
+        .services-mini-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .services-mini-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 220px;
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            background: #e9e9e9;
+            color: var(--slate-800);
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .services-mini-btn:hover {
+            background: var(--red-50);
+            color: var(--red-600);
         }
 
         /* Training Section — Scalable Tabs + Compact Rows + Pagination */
@@ -577,6 +591,34 @@
 
         .training-header {
             margin-bottom: 32px;
+        }
+
+        .training-contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px 24px;
+            margin: 18px 0 28px;
+            font-size: 14px;
+            color: var(--slate-700);
+        }
+
+        .training-contact-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--red-600);
+            letter-spacing: 1px;
+        }
+
+        .training-contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .training-contact-link {
+            color: var(--slate-700);
+            font-weight: 500;
         }
 
         .training-tabs-scroll {
@@ -646,13 +688,12 @@
 
         .training-row {
             display: grid;
-            grid-template-columns: 48px 1fr 180px;
+            grid-template-columns: 48px minmax(0, 1fr) 180px;
             gap: 20px;
             padding: 20px 24px;
             border-bottom: 1px solid var(--slate-100);
             align-items: start;
             transition: all 0.2s;
-            cursor: pointer;
         }
 
         .training-row:last-child {
@@ -679,35 +720,52 @@
         }
 
         .training-row .content .function {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--slate-900);
-            margin-bottom: 4px;
-            line-height: 1.4;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--slate-500);
+            margin-bottom: 12px;
+            line-height: 1.5;
         }
 
         .training-row .content .title {
-            font-size: 13px;
-            color: var(--slate-500);
-            line-height: 1.5;
-            margin-bottom: 8px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--slate-900);
+            line-height: 1.45;
+            margin-bottom: 6px;
         }
 
         .training-row .content .meta {
             display: flex;
-            gap: 12px;
-            font-size: 12px;
-            color: var(--slate-400);
-            font-weight: 500;
+            flex-wrap: wrap;
+            gap: 8px 12px;
+            font-size: 13px;
+            color: var(--slate-600);
+            font-weight: 600;
+        }
+
+        .training-row .content .meta span {
+            position: relative;
+        }
+
+        .training-row .content .meta span + span::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 999px;
+            background: var(--slate-400);
+            margin-right: 12px;
+            vertical-align: middle;
         }
 
         .training-row .action {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 8px;
-            justify-content: center;
+            gap: 10px;
+            justify-content: flex-start;
         }
 
         .training-row .action .btn-small {
@@ -725,9 +783,12 @@
             color: white;
         }
 
-        .training-row .action .btn-small.muted {
-            background: var(--slate-100);
-            color: var(--slate-500);
+        .training-row .action .training-date {
+            font-size: 12px;
+            color: var(--slate-600);
+            font-weight: 500;
+            text-align: right;
+            line-height: 1.4;
         }
 
         .training-empty {
@@ -790,8 +851,8 @@
 
         .events-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 48px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
         }
 
         .events-header-row {
@@ -805,12 +866,12 @@
             background: white;
             border-radius: var(--radius-lg);
             border: 1px solid var(--slate-200);
-            margin-bottom: 16px;
             overflow: hidden;
             transition: all 0.3s;
             cursor: pointer;
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
 
         .event-card:hover {
@@ -820,16 +881,17 @@
 
         .event-banner {
             width: 100%;
-            height: 180px;
+            height: 200px;
             object-fit: cover;
             display: block;
         }
 
         .event-body {
-            padding: 24px;
+            padding: 20px 22px 22px;
             display: flex;
-            gap: 20px;
+            gap: 16px;
             align-items: flex-start;
+            flex: 1;
         }
 
         .event-date {
@@ -863,25 +925,36 @@
         }
 
         .event-content h4 {
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: var(--slate-800);
         }
 
         .event-content p {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--slate-600);
-            line-height: 1.6;
-            margin-bottom: 10px;
+            line-height: 1.55;
+            margin-bottom: 12px;
         }
 
         .event-meta {
             display: flex;
-            gap: 20px;
+            flex-wrap: wrap;
+            gap: 8px 16px;
             font-size: 13px;
             color: var(--slate-500);
             font-weight: 500;
+        }
+
+        .event-meta .status-live {
+            color: var(--red-600);
+            font-weight: 700;
+        }
+
+        .event-meta .status-muted {
+            color: var(--slate-400);
+            font-weight: 700;
         }
 
         /* Members */
@@ -889,7 +962,15 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
-            margin-bottom: 80px;
+            margin-bottom: 28px;
+        }
+
+        .members-cta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
         }
 
         .member-stat {
@@ -1236,7 +1317,7 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
             gap: 48px;
             margin-bottom: 48px;
         }
@@ -1367,12 +1448,30 @@
                 align-items: center;
             }
 
+            .training-contact-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .services-grid {
-                grid-template-columns: 1fr;
+            .services-contact-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .services-mini-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .services-mini-btn {
+                min-width: 0;
+                width: 100%;
             }
 
             .members-grid {
@@ -1384,13 +1483,17 @@
             }
 
             .footer-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr 1fr 1fr;
             }
 
             .events-header-row {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 12px;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1419,6 +1522,34 @@
             .about-features,
             .members-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .members-cta {
+                flex-direction: column;
+                align-items: stretch;
+                max-width: 320px;
+                margin: 28px auto 0;
+            }
+
+            .members-cta .btn {
+                justify-content: center;
+            }
+
+            .training-row {
+                padding: 18px 18px;
+            }
+
+            .training-row .content .title {
+                font-size: 15px;
+            }
+
+            .training-row .content .meta span + span::before {
+                margin-right: 8px;
+            }
+
+            .training-row .action .btn-small {
+                width: 100%;
+                justify-content: center;
             }
             
             .partners-grid {
@@ -1450,6 +1581,23 @@
 
             .event-card {
                 flex-direction: column;
+            }
+
+            .event-banner {
+                height: 180px;
+            }
+
+            .event-body {
+                padding: 18px;
+            }
+
+            .event-date {
+                width: 58px;
+                height: 58px;
+            }
+
+            .event-date .day {
+                font-size: 1.5rem;
             }
 
             .ticker-thumb {
@@ -1499,10 +1647,20 @@
                 
                 <div class="nav-links">
                     <a href="#about">About Us</a>
+                    <a href="#members">Members</a>
+                    <a href="#services">Services</a>
                     <a href="#training">Training</a>
                     <a href="#events">Events</a>
-                    <a href="#members">Members</a>
-                    <a href="#contact" class="btn btn-primary">Register Now</a>
+                    <a href="#publication">Publication</a>
+                    <a href="https://www.linkedin.com/in/saaa-singapore-2b6861243/%20" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/pages/SAAA/834894096585648?fref=ts" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/saaasingapore/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 1 0 0-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 1 1-2.882 0 1.441 1.441 0 0 1 2.882 0z"/></svg>
+                    </a>
                 </div>
 
                 <button class="mobile-menu-btn">Menu</button>
@@ -1573,7 +1731,7 @@
                     </div>
                     
                     <div class="ticker-item">
-                        <img class="ticker-thumb" src="https://placehold.co/160x120/c41e3a/ffffff?text=CBTA" alt="CBTA News">
+                        <img class="ticker-thumb" src="images/events/meeting-adults-1.jpg" alt="Dangerous goods training meeting">
                         <div>
                             <div class="ticker-item-date">June 2025</div>
                             <div class="ticker-item-title">CBTA Framework Implementation Update</div>
@@ -1582,7 +1740,7 @@
                     </div>
 
                     <div class="ticker-item">
-                        <img class="ticker-thumb" src="https://placehold.co/160x120/475569/ffffff?text=STC" alt="STC News">
+                        <img class="ticker-thumb" src="images/events/meeting-adults-2.jpg" alt="Business meeting for trading conditions update">
                         <div>
                             <div class="ticker-item-date">May 2025</div>
                             <div class="ticker-item-title">Standard Trading Conditions 2025</div>
@@ -1598,7 +1756,7 @@
                     </div>
                     
                     <div class="ticker-item">
-                        <img class="ticker-thumb" src="https://placehold.co/160x120/1e3a8a/ffffff?text=MAG" alt="Perspectives Magazine">
+                        <img class="ticker-thumb" src="images/events/meeting-adults-3.jpg" alt="Editorial planning meeting">
                         <div>
                             <div class="ticker-item-date">NEW</div>
                             <div class="ticker-item-title">Contribution of Articles in Perspectives <span class="ticker-badge">New</span></div>
@@ -1607,7 +1765,7 @@
                     </div>
 
                     <div class="ticker-item">
-                        <img class="ticker-thumb" src="https://placehold.co/160x120/334155/ffffff?text=NET" alt="Networking Event">
+                        <img class="ticker-thumb" src="images/events/meeting-adults-4.jpg" alt="Professional networking event">
                         <div>
                             <div class="ticker-item-date">UPCOMING</div>
                             <div class="ticker-item-title">SAAA-Empire Bison Business Networking</div>
@@ -1634,7 +1792,25 @@
                     <p>
                         We work closely with government agencies, international aviation bodies, and industry stakeholders to advance the interests of our members and ensure Singapore remains a leading air cargo hub in Asia.
                     </p>
-                    <a href="#" class="btn btn-primary" style="margin-top: 8px;">Our History</a>
+
+                    <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; font-size: 14px; color: var(--slate-700);">
+                        <span style="font-weight: 700; color: var(--red-600); font-size: 13px; letter-spacing: 1px;">Contact SAAA</span>
+                        <span style="display: inline-flex; align-items: center; gap: 6px;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <a href="mailto:saaasin@saaa.org.sg" style="color: var(--slate-700); font-weight: 500;">saaasin@saaa.org.sg</a>
+                        </span>
+                        <span style="display: inline-flex; align-items: center; gap: 6px;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.96 12.96 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.96 12.96 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            <span style="font-weight: 500;">(+65) 6545 4620</span>
+                        </span>
+                    </div>
+
+                    <div style="display: flex; flex-wrap: nowrap; gap: 8px; margin-top: 24px;">
+                        <a href="history.html" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 12px; padding: 8px 14px; white-space: nowrap;">Our History</a>
+                        <a href="organization.html" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 12px; padding: 8px 14px; white-space: nowrap;">Organization Structure</a>
+                        <a href="stc.html" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 12px; padding: 8px 14px; white-space: nowrap;">Standard Trading Conditions</a>
+                        <a href="programmes.html" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 12px; padding: 8px 14px; white-space: nowrap;">Programmes</a>
+                    </div>
                 </div>
                 
                 <div>
@@ -1665,53 +1841,6 @@
         </div>
     </section>
 
-    <!-- Services -->
-    <section id="services" class="section services-section" style="display:none">
-        <div class="container">
-            <div class="services-header">
-                <div>
-                    <div class="section-tag">Services</div>
-                    <h2 class="section-title">
-                        Comprehensive <span class="accent">Cargo</span> Solutions
-                    </h2>
-                </div>
-                <p class="section-desc">
-                    From documentation to compliance, we provide essential services that keep Singapore's air cargo industry operating at world-class standards.
-                </p>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card">
-                    <span class="service-number">01</span>
-                    <h3>Neutral Airway Bill</h3>
-                    <p>Standardized airway bill documentation facilitating seamless cargo processing across all member operations, ensuring consistency and compliance.</p>
-                    <span class="service-link">Learn more</span>
-                </div>
-
-                <div class="service-card">
-                    <span class="service-number">02</span>
-                    <h3>Bar Code Labels</h3>
-                    <p>GS1-compliant barcode label generation and management systems for efficient cargo tracking, handling, and supply chain visibility.</p>
-                    <span class="service-link">Learn more</span>
-                </div>
-
-                <div class="service-card">
-                    <span class="service-number">03</span>
-                    <h3>Permits & Certificate of Origin</h3>
-                    <p>Certificate of Origin processing and permit facilitation services for smooth customs clearance and regulatory compliance.</p>
-                    <span class="service-link">Learn more</span>
-                </div>
-
-                <div class="service-card">
-                    <span class="service-number">04</span>
-                    <h3>Facilities & Infrastructure</h3>
-                    <p>Access to shared facilities and infrastructure for member companies to optimize operational efficiency and reduce costs.</p>
-                    <span class="service-link">Learn more</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Training Section — Scalable Tabs + Compact Rows + Pagination -->
     <section id="training" class="section training-section">
         <div class="container">
@@ -1725,13 +1854,24 @@
                 </p>
             </div>
 
+            <div class="training-contact-row">
+                <div class="training-contact-label">Contact SAAA Cargo Services Pte Ltd</div>
+                <span class="training-contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <a href="mailto:admin@saaa.org.sg" class="training-contact-link">admin@saaa.org.sg</a>
+                </span>
+                <span class="training-contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.96 12.96 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.96 12.96 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span class="training-contact-link">(+65) 6545 5006</span>
+                </span>
+            </div>
+
             <div class="training-tabs-scroll">
                 <div class="training-tabs">
                     <button class="training-tab active" data-tab="all">All Programs<span class="training-count">12</span></button>
-                    <button class="training-tab" data-tab="dg-fam">DG Familiarization<span class="training-count">0</span></button>
                     <button class="training-tab" data-tab="cbta-dg">CBTA DG Functions<span class="training-count">12</span></button>
-                    <button class="training-tab" data-tab="cbta-dg-spec">CBTA DG (Spec)<span class="training-count">0</span></button>
-                    <button class="training-tab" data-tab="airfreight">Airfreight Industry<span class="training-count">0</span></button>
+                    <button class="training-tab" data-tab="air-cargo">Air Cargo &amp; Supply Chain<span class="training-count">0</span></button>
+                    <button class="training-tab" data-tab="others">Others<span class="training-count">0</span></button>
                 </div>
             </div>
             
@@ -1739,161 +1879,222 @@
                 <div class="training-row" data-category="cbta-dg">
                     <div class="number">01</div>
                     <div class="content">
-                        <div class="function">Preparing Dangerous Goods Consignment</div>
                         <div class="title">Transport of Dangerous Goods by Air – Initial as per the IATA Dangerous Goods Training Guidance 7.1 (Supervised assessment)</div>
+                        <div class="function">Preparing Dangerous Goods Consignment</div>
                         <div class="meta">
                             <span>4/5 Days</span>
                             <span>Classroom/Virtual</span>
+                            <span>No. of vacancies: 8</span>
                         </div>
                     </div>
-                    <div class="action"><span class="btn-small primary">Book Now</span></div>
+                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 24 Aug 2026</div></div>
                 </div>
 
                 <div class="training-row" data-category="cbta-dg">
                     <div class="number">02</div>
                     <div class="content">
-                        <div class="function">Processing or Accepting Goods Presented as General Cargo</div>
                         <div class="title">Transport of Dangerous Goods by Air – Initial as per the IATA Dangerous Goods Training Guidance 7.2 (Supervised assessment)</div>
+                        <div class="function">Processing or Accepting Goods Presented as General Cargo</div>
                         <div class="meta">
                             <span>1 Day</span>
                             <span>Classroom/Virtual</span>
+                            <span>No. of vacancies: 5</span>
                         </div>
                     </div>
-                    <div class="action"><span class="btn-small primary">Book Now</span></div>
+                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 26 Aug 2026</div></div>
                 </div>
 
                 <div class="training-row" data-category="cbta-dg">
                     <div class="number">03</div>
                     <div class="content">
-                        <div class="function">Processing or Accepting Dangerous Goods Consignments</div>
                         <div class="title">Transport of Dangerous Goods by Air – Initial as per the IATA Dangerous Goods Training Guidance 7.3 (Supervised Assessment)</div>
+                        <div class="function">Processing or Accepting Dangerous Goods Consignments</div>
                         <div class="meta">
                             <span>4/5 Days</span>
                             <span>Classroom/Virtual</span>
+                            <span>No. of vacancies: 11</span>
                         </div>
                     </div>
-                    <div class="action"><span class="btn-small primary">Book Now</span></div>
+                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 28 Aug 2026</div></div>
                 </div>
 
                 <div class="training-row" data-category="cbta-dg">
                     <div class="number">04</div>
                     <div class="content">
-                        <div class="function">Handling Cargo in a Warehouse, Loading and Unloading Unit Load Devices and Loading and Unloading Aircraft Cargo Compartments</div>
                         <div class="title">Transport of Dangerous Goods by Air – Initial as per IATA DGR function 7.4 (Supervised Assessment)</div>
+                        <div class="function">Handling Cargo in a Warehouse, Loading and Unloading Unit Load Devices and Loading and Unloading Aircraft Cargo Compartments</div>
                         <div class="meta">
                             <span>1 Day</span>
                             <span>Classroom/Virtual</span>
+                            <span>No. of vacancies: 6</span>
                         </div>
                     </div>
-                    <div class="action"><span class="btn-small primary">Book Now</span></div>
+                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 31 Aug 2026</div></div>
                 </div>
 
                 <div class="training-row" data-category="cbta-dg">
                     <div class="number">05</div>
                     <div class="content">
-                        <div class="function">Security Screening and Control of Dangerous Goods</div>
                         <div class="title">Transport of Dangerous Goods by Air – Initial as per IATA DGR function 7.5 (Supervised Assessment)</div>
+                        <div class="function">Security Screening and Control of Dangerous Goods</div>
                         <div class="meta">
                             <span>2 Days</span>
                             <span>Classroom/Virtual</span>
+                            <span>No. of vacancies: 4</span>
                         </div>
                     </div>
-                    <div class="action"><span class="btn-small primary">Book Now</span></div>
+                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 02 Sep 2026</div></div>
                 </div>
 
                 <div class="training-row" data-category="cbta-dg">
                     <div class="number">06</div>
                     <div class="content">
-                        <div class="function">Loading, Segregation and Inspection of Dangerous Goods on Aircraft</div>
                         <div class="title">Transport of Dangerous Goods by Air – Initial as per IATA DGR function 7.6 (Supervised Assessment)</div>
+                        <div class="function">Loading, Segregation and Inspection of Dangerous Goods on Aircraft</div>
                         <div class="meta">
                             <span>2 Days</span>
                             <span>Classroom/Virtual</span>
+                            <span>No. of vacancies: 9</span>
                         </div>
                     </div>
-                    <div class="action"><span class="btn-small primary">Book Now</span></div>
+                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 04 Sep 2026</div></div>
                 </div>
 
                 <div class="training-row" data-category="cbta-dg">
                     <div class="number">07</div>
                     <div class="content">
-                        <div class="function">Preparing Dangerous Goods Consignment (Recurrent)</div>
                         <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.1 (Supervised Assessment)</div>
+                        <div class="function">Preparing Dangerous Goods Consignment (Recurrent)</div>
                         <div class="meta">
                             <span>3 Days</span>
                             <span>Classroom/Virtual</span>
+                            <span>No. of vacancies: 3</span>
                         </div>
                     </div>
-                    <div class="action"><span class="btn-small muted">Opening Soon</span></div>
+                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 08 Sep 2026</div></div>
                 </div>
 
                 <div class="training-row" data-category="cbta-dg">
                     <div class="number">08</div>
                     <div class="content">
-                        <div class="function">Processing or Accepting Goods Presented as General Cargo (Recurrent)</div>
                         <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.2 (Supervised Assessment)</div>
+                        <div class="function">Processing or Accepting Goods Presented as General Cargo (Recurrent)</div>
                         <div class="meta">
                             <span>1 Day</span>
                             <span>Classroom/Virtual</span>
+                            <span>No. of vacancies: 7</span>
                         </div>
                     </div>
-                    <div class="action"><span class="btn-small muted">Opening Soon</span></div>
+                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 10 Sep 2026</div></div>
                 </div>
 
                 <div class="training-row" data-category="cbta-dg">
                     <div class="number">09</div>
                     <div class="content">
-                        <div class="function">Processing or Accepting Dangerous Goods Consignments (Recurrent)</div>
                         <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.3 (Supervised Assessment)</div>
+                        <div class="function">Processing or Accepting Dangerous Goods Consignments (Recurrent)</div>
                         <div class="meta">
                             <span>3 Days</span>
                             <span>Classroom/Virtual</span>
+                            <span>No. of vacancies: 12</span>
                         </div>
                     </div>
-                    <div class="action"><span class="btn-small primary">Book Now</span></div>
+                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 14 Sep 2026</div></div>
                 </div>
 
                 <div class="training-row" data-category="cbta-dg">
                     <div class="number">10</div>
                     <div class="content">
-                        <div class="function">Handling Cargo in a Warehouse, Loading and Unloading Unit Load Devices and Loading and Unloading Aircraft Cargo Compartments (Recurrent)</div>
                         <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.4 (Supervised Assessment)</div>
+                        <div class="function">Handling Cargo in a Warehouse, Loading and Unloading Unit Load Devices and Loading and Unloading Aircraft Cargo Compartments (Recurrent)</div>
                         <div class="meta">
                             <span>1 Day</span>
                             <span>Classroom/Virtual</span>
+                            <span>No. of vacancies: 5</span>
                         </div>
                     </div>
-                    <div class="action"><span class="btn-small muted">Opening Soon</span></div>
+                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 16 Sep 2026</div></div>
                 </div>
 
                 <div class="training-row" data-category="cbta-dg">
                     <div class="number">11</div>
                     <div class="content">
-                        <div class="function">Security Screening and Control of Dangerous Goods (Recurrent)</div>
                         <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.5 (Supervised Assessment)</div>
+                        <div class="function">Security Screening and Control of Dangerous Goods (Recurrent)</div>
                         <div class="meta">
                             <span>2 Days</span>
                             <span>Classroom/Virtual</span>
+                            <span>No. of vacancies: 6</span>
                         </div>
                     </div>
-                    <div class="action"><span class="btn-small muted">Opening Soon</span></div>
+                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 18 Sep 2026</div></div>
                 </div>
 
                 <div class="training-row" data-category="cbta-dg">
                     <div class="number">12</div>
                     <div class="content">
-                        <div class="function">Loading, Segregation and Inspection of Dangerous Goods on Aircraft (Recurrent)</div>
                         <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.6 (Supervised Assessment)</div>
+                        <div class="function">Loading, Segregation and Inspection of Dangerous Goods on Aircraft (Recurrent)</div>
                         <div class="meta">
                             <span>2 Days</span>
                             <span>Classroom/Virtual</span>
+                            <span>No. of vacancies: 4</span>
                         </div>
                     </div>
-                    <div class="action"><span class="btn-small muted">Opening Soon</span></div>
+                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 21 Sep 2026</div></div>
                 </div>
             </div>
 
             <div class="training-pagination" id="training-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section services-section">
+        <div class="container">
+            <div class="services-intro">
+                <h2 class="section-title">
+                    SAAA <span class="accent">Services</span>
+                </h2>
+                <p class="section-desc">
+                    SAAA provides permit declaration services to facilitate cargo clearance. We have a team of customs approved declarants experienced in permit declarations, e.g.: import, export permits.
+                </p>
+            </div>
+
+            <div class="services-contact-group">
+                <div class="services-contact-row">
+                    <div class="services-contact-label">Contact SAAA Permits Office</div>
+                    <span class="services-contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <a href="mailto:scs@saaa.org.sg" class="services-contact-email">scs@saaa.org.sg</a>
+                    </span>
+                    <span class="services-contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.79 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.96 12.96 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.96 12.96 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <span class="services-contact-email">(+65) 6545 9597</span>
+                    </span>
+                </div>
+                <a href="https://main.d1zqfaeaa5ju6p.amplifyapp.com/" target="_blank" rel="noopener" class="services-mini-btn">
+                    Permit &amp; Certificate of Origin
+                </a>
+            </div>
+
+            <div class="services-contact-group">
+                <div class="services-contact-row">
+                    <div class="services-contact-label">Contact SAAA@Singapore</div>
+                    <span class="services-contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <a href="mailto:finance@saaa.org.sg" class="services-contact-email">finance@saaa.org.sg</a>
+                    </span>
+                    <span class="services-contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.79 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.96 12.96 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.96 12.96 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <span class="services-contact-email">(+65) 6543 0059</span>
+                    </span>
+                </div>
+                <div class="services-mini-actions">
+                    <a href="#" target="_blank" rel="noopener" class="services-mini-btn">Neutral Airway Bill</a>
+                    <a href="#" target="_blank" rel="noopener" class="services-mini-btn">Bar Code Labels</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1910,58 +2111,79 @@
                 <a href="#" class="btn btn-secondary">View All Events</a>
             </div>
             
-            <div class="event-card">
-                <img class="event-banner" src="https://placehold.co/800x360/c41e3a/ffffff?text=Networking+Event" alt="SAAA Networking Event">
-                <div class="event-body">
-                    <div class="event-date">
-                        <div class="day">28</div>
-                        <div class="month">Apr</div>
-                    </div>
-                    <div class="event-content">
-                        <h4>SAAA-Empire Bison Business Networking</h4>
-                        <p>Exclusive networking event for member companies. Build connections and explore collaboration opportunities in the air cargo ecosystem.</p>
-                        <div class="event-meta">
-                            <span>2:00 PM</span>
-                            <span>SAAA Office</span>
-                            <span style="color: var(--red-600); font-weight: 700;">Register Now</span>
+            <div class="events-grid">
+                <div class="event-card">
+                    <img class="event-banner" src="images/events/networking-1.jpg" alt="Business networking event">
+                    <div class="event-body">
+                        <div class="event-date">
+                            <div class="day">28</div>
+                            <div class="month">Aug</div>
+                        </div>
+                        <div class="event-content">
+                            <h4>Business Networking</h4>
+                            <p>Member networking session to build new connections and spark collaboration across the air cargo community.</p>
+                            <div class="event-meta">
+                                <span>2:00 PM</span>
+                                <span>SAAA Office</span>
+                                <span class="status-live">Register Now</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="event-card">
-                <img class="event-banner" src="https://placehold.co/800x360/1e3a8a/ffffff?text=Workshop" alt="CBTA Workshop">
-                <div class="event-body">
-                    <div class="event-date">
-                        <div class="day">15</div>
-                        <div class="month">May</div>
-                    </div>
-                    <div class="event-content">
-                        <h4>CBTA Dangerous Goods Workshop</h4>
-                        <p>Comprehensive training session on competency-based dangerous goods handling in line with the latest IATA regulations.</p>
-                        <div class="event-meta">
-                            <span>9:00 AM</span>
-                            <span>Training Centre</span>
-                            <span style="color: var(--red-600); font-weight: 700;">Register Now</span>
+                <div class="event-card">
+                    <img class="event-banner" src="images/events/workshop-1.jpg" alt="Workshop session">
+                    <div class="event-body">
+                        <div class="event-date">
+                            <div class="day">15</div>
+                            <div class="month">Sep</div>
+                        </div>
+                        <div class="event-content">
+                            <h4>DG Workshop</h4>
+                            <p>Focused workshop on dangerous goods handling with practical guidance aligned to current IATA requirements.</p>
+                            <div class="event-meta">
+                                <span>9:00 AM</span>
+                                <span>Training Centre</span>
+                                <span class="status-live">Register Now</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="event-card">
-                <img class="event-banner" src="https://placehold.co/800x360/334155/ffffff?text=AGM+2026" alt="Annual General Meeting">
-                <div class="event-body">
-                    <div class="event-date">
-                        <div class="day">22</div>
-                        <div class="month">Jun</div>
+                <div class="event-card">
+                    <img class="event-banner" src="images/events/meeting-adults-2.jpg" alt="Annual general meeting boardroom">
+                    <div class="event-body">
+                        <div class="event-date">
+                            <div class="day">22</div>
+                            <div class="month">Sep</div>
+                        </div>
+                        <div class="event-content">
+                            <h4>Annual General Meeting 2026</h4>
+                            <p>Annual gathering for members to review progress, discuss priorities, and connect with the wider association.</p>
+                            <div class="event-meta">
+                                <span>10:00 AM</span>
+                                <span>Convention Hall</span>
+                                <span class="status-muted">Coming Soon</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="event-content">
-                        <h4>Annual General Meeting 2026</h4>
-                        <p>Annual gathering of all SAAA members. Review achievements, elect new council members, and discuss industry outlook.</p>
-                        <div class="event-meta">
-                            <span>10:00 AM</span>
-                            <span>Convention Hall</span>
-                            <span style="color: var(--slate-400); font-weight: 700;">Coming Soon</span>
+                </div>
+
+                <div class="event-card">
+                    <img class="event-banner" src="images/events/networking-2.jpg" alt="Industry networking event">
+                    <div class="event-body">
+                        <div class="event-date">
+                            <div class="day">03</div>
+                            <div class="month">Oct</div>
+                        </div>
+                        <div class="event-content">
+                            <h4>Industry Networking</h4>
+                            <p>Cross-industry networking evening for members, partners, and invited guests across logistics and aviation.</p>
+                            <div class="event-meta">
+                                <span>6:30 PM</span>
+                                <span>City Venue</span>
+                                <span class="status-live">Register Now</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1980,6 +2202,11 @@
                 <p class="section-desc">
                     Over 200 member companies trust SAAA to represent their interests and advance the air cargo profession.
                 </p>
+            </div>
+
+            <div class="members-cta">
+                <a href="#" class="btn btn-primary">Membership Sign-up</a>
+                <a href="#" class="btn btn-secondary">SAAA Members Listing</a>
             </div>
 
             <div class="members-grid">
@@ -2106,6 +2333,24 @@
         </div>
     </section>
 
+    <!-- Publication -->
+    <section id="publication" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Publication</div>
+                <h2 class="section-title">
+                    SAAA <span class="accent">Publications</span>
+                </h2>
+                <p class="section-desc">
+                    Stay informed with the latest industry insights, newsletters, and official publications from SAAA.
+                </p>
+            </div>
+            <div style="text-align:center;color:var(--slate-400);padding:40px 0;">
+                <p style="font-size:1.1rem;">Coming soon.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact -->
     <section id="contact" class="section contact-section" style="display:none">
         <div class="container">
@@ -2217,9 +2462,25 @@
 
                 <div>
                     <div class="footer-title">Contact</div>
-                    <ul class="footer-links">
-                        <li>saaasin@saaa.org.sg</li>
-                        <li>(+65) 6545 4620</li>
+                    <ul class="footer-links" style="font-size: 13px;">
+                        <li style="margin-bottom:14px;">
+                            <span style="font-weight:700;color:white;">SAAA@Singapore</span>
+                            <span style="color:var(--slate-300);"> — Association Matters</span><br>
+                            <a href="mailto:saaasin@saaa.org.sg" style="color:var(--slate-300)!important;">saaasin@saaa.org.sg</a>
+                            <span style="color:var(--slate-300);"> / +(65) 6545 4620</span>
+                        </li>
+                        <li style="margin-bottom:14px;">
+                            <span style="font-weight:700;color:white;">SAAA Cargo Services</span>
+                            <span style="color:var(--slate-300);"> — Training Matters</span><br>
+                            <a href="mailto:admin@saaa.org.sg" style="color:var(--slate-300)!important;">admin@saaa.org.sg</a>
+                            <span style="color:var(--slate-300);"> / +(65) 6545 5006</span>
+                        </li>
+                        <li>
+                            <span style="font-weight:700;color:white;">SAAA Permits Office</span>
+                            <span style="color:var(--slate-300);"> — Permits &amp; COO Matters</span><br>
+                            <a href="mailto:scs@saaa.org.sg" style="color:var(--slate-300)!important;">scs@saaa.org.sg</a>
+                            <span style="color:var(--slate-300);"> / +(65) 6545 9597</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -2322,25 +2583,12 @@
                 let emptyMsg = list.querySelector('.training-empty');
                 if (emptyMsg) emptyMsg.remove();
 
-                // Update tab counts and hide 0-count tabs
+                // Update tab counts while keeping all requested tabs visible
                 tabs.forEach(tab => {
                     const tabName = tab.dataset.tab;
                     const count = tabName === 'all' ? allRows.length : allRows.filter(r => r.dataset.category === tabName).length;
                     tab.querySelector('.training-count').textContent = count;
-                    tab.style.display = (tabName !== 'all' && count === 0) ? 'none' : '';
                 });
-
-                // Fallback to "all" if current tab is hidden
-                const activeTab = document.querySelector('.training-tab.active');
-                if (activeTab && activeTab.style.display === 'none') {
-                    tabs.forEach(t => t.classList.remove('active'));
-                    const allTab = document.querySelector('.training-tab[data-tab="all"]');
-                    if (allTab) allTab.classList.add('active');
-                    currentTab = 'all';
-                    currentPage = 1;
-                    render();
-                    return;
-                }
 
                 if (filtered.length === 0) {
                     const msg = document.createElement('div');
