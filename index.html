@@ -1608,6 +1608,15 @@
             flex-wrap: wrap;
             gap: 8px;
             margin-top: 24px;
+            align-items: flex-start;
+            width: max-content;
+            max-width: calc(100% + 112px);
+        }
+
+        .about-quick-links .btn {
+            font-size: 12px;
+            padding: 8px 14px;
+            white-space: nowrap;
         }
 
         /* Responsive */
@@ -1623,6 +1632,11 @@
             .training-row {
                 grid-template-columns: 36px 1fr;
                 gap: 16px;
+            }
+
+            .about-quick-links {
+                width: 100%;
+                max-width: 100%;
             }
 
             .training-row .action {
