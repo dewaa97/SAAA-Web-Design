@@ -181,7 +181,6 @@ def build_page(title, badge, hero_title, hero_accent, hero_desc, section_tag, se
 <div class="hero-badge"><span class="dot"></span><span>{badge}</span></div>
 <h1>{hero_title} <span class="accent">{hero_accent}</span></h1>
 <p>{hero_desc}</p>
-<div class="hero-actions"><a href="index.html" class="btn btn-outline-white">Back to Home</a></div>
 </div>
 </div>
 </div>

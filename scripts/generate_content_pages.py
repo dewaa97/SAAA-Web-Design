@@ -14,7 +14,7 @@ PAGES = [
         'badge': 'Members Directory',
         'hero_title': 'SAAA Members',
         'hero_accent': 'Listing',
-        'hero_desc': 'Browse our member companies by name or filter alphabetically. All listed companies are part of the Singapore Aircargo Agents Association.',
+        'hero_desc': 'Browse SAAA member companies featured in the official Members\' Category directory. Search by name or filter alphabetically.',
         'body': '''<section class="section">
 <div class="container">
 <div class="listing-toolbar">
@@ -24,10 +24,11 @@ PAGES = [
 </div>
 </div>
 <div class="alpha-filter" id="alpha-filter"></div>
+<p class="members-count" id="members-count" aria-live="polite"></p>
 <div class="members-grid" id="members-grid"></div>
 </div>
 </section>''',
-        'scripts': '<script src="js/content-data.js"></script>\n<script src="js/members-listing.js"></script>',
+        'scripts': '<script src="js/members-data.js"></script>\n<script src="js/content-data.js"></script>\n<script src="js/members-listing.js"></script>',
     },
     {
         'file': 'members-login.html',
@@ -63,7 +64,7 @@ PAGES = [
 </div>
 </div>
 </section>''',
-        'scripts': '<script src="js/content-data.js"></script>\n<script src="js/members-login.js"></script>',
+        'scripts': '<script src="js/members-data.js"></script>\n<script src="js/content-data.js"></script>\n<script src="js/members-login.js"></script>',
     },
     {
         'file': 'events.html',

@@ -1,32 +1,5 @@
 window.saaaContent = {
-    members: [
-        { id: 'nippon-express', name: 'Nippon Express (Singapore) Pte Ltd', category: 'Ordinary Member', letter: 'N', logo: 'images/members/nippon-express.jpg', address: 'Singapore', phone: '(+65) 6545 0000', website: 'www.nipponexpress.com' },
-        { id: 'mitsui-soko', name: 'Mitsui-Soko (Singapore) Pte Ltd', category: 'Ordinary Member', letter: 'M', logo: 'images/members/mitsui-soko.jpg', address: 'Singapore', phone: '(+65) 6545 1000', website: 'www.mitsui-soko.com' },
-        { id: 'nnr', name: 'NNR Global Logistics Singapore Pte Ltd', category: 'Ordinary Member', letter: 'N', logo: 'images/members/nnr.jpg', address: 'Singapore', phone: '(+65) 6545 1100', website: 'www.nnrglobal.com' },
-        { id: 'logwin', name: 'Logwin Air + Ocean Singapore Pte Ltd', category: 'Ordinary Member', letter: 'L', logo: 'images/members/logwin.jpg', address: 'Singapore', phone: '(+65) 6545 1200', website: 'www.logwin-logistics.com' },
-        { id: 'logisteed', name: 'Logisteed Singapore Pte Ltd', category: 'Ordinary Member', letter: 'L', logo: 'images/members/logisteed.jpg', address: 'Singapore', phone: '(+65) 6545 1300', website: 'www.logisteed.com' },
-        { id: 'logico', name: 'Logico Solutions Pte Ltd', category: 'Ordinary Member', letter: 'L', logo: 'images/members/logico.jpg', address: 'Singapore', phone: '(+65) 6545 1400', website: 'www.logico.com.sg' },
-        { id: 'leschaco', name: 'Leschaco (Singapore) Pte Ltd', category: 'Ordinary Member', letter: 'L', logo: 'images/members/leschaco.jpg', address: 'Singapore', phone: '(+65) 6545 1500', website: 'www.leschaco.com' },
-        { id: 'mega-air', name: 'Mega Air International Pte Ltd', category: 'Ordinary Member', letter: 'M', logo: 'images/members/mega-air.jpg', address: 'Singapore', phone: '(+65) 6545 1600', website: 'www.megaair.com.sg' },
-        { id: 'merstar', name: 'Merstar Corporation Pte Ltd', category: 'Ordinary Member', letter: 'M', logo: 'images/members/merstar.jpg', address: 'Singapore', phone: '(+65) 6545 1700', website: 'www.merstar.com.sg' },
-        { id: 'mol', name: 'MOL Logistics (Singapore) Pte Ltd', category: 'Ordinary Member', letter: 'M', logo: 'images/members/mol.jpg', address: 'Singapore', phone: '(+65) 6545 1800', website: 'www.mol-logistics.com' },
-        { id: 'mitsubishi', name: 'Mitsubishi Logistics (Singapore) Pte Ltd', category: 'Ordinary Member', letter: 'M', logo: 'images/members/mitsubishi.jpg', address: 'Singapore', phone: '(+65) 6545 1900', website: 'www.mitsubishi-logistics.com' },
-        { id: 'morrison', name: 'Morrison Express (S) Pte Ltd', category: 'Ordinary Member', letter: 'M', logo: 'images/members/morrison-express.jpg', address: 'Singapore', phone: '(+65) 6545 2000', website: 'www.morrisonexpress.com' },
-        { id: 'mr-spedag', name: 'MR Spedag Interfreight (S) Pte Ltd', category: 'Ordinary Member', letter: 'M', logo: 'images/members/mr-spedag.jpg', address: 'Singapore', phone: '(+65) 6545 2100', website: 'www.mrspedag.com' },
-        { id: 'nankai', name: 'Nankai Express (S) Pte Ltd', category: 'Ordinary Member', letter: 'N', logo: 'images/members/nankai.jpg', address: 'Singapore', phone: '(+65) 6545 2200', website: 'www.nankai-express.com' },
-        { id: 'nissin', name: 'Nissin Transport (S) Pte Ltd', category: 'Ordinary Member', letter: 'N', logo: 'images/members/nissin.jpg', address: 'Singapore', phone: '(+65) 6545 2300', website: 'www.nissin.sg' },
-        { id: 'ninjavan', name: 'Ninja Van (Singapore) Pte Ltd', category: 'Associate Member', letter: 'N', logo: 'images/members/ninjavan.jpg', address: 'Singapore', phone: '(+65) 6545 2400', website: 'www.ninjavan.co' },
-        { id: 'ocs', name: 'OCS Worldwide Express (S) Pte Ltd', category: 'Ordinary Member', letter: 'O', logo: 'images/members/ocs.jpg', address: 'Singapore', phone: '(+65) 6545 2500', website: 'www.ocsworldwide.com' },
-        { id: 'on-time', name: 'On Time Express (S) Pte Ltd', category: 'Ordinary Member', letter: 'O', logo: 'images/members/on-time.jpg', address: 'Singapore', phone: '(+65) 6545 2600', website: 'www.ontime.com.sg' },
-        { id: 'pil', name: 'Pacific International Lines (Pte) Ltd', category: 'Associate Member', letter: 'P', logo: 'images/members/pil.jpg', address: 'Singapore', phone: '(+65) 6545 2700', website: 'www.pilship.com' },
-        { id: 'quickflo', name: 'Quickflo Logistics Pte Ltd', category: 'Ordinary Member', letter: 'Q', logo: 'images/members/quickflo.jpg', address: 'Singapore', phone: '(+65) 6545 2800', website: 'www.quickflo.com.sg' },
-        { id: 'rcs', name: 'RCS Logistics Pte Ltd', category: 'Ordinary Member', letter: 'R', logo: 'images/members/rcs-logistics.jpg', address: 'Singapore', phone: '(+65) 6545 2900', website: 'www.rcslogistics.com' },
-        { id: 'sankyu', name: 'Sankyu (Singapore) Pte Ltd', category: 'Ordinary Member', letter: 'S', logo: 'images/members/sankyu.jpg', address: 'Singapore', phone: '(+65) 6545 3000', website: 'www.sankyu.com.sg' },
-        { id: 'satsaco', name: 'SATS Air Cargo (S) Pte Ltd', category: 'Associate Member', letter: 'S', logo: 'images/members/satsaco.jpg', address: 'Singapore', phone: '(+65) 6545 3100', website: 'www.sats.com.sg' },
-        { id: 'sc-fulfill', name: 'SC Fulfillment Pte Ltd', category: 'Ordinary Member', letter: 'S', logo: 'images/members/sc-fulfill.jpg', address: 'Singapore', phone: '(+65) 6545 3200', website: 'www.scfulfill.com' },
-        { id: 'sf-international', name: 'SF International (Singapore) Pte Ltd', category: 'Ordinary Member', letter: 'S', logo: 'images/members/sf-international.jpg', address: 'Singapore', phone: '(+65) 6545 3300', website: 'www.sf-international.com' },
-        { id: 'lx-pantos', name: 'LX Pantos Singapore Pte Ltd', category: 'Ordinary Member', letter: 'L', logo: 'images/members/lx-pantos.jpg', address: 'Singapore', phone: '(+65) 6545 3400', website: 'www.lxpantos.com' }
-    ],
+    members: [],
 
     events: [
         {
@@ -563,6 +536,7 @@ window.saaaContent = {
     ]
 };
 
+window.saaaContent.members = window.saaaMembers || window.saaaContent.members;
 window.saaaContent.loginCompanies = window.saaaContent.members.map(function (m) {
     return { id: m.id, name: m.name };
 });
