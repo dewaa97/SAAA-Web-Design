@@ -1204,23 +1204,27 @@
         }
 
         .publication-viewport {
-            overflow: hidden;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x mandatory;
         }
 
         .publication-track {
             display: flex;
             gap: 24px;
-            transition: transform 0.35s ease;
-            will-change: transform;
+            width: max-content;
         }
 
         .publication-card {
+            flex: 0 0 auto;
             min-width: calc((100% - 72px) / 4);
             background: white;
             border: 1px solid var(--slate-200);
             border-radius: var(--radius-lg);
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+            scroll-snap-align: start;
         }
 
         .publication-card:hover {
@@ -1299,10 +1303,18 @@
             border: 1px solid var(--slate-300);
             background: white;
             color: var(--slate-700);
-            font-size: 18px;
-            font-weight: 700;
             cursor: pointer;
             transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .publication-nav svg {
+            display: block;
+            width: 18px;
+            height: 18px;
         }
 
         .publication-nav:hover:not(:disabled) {
@@ -2656,8 +2668,16 @@
 
                 <div class="publication-controls">
                     <div class="publication-nav-group">
-                        <button class="publication-nav" type="button" data-publication-prev aria-label="Previous publication">&#8592;</button>
-                        <button class="publication-nav" type="button" data-publication-next aria-label="Next publication">&#8594;</button>
+                        <button class="publication-nav" type="button" data-publication-prev aria-label="Previous publication">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="publication-nav" type="button" data-publication-next aria-label="Next publication">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
                     </div>
                     <div class="publication-dots" data-publication-dots></div>
                 </div>
@@ -3002,10 +3022,12 @@
 
             const publicationIssues = (window.SAAA_PUBLICATIONS || []).filter((issue) => issue.year >= 2024);
             const track = root.querySelector('[data-publication-track]');
+            const viewport = root.querySelector('.publication-viewport');
             const prev = root.querySelector('[data-publication-prev]');
             const next = root.querySelector('[data-publication-next]');
             const dotsWrap = root.querySelector('[data-publication-dots]');
             let page = 0;
+            let rafId = null;
 
             function getCardMeta(issue) {
                 return 'Flipbook Edition';
@@ -3047,6 +3069,30 @@
                 return Math.max(1, Math.ceil(publicationIssues.length / getPerView()));
             }
 
+            function getStep() {
+                const perView = getPerView();
+                const gap = parseFloat(getComputedStyle(track).gap) || 24;
+                const firstCard = track.querySelector('.publication-card');
+                const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 0;
+                return (cardWidth + gap) * perView;
+            }
+
+            function getPageFromScroll() {
+                if (!viewport) return 0;
+                const step = getStep();
+                if (!step) return 0;
+                return Math.round(viewport.scrollLeft / step);
+            }
+
+            function scrollToPage(target, behavior = 'smooth') {
+                if (!viewport) return;
+                const total = getPageCount();
+                const step = getStep();
+                if (!step) return;
+                const clamped = Math.max(0, Math.min(total - 1, target));
+                viewport.scrollTo({ left: clamped * step, behavior });
+            }
+
             function renderDots() {
                 const total = getPageCount();
                 dotsWrap.innerHTML = '';
@@ -3057,43 +3103,44 @@
                     dot.className = 'publication-dot' + (i === page ? ' active' : '');
                     dot.setAttribute('aria-label', `Go to publication page ${i + 1}`);
                     dot.addEventListener('click', () => {
-                        page = i;
-                        update();
+                        scrollToPage(i);
                     });
                     dotsWrap.appendChild(dot);
                 }
             }
 
-            function update() {
-                const perView = getPerView();
+            function sync() {
                 const total = getPageCount();
-                page = Math.min(page, total - 1);
-
-                const gap = parseFloat(getComputedStyle(track).gap) || 24;
-                const slides = Array.from(track.querySelectorAll('.publication-card'));
-                const firstCard = slides[0];
-                const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 0;
-                const offset = page * (cardWidth + gap) * perView;
-
-                track.style.transform = `translateX(-${offset}px)`;
+                page = Math.max(0, Math.min(total - 1, getPageFromScroll()));
                 prev.disabled = page === 0;
                 next.disabled = page === total - 1;
                 renderDots();
             }
 
             prev.addEventListener('click', () => {
-                page = Math.max(0, page - 1);
-                update();
+                scrollToPage(page - 1);
             });
 
             next.addEventListener('click', () => {
-                page = Math.min(getPageCount() - 1, page + 1);
-                update();
+                scrollToPage(page + 1);
             });
 
             renderCards();
-            window.addEventListener('resize', update);
-            update();
+            renderDots();
+            scrollToPage(0, 'auto');
+            sync();
+
+            if (viewport) {
+                viewport.addEventListener('scroll', () => {
+                    if (rafId) cancelAnimationFrame(rafId);
+                    rafId = requestAnimationFrame(sync);
+                });
+            }
+
+            window.addEventListener('resize', () => {
+                scrollToPage(page, 'auto');
+                sync();
+            });
         })();
     </script>
 </body>
