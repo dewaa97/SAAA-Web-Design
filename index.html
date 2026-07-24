@@ -2651,7 +2651,7 @@
                         SAAA <span class="accent">Publications</span>
                     </h2>
                     <p class="section-desc" style="max-width: 640px;">
-                        Browse the latest PERSPECTIVES newsletters from SAAA. The homepage now highlights all issues from 2024 until the current year, while the full archive lives on a dedicated publication page.
+                        Browse the latest PERSPECTIVES newsletters from SAAA. The homepage now highlights the latest 12 issues, while the full archive lives on a dedicated publication page.
                     </p>
                 </div>
                 <a href="publications.html" class="btn btn-secondary">View Full Archive</a>
@@ -3016,7 +3016,24 @@
             const root = document.querySelector('[data-publication-carousel]');
             if (!root) return;
 
-            const publicationIssues = (window.SAAA_PUBLICATIONS || []).filter((issue) => issue.year >= 2024);
+            const quarterRank = {
+                'jan-mar': 1,
+                'apr-jun': 2,
+                'jul-sep': 3,
+                'jul-sept': 3,
+                'oct-dec': 4
+            };
+            const publicationIssues = (window.SAAA_PUBLICATIONS || [])
+                .filter((issue) => issue.isFlipbook)
+                .slice()
+                .sort((a, b) => {
+                    if (b.year !== a.year) return b.year - a.year;
+
+                    const aQuarter = quarterRank[(a.date || '').split(' ')[0].toLowerCase()] || 0;
+                    const bQuarter = quarterRank[(b.date || '').split(' ')[0].toLowerCase()] || 0;
+                    return bQuarter - aQuarter;
+                })
+                .slice(0, 12);
             const track = root.querySelector('[data-publication-track]');
             const prev = root.querySelector('[data-publication-prev]');
             const next = root.querySelector('[data-publication-next]');
