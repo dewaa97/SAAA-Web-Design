@@ -1156,6 +1156,158 @@
             100% { transform: translateX(-50%); }
         }
 
+        /* Publications */
+        .publication-section {
+            background: linear-gradient(180deg, var(--white) 0%, var(--slate-50) 100%);
+            border-top: 1px solid var(--slate-200);
+        }
+
+        .publication-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .publication-shell {
+            position: relative;
+        }
+
+        .publication-viewport {
+            overflow: hidden;
+        }
+
+        .publication-track {
+            display: flex;
+            gap: 24px;
+            transition: transform 0.35s ease;
+            will-change: transform;
+        }
+
+        .publication-card {
+            min-width: calc((100% - 72px) / 4);
+            background: white;
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+        }
+
+        .publication-card:hover {
+            border-color: var(--red-100);
+            box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
+        }
+
+        .publication-cover {
+            display: block;
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            background: var(--slate-100);
+        }
+
+        .publication-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .publication-card-body {
+            padding: 18px;
+        }
+
+        .publication-type {
+            display: inline-block;
+            padding: 6px 10px;
+            background: var(--red-50);
+            color: var(--red-600);
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .publication-card-title {
+            font-size: 1rem;
+            color: var(--slate-900);
+            margin-bottom: 8px;
+        }
+
+        .publication-card-desc {
+            font-size: 13px;
+            color: var(--slate-600);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .publication-card-link {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--red-600);
+        }
+
+        .publication-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .publication-nav-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .publication-nav {
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            border: 1px solid var(--slate-300);
+            background: white;
+            color: var(--slate-700);
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .publication-nav:hover:not(:disabled) {
+            border-color: var(--red-600);
+            color: var(--red-600);
+        }
+
+        .publication-nav:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .publication-dots {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .publication-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: var(--slate-300);
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .publication-dot.active {
+            width: 22px;
+            background: var(--red-600);
+        }
+
         /* Contact */
         .contact-section {
             background: var(--slate-800);
@@ -1492,6 +1644,15 @@
                 gap: 12px;
             }
 
+            .publication-header-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .publication-card {
+                min-width: calc((100% - 24px) / 2);
+            }
+
             .events-grid {
                 grid-template-columns: 1fr;
             }
@@ -1603,6 +1764,15 @@
             .ticker-thumb {
                 width: 90px;
                 height: 60px;
+            }
+
+            .publication-card {
+                min-width: 100%;
+            }
+
+            .publication-controls {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
             .section {
@@ -2334,19 +2504,33 @@
     </section>
 
     <!-- Publication -->
-    <section id="publication" class="section">
+    <section id="publication" class="section publication-section">
         <div class="container">
-            <div class="section-header">
-                <div class="section-tag">Publication</div>
-                <h2 class="section-title">
-                    SAAA <span class="accent">Publications</span>
-                </h2>
-                <p class="section-desc">
-                    Stay informed with the latest industry insights, newsletters, and official publications from SAAA.
-                </p>
+            <div class="publication-header-row">
+                <div class="section-header" style="margin-bottom: 0;">
+                    <div class="section-tag">Publication</div>
+                    <h2 class="section-title">
+                        SAAA <span class="accent">Publications</span>
+                    </h2>
+                    <p class="section-desc" style="max-width: 640px;">
+                        Browse the latest PERSPECTIVES newsletters from SAAA. The homepage now highlights all issues from 2024 until the current year, while the full archive lives on a dedicated publication page.
+                    </p>
+                </div>
+                <a href="publications.html" class="btn btn-secondary">View Full Archive</a>
             </div>
-            <div style="text-align:center;color:var(--slate-400);padding:40px 0;">
-                <p style="font-size:1.1rem;">Coming soon.</p>
+
+            <div class="publication-shell" data-publication-carousel>
+                <div class="publication-viewport">
+                    <div class="publication-track" data-publication-track></div>
+                </div>
+
+                <div class="publication-controls">
+                    <div class="publication-nav-group">
+                        <button class="publication-nav" type="button" data-publication-prev aria-label="Previous publication">&#8592;</button>
+                        <button class="publication-nav" type="button" data-publication-next aria-label="Next publication">&#8594;</button>
+                    </div>
+                    <div class="publication-dots" data-publication-dots></div>
+                </div>
             </div>
         </div>
     </section>
@@ -2455,7 +2639,7 @@
                     <ul class="footer-links">
                         <li><a href="#">Latest News</a></li>
                         <li><a href="#">Announcements</a></li>
-                        <li><a href="#">Publications</a></li>
+                        <li><a href="publications.html">Publications</a></li>
                         <li><a href="#">Media Gallery</a></li>
                     </ul>
                 </div>
@@ -2496,6 +2680,7 @@
         </div>
     </footer>
 
+    <script src="publications-data.js"></script>
     <script>
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2644,6 +2829,107 @@
             });
 
             render();
+        })();
+
+        // Publication Carousel
+        (function() {
+            const root = document.querySelector('[data-publication-carousel]');
+            if (!root) return;
+
+            const publicationIssues = (window.SAAA_PUBLICATIONS || []).filter((issue) => issue.year >= 2024);
+            const track = root.querySelector('[data-publication-track]');
+            const prev = root.querySelector('[data-publication-prev]');
+            const next = root.querySelector('[data-publication-next]');
+            const dotsWrap = root.querySelector('[data-publication-dots]');
+            let page = 0;
+
+            function getCardMeta(issue) {
+                return 'Flipbook Edition';
+            }
+
+            function getCardCopy(issue) {
+                if (issue.year === 2026) {
+                    return 'Newest PERSPECTIVES flipbook from the live SAAA archive, kept with the original cover artwork.';
+                }
+                if (issue.year === 2025) {
+                    return 'Recent flipbook issue featuring association updates and industry developments from the current publication cycle.';
+                }
+                return 'Recent flipbook issue from the last three publication years, surfaced directly from the official SAAA library.';
+            }
+
+            function renderCards() {
+                track.innerHTML = publicationIssues.map((issue) => `
+                    <article class="publication-card">
+                        <a class="publication-cover" href="${issue.href}" target="_blank" rel="noopener">
+                            <img src="${issue.image}" alt="${issue.title} ${issue.date} cover" loading="lazy">
+                        </a>
+                        <div class="publication-card-body">
+                            <div class="publication-type">${getCardMeta(issue)}</div>
+                            <h4 class="publication-card-title">${issue.date}</h4>
+                            <p class="publication-card-desc">${getCardCopy(issue)}</p>
+                            <a class="publication-card-link" href="${issue.href}" target="_blank" rel="noopener">Open flipbook</a>
+                        </div>
+                    </article>
+                `).join('');
+            }
+
+            function getPerView() {
+                if (window.innerWidth <= 768) return 1;
+                if (window.innerWidth <= 1024) return 2;
+                return 4;
+            }
+
+            function getPageCount() {
+                return Math.max(1, Math.ceil(publicationIssues.length / getPerView()));
+            }
+
+            function renderDots() {
+                const total = getPageCount();
+                dotsWrap.innerHTML = '';
+
+                for (let i = 0; i < total; i++) {
+                    const dot = document.createElement('button');
+                    dot.type = 'button';
+                    dot.className = 'publication-dot' + (i === page ? ' active' : '');
+                    dot.setAttribute('aria-label', `Go to publication page ${i + 1}`);
+                    dot.addEventListener('click', () => {
+                        page = i;
+                        update();
+                    });
+                    dotsWrap.appendChild(dot);
+                }
+            }
+
+            function update() {
+                const perView = getPerView();
+                const total = getPageCount();
+                page = Math.min(page, total - 1);
+
+                const gap = parseFloat(getComputedStyle(track).gap) || 24;
+                const slides = Array.from(track.querySelectorAll('.publication-card'));
+                const firstCard = slides[0];
+                const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 0;
+                const offset = page * (cardWidth + gap) * perView;
+
+                track.style.transform = `translateX(-${offset}px)`;
+                prev.disabled = page === 0;
+                next.disabled = page === total - 1;
+                renderDots();
+            }
+
+            prev.addEventListener('click', () => {
+                page = Math.max(0, page - 1);
+                update();
+            });
+
+            next.addEventListener('click', () => {
+                page = Math.min(getPageCount() - 1, page + 1);
+                update();
+            });
+
+            renderCards();
+            window.addEventListener('resize', update);
+            update();
         })();
     </script>
 </body>
