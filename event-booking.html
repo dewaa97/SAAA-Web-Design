@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration — SAAA</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/subpage.css">
+    <link rel="stylesheet" href="css/event-booking.css">
+</head>
+<body class="booking-page">
+
+<header class="booking-header">
+    <div class="container booking-header-inner">
+        <a href="index.html" class="booking-logo" aria-label="SAAA Home">
+            <img src="images/saaa-logo.png" alt="SAAA @ Singapore">
+        </a>
+    </div>
+</header>
+
+<main class="booking-main">
+    <div class="container booking-shell">
+        <div class="booking-stepper" aria-label="Registration progress">
+            <div class="booking-step is-active">
+                <span class="booking-step-circle">1</span>
+                <span class="booking-step-label">Booking Details</span>
+            </div>
+            <div class="booking-step">
+                <span class="booking-step-circle">2</span>
+                <span class="booking-step-label">Booking Summary</span>
+            </div>
+            <div class="booking-step">
+                <span class="booking-step-circle">3</span>
+                <span class="booking-step-label">Booking Confirmation</span>
+            </div>
+        </div>
+
+        <div class="booking-card">
+            <h1 class="booking-title">Booking Details</h1>
+
+            <div class="booking-event-banner">
+                <div class="booking-event-title" id="booking-event-title">Event</div>
+                <div class="booking-event-schedule" id="booking-event-schedule">—</div>
+            </div>
+
+            <form id="booking-form" novalidate>
+                <h2 class="booking-section-title">Personal Information</h2>
+                <div class="booking-form-grid">
+                    <div class="booking-field" data-field="companyName">
+                        <label for="companyName">Company Name (Full Name) <span class="required">*</span></label>
+                        <input id="companyName" name="companyName" type="text" autocomplete="organization" required>
+                        <span class="booking-field-error"></span>
+                    </div>
+
+                    <div class="booking-field" data-field="fullName">
+                        <label for="fullName">Full Name (as per NRIC) <span class="required">*</span></label>
+                        <div class="booking-name-row">
+                            <select id="salutation" name="salutation" aria-label="Salutation" required>
+                                <option value="">Select</option>
+                                <option value="Prof">Prof</option>
+                                <option value="Dr">Dr</option>
+                                <option value="Mr">Mr</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Ms">Ms</option>
+                            </select>
+                            <input id="fullName" name="fullName" type="text" autocomplete="name" required>
+                        </div>
+                        <span class="booking-field-error" data-error-for="salutation"></span>
+                    </div>
+
+                    <div class="booking-field" data-field="designation">
+                        <label for="designation">Designation <span class="required">*</span></label>
+                        <input id="designation" name="designation" type="text" autocomplete="organization-title" required>
+                        <span class="booking-field-error"></span>
+                    </div>
+
+                    <div class="booking-field" data-field="mobile">
+                        <label for="mobile">Mobile Number <span class="required">*</span></label>
+                        <input id="mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" required>
+                        <span class="booking-field-error"></span>
+                    </div>
+
+                    <div class="booking-field full-width" data-field="email">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input id="email" name="email" type="email" autocomplete="email" required>
+                        <span class="booking-field-error"></span>
+                    </div>
+                </div>
+
+                <h2 class="booking-section-title" style="margin-top:28px;">Additional Question(s)</h2>
+                <div class="booking-field full-width" data-field="accreditedRep">
+                    <label>Are you an SAAA Accredited Representative? <span class="required">*</span></label>
+                    <div class="booking-radio-group">
+                        <label class="booking-radio-option">
+                            <input type="radio" name="accreditedRep" value="Yes" required>
+                            <span>Yes</span>
+                        </label>
+                        <label class="booking-radio-option">
+                            <input type="radio" name="accreditedRep" value="No">
+                            <span>No</span>
+                        </label>
+                        <label class="booking-radio-option">
+                            <input type="radio" name="accreditedRep" value="Unsure">
+                            <span>Unsure</span>
+                        </label>
+                    </div>
+                    <span class="booking-field-error"></span>
+                </div>
+
+                <div class="booking-actions">
+                    <a href="events.html" class="btn-back">← Back to Events</a>
+                    <button type="submit" class="btn btn-primary">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<footer class="booking-footer">
+    <div class="container">&copy; 2026 Singapore Aircargo Agents Association. All rights reserved.</div>
+</footer>
+
+<div class="booking-modal-backdrop" id="booking-modal" aria-hidden="true">
+    <div class="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title">
+        <div class="booking-modal-icon is-error" id="booking-modal-icon">!</div>
+        <h3 id="booking-modal-title">Incomplete form</h3>
+        <p id="booking-modal-message">Please fill in all required information.</p>
+        <div id="booking-modal-actions">
+            <button type="button" class="btn btn-primary" id="booking-modal-ok">OK</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/content-data.js"></script>
+<script src="js/event-booking-utils.js"></script>
+<script src="js/event-booking-form.js"></script>
+</body>
+</html>

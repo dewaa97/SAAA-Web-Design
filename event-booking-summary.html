@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Summary — SAAA</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/subpage.css">
+    <link rel="stylesheet" href="css/event-booking.css">
+</head>
+<body class="booking-page">
+
+<header class="booking-header">
+    <div class="container booking-header-inner">
+        <a href="index.html" class="booking-logo" aria-label="SAAA Home">
+            <img src="images/saaa-logo.png" alt="SAAA @ Singapore">
+        </a>
+    </div>
+</header>
+
+<main class="booking-main">
+    <div class="container booking-shell">
+        <div class="booking-stepper" aria-label="Registration progress">
+            <div class="booking-step is-complete">
+                <span class="booking-step-circle">1</span>
+                <span class="booking-step-label">Booking Details</span>
+            </div>
+            <div class="booking-step is-active">
+                <span class="booking-step-circle">2</span>
+                <span class="booking-step-label">Booking Summary</span>
+            </div>
+            <div class="booking-step">
+                <span class="booking-step-circle">3</span>
+                <span class="booking-step-label">Booking Confirmation</span>
+            </div>
+        </div>
+
+        <div class="booking-card">
+            <h1 class="booking-title">Booking Summary</h1>
+            <p class="booking-lead">
+                Your registration is almost complete. Please review your registration below and if everything is correct, click Proceed.
+            </p>
+
+            <div class="booking-event-banner">
+                <div class="booking-event-title" id="booking-event-title">Event</div>
+                <div class="booking-event-schedule" id="booking-event-schedule">—</div>
+            </div>
+
+            <h2 class="booking-section-title">Attendee #1</h2>
+            <div class="booking-summary-grid">
+                <div class="booking-summary-item">
+                    <label>Name</label>
+                    <p id="summary-name">—</p>
+                </div>
+                <div class="booking-summary-item">
+                    <label>Contact Number</label>
+                    <p id="summary-mobile">—</p>
+                </div>
+                <div class="booking-summary-item">
+                    <label>Email Address</label>
+                    <p id="summary-email">—</p>
+                </div>
+                <div class="booking-summary-item">
+                    <label>Designation</label>
+                    <p id="summary-designation">—</p>
+                </div>
+                <div class="booking-summary-item">
+                    <label>Company Name</label>
+                    <p id="summary-company">—</p>
+                </div>
+                <div class="booking-summary-item">
+                    <label>SAAA Accredited Representative</label>
+                    <p id="summary-accredited">—</p>
+                </div>
+            </div>
+
+            <h2 class="booking-section-title">Payment Information</h2>
+            <div class="booking-table-wrap">
+                <table class="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                            <th>Discount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="payment-item-name">—</td>
+                            <td>1</td>
+                            <td id="payment-amount">$0.00</td>
+                            <td>NA</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="booking-totals">
+                <div class="booking-total-row">
+                    <span>Subtotal</span>
+                    <span id="payment-subtotal">$0.00</span>
+                </div>
+                <div class="booking-total-row">
+                    <span>Discounted Amount</span>
+                    <span>-</span>
+                </div>
+                <div class="booking-total-row">
+                    <span>GST (0.00%)</span>
+                    <span id="payment-gst">$0.00</span>
+                </div>
+                <div class="booking-total-row">
+                    <span>Grand Total Amount</span>
+                    <span id="payment-grand-total">$0.00</span>
+                </div>
+                <div class="booking-total-row">
+                    <span>Payments/Credits applied</span>
+                    <span>-</span>
+                </div>
+                <div class="booking-total-row is-grand">
+                    <span>Net Total</span>
+                    <span id="payment-net-total">$0.00</span>
+                </div>
+            </div>
+
+            <div class="booking-actions">
+                <a href="#" id="booking-back" class="btn-back">← Back</a>
+                <button type="button" class="btn btn-primary" id="booking-proceed">Proceed</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="booking-footer">
+    <div class="container">&copy; 2026 Singapore Aircargo Agents Association. All rights reserved.</div>
+</footer>
+
+<div class="booking-modal-backdrop" id="booking-modal" aria-hidden="true">
+    <div class="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title">
+        <div class="booking-modal-icon is-success" id="booking-modal-icon">✓</div>
+        <h3 id="booking-modal-title">Booking Confirmed</h3>
+        <p id="booking-modal-message">Thank you for your registration.</p>
+        <div id="booking-modal-actions" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"></div>
+    </div>
+</div>
+
+<script src="js/content-data.js"></script>
+<script src="js/event-booking-utils.js"></script>
+<script>
+    (function () {
+        const eventId = new URLSearchParams(window.location.search).get('id');
+        const backLink = document.getElementById('booking-back');
+        if (backLink && eventId) {
+            backLink.href = 'event-booking.html?id=' + encodeURIComponent(eventId);
+        }
+    })();
+</script>
+<script src="js/event-booking-summary.js"></script>
+</body>
+</html>

@@ -546,6 +546,18 @@
             gap: 6px;
         }
 
+        .services-item-desc {
+            margin-bottom: 12px;
+            max-width: 640px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--slate-600);
+        }
+
+        .services-service-row + .services-service-row {
+            margin-top: 20px;
+        }
+
         .services-mini-actions {
             display: flex;
             flex-wrap: wrap;
@@ -2170,7 +2182,7 @@
                     SAAA <span class="accent">Services</span>
                 </h2>
                 <p class="section-desc">
-                    SAAA provides permit declaration services to facilitate cargo clearance. We have a team of customs approved declarants experienced in permit declarations, e.g.: import, export permits.
+                    SAAA Cargo Services supports members and walk-in customers with permit declarations, Certificate of Origin, Neutral Airway Bills, and bar-coded labels for air cargo operations.
                 </p>
             </div>
 
@@ -2186,7 +2198,8 @@
                         <span class="services-contact-email">(+65) 6545 9597</span>
                     </span>
                 </div>
-                <a href="https://main.d1zqfaeaa5ju6p.amplifyapp.com/" target="_blank" rel="noopener" class="services-mini-btn">
+                <p class="services-item-desc">Permit and documentation support to facilitate cargo clearance, including import and export permit declarations.</p>
+                <a href="permit-certificate-of-origin.html" class="services-mini-btn">
                     Permit &amp; Certificate of Origin
                 </a>
             </div>
@@ -2203,9 +2216,13 @@
                         <span class="services-contact-email">(+65) 6543 0059</span>
                     </span>
                 </div>
-                <div class="services-mini-actions">
-                    <a href="#" target="_blank" rel="noopener" class="services-mini-btn">Neutral Airway Bill</a>
-                    <a href="#" target="_blank" rel="noopener" class="services-mini-btn">Bar Code Labels</a>
+                <div class="services-service-row">
+                    <p class="services-item-desc">Newly developed Neutral Airway Bills approved by BAR and certified by IATA under Resolution 600b.</p>
+                    <a href="neutral-airway-bill.html" class="services-mini-btn">Neutral Airway Bill</a>
+                </div>
+                <div class="services-service-row">
+                    <p class="services-item-desc">Immediate stock of premium bar-coded labels for industry use, with scheduled delivery and self-collection options.</p>
+                    <a href="bar-code-labels.html" class="services-mini-btn">Bar Code Labels</a>
                 </div>
             </div>
         </div>
@@ -2633,6 +2650,7 @@
     <script src="js/listing-utils.js"></script>
     <script src="js/training-data.js"></script>
     <script src="js/training-ui.js"></script>
+    <script src="js/content-data.js"></script>
     <script src="js/homepage.js"></script>
 </body>
 </html>
