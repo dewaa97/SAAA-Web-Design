@@ -444,10 +444,24 @@
             line-height: 1.4;
         }
 
+        .ticker-item-title a {
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        .ticker-item-title a:hover {
+            color: var(--red-600);
+        }
+
         .ticker-item-desc {
             font-size: 14px;
             color: var(--slate-500);
             line-height: 1.5;
+        }
+
+        .ticker-item-desc a {
+            color: var(--red-600);
+            font-weight: 600;
         }
 
         .ticker-badge {
@@ -1878,7 +1892,7 @@
     <nav>
         <div class="container">
             <div class="nav-inner">
-                <a href="#" class="logo">
+                <a href="index.html" class="logo">
                     <img src="images/saaa-logo.png" alt="SAAA Logo" class="logo-img">
                 </a>
                 
@@ -2007,6 +2021,18 @@
                             <div class="ticker-item-date">UPCOMING</div>
                             <div class="ticker-item-title">SAAA-Empire Bison Business Networking</div>
                             <div class="ticker-item-desc">28 April 2026 — Registrations are currently open for member companies! Email saaasin@saaa.org.sg.</div>
+                        </div>
+                    </div>
+
+                    <div class="ticker-item">
+                        <img class="ticker-thumb" src="images/events/meeting-adults-1.jpg" alt="SAAA training centre opening">
+                        <div>
+                            <div class="ticker-item-date">NOV 2022</div>
+                            <div class="ticker-item-title"><a href="training-opening.html">New SAAA Training Centre Opening</a> <span class="ticker-badge">Archive</span></div>
+                            <div class="ticker-item-desc">
+                                Historical announcement for the opening of SAAA Cargo Services' new training centre at CT Hub, including the upgraded CBTA training environment.
+                                <a href="training-opening.html">Read archive post</a>
+                            </div>
                         </div>
                     </div>
                 </div>
