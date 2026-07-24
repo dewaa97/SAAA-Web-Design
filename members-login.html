@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/nav-dropdown.css">
     <link rel="stylesheet" href="css/subpage.css">
+    <link rel="stylesheet" href="css/combobox.css">
 </head>
 <body>
 
@@ -113,9 +114,39 @@
 <div class="login-card">
 <form id="login-form" class="login-form">
 <div class="form-group">
-<label for="company-name">Company Name</label>
-<input type="text" id="company-name" name="company" list="company-list" placeholder="Type or select your company" required autocomplete="organization">
-<datalist id="company-list"></datalist>
+<label id="company-combobox-label" for="company-combobox-trigger">Company Name</label>
+<div class="combobox" id="company-combobox" data-combobox>
+    <input type="hidden" id="company-name" name="company" data-combobox-input required>
+    <button
+        type="button"
+        id="company-combobox-trigger"
+        class="combobox-trigger"
+        data-combobox-trigger
+        aria-haspopup="listbox"
+        aria-expanded="false"
+        aria-labelledby="company-combobox-label"
+    >
+        <span class="combobox-value is-placeholder" data-combobox-value>Select company</span>
+        <svg class="combobox-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m7 15 5 5 5-5"></path>
+            <path d="m7 9 5-5 5 5"></path>
+        </svg>
+    </button>
+    <div class="combobox-content" data-combobox-content hidden>
+        <div class="combobox-search-wrap">
+            <input
+                type="text"
+                class="combobox-search"
+                data-combobox-search
+                placeholder="Search company..."
+                aria-label="Search company"
+                autocomplete="off"
+            >
+        </div>
+        <ul class="combobox-list" data-combobox-list role="listbox" aria-label="Company list"></ul>
+        <p class="combobox-empty" data-combobox-empty hidden>No company found.</p>
+    </div>
+</div>
 </div>
 <div class="form-group">
 <label for="login-email">Email Address</label>
@@ -179,6 +210,7 @@
 <script src="js/nav.js"></script>
 <script src="js/members-data.js"></script>
 <script src="js/content-data.js"></script>
+<script src="js/combobox.js"></script>
 <script src="js/members-login.js"></script>
 </body>
 </html>
