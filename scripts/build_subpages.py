@@ -1,0 +1,294 @@
+#!/usr/bin/env python3
+"""Generate SAAA subpages from shared template."""
+
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+
+SOCIAL_ROW = '''<div class="nav-social-row"><a href="https://www.linkedin.com/in/saaa-singapore-2b6861243/%20" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a href="https://www.facebook.com/pages/SAAA/834894096585648?fref=ts" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a><a href="https://www.instagram.com/saaasingapore/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 1 0 0-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 1 1-2.882 0 1.441 1.441 0 0 1 2.882 0z"/></svg></a></div>'''
+
+NAV = (ROOT / 'partials' / 'nav-subpage.html').read_text().replace('    <!-- SOCIAL_ROW -->', '    ' + SOCIAL_ROW)
+
+FOOTER = '''<footer>
+<div class="container">
+<div class="footer-grid">
+<div>
+<div class="footer-brand"><img src="images/saaa-logo.png" alt="SAAA Logo" style="height:32px;margin-bottom:12px;"></div>
+<p class="footer-about">The Singapore Aircargo Agents Association — representing the collective interests of airfreight forwarders since 1971.</p>
+</div>
+<div>
+<div class="footer-title">Quick Links</div>
+<ul class="footer-links">
+<li><a href="index.html#about">About Us</a></li>
+<li><a href="index.html#training">Training</a></li>
+<li><a href="events.html">Events</a></li>
+<li><a href="index.html#members">Members</a></li>
+</ul>
+</div>
+<div>
+<div class="footer-title">Resources</div>
+<ul class="footer-links">
+<li><a href="featured-news.html">Latest News</a></li>
+<li><a href="announcements.html">Announcements</a></li>
+<li><a href="publications.html">Publications</a></li>
+</ul>
+</div>
+<div>
+<div class="footer-title">Contact</div>
+<ul class="footer-links" style="font-size:13px;">
+<li style="margin-bottom:14px;">
+<span style="font-weight:700;color:white;">SAAA@Singapore</span>
+<span style="color:var(--slate-300);"> — Association Matters</span><br>
+<a href="mailto:saaasin@saaa.org.sg" style="color:var(--slate-300)!important;">saaasin@saaa.org.sg</a>
+<span style="color:var(--slate-300);"> / +(65) 6545 4620</span>
+</li>
+<li style="margin-bottom:14px;">
+<span style="font-weight:700;color:white;">SAAA Cargo Services</span>
+<span style="color:var(--slate-300);"> — Training Matters</span><br>
+<a href="mailto:admin@saaa.org.sg" style="color:var(--slate-300)!important;">admin@saaa.org.sg</a>
+<span style="color:var(--slate-300);"> / +(65) 6545 5006</span>
+</li>
+<li>
+<span style="font-weight:700;color:white;">SAAA Permits Office</span>
+<span style="color:var(--slate-300);"> — Permits &amp; COO Matters</span><br>
+<a href="mailto:scs@saaa.org.sg" style="color:var(--slate-300)!important;">scs@saaa.org.sg</a>
+<span style="color:var(--slate-300);"> / +(65) 6545 9597</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<div class="copyright">&copy; 2026 Singapore Aircargo Agents Association. All rights reserved.</div>
+<div style="font-size:12px;color:var(--slate-500);">Powered by <a href="#" style="color:var(--slate-400);text-decoration:none;font-weight:600;">Flying Cape Technologies</a></div>
+<div class="legal">
+<a href="#">Privacy Policy</a>
+<a href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>'''
+
+BASE_STYLES = '''        :root { --red-600: #c41e3a; --red-700: #9b1b2f; --red-50: #fef2f2; --red-100: #fee2e2; --slate-50: #f8fafc; --slate-100: #f1f5f9; --slate-200: #e2e8f0; --slate-300: #cbd5e1; --slate-400: #94a3b8; --slate-500: #64748b; --slate-600: #475569; --slate-700: #334155; --slate-800: #1e293b; --slate-900: #0f172a; --white: #ffffff; --radius-sm: 8px; --radius: 12px; --radius-lg: 16px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; color: var(--slate-800); line-height: 1.6; background: var(--white); overflow-x: hidden; }
+        h1,h2,h3,h4,h5,h6 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-img { height: 72px; width: auto; display: block; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: var(--radius-sm); cursor: pointer; transition: all 0.2s; border: none; font-family: 'Inter', sans-serif; }
+        .btn-primary { background: var(--red-600); color: white; }
+        .btn-primary:hover { background: var(--red-700); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(196,30,58,0.25); }
+        .btn-outline-white { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); }
+        .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+        .hero { background: #0f0f1a; padding: 80px 0 120px; position: relative; overflow: hidden; min-height: 480px; display: flex; align-items: center; }
+        .hero-bg { position: absolute; top: 50%; right: 0; height: 140%; width: auto; max-width: none; transform: translateY(-50%); z-index: 1; }
+        .hero-fade { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg,#0f0f1a 0%,rgba(15,15,26,0.97) 20%,rgba(15,15,26,0.88) 35%,rgba(15,15,26,0.65) 50%,rgba(15,15,26,0.35) 62%,rgba(15,15,26,0.15) 72%,transparent 85%); z-index: 2; pointer-events: none; }
+        .hero .container { position: relative; z-index: 3; }
+        .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 100px; font-size: 13px; font-weight: 600; color: #ff6b7a; margin-bottom: 24px; letter-spacing: 0.02em; }
+        .hero-badge .dot { width: 8px; height: 8px; background: var(--red-600); border-radius: 50%; animation: pulse-glow 2s infinite; }
+        @keyframes pulse-glow { 0%,100% { box-shadow: 0 0 0 0 rgba(196,30,58,0.7); } 50% { box-shadow: 0 0 0 8px rgba(196,30,58,0); } }
+        .hero h1 { font-size: 3.5rem; color: white; margin-bottom: 20px; max-width: 600px; }
+        .hero h1 .accent { color: #ff6b7a; }
+        .hero p { font-size: 18px; color: rgba(255,255,255,0.75); margin-bottom: 32px; max-width: 520px; line-height: 1.6; }
+        .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+        .section { padding: 80px 0; }
+        .section-header { margin-bottom: 48px; }
+        .section-tag { display: inline-block; padding: 6px 14px; background: var(--red-50); color: var(--red-600); font-size: 13px; font-weight: 700; border-radius: 100px; margin-bottom: 16px; }
+        .section-title { font-size: 2.25rem; color: var(--slate-900); margin-bottom: 16px; }
+        .section-title .accent { color: var(--red-600); }
+        .section-desc { color: var(--slate-600); font-size: 17px; max-width: 640px; line-height: 1.7; }
+        .page-content p { color: var(--slate-600); font-size: 16px; line-height: 1.8; margin-bottom: 20px; }
+        .page-content h3 { font-size: 1.35rem; color: var(--slate-900); margin: 32px 0 12px; }
+        .info-card { margin: 28px 0; padding: 28px; background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); }
+        .info-card h3 { margin-top: 0; }
+        .info-card p:last-child { margin-bottom: 0; }
+        .notice-box { margin-top: 24px; padding: 20px 24px; background: var(--red-50); border: 1px solid var(--red-100); border-radius: var(--radius); color: var(--slate-700); font-size: 14px; line-height: 1.7; }
+        .coming-soon-panel { text-align: center; max-width: 560px; margin: 0 auto; padding: 48px 32px; background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); }
+        .coming-soon-panel h2 { font-size: 1.75rem; color: var(--slate-900); margin-bottom: 12px; }
+        .coming-soon-panel p { color: var(--slate-600); font-size: 16px; line-height: 1.7; margin-bottom: 24px; }
+        footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 48px; margin-bottom: 48px; }
+        .footer-about { color: var(--slate-400); font-size: 15px; line-height: 1.7; max-width: 300px; }
+        .footer-title { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--slate-500); font-weight: 700; margin-bottom: 20px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: var(--slate-400); font-size: 15px; transition: all 0.3s; display: inline-block; }
+        .footer-links a:hover { color: white; transform: translateX(4px); }
+        .footer-bottom { padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; }
+        .footer-bottom .copyright { font-size: 13px; color: var(--slate-500); }
+        .footer-bottom .legal { display: flex; gap: 24px; }
+        .footer-bottom .legal a { font-size: 13px; color: var(--slate-500); transition: color 0.3s; }
+        .footer-bottom .legal a:hover { color: white; }
+        @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } .footer-grid { grid-template-columns: 1fr 1fr 1fr; } }
+        @media (max-width: 768px) { .logo-img { height: 60px; } .hero h1 { font-size: 2.5rem; } .hero { padding: 60px 0; min-height: 400px; } .hero-actions .btn { width: 100%; justify-content: center; } .section { padding: 60px 0; } .section-title { font-size: 1.75rem; } .footer-grid { grid-template-columns: 1fr; gap: 32px; } .footer-bottom { flex-direction: column; gap: 16px; text-align: center; } }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--slate-50); }
+        ::-webkit-scrollbar-thumb { background: var(--slate-300); border-radius: 100px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--slate-400); }'''
+
+
+def build_page(title, badge, hero_title, hero_accent, hero_desc, section_tag, section_title, section_title_accent, section_desc, body_html, extra_cta=''):
+    return f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/nav-dropdown.css">
+    <style>
+{BASE_STYLES}
+    </style>
+</head>
+<body>
+
+<nav>
+<div class="container">
+<div class="nav-inner">
+<a href="index.html" class="logo"><img src="images/saaa-logo.png" alt="SAAA Logo" class="logo-img"></a>
+{NAV}
+<button class="mobile-menu-btn">Menu</button>
+</div>
+</div>
+</nav>
+
+<section class="hero">
+<img src="images/hero2.jpg" alt="{title}" class="hero-bg">
+<div class="hero-fade"></div>
+<div class="container">
+<div class="hero-grid">
+<div>
+<div class="hero-badge"><span class="dot"></span><span>{badge}</span></div>
+<h1>{hero_title} <span class="accent">{hero_accent}</span></h1>
+<p>{hero_desc}</p>
+<div class="hero-actions"><a href="index.html" class="btn btn-outline-white">Back to Home</a></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" style="border-bottom:1px solid var(--slate-200)">
+<div class="container">
+<div class="section-header">
+<div class="section-tag">{section_tag}</div>
+<h2 class="section-title">{section_title} <span class="accent">{section_title_accent}</span></h2>
+<p class="section-desc">{section_desc}</p>
+</div>
+<div class="page-content">
+{body_html}
+{extra_cta}
+</div>
+</div>
+</section>
+
+{FOOTER}
+
+<script src="js/nav.js"></script>
+</body>
+</html>
+'''
+
+
+PERMIT_CTA = 'https://main.d1zqfaeaa5ju6p.amplifyapp.com/'
+
+pages = {
+    'coming-soon.html': build_page(
+        'Coming Soon — SAAA',
+        'Under Development',
+        'Coming',
+        'Soon',
+        'This section is being prepared. Please check back later for updates from SAAA.',
+        'Stay Tuned',
+        'Page',
+        'Coming Soon',
+        'We are working on new features and content for the SAAA website.',
+        '''<div class="coming-soon-panel">
+<h2>We&rsquo;ll be back shortly</h2>
+<p>This page is not available yet. Membership sign-up and other upcoming services will be published here once they are ready.</p>
+<a href="index.html#members" class="btn btn-primary">Return to Members</a>
+</div>''',
+    ),
+    'permit-certificate-of-origin.html': build_page(
+        'Permit &amp; Certificate of Origin — SAAA',
+        'SAAA Services',
+        'Permit &amp;',
+        'Certificate of Origin',
+        'Permit declaration, Certificate of Origin collection, and ACES cargo manifest services for the air cargo industry.',
+        'Permit Services',
+        'Permit &amp; Certificate of',
+        'Origin',
+        'SAAA Cargo Services provides permit and documentation support to facilitate cargo clearance for members and walk-in customers.',
+        '''<h3>Permit Declaration</h3>
+<p>SAAA Cargo Services provide permit services for all walk-ins. The operating hours and office location makes it convenient for customers to apply import permits and subsequently proceeds with clearing of cargoes from terminals. We also provide services for export permits.</p>
+
+<div class="info-card">
+<h3>Certificate of Origin</h3>
+<p>Our operations office is also a collection centre for Certificate of Origins since 01 March 2006. Agents can conveniently apply these via Crimsonlogic portal and select SAAA as the collection centre. These certificates can be collected at our office with fees charged.</p>
+</div>
+
+<h3>ACES Cargo Manifest</h3>
+<p>ACES is an electronic submission of Cargo Manifest Declaration. SAAA will provide the manifest submission services to Singapore Customs.</p>
+
+<div class="info-card">
+<h3>Contact &amp; Operating Hours</h3>
+<p><strong>Contact us:</strong> Tel 6545 9597 &nbsp;|&nbsp; Fax 6543 0147</p>
+<p><strong>Address:</strong> Room 107, Ground Floor SATS Airfreight Terminal 3, Core H Singapore 819462</p>
+<p><strong>Operating hours:</strong><br>
+0830 – 2000 hrs Monday to Friday<br>
+0900 – 2000 hrs Saturday<br>
+1000 – 2000 hrs Sunday &amp; Public Holidays</p>
+</div>''',
+        f'''<div style="margin-top: 32px;">
+<a href="{PERMIT_CTA}" target="_blank" rel="noopener" class="btn btn-primary">Proceed to Register</a>
+</div>''',
+    ),
+    'neutral-airway-bill.html': build_page(
+        'Neutral Airway Bill — SAAA',
+        'SAAA Services',
+        'Neutral',
+        'Airway Bill',
+        'Industry-standard neutral airway bills approved by BAR and certified by IATA.',
+        'Documentation',
+        'Neutral',
+        'Airway Bill',
+        'SAAA Cargo Services offers newly developed Neutral Airway Bills to support higher industry standards.',
+        '''<p>In efforts to ameliorate industry standards, SAAA Cargo Services Pte Ltd is offering sale, an immediate available stock of newly developed Neutral Airway Bills.</p>
+<p>Approved by BAR (Board of Airlines Representatives) and certified by IATA under Resolution 600b in accordance with the Warsaw Convention, the use of these Neutral Airway Bills is preferred and encouraged over other forms of Airway Bills.</p>
+
+<div class="info-card">
+<h3>Ordering &amp; Delivery</h3>
+<p>The minimum order is 750 sets (3 boxes) for members and 1000 sets (4 boxes) for non-members (6 ply by 2x).</p>
+<p>Deliveries are made on every Tuesdays and Fridays, provided orders are received by 12pm on Mondays and Thursdays respectively.</p>
+<p>Self-collection is also available during office hours at our office, 7 Airline Road #04-06 Cargo Agents Building E Singapore 819834.</p>
+</div>''',
+    ),
+    'bar-code-labels.html': build_page(
+        'Bar Code Labels — SAAA',
+        'SAAA Services',
+        'Bar Code',
+        'Labels',
+        'Premium coated woodfree bar-coded labels for air cargo operations.',
+        'Labelling',
+        'Bar Code',
+        'Labels',
+        'SAAA Cargo Services offers an immediate available stock of bar-coded labels for industry use.',
+        '''<p>SAAA Cargo Services Pte Ltd is also offering an immediate available stock of Bar-Coded Labels. We offer the Premium Coated Woodfree (66µm) labels.</p>
+<p>Each set of packaging includes 3 rolls of labels (102mm x 128mm) 1000 pieces per roll and 2 rolls of ribbon (110mm x 210mm). We will delivery with minimum 2 sets of order, subject to stock availability.</p>
+<p>Deliveries are made on every Tuesday and Thursday, provided orders are received by 12pm on Monday and Wednesday respectively.</p>
+
+<div class="notice-box">
+<strong>Please note:</strong> There is no delivery on every 1st of the month due to stock-take. There will be no supply of Classic Coated Woodfree label set with effect from 1st January 2022 onwards.
+</div>''',
+    ),
+}
+
+for name, html in pages.items():
+    (ROOT / name).write_text(html)
+    print('Wrote', name)

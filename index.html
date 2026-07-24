@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/nav-dropdown.css">
+    <link rel="stylesheet" href="css/training.css">
     <style>
         :root {
             --red-600: #c41e3a;
@@ -70,24 +72,9 @@
             padding: 0 24px;
         }
 
-        /* Navigation */
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--slate-200);
-        }
+        
 
-        .nav-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-            position: relative;
-            gap: 16px;
-        }
+        
 
         .logo {
             display: flex;
@@ -109,47 +96,19 @@
         }
 
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        
 
-        .nav-links a {
-            padding: 8px 16px;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--slate-600);
-            border-radius: var(--radius-sm);
-            transition: all 0.2s;
-        }
+        
 
-        .nav-links a:hover {
-            color: var(--red-600);
-            background: var(--red-50);
-        }
+        
 
-        .nav-links a svg {
-            display: block;
-            color: var(--slate-400);
-            transition: color 0.2s;
-        }
+        
 
-        .nav-links a:hover svg {
-            color: var(--red-600);
-        }
+        
 
-        .nav-social-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        
 
-        .nav-social-row a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
+        
 
         .btn {
             display: inline-flex;
@@ -658,6 +617,25 @@
             margin-bottom: 24px;
         }
 
+        .training-toolbar-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .training-toolbar-row .training-tabs-scroll {
+            flex: 1;
+            min-width: 0;
+            margin-bottom: 0;
+        }
+
+        .training-toolbar-row .btn {
+            flex-shrink: 0;
+        }
+
         .training-tabs-scroll::-webkit-scrollbar {
             display: none;
         }
@@ -901,6 +879,8 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            text-decoration: none;
+            color: inherit;
         }
 
         .event-card:hover {
@@ -1292,20 +1272,7 @@
             gap: 10px;
         }
 
-        .publication-nav {
-            width: 42px;
-            height: 42px;
-            border-radius: 999px;
-            border: 1px solid var(--slate-300);
-            background: white;
-            color: var(--slate-700);
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
-        }
+        .publication-
 
         .publication-nav svg {
             display: block;
@@ -1602,26 +1569,9 @@
             color: white;
         }
 
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            color: var(--slate-700);
-            padding: 8px;
-            font-weight: 600;
-            font-family: 'Inter', sans-serif;
-            align-items: center;
-            justify-content: center;
-            border-radius: var(--radius-sm);
-        }
+        
 
-        .mobile-menu-btn:hover {
-            background: var(--red-50);
-            color: var(--red-600);
-        }
+        
 
         .about-quick-links {
             display: flex;
@@ -1725,58 +1675,8 @@
         }
 
         @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: inline-flex;
-            }
-
-            .nav-inner {
-                height: auto;
-                min-height: 80px;
-                padding: 12px 0;
-            }
-
             .logo-img {
                 height: 60px;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: calc(100% + 12px);
-                left: 0;
-                right: 0;
-                flex-direction: column;
-                align-items: stretch;
-                gap: 8px;
-                padding: 16px;
-                background: rgba(255, 255, 255, 0.98);
-                border: 1px solid var(--slate-200);
-                border-radius: var(--radius);
-                box-shadow: 0 16px 40px rgba(15, 23, 42, 0.14);
-            }
-
-            .nav-links.mobile-open {
-                display: flex;
-            }
-
-            .nav-links a {
-                width: 100%;
-                padding: 12px 14px;
-            }
-
-            .nav-social-row {
-                display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 8px;
-                width: 100%;
-                margin-top: 4px;
-            }
-
-            .nav-links a[aria-label] {
-                width: 100%;
-                padding: 12px;
-                justify-content: center;
-                align-self: auto;
             }
 
             .hero h1 {
@@ -1822,6 +1722,16 @@
 
             .training-row {
                 padding: 18px 18px;
+            }
+
+            .training-toolbar-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .training-toolbar-row .btn {
+                width: 100%;
+                justify-content: center;
             }
 
             .training-row .content .title {
@@ -1940,26 +1850,76 @@
                 </a>
                 
                 <div class="nav-links">
-                    <a href="#about">About Us</a>
-                    <a href="#members">Members</a>
-                    <a href="#services">Services</a>
-                    <a href="#training">Training</a>
-                    <a href="#events">Events</a>
-                    <a href="#publication">Publication</a>
-                    <div class="nav-social-row">
-                        <a href="https://www.linkedin.com/in/saaa-singapore-2b6861243/%20" target="_blank" rel="noopener" aria-label="LinkedIn">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                        </a>
-                        <a href="https://www.facebook.com/pages/SAAA/834894096585648?fref=ts" target="_blank" rel="noopener" aria-label="Facebook">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                        </a>
-                        <a href="https://www.instagram.com/saaasingapore/" target="_blank" rel="noopener" aria-label="Instagram">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 1 0 0-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 1 1-2.882 0 1.441 1.441 0 0 1 2.882 0z"/></svg>
-                        </a>
-                    </div>
-                </div>
+    <div class="nav-dropdown">
+        <div class="nav-dropdown-head">
+            <a href="#about" class="nav-dropdown-trigger">About Us</a>
+            <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-label="Toggle About Us submenu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+        </div>
+        <div class="nav-dropdown-menu">
+            <a href="history.html">Our History</a>
+            <a href="organization.html">Organisation Structure</a>
+            <a href="stc.html">Standard Trading Conditions</a>
+            <a href="programmes.html">Programmes</a>
+        </div>
+    </div>
+    <div class="nav-dropdown">
+        <div class="nav-dropdown-head">
+            <a href="#members" class="nav-dropdown-trigger">Members</a>
+            <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-label="Toggle Members submenu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+        </div>
+        <div class="nav-dropdown-menu">
+            <a href="coming-soon.html">Membership Sign-Up</a>
+            <a href="members-listing.html">SAAA Members Listing</a>
+            <a href="members-login.html">Members Portal Log In</a>
+        </div>
+    </div>
+    <div class="nav-dropdown">
+        <div class="nav-dropdown-head">
+            <a href="#services" class="nav-dropdown-trigger">Services</a>
+            <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-label="Toggle Services submenu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+        </div>
+        <div class="nav-dropdown-menu">
+            <a href="permit-certificate-of-origin.html">Permit &amp; Certificate of Origin</a>
+            <a href="neutral-airway-bill.html">Neutral Airway Bill</a>
+            <a href="bar-code-labels.html">Bar Code Labels</a>
+        </div>
+    </div>
+    <a href="#training" class="nav-link-simple">Training</a>
+    <div class="nav-dropdown">
+        <div class="nav-dropdown-head">
+            <a href="#events" class="nav-dropdown-trigger">Events</a>
+            <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-label="Toggle Events submenu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+        </div>
+        <div class="nav-dropdown-menu">
+            <a href="events.html">Calendar of Events</a>
+            <a href="events.html#past-events">Past Events</a>
+        </div>
+    </div>
+    <div class="nav-dropdown">
+        <div class="nav-dropdown-head">
+            <a href="#publication" class="nav-dropdown-trigger">Publications</a>
+            <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-label="Toggle Publications submenu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+        </div>
+        <div class="nav-dropdown-menu">
+            <a href="announcements.html">Announcements</a>
+            <a href="featured-news.html">Featured News</a>
+            <a href="publications.html">Publications</a>
+        </div>
+    </div>
+    <div class="nav-social-row"><a href="https://www.linkedin.com/in/saaa-singapore-2b6861243/%20" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a href="https://www.facebook.com/pages/SAAA/834894096585648?fref=ts" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a><a href="https://www.instagram.com/saaasingapore/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 1 0 0-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 1 1-2.882 0 1.441 1.441 0 0 1 2.882 0z"/></svg></a></div>
+</div>
 
-                <button class="mobile-menu-btn">Menu</button>
+<button class="mobile-menu-btn">Menu</button>
             </div>
         </div>
     </nav>
@@ -2023,14 +1983,14 @@
                 <div class="ticker-box">
                     <div class="ticker-box-header">
                         <div class="ticker-box-title">Featured News</div>
-                        <a href="#" class="ticker-box-link">View All</a>
+                        <a href="featured-news.html" class="ticker-box-link">View All</a>
                     </div>
                     
                     <div class="ticker-item">
                         <img class="ticker-thumb" src="images/events/meeting-adults-1.jpg" alt="Dangerous goods training meeting">
                         <div>
                             <div class="ticker-item-date">June 2025</div>
-                            <div class="ticker-item-title">CBTA Framework Implementation Update</div>
+                            <div class="ticker-item-title"><a href="article-detail.html?type=featured&amp;id=cbta-framework-update">CBTA Framework Implementation Update</a></div>
                             <div class="ticker-item-desc">Revised Dangerous Goods training courses incorporating the CBTA framework are now mandatory for all members.</div>
                         </div>
                     </div>
@@ -2039,8 +1999,17 @@
                         <img class="ticker-thumb" src="images/events/meeting-adults-2.jpg" alt="Business meeting for trading conditions update">
                         <div>
                             <div class="ticker-item-date">May 2025</div>
-                            <div class="ticker-item-title">Standard Trading Conditions 2025</div>
+                            <div class="ticker-item-title"><a href="article-detail.html?type=featured&amp;id=stc-2025-update">Standard Trading Conditions 2025</a></div>
                             <div class="ticker-item-desc">Updated STC now available for all members. Please review the latest terms and conditions.</div>
+                        </div>
+                    </div>
+
+                    <div class="ticker-item">
+                        <img class="ticker-thumb" src="images/events/meeting-adults-3.jpg" alt="Perspectives magazine editorial">
+                        <div>
+                            <div class="ticker-item-date">April 2025</div>
+                            <div class="ticker-item-title"><a href="article-detail.html?type=featured&amp;id=perspectives-q2-2025">Perspectives Magazine — Q2 2025 Edition</a></div>
+                            <div class="ticker-item-desc">The latest edition features industry outlook, member spotlights, and regulatory updates.</div>
                         </div>
                     </div>
                 </div>
@@ -2048,14 +2017,14 @@
                 <div class="ticker-box">
                     <div class="ticker-box-header">
                         <div class="ticker-box-title">Announcements</div>
-                        <a href="#" class="ticker-box-link">View All</a>
+                        <a href="announcements.html" class="ticker-box-link">View All</a>
                     </div>
                     
                     <div class="ticker-item">
                         <img class="ticker-thumb" src="images/events/meeting-adults-3.jpg" alt="Editorial planning meeting">
                         <div>
                             <div class="ticker-item-date">NEW</div>
-                            <div class="ticker-item-title">Contribution of Articles in Perspectives <span class="ticker-badge">New</span></div>
+                            <div class="ticker-item-title"><a href="article-detail.html?type=announcements&amp;id=perspectives-contributions">Contribution of Articles in Perspectives</a> <span class="ticker-badge">New</span></div>
                             <div class="ticker-item-desc">Interested parties can now contribute articles and advertisements in Perspectives magazine. Contact us for the application form.</div>
                         </div>
                     </div>
@@ -2064,7 +2033,7 @@
                         <img class="ticker-thumb" src="images/events/meeting-adults-4.jpg" alt="Professional networking event">
                         <div>
                             <div class="ticker-item-date">UPCOMING</div>
-                            <div class="ticker-item-title">SAAA-Empire Bison Business Networking</div>
+                            <div class="ticker-item-title"><a href="article-detail.html?type=announcements&amp;id=empire-bison-networking">SAAA-Empire Bison Business Networking</a></div>
                             <div class="ticker-item-desc">28 April 2026 — Registrations are currently open for member companies! Email saaasin@saaa.org.sg.</div>
                         </div>
                     </div>
@@ -2174,186 +2143,22 @@
                 </span>
             </div>
 
-            <div class="training-tabs-scroll">
-                <div class="training-tabs">
-                    <button class="training-tab active" data-tab="all">All Programs<span class="training-count">12</span></button>
-                    <button class="training-tab" data-tab="cbta-dg">CBTA DG Functions<span class="training-count">12</span></button>
-                    <button class="training-tab" data-tab="air-cargo">Air Cargo &amp; Supply Chain<span class="training-count">0</span></button>
-                    <button class="training-tab" data-tab="others">Others<span class="training-count">0</span></button>
-                </div>
-            </div>
-            
-            <div class="training-list" id="training-list">
-                <div class="training-row" data-category="cbta-dg">
-                    <div class="number">01</div>
-                    <div class="content">
-                        <div class="title">Transport of Dangerous Goods by Air – Initial as per the IATA Dangerous Goods Training Guidance 7.1 (Supervised assessment)</div>
-                        <div class="function">Preparing Dangerous Goods Consignment</div>
-                        <div class="meta">
-                            <span>4/5 Days</span>
-                            <span>Classroom/Virtual</span>
-                            <span>No. of vacancies: 8</span>
-                        </div>
+            <div data-training-root data-items-per-page="6">
+            <div class="training-toolbar-row">
+                <div class="training-tabs-scroll">
+                    <div class="training-tabs">
+                        <button class="training-tab active" type="button" data-training-tab="all">All Programs<span class="training-count">12</span></button>
+                        <button class="training-tab" type="button" data-training-tab="cbta-dg">CBTA DG Functions<span class="training-count">12</span></button>
+                        <button class="training-tab" type="button" data-training-tab="air-cargo">Air Cargo &amp; Supply Chain<span class="training-count">0</span></button>
+                        <button class="training-tab" type="button" data-training-tab="others">Others<span class="training-count">0</span></button>
                     </div>
-                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 24 Aug 2026</div></div>
                 </div>
-
-                <div class="training-row" data-category="cbta-dg">
-                    <div class="number">02</div>
-                    <div class="content">
-                        <div class="title">Transport of Dangerous Goods by Air – Initial as per the IATA Dangerous Goods Training Guidance 7.2 (Supervised assessment)</div>
-                        <div class="function">Processing or Accepting Goods Presented as General Cargo</div>
-                        <div class="meta">
-                            <span>1 Day</span>
-                            <span>Classroom/Virtual</span>
-                            <span>No. of vacancies: 5</span>
-                        </div>
-                    </div>
-                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 26 Aug 2026</div></div>
-                </div>
-
-                <div class="training-row" data-category="cbta-dg">
-                    <div class="number">03</div>
-                    <div class="content">
-                        <div class="title">Transport of Dangerous Goods by Air – Initial as per the IATA Dangerous Goods Training Guidance 7.3 (Supervised Assessment)</div>
-                        <div class="function">Processing or Accepting Dangerous Goods Consignments</div>
-                        <div class="meta">
-                            <span>4/5 Days</span>
-                            <span>Classroom/Virtual</span>
-                            <span>No. of vacancies: 11</span>
-                        </div>
-                    </div>
-                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 28 Aug 2026</div></div>
-                </div>
-
-                <div class="training-row" data-category="cbta-dg">
-                    <div class="number">04</div>
-                    <div class="content">
-                        <div class="title">Transport of Dangerous Goods by Air – Initial as per IATA DGR function 7.4 (Supervised Assessment)</div>
-                        <div class="function">Handling Cargo in a Warehouse, Loading and Unloading Unit Load Devices and Loading and Unloading Aircraft Cargo Compartments</div>
-                        <div class="meta">
-                            <span>1 Day</span>
-                            <span>Classroom/Virtual</span>
-                            <span>No. of vacancies: 6</span>
-                        </div>
-                    </div>
-                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 31 Aug 2026</div></div>
-                </div>
-
-                <div class="training-row" data-category="cbta-dg">
-                    <div class="number">05</div>
-                    <div class="content">
-                        <div class="title">Transport of Dangerous Goods by Air – Initial as per IATA DGR function 7.5 (Supervised Assessment)</div>
-                        <div class="function">Security Screening and Control of Dangerous Goods</div>
-                        <div class="meta">
-                            <span>2 Days</span>
-                            <span>Classroom/Virtual</span>
-                            <span>No. of vacancies: 4</span>
-                        </div>
-                    </div>
-                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 02 Sep 2026</div></div>
-                </div>
-
-                <div class="training-row" data-category="cbta-dg">
-                    <div class="number">06</div>
-                    <div class="content">
-                        <div class="title">Transport of Dangerous Goods by Air – Initial as per IATA DGR function 7.6 (Supervised Assessment)</div>
-                        <div class="function">Loading, Segregation and Inspection of Dangerous Goods on Aircraft</div>
-                        <div class="meta">
-                            <span>2 Days</span>
-                            <span>Classroom/Virtual</span>
-                            <span>No. of vacancies: 9</span>
-                        </div>
-                    </div>
-                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 04 Sep 2026</div></div>
-                </div>
-
-                <div class="training-row" data-category="cbta-dg">
-                    <div class="number">07</div>
-                    <div class="content">
-                        <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.1 (Supervised Assessment)</div>
-                        <div class="function">Preparing Dangerous Goods Consignment (Recurrent)</div>
-                        <div class="meta">
-                            <span>3 Days</span>
-                            <span>Classroom/Virtual</span>
-                            <span>No. of vacancies: 3</span>
-                        </div>
-                    </div>
-                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 08 Sep 2026</div></div>
-                </div>
-
-                <div class="training-row" data-category="cbta-dg">
-                    <div class="number">08</div>
-                    <div class="content">
-                        <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.2 (Supervised Assessment)</div>
-                        <div class="function">Processing or Accepting Goods Presented as General Cargo (Recurrent)</div>
-                        <div class="meta">
-                            <span>1 Day</span>
-                            <span>Classroom/Virtual</span>
-                            <span>No. of vacancies: 7</span>
-                        </div>
-                    </div>
-                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 10 Sep 2026</div></div>
-                </div>
-
-                <div class="training-row" data-category="cbta-dg">
-                    <div class="number">09</div>
-                    <div class="content">
-                        <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.3 (Supervised Assessment)</div>
-                        <div class="function">Processing or Accepting Dangerous Goods Consignments (Recurrent)</div>
-                        <div class="meta">
-                            <span>3 Days</span>
-                            <span>Classroom/Virtual</span>
-                            <span>No. of vacancies: 12</span>
-                        </div>
-                    </div>
-                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 14 Sep 2026</div></div>
-                </div>
-
-                <div class="training-row" data-category="cbta-dg">
-                    <div class="number">10</div>
-                    <div class="content">
-                        <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.4 (Supervised Assessment)</div>
-                        <div class="function">Handling Cargo in a Warehouse, Loading and Unloading Unit Load Devices and Loading and Unloading Aircraft Cargo Compartments (Recurrent)</div>
-                        <div class="meta">
-                            <span>1 Day</span>
-                            <span>Classroom/Virtual</span>
-                            <span>No. of vacancies: 5</span>
-                        </div>
-                    </div>
-                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 16 Sep 2026</div></div>
-                </div>
-
-                <div class="training-row" data-category="cbta-dg">
-                    <div class="number">11</div>
-                    <div class="content">
-                        <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.5 (Supervised Assessment)</div>
-                        <div class="function">Security Screening and Control of Dangerous Goods (Recurrent)</div>
-                        <div class="meta">
-                            <span>2 Days</span>
-                            <span>Classroom/Virtual</span>
-                            <span>No. of vacancies: 6</span>
-                        </div>
-                    </div>
-                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 18 Sep 2026</div></div>
-                </div>
-
-                <div class="training-row" data-category="cbta-dg">
-                    <div class="number">12</div>
-                    <div class="content">
-                        <div class="title">Transport of Dangerous Goods by Air – Recurrent as per IATA DGR function 7.6 (Supervised Assessment)</div>
-                        <div class="function">Loading, Segregation and Inspection of Dangerous Goods on Aircraft (Recurrent)</div>
-                        <div class="meta">
-                            <span>2 Days</span>
-                            <span>Classroom/Virtual</span>
-                            <span>No. of vacancies: 4</span>
-                        </div>
-                    </div>
-                    <div class="action"><a href="#" class="btn-small primary">Book Now</a><div class="training-date">Training Date: 21 Sep 2026</div></div>
-                </div>
+                <a href="training-courses.html" class="btn btn-secondary">View All Training</a>
             </div>
 
-            <div class="training-pagination" id="training-pagination"></div>
+            <div class="training-list" data-training-list></div>
+            <div class="training-pagination" data-training-pagination></div>
+            </div>
         </div>
     </section>
 
@@ -2416,11 +2221,11 @@
                         Events & <span class="accent">Networking</span>
                     </h2>
                 </div>
-                <a href="#" class="btn btn-secondary">View All Events</a>
+                <a href="events.html" class="btn btn-secondary">View All Events</a>
             </div>
             
             <div class="events-grid">
-                <div class="event-card">
+                <a href="event-detail.html?id=business-networking-aug-2026" class="event-card">
                     <img class="event-banner" src="images/events/networking-1.jpg" alt="Business networking event">
                     <div class="event-body">
                         <div class="event-date">
@@ -2433,13 +2238,12 @@
                             <div class="event-meta">
                                 <span>2:00 PM</span>
                                 <span>SAAA Office</span>
-                                <span class="status-live">Register Now</span>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="event-card">
+                <a href="event-detail.html?id=dg-workshop-sep-2026" class="event-card">
                     <img class="event-banner" src="images/events/workshop-1.jpg" alt="Workshop session">
                     <div class="event-body">
                         <div class="event-date">
@@ -2452,13 +2256,12 @@
                             <div class="event-meta">
                                 <span>9:00 AM</span>
                                 <span>Training Centre</span>
-                                <span class="status-live">Register Now</span>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="event-card">
+                <a href="event-detail.html?id=agm-2026" class="event-card">
                     <img class="event-banner" src="images/events/meeting-adults-2.jpg" alt="Annual general meeting boardroom">
                     <div class="event-body">
                         <div class="event-date">
@@ -2475,9 +2278,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="event-card">
+                <a href="event-detail.html?id=industry-networking-oct-2026" class="event-card">
                     <img class="event-banner" src="images/events/networking-2.jpg" alt="Industry networking event">
                     <div class="event-body">
                         <div class="event-date">
@@ -2490,11 +2293,10 @@
                             <div class="event-meta">
                                 <span>6:30 PM</span>
                                 <span>City Venue</span>
-                                <span class="status-live">Register Now</span>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -2513,8 +2315,8 @@
             </div>
 
             <div class="members-cta">
-                <a href="#" class="btn btn-primary">Membership Sign-up</a>
-                <a href="#" class="btn btn-secondary">SAAA Members Listing</a>
+                <a href="coming-soon.html" class="btn btn-primary">Membership Sign-up</a>
+                <a href="members-listing.html" class="btn btn-secondary">SAAA Members Listing</a>
             </div>
 
             <div class="members-grid">
@@ -2775,7 +2577,7 @@
                     <ul class="footer-links">
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#training">Training</a></li>
-                        <li><a href="#events">Events</a></li>
+                        <li><a href="events.html">Events</a></li>
                         <li><a href="#members">Members</a></li>
                     </ul>
                 </div>
@@ -2783,8 +2585,8 @@
                 <div>
                     <div class="footer-title">Resources</div>
                     <ul class="footer-links">
-                        <li><a href="#">Latest News</a></li>
-                        <li><a href="#">Announcements</a></li>
+                        <li><a href="featured-news.html">Latest News</a></li>
+                        <li><a href="announcements.html">Announcements</a></li>
                         <li><a href="publications.html">Publications</a></li>
                         <li><a href="#">Media Gallery</a></li>
                     </ul>
@@ -2827,307 +2629,10 @@
     </footer>
 
     <script src="publications-data.js"></script>
-    <script>
-        // Mobile navigation
-        (function() {
-            const menuBtn = document.querySelector('.mobile-menu-btn');
-            const navLinks = document.querySelector('.nav-links');
-            if (!menuBtn || !navLinks) return;
-
-            menuBtn.setAttribute('aria-expanded', 'false');
-            menuBtn.setAttribute('aria-label', 'Toggle navigation');
-
-            function closeMenu() {
-                navLinks.classList.remove('mobile-open');
-                menuBtn.setAttribute('aria-expanded', 'false');
-            }
-
-            menuBtn.addEventListener('click', function() {
-                const isOpen = navLinks.classList.toggle('mobile-open');
-                menuBtn.setAttribute('aria-expanded', String(isOpen));
-            });
-
-            navLinks.querySelectorAll('a').forEach((link) => {
-                link.addEventListener('click', closeMenu);
-            });
-
-            document.addEventListener('click', function(event) {
-                if (!navLinks.classList.contains('mobile-open')) return;
-                if (navLinks.contains(event.target) || menuBtn.contains(event.target)) return;
-                closeMenu();
-            });
-
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) closeMenu();
-            });
-        })();
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Animated Counter
-        function animateCounter(element) {
-            const target = parseInt(element.getAttribute('data-target'));
-            const suffix = element.getAttribute('data-suffix') || '';
-            const duration = 2000; // 2 seconds
-            const start = 0;
-            const startTime = performance.now();
-
-            function update(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                
-                // Easing function (ease-out)
-                const easeOut = 1 - Math.pow(1 - progress, 3);
-                const current = Math.floor(start + (target - start) * easeOut);
-                
-                element.textContent = current + suffix;
-                
-                if (progress < 1) {
-                    requestAnimationFrame(update);
-                } else {
-                    element.textContent = target + suffix;
-                }
-            }
-            
-            requestAnimationFrame(update);
-        }
-
-        // Intersection Observer for counters
-        const observerOptions = {
-            threshold: 0.5,
-            rootMargin: '0px'
-        };
-
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter(entry.target);
-                    counterObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.stat-value').forEach(counter => {
-            counterObserver.observe(counter);
-        });
-
-        // Training Tabs + Pagination
-        (function() {
-            const list = document.getElementById('training-list');
-            const pagination = document.getElementById('training-pagination');
-            const tabs = document.querySelectorAll('.training-tab');
-            const allRows = Array.from(list.querySelectorAll('.training-row'));
-            const itemsPerPage = 6;
-
-            let currentTab = 'all';
-            let currentPage = 1;
-
-            function getFilteredRows() {
-                if (currentTab === 'all') return allRows;
-                return allRows.filter(row => row.dataset.category === currentTab);
-            }
-
-            function render() {
-                const filtered = getFilteredRows();
-                const totalPages = Math.ceil(filtered.length / itemsPerPage);
-                if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
-
-                // Show/hide rows
-                allRows.forEach(row => row.style.display = 'none');
-                
-                // Remove existing empty message
-                let emptyMsg = list.querySelector('.training-empty');
-                if (emptyMsg) emptyMsg.remove();
-
-                // Update tab counts while keeping all requested tabs visible
-                tabs.forEach(tab => {
-                    const tabName = tab.dataset.tab;
-                    const count = tabName === 'all' ? allRows.length : allRows.filter(r => r.dataset.category === tabName).length;
-                    tab.querySelector('.training-count').textContent = count;
-                });
-
-                if (filtered.length === 0) {
-                    const msg = document.createElement('div');
-                    msg.className = 'training-empty';
-                    msg.textContent = 'No courses available in this category yet.';
-                    list.appendChild(msg);
-                    pagination.innerHTML = '';
-                    return;
-                }
-
-                const start = (currentPage - 1) * itemsPerPage;
-                const end = start + itemsPerPage;
-                filtered.slice(start, end).forEach(row => row.style.display = '');
-
-                // Render pagination
-                pagination.innerHTML = '';
-                if (totalPages <= 1) return;
-
-                // Prev
-                const prevBtn = document.createElement('button');
-                prevBtn.innerHTML = '&larr;';
-                prevBtn.className = 'pagination-arrow';
-                prevBtn.disabled = currentPage === 1;
-                prevBtn.addEventListener('click', () => { currentPage--; render(); });
-                pagination.appendChild(prevBtn);
-
-                // Page numbers
-                for (let i = 1; i <= totalPages; i++) {
-                    const btn = document.createElement('button');
-                    btn.textContent = i;
-                    if (i === currentPage) btn.classList.add('active');
-                    btn.addEventListener('click', () => { currentPage = i; render(); });
-                    pagination.appendChild(btn);
-                }
-
-                // Next
-                const nextBtn = document.createElement('button');
-                nextBtn.innerHTML = '&rarr;';
-                nextBtn.className = 'pagination-arrow';
-                nextBtn.disabled = currentPage === totalPages;
-                nextBtn.addEventListener('click', () => { currentPage++; render(); });
-                pagination.appendChild(nextBtn);
-            }
-
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    currentTab = tab.dataset.tab;
-                    currentPage = 1;
-                    render();
-                });
-            });
-
-            render();
-        })();
-
-        // Publication Carousel
-        (function() {
-            const root = document.querySelector('[data-publication-carousel]');
-            if (!root) return;
-
-            const quarterRank = {
-                'jan-mar': 1,
-                'apr-jun': 2,
-                'jul-sep': 3,
-                'jul-sept': 3,
-                'oct-dec': 4
-            };
-            const publicationIssues = (window.SAAA_PUBLICATIONS || [])
-                .filter((issue) => issue.isFlipbook)
-                .slice()
-                .sort((a, b) => {
-                    if (b.year !== a.year) return b.year - a.year;
-
-                    const aQuarter = quarterRank[(a.date || '').split(' ')[0].toLowerCase()] || 0;
-                    const bQuarter = quarterRank[(b.date || '').split(' ')[0].toLowerCase()] || 0;
-                    return bQuarter - aQuarter;
-                })
-                .slice(0, 12);
-            const track = root.querySelector('[data-publication-track]');
-            const prev = root.querySelector('[data-publication-prev]');
-            const next = root.querySelector('[data-publication-next]');
-            const dotsWrap = root.querySelector('[data-publication-dots]');
-            let page = 0;
-
-            function getCardMeta(issue) {
-                return 'Flipbook Edition';
-            }
-
-            function getCardCopy(issue) {
-                if (issue.year === 2026) {
-                    return 'Newest PERSPECTIVES flipbook from the live SAAA archive, kept with the original cover artwork.';
-                }
-                if (issue.year === 2025) {
-                    return 'Recent flipbook issue featuring association updates and industry developments from the current publication cycle.';
-                }
-                return 'Recent flipbook issue from the last three publication years, surfaced directly from the official SAAA library.';
-            }
-
-            function renderCards() {
-                track.innerHTML = publicationIssues.map((issue) => `
-                    <article class="publication-card">
-                        <a class="publication-cover" href="${issue.href}" target="_blank" rel="noopener">
-                            <img src="${issue.image}" alt="${issue.title} ${issue.date} cover" loading="lazy">
-                        </a>
-                        <div class="publication-card-body">
-                            <div class="publication-type">${getCardMeta(issue)}</div>
-                            <h4 class="publication-card-title">${issue.date}</h4>
-                            <p class="publication-card-desc">${getCardCopy(issue)}</p>
-                            <a class="publication-card-link" href="${issue.href}" target="_blank" rel="noopener">Open flipbook</a>
-                        </div>
-                    </article>
-                `).join('');
-            }
-
-            function getPerView() {
-                if (window.innerWidth <= 768) return 1;
-                if (window.innerWidth <= 1024) return 2;
-                return 4;
-            }
-
-            function getPageCount() {
-                return Math.max(1, Math.ceil(publicationIssues.length / getPerView()));
-            }
-
-            function renderDots() {
-                const total = getPageCount();
-                dotsWrap.innerHTML = '';
-
-                for (let i = 0; i < total; i++) {
-                    const dot = document.createElement('button');
-                    dot.type = 'button';
-                    dot.className = 'publication-dot' + (i === page ? ' active' : '');
-                    dot.setAttribute('aria-label', `Go to publication page ${i + 1}`);
-                    dot.addEventListener('click', () => {
-                        page = i;
-                        update();
-                    });
-                    dotsWrap.appendChild(dot);
-                }
-            }
-
-            function update() {
-                const perView = getPerView();
-                const total = getPageCount();
-                page = Math.min(page, total - 1);
-
-                const gap = parseFloat(getComputedStyle(track).gap) || 24;
-                const slides = Array.from(track.querySelectorAll('.publication-card'));
-                const firstCard = slides[0];
-                const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 0;
-                const offset = page * (cardWidth + gap) * perView;
-
-                track.style.transform = `translateX(-${offset}px)`;
-                prev.disabled = page === 0;
-                next.disabled = page === total - 1;
-                renderDots();
-            }
-
-            prev.addEventListener('click', () => {
-                page = Math.max(0, page - 1);
-                update();
-            });
-
-            next.addEventListener('click', () => {
-                page = Math.min(getPageCount() - 1, page + 1);
-                update();
-            });
-
-            renderCards();
-            window.addEventListener('resize', update);
-            update();
-        })();
-    </script>
+    <script src="js/nav.js"></script>
+    <script src="js/listing-utils.js"></script>
+    <script src="js/training-data.js"></script>
+    <script src="js/training-ui.js"></script>
+    <script src="js/homepage.js"></script>
 </body>
 </html>
