@@ -49,6 +49,7 @@
             color: var(--slate-800);
             line-height: 1.6;
             background: var(--white);
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -84,6 +85,8 @@
             justify-content: space-between;
             align-items: center;
             height: 80px;
+            position: relative;
+            gap: 16px;
         }
 
         .logo {
@@ -1576,6 +1579,21 @@
             padding: 8px;
             font-weight: 600;
             font-family: 'Inter', sans-serif;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+        }
+
+        .mobile-menu-btn:hover {
+            background: var(--red-50);
+            color: var(--red-600);
+        }
+
+        .about-quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 24px;
         }
 
         /* Responsive */
@@ -1659,16 +1677,65 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            .mobile-menu-btn {
+                display: inline-flex;
             }
 
-            .mobile-menu-btn {
-                display: block;
+            .nav-inner {
+                height: auto;
+                min-height: 80px;
+                padding: 12px 0;
+            }
+
+            .logo-img {
+                height: 60px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: calc(100% + 12px);
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                padding: 16px;
+                background: rgba(255, 255, 255, 0.98);
+                border: 1px solid var(--slate-200);
+                border-radius: var(--radius);
+                box-shadow: 0 16px 40px rgba(15, 23, 42, 0.14);
+            }
+
+            .nav-links.mobile-open {
+                display: flex;
+            }
+
+            .nav-links a {
+                width: 100%;
+                padding: 12px 14px;
+            }
+
+            .nav-links a[aria-label] {
+                width: 44px;
+                padding: 12px;
+                align-self: flex-start;
             }
 
             .hero h1 {
                 font-size: 2.5rem;
+            }
+
+            .hero-actions {
+                flex-wrap: wrap;
+            }
+
+            .hero-actions .btn,
+            .about-quick-links .btn {
+                width: 100%;
+                justify-content: center;
+                white-space: normal;
+                text-align: center;
             }
 
             .stats-grid {
@@ -1975,7 +2042,7 @@
                         </span>
                     </div>
 
-                    <div style="display: flex; flex-wrap: nowrap; gap: 8px; margin-top: 24px;">
+                    <div class="about-quick-links">
                         <a href="history.html" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 12px; padding: 8px 14px; white-space: nowrap;">Our History</a>
                         <a href="organization.html" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 12px; padding: 8px 14px; white-space: nowrap;">Organization Structure</a>
                         <a href="stc.html" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 12px; padding: 8px 14px; white-space: nowrap;">Standard Trading Conditions</a>
@@ -2682,6 +2749,40 @@
 
     <script src="publications-data.js"></script>
     <script>
+        // Mobile navigation
+        (function() {
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            if (!menuBtn || !navLinks) return;
+
+            menuBtn.setAttribute('aria-expanded', 'false');
+            menuBtn.setAttribute('aria-label', 'Toggle navigation');
+
+            function closeMenu() {
+                navLinks.classList.remove('mobile-open');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            }
+
+            menuBtn.addEventListener('click', function() {
+                const isOpen = navLinks.classList.toggle('mobile-open');
+                menuBtn.setAttribute('aria-expanded', String(isOpen));
+            });
+
+            navLinks.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!navLinks.classList.contains('mobile-open')) return;
+                if (navLinks.contains(event.target) || menuBtn.contains(event.target)) return;
+                closeMenu();
+            });
+
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) closeMenu();
+            });
+        })();
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
