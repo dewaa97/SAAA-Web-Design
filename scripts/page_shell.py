@@ -88,7 +88,6 @@ def render_page(title, badge, hero_title, hero_accent, hero_desc, body_html, ext
 <div class="container">
 <div class="hero-grid">
 <div>
-<div class="hero-badge"><span class="dot"></span><span>{badge}</span></div>
 <h1>{hero_title} <span class="accent">{hero_accent}</span></h1>
 <p>{hero_desc}</p>
 </div>
