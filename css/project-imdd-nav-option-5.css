@@ -1,0 +1,60 @@
+/**
+ * Project IMDD nav — Option 5 (saved reference)
+ * Dark ribbon integrated at the bottom of the hero section.
+ */
+
+.hero.imdd-hero,
+.hero.imdd-page-hero {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    padding-bottom: 0;
+}
+
+.imdd-subnav {
+    width: 100%;
+    margin-top: auto;
+    background: rgba(15, 23, 42, 0.96);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 3px solid var(--red-600);
+    backdrop-filter: blur(10px);
+}
+
+.imdd-subnav-grid {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    overflow-x: auto;
+}
+
+.imdd-subnav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 56px;
+    padding: 14px 20px;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.imdd-subnav-link + .imdd-subnav-link {
+    box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.imdd-subnav-link.is-active {
+    background: rgba(196, 30, 58, 0.2);
+    border-bottom-color: #fca5a5;
+}
+
+.imdd-subnav-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.imdd-subnav-link.is-active .imdd-subnav-label {
+    color: white;
+    font-weight: 700;
+}

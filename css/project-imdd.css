@@ -1,0 +1,1013 @@
+/* Project IMDD page — extends subpage.css */
+
+:root {
+    --imdd-site-nav-height: 80px;
+}
+
+.imdd-hero {
+    padding-bottom: 48px;
+}
+
+.imdd-hero .hero-bg {
+    object-position: center 30%;
+}
+
+/* Spotlight section — separate from hero, no overlap */
+.imdd-spotlight {
+    padding: 64px 0;
+    background: var(--slate-50);
+    border-bottom: 1px solid var(--slate-200);
+    scroll-margin-top: calc(var(--imdd-site-nav-height, 80px) + 60px);
+}
+
+.imdd-spotlight-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 32px;
+    align-items: stretch;
+}
+
+.imdd-spotlight-image {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    min-height: 320px;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+}
+
+.imdd-spotlight-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: 320px;
+}
+
+.imdd-spotlight-quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 36px;
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+.imdd-spotlight-quote .section-tag {
+    margin-bottom: 16px;
+}
+
+.imdd-spotlight-quote blockquote {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    font-style: italic;
+    color: var(--slate-800);
+    margin-bottom: 16px;
+}
+
+.imdd-spotlight-quote cite {
+    display: block;
+    font-size: 13px;
+    color: var(--slate-500);
+    font-style: normal;
+    line-height: 1.6;
+}
+
+/* Institution logo marquee */
+.imdd-marquee-section {
+    padding: 28px 0;
+    background: white;
+    border-bottom: 1px solid var(--slate-200);
+}
+
+.imdd-marquee-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.imdd-marquee-header p {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--slate-500);
+}
+
+.imdd-marquee-wrapper {
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.imdd-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: imdd-marquee-scroll 40s linear infinite;
+    align-items: center;
+    gap: 20px;
+}
+
+.imdd-marquee-wrapper:hover .imdd-marquee-track {
+    animation-play-state: paused;
+}
+
+.imdd-institution-logo {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 80px;
+    padding: 12px 20px;
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+a.imdd-institution-logo:hover {
+    transform: translateY(-2px);
+    border-color: var(--red-100);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.imdd-institution-logo img {
+    max-width: 100%;
+    max-height: 52px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+@keyframes imdd-marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Option 2: Dark ribbon tab bar — centered below hero, sticky on scroll */
+.imdd-subnav {
+    position: sticky;
+    top: var(--imdd-site-nav-height, 80px);
+    z-index: 90;
+    padding: 0;
+    background: #0f172a;
+    border-bottom: 3px solid var(--red-600);
+}
+
+.imdd-subnav-shell {
+    margin-top: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+.imdd-subnav-grid {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.imdd-subnav-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.imdd-subnav-link {
+    position: relative;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 54px;
+    padding: 14px 20px;
+    border-radius: 0;
+    background: transparent;
+    text-align: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.imdd-subnav-link::before {
+    display: none;
+}
+
+.imdd-subnav-link + .imdd-subnav-link {
+    box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+.imdd-subnav-link:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: none;
+}
+
+.imdd-subnav-link.is-active {
+    background: rgba(196, 30, 58, 0.18);
+    border-bottom-color: #fca5a5;
+    box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+.imdd-subnav-icon {
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.45);
+    flex-shrink: 0;
+    transition: color 0.2s;
+}
+
+.imdd-subnav-link:hover .imdd-subnav-icon {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.85);
+    box-shadow: none;
+}
+
+.imdd-subnav-link.is-active .imdd-subnav-icon {
+    background: transparent;
+    color: #fca5a5;
+    box-shadow: none;
+}
+
+.imdd-subnav-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.imdd-subnav-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    color: rgba(255, 255, 255, 0.68);
+    line-height: 1.2;
+}
+
+.imdd-subnav-link:hover .imdd-subnav-label {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.imdd-subnav-link.is-active .imdd-subnav-label {
+    color: white;
+    font-weight: 700;
+}
+
+/* Subpage hero */
+.imdd-page-hero {
+    padding: 56px 0 48px;
+}
+
+.imdd-page-hero .hero-bg {
+    object-position: center 35%;
+}
+
+/* Section blocks */
+.imdd-section {
+    padding: 80px 0;
+    scroll-margin-top: calc(var(--imdd-site-nav-height, 80px) + 60px);
+}
+
+.imdd-section:nth-child(even) {
+    background: var(--slate-50);
+}
+
+.imdd-section-header {
+    margin-bottom: 40px;
+}
+
+.imdd-section-header .section-tag {
+    margin-bottom: 12px;
+}
+
+.imdd-section-header h2 {
+    font-size: 2rem;
+    color: var(--slate-900);
+    margin-bottom: 12px;
+}
+
+.imdd-section-header p {
+    color: var(--slate-600);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 800px;
+}
+
+.imdd-lead {
+    font-size: 17px;
+    color: var(--slate-700);
+    line-height: 1.8;
+    margin-bottom: 32px;
+    max-width: 900px;
+}
+
+.imdd-mission-card {
+    padding: 32px;
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.imdd-mission-card h3 {
+    font-size: 1.5rem;
+    color: var(--slate-900);
+    margin-bottom: 12px;
+}
+
+.imdd-mission-card p {
+    color: var(--slate-600);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.imdd-objectives-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.imdd-objectives-list li {
+    display: flex;
+    gap: 14px;
+    padding: 16px 20px;
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius);
+    font-size: 15px;
+    color: var(--slate-600);
+    line-height: 1.6;
+}
+
+.imdd-objectives-list .num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--red-50);
+    color: var(--red-600);
+    border-radius: 999px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.imdd-phases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.imdd-phase-card {
+    padding: 24px;
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+    min-height: 180px;
+}
+
+.imdd-phase-card .phase-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--red-600);
+    margin-bottom: 8px;
+}
+
+.imdd-phase-card h4 {
+    font-size: 1rem;
+    color: var(--slate-900);
+    margin-bottom: 10px;
+}
+
+.imdd-phase-card p {
+    font-size: 14px;
+    color: var(--slate-600);
+    line-height: 1.6;
+}
+
+/* Program — simple stacked cards */
+.imdd-program-stack {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.imdd-program-card {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.imdd-program-card-image {
+    aspect-ratio: 16 / 9;
+    background: var(--slate-100);
+}
+
+.imdd-program-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.imdd-program-card-body {
+    padding: 20px 22px 24px;
+}
+
+.imdd-program-card-body h3 {
+    font-size: 1.05rem;
+    color: var(--slate-900);
+    margin-bottom: 14px;
+    line-height: 1.4;
+}
+
+.imdd-event-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.imdd-event-meta div {
+    font-size: 14px;
+    color: var(--slate-600);
+}
+
+.imdd-event-meta strong {
+    color: var(--slate-800);
+}
+
+.imdd-coming-soon-box {
+    padding: 32px;
+    text-align: center;
+    color: var(--slate-500);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* Employers */
+.imdd-employers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+}
+
+.imdd-employers-panel {
+    padding: 32px;
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+}
+
+.imdd-employers-panel h3 {
+    font-size: 1.35rem;
+    color: var(--slate-900);
+    margin-bottom: 20px;
+}
+
+.imdd-check-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.imdd-check-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 15px;
+    color: var(--slate-600);
+    line-height: 1.5;
+}
+
+.imdd-check-list .icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    background: var(--red-50);
+    color: var(--red-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Forms */
+.imdd-form-card {
+    padding: 24px;
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+}
+
+.imdd-form-card h3 {
+    font-size: 1.25rem;
+    color: var(--slate-900);
+    margin-bottom: 8px;
+}
+
+.imdd-form-card .form-desc {
+    font-size: 14px;
+    color: var(--slate-500);
+    margin-bottom: 16px;
+}
+
+.imdd-form-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.imdd-form-stack .imdd-form-field label {
+    min-height: 0;
+    align-items: flex-start;
+}
+
+.imdd-field-hint {
+    font-size: 12px;
+    color: var(--slate-500);
+    line-height: 1.5;
+}
+
+.imdd-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+}
+
+.imdd-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.imdd-form-field.full {
+    grid-column: 1 / -1;
+}
+
+.imdd-form-grid .imdd-form-field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--slate-700);
+    line-height: 1.35;
+}
+
+.imdd-form-field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--slate-700);
+    line-height: 1.35;
+}
+
+.imdd-form-field input,
+.imdd-form-field select,
+.imdd-form-field textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--slate-300);
+    border-radius: var(--radius-sm);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--slate-800);
+    background: white;
+    transition: border-color 0.2s;
+}
+
+.imdd-form-field input:focus,
+.imdd-form-field select:focus,
+.imdd-form-field textarea:focus {
+    outline: none;
+    border-color: var(--red-600);
+    box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.1);
+}
+
+.imdd-form-field textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.imdd-form-field input[type="file"] {
+    display: none;
+}
+
+.imdd-form-closed {
+    padding: 24px;
+    background: var(--slate-50);
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius);
+    color: var(--slate-600);
+    line-height: 1.7;
+}
+
+.imdd-form-actions {
+    margin-top: 20px;
+}
+
+.imdd-form-note {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--slate-500);
+}
+
+/* Companies */
+.imdd-companies-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.imdd-companies-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.imdd-company-card {
+    padding: 16px 14px;
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-height: 180px;
+    transition: all 0.2s;
+}
+
+.imdd-company-card:hover {
+    border-color: var(--red-100);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.imdd-company-logo {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imdd-company-logo img {
+    max-width: 100%;
+    max-height: 64px;
+    object-fit: contain;
+}
+
+.imdd-company-initials {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius);
+    background: var(--slate-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--slate-600);
+}
+
+.imdd-company-card h4 {
+    font-size: 13px;
+    color: var(--slate-800);
+    line-height: 1.4;
+    flex: 1;
+}
+
+.imdd-company-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    width: 100%;
+    margin-top: auto;
+    padding-top: 4px;
+}
+
+.imdd-company-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.imdd-company-action-outline {
+    color: var(--slate-700);
+    background: var(--slate-50);
+    border: 1px solid var(--slate-200);
+}
+
+.imdd-company-action-outline:hover {
+    color: var(--red-600);
+    border-color: var(--red-100);
+    background: var(--red-50);
+}
+
+.imdd-company-action-primary {
+    color: white;
+    background: var(--red-600);
+    border: 1px solid var(--red-600);
+}
+
+.imdd-company-action-primary:hover {
+    background: var(--red-700);
+    border-color: var(--red-700);
+}
+
+/* Legacy text links — kept for reference if switching back */
+.imdd-company-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: auto;
+}
+
+.imdd-company-links a {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--red-600);
+}
+
+.imdd-company-links a:hover {
+    text-decoration: underline;
+}
+
+/* Testimonials carousel */
+.imdd-testimonials-carousel {
+    position: relative;
+}
+
+.imdd-testimonials-viewport {
+    overflow: hidden;
+}
+
+.imdd-testimonials-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.35s ease;
+    will-change: transform;
+}
+
+.imdd-testimonial-card {
+    flex: 0 0 calc((100% - 20px) / 2);
+    min-width: 0;
+    padding: 24px;
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 240px;
+}
+
+.imdd-testimonial-card .quote-icon {
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--red-600);
+    font-family: Georgia, serif;
+}
+
+.imdd-testimonial-card blockquote {
+    font-size: 14px;
+    color: var(--slate-600);
+    line-height: 1.7;
+    flex: 1;
+}
+
+.imdd-testimonial-card .author {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--slate-900);
+}
+
+.imdd-testimonial-card .role {
+    font-size: 12px;
+    color: var(--slate-500);
+}
+
+.imdd-testimonials-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.imdd-testimonials-nav-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.imdd-testimonials-nav {
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    border: 1px solid var(--slate-300);
+    background: white;
+    color: var(--slate-700);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.imdd-testimonials-nav svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+}
+
+.imdd-testimonials-nav:hover:not(:disabled) {
+    border-color: var(--red-600);
+    color: var(--red-600);
+}
+
+.imdd-testimonials-nav:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.imdd-testimonials-dots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.imdd-testimonials-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    border: none;
+    padding: 0;
+    background: var(--slate-300);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.imdd-testimonials-dot.active {
+    width: 24px;
+    background: var(--red-600);
+}
+
+/* Case study */
+.imdd-case-study {
+    padding: 32px;
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+}
+
+.imdd-case-study h3 {
+    font-size: 1.35rem;
+    color: var(--slate-900);
+    margin-bottom: 16px;
+}
+
+.imdd-case-study p {
+    font-size: 15px;
+    color: var(--slate-600);
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.imdd-case-study p:last-child {
+    margin-bottom: 0;
+}
+
+.imdd-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 16px;
+}
+
+.imdd-breadcrumb a {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.imdd-breadcrumb a:hover {
+    color: white;
+}
+
+@media (max-width: 1023px) {
+    .imdd-testimonial-card {
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .imdd-spotlight-grid,
+    .imdd-phases-grid,
+    .imdd-employers-grid,
+    .imdd-companies-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .imdd-spotlight {
+        padding: 48px 0;
+    }
+
+    .imdd-spotlight-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .imdd-spotlight-image,
+    .imdd-spotlight-image img {
+        min-height: 220px;
+    }
+
+    .imdd-spotlight-quote {
+        padding: 24px;
+    }
+
+    .imdd-spotlight-quote blockquote {
+        font-size: 1rem;
+    }
+
+    .imdd-subnav-grid {
+        justify-content: flex-start;
+    }
+
+    .imdd-subnav-link {
+        min-height: 50px;
+        padding: 12px 16px;
+    }
+
+    .imdd-subnav-label {
+        font-size: 12px;
+    }
+
+    .imdd-section {
+        padding: 60px 0;
+        scroll-margin-top: calc(var(--imdd-site-nav-height, 80px) + 56px);
+    }
+
+    .imdd-program-stack {
+        grid-template-columns: 1fr;
+    }
+
+    .imdd-phases-grid,
+    .imdd-employers-grid,
+    .imdd-companies-grid,
+    .imdd-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .imdd-institution-logo {
+        width: 160px;
+        height: 68px;
+    }
+
+    .imdd-institution-logo img {
+        max-height: 44px;
+    }
+}

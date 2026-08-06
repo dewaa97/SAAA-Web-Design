@@ -14,10 +14,16 @@
         });
         this.placeholder = options.placeholder || 'Select an option';
         this.onChange = options.onChange || function () {};
+        this.onClose = options.onClose || function () {};
+        this.searchable = options.searchable !== false;
         this.selectedValue = options.value || '';
         this.filtered = this.options.slice();
         this.highlightIndex = -1;
         this.isOpen = false;
+
+        if (!this.searchable) {
+            this.root.classList.add('combobox--simple');
+        }
 
         this.hiddenInput = root.querySelector('[data-combobox-input]');
         this.trigger = root.querySelector('[data-combobox-trigger]');
@@ -39,13 +45,15 @@
             self.toggle();
         });
 
-        this.searchInput.addEventListener('input', function () {
-            self.filter(self.searchInput.value);
-        });
+        if (this.searchable && this.searchInput) {
+            this.searchInput.addEventListener('input', function () {
+                self.filter(self.searchInput.value);
+            });
 
-        this.searchInput.addEventListener('keydown', function (event) {
-            self.handleKeydown(event);
-        });
+            this.searchInput.addEventListener('keydown', function (event) {
+                self.handleKeydown(event);
+            });
+        }
 
         this.trigger.addEventListener('keydown', function (event) {
             if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
@@ -91,10 +99,11 @@
             button.className = 'combobox-item';
             button.setAttribute('role', 'option');
             button.dataset.value = item.value;
-            button.innerHTML =
-                '<svg class="combobox-item-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-                '<polyline points="20 6 9 17 4 12"></polyline></svg>' +
-                '<span class="combobox-item-label">' + escapeHtml(item.label) + '</span>';
+            button.innerHTML = self.searchable
+                ? '<svg class="combobox-item-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+                    '<polyline points="20 6 9 17 4 12"></polyline></svg>' +
+                    '<span class="combobox-item-label">' + escapeHtml(item.label) + '</span>'
+                : '<span class="combobox-item-label">' + escapeHtml(item.label) + '</span>';
 
             if (item.value === self.selectedValue) {
                 button.classList.add('is-selected');
@@ -144,10 +153,12 @@
         this.trigger.setAttribute('aria-expanded', 'true');
         this.content.hidden = false;
         this.filter('');
-        this.searchInput.value = '';
-        window.requestAnimationFrame(function () {
-            this.searchInput.focus();
-        }.bind(this));
+        if (this.searchable && this.searchInput) {
+            this.searchInput.value = '';
+            window.requestAnimationFrame(function () {
+                this.searchInput.focus();
+            }.bind(this));
+        }
     };
 
     Combobox.prototype.close = function () {
@@ -157,6 +168,7 @@
         this.trigger.setAttribute('aria-expanded', 'false');
         this.content.hidden = true;
         this.highlightIndex = -1;
+        this.onClose(this.getSelectedItem());
     };
 
     Combobox.prototype.toggle = function () {
@@ -202,6 +214,20 @@
 
     Combobox.prototype.setInvalid = function (isInvalid) {
         this.trigger.classList.toggle('is-invalid', isInvalid);
+    };
+
+    Combobox.prototype.setValue = function (value) {
+        this.selectedValue = value || '';
+        this.renderValue();
+        this.renderList();
+    };
+
+    Combobox.prototype.getValue = function () {
+        return this.selectedValue;
+    };
+
+    Combobox.prototype.clear = function () {
+        this.setValue('');
     };
 
     window.SaaaCombobox = {

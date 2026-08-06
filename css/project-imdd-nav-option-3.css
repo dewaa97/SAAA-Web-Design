@@ -1,0 +1,111 @@
+/**
+ * Project IMDD nav — Option 3 (saved reference)
+ * Light segmented control strip below hero.
+ */
+
+.imdd-subnav {
+    position: relative;
+    z-index: 20;
+    padding: 22px 0 28px;
+    background: white;
+    border-top: 4px solid var(--red-600);
+    border-bottom: 1px solid var(--slate-200);
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+}
+
+.imdd-subnav-shell {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.imdd-subnav-kicker {
+    flex-shrink: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate-500);
+    white-space: nowrap;
+}
+
+.imdd-subnav-track {
+    flex: 1;
+    min-width: 0;
+    padding: 5px;
+    background: var(--slate-100);
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+}
+
+.imdd-subnav-grid {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.imdd-subnav-link {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 10px 16px;
+    border-radius: calc(var(--radius-lg) - 4px);
+    background: transparent;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.imdd-subnav-link:hover {
+    background: rgba(255, 255, 255, 0.72);
+}
+
+.imdd-subnav-link.is-active {
+    background: white;
+    border-color: var(--slate-200);
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+}
+
+.imdd-subnav-icon {
+    color: var(--slate-400);
+    transition: color 0.2s;
+}
+
+.imdd-subnav-link:hover .imdd-subnav-icon {
+    color: var(--slate-700);
+}
+
+.imdd-subnav-link.is-active .imdd-subnav-icon {
+    color: var(--red-600);
+}
+
+.imdd-subnav-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.imdd-subnav-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--slate-600);
+    transition: color 0.2s;
+}
+
+.imdd-subnav-link:hover .imdd-subnav-label {
+    color: var(--slate-900);
+}
+
+.imdd-subnav-link.is-active .imdd-subnav-label {
+    color: var(--red-600);
+    font-weight: 700;
+}

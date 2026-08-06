@@ -9,8 +9,8 @@
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    min-height: 44px;
-    padding: 10px 14px;
+    min-height: 40px;
+    padding: 10px 12px;
     border: 1px solid var(--slate-300);
     border-radius: var(--radius-sm);
     background: var(--white);
@@ -146,4 +146,39 @@
     font-size: 14px;
     text-align: center;
     color: var(--slate-500);
+}
+
+/* Compact select-style combobox (e.g. Yes/No) */
+.combobox--simple .combobox-trigger {
+    min-height: 0;
+    height: auto;
+    padding: 10px 12px;
+    font-weight: 400;
+}
+
+.combobox--simple .combobox-icon {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+}
+
+.combobox--simple .combobox-content {
+    top: calc(100% + 4px);
+}
+
+.combobox--simple .combobox-list {
+    max-height: none;
+    padding: 4px;
+}
+
+.combobox--simple .combobox-item {
+    gap: 0;
+    padding: 7px 10px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.combobox--simple .combobox-item.is-selected {
+    font-weight: 500;
+    background: var(--slate-50);
 }
