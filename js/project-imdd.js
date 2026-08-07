@@ -798,6 +798,7 @@
         }
 
         if (targetPageId === 'about') {
+            initStaticContent();
             renderObjectives();
             renderPhases();
             renderCaseStudy();
