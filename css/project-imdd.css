@@ -367,6 +367,10 @@ a.imdd-institution-logo:hover {
     scroll-margin-top: calc(var(--imdd-site-nav-height, 80px) + 60px);
 }
 
+#testimonials.imdd-section {
+    padding-top: 40px;
+}
+
 .imdd-section:nth-child(even) {
     background: var(--slate-50);
 }
@@ -1109,6 +1113,10 @@ a.imdd-institution-logo:hover {
     .imdd-section {
         padding: 60px 0;
         scroll-margin-top: calc(var(--imdd-site-nav-height, 80px) + 56px);
+    }
+
+    #testimonials.imdd-section {
+        padding-top: 30px;
     }
 
     .imdd-program-stack {
