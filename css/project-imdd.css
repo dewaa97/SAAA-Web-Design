@@ -270,10 +270,6 @@ a.imdd-institution-logo:hover {
     min-width: 0;
 }
 
-.imdd-main > .imdd-section {
-    padding-top: 0;
-}
-
 .imdd-main > .imdd-section:first-child {
     padding-top: 0;
 }
