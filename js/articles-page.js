@@ -1,14 +1,11 @@
 (function () {
-    const grid = document.getElementById('articles-grid');
-    const paginationEl = document.getElementById('articles-pagination');
-    const resultsCount = document.getElementById('articles-count');
     const type = document.body.dataset.articleType;
     const searchInput = document.getElementById('article-search');
     const dateFromInput = document.getElementById('article-date-from');
     const dateToInput = document.getElementById('article-date-to');
     const sidebar = document.getElementById('article-filters');
 
-    if (!grid || !type || !window.saaaContent || !window.saaaListing) return;
+    if (!type || !window.saaaContent || !window.saaaListing) return;
 
     const items = type === 'featured' ? saaaContent.featuredNews : saaaContent.announcements;
     const perPage = window.saaaListing.itemsPerPage;
@@ -18,13 +15,16 @@
     let dateTo = '';
     let categoryFilter = 'all';
     let currentPage = 1;
+    let upcomingPage = 1;
+    let pastPage = 1;
 
-    function bindInputs() {
+    const isAnnouncementsSplit = type === 'announcements' && document.getElementById('upcoming-announcements');
+
+    function bindInputs(onChange) {
         if (searchInput) {
             searchInput.addEventListener('input', function () {
                 searchQuery = searchInput.value.trim().toLowerCase();
-                currentPage = 1;
-                render();
+                onChange();
             });
         }
 
@@ -33,25 +33,21 @@
             input.addEventListener('change', function () {
                 dateFrom = dateFromInput ? dateFromInput.value : '';
                 dateTo = dateToInput ? dateToInput.value : '';
-                currentPage = 1;
-                render();
+                onChange();
             });
         });
 
         window.saaaListing.bindSidebarFilters(sidebar, function (value) {
             categoryFilter = value;
-            currentPage = 1;
-            render();
+            onChange();
         });
     }
 
-    function getFilteredItems() {
-        return items.filter(function (item) {
-            if (categoryFilter !== 'all' && item.category !== categoryFilter) return false;
-            if (!window.saaaListing.matchesSearch(item, searchQuery, ['title', 'excerpt', 'date'])) return false;
-            if (!window.saaaListing.matchesDateRange(item.sortDate, dateFrom, dateTo)) return false;
-            return true;
-        });
+    function matchesFilters(item) {
+        if (categoryFilter !== 'all' && item.category !== categoryFilter) return false;
+        if (!window.saaaListing.matchesSearch(item, searchQuery, ['title', 'excerpt', 'date'])) return false;
+        if (!window.saaaListing.matchesDateRange(item.sortDate, dateFrom, dateTo)) return false;
+        return true;
     }
 
     function cardHtml(item) {
@@ -66,8 +62,13 @@
             '</div></a>';
     }
 
-    function render() {
-        const filtered = getFilteredItems();
+    function renderSingleListing() {
+        const grid = document.getElementById('articles-grid');
+        const paginationEl = document.getElementById('articles-pagination');
+        const resultsCount = document.getElementById('articles-count');
+        if (!grid) return;
+
+        const filtered = items.filter(matchesFilters);
         const paged = window.saaaListing.paginate(filtered, currentPage, perPage);
         currentPage = paged.page;
 
@@ -81,10 +82,84 @@
 
         window.saaaListing.renderPagination(paginationEl, paged.page, paged.totalPages, function (page) {
             currentPage = page;
-            render();
+            renderSingleListing();
         });
     }
 
-    bindInputs();
-    render();
+    function renderSection(container, paginationEl, countEl, sectionItems, page, setPage) {
+        const paged = window.saaaListing.paginate(sectionItems, page, perPage);
+        setPage(paged.page);
+
+        if (countEl) {
+            countEl.textContent = sectionItems.length + ' announcement' + (sectionItems.length === 1 ? '' : 's') + ' found';
+        }
+
+        container.innerHTML = paged.items.length
+            ? paged.items.map(cardHtml).join('')
+            : '<div class="empty-state">No announcements found.</div>';
+
+        window.saaaListing.renderPagination(paginationEl, paged.page, paged.totalPages, function (nextPage) {
+            setPage(nextPage);
+            renderAnnouncementsSplit();
+        });
+    }
+
+    function renderAnnouncementsSplit() {
+        const upcomingEl = document.getElementById('upcoming-announcements');
+        const pastEl = document.getElementById('past-announcements');
+        const upcomingPagination = document.getElementById('upcoming-announcements-pagination');
+        const pastPagination = document.getElementById('past-announcements-pagination');
+        const upcomingCount = document.getElementById('upcoming-announcements-count');
+        const pastCount = document.getElementById('past-announcements-count');
+        if (!upcomingEl || !pastEl) return;
+
+        const upcoming = items.filter(function (item) {
+            return item.status === 'upcoming' && matchesFilters(item);
+        });
+        const past = items.filter(function (item) {
+            return item.status === 'past' && matchesFilters(item);
+        });
+
+        renderSection(upcomingEl, upcomingPagination, upcomingCount, upcoming, upcomingPage, function (page) {
+            upcomingPage = page;
+        });
+
+        renderSection(pastEl, pastPagination, pastCount, past, pastPage, function (page) {
+            pastPage = page;
+        });
+    }
+
+    function resetPages() {
+        currentPage = 1;
+        upcomingPage = 1;
+        pastPage = 1;
+    }
+
+    if (isAnnouncementsSplit) {
+        bindInputs(function () {
+            resetPages();
+            renderAnnouncementsSplit();
+        });
+        renderAnnouncementsSplit();
+
+        if (window.location.hash === '#past-announcements') {
+            window.requestAnimationFrame(function () {
+                const section = document.getElementById('past-announcements-section');
+                if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
+
+        window.addEventListener('hashchange', function () {
+            if (window.location.hash === '#past-announcements') {
+                const section = document.getElementById('past-announcements-section');
+                if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    } else {
+        bindInputs(function () {
+            resetPages();
+            renderSingleListing();
+        });
+        renderSingleListing();
+    }
 })();

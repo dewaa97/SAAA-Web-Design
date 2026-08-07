@@ -93,9 +93,9 @@ a { text-decoration: none; color: inherit; }
 .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; }
 .hero h1 { font-size: 3.5rem; color: white; margin-bottom: 20px; max-width: 600px; }
 .hero h1 .accent { color: #ff6b7a; }
-.brand-saaa { color: var(--red-600); }
 .hero h1 .brand-saaa { color: #ff6b7a; }
 .section-title .brand-saaa { color: var(--red-600); }
+.page-title .brand-saaa { color: var(--red-600); }
 .hero p { font-size: 18px; color: rgba(255, 255, 255, 0.75); margin-bottom: 32px; max-width: 520px; line-height: 1.6; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
@@ -885,6 +885,141 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
         min-width: 0;
     }
     .articles-grid-triple { grid-template-columns: 1fr; }
+}
+
+/* Milestones timeline */
+.milestones-timeline { display: flex; flex-direction: column; gap: 40px; }
+.milestone-decade { border: 1px solid var(--slate-200); border-radius: var(--radius-lg); overflow: hidden; background: white; }
+.milestone-decade-header {
+    padding: 20px 24px;
+    background: var(--slate-50);
+    border-bottom: 1px solid var(--slate-200);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--slate-900);
+}
+.milestone-list { list-style: none; padding: 0; }
+.milestone-item {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 20px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--slate-100);
+    align-items: start;
+}
+.milestone-item:last-child { border-bottom: none; }
+.milestone-year {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--red-600);
+    line-height: 1.4;
+}
+.milestone-text { font-size: 15px; color: var(--slate-600); line-height: 1.7; }
+
+/* Membership application form */
+.membership-form-card {
+    padding: 32px;
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+}
+.membership-form-card h3 {
+    font-size: 1.35rem;
+    color: var(--slate-900);
+    margin-bottom: 8px;
+}
+.membership-form-card .form-desc {
+    color: var(--slate-600);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+.membership-form-section {
+    margin-bottom: 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--slate-200);
+}
+.membership-form-section:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.membership-form-section h4 {
+    font-size: 1.1rem;
+    color: var(--slate-900);
+    margin-bottom: 16px;
+}
+.membership-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+.membership-form-field { display: flex; flex-direction: column; gap: 8px; }
+.membership-form-field.full { grid-column: 1 / -1; }
+.membership-form-field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--slate-700);
+}
+.membership-form-field input,
+.membership-form-field select,
+.membership-form-field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--slate-300);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-family: inherit;
+    background: white;
+}
+.membership-form-field input:focus,
+.membership-form-field select:focus,
+.membership-form-field textarea:focus {
+    outline: none;
+    border-color: var(--red-600);
+    box-shadow: 0 0 0 3px var(--red-50);
+}
+.membership-checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 16px;
+}
+.membership-checkbox-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--slate-700);
+    line-height: 1.5;
+}
+.membership-checkbox-item input { margin-top: 3px; flex-shrink: 0; }
+.membership-official-use {
+    padding: 24px;
+    background: var(--slate-50);
+    border: 1px dashed var(--slate-300);
+    border-radius: var(--radius);
+}
+.membership-official-use h4 { margin-bottom: 12px; }
+.membership-payment-box {
+    padding: 20px;
+    background: var(--red-50);
+    border: 1px solid var(--red-100);
+    border-radius: var(--radius);
+    font-size: 14px;
+    color: var(--slate-700);
+    line-height: 1.7;
+}
+.membership-form-actions { margin-top: 24px; }
+.membership-form-note {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--slate-500);
+    line-height: 1.6;
+}
+@media (max-width: 768px) {
+    .milestone-item { grid-template-columns: 1fr; gap: 8px; }
+    .membership-form-grid,
+    .membership-checkbox-group { grid-template-columns: 1fr; }
+    .membership-form-card { padding: 24px; }
 }
 
 ::-webkit-scrollbar { width: 8px; }

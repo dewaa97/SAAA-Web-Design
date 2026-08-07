@@ -219,7 +219,7 @@
             color: #ff6b7a;
         }
 
-        .brand-saaa {
+        .section-title .brand-saaa {
             color: var(--red-600);
         }
 
@@ -1161,6 +1161,37 @@
             100% { transform: translateX(-50%); }
         }
 
+        .partner-marquee-section {
+            padding: 24px 0 0;
+        }
+
+        .partner-marquee-row + .partner-marquee-row {
+            margin-top: 20px;
+        }
+
+        .partner-marquee-label {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--slate-500);
+            margin-bottom: 16px;
+        }
+
+        .partner-marquee-row .member-carousel-wrapper {
+            margin-bottom: 8px;
+        }
+
+        .partner-marquee-row .member-strips img {
+            height: 56px;
+            margin-right: 40px;
+        }
+
+        .partner-marquee-row.reverse .member-strips {
+            animation-direction: reverse;
+        }
+
         /* Publications */
         .publication-section {
             background: linear-gradient(180deg, var(--white) 0%, var(--slate-50) 100%);
@@ -1881,7 +1912,8 @@
             </button>
         </div>
         <div class="nav-dropdown-menu">
-            <a href="coming-soon.html">Membership Sign-Up</a>
+            <a href="membership-application.html">Membership Sign-Up</a>
+            <a href="milestones.html">Milestones</a>
             <a href="members-listing.html">SAAA Members Listing</a>
             <a href="members-login.html">Members Portal Log In</a>
         </div>
@@ -1943,7 +1975,7 @@
                     </h1>
                     
                     <p>
-                        Representing over 200 member companies, <span class="brand-saaa">SAAA</span> is the trusted voice of Singapore's airfreight industry, driving compliance and professional standards since 1971.
+                        Representing over 200 member companies, SAAA is the trusted voice of Singapore's airfreight industry, driving compliance and professional standards since 1971.
                     </p>
                     
                     <div class="hero-actions">
@@ -2066,7 +2098,7 @@
                         The Premier Voice of <span class="accent">Singapore's</span> Air Cargo Industry
                     </h2>
                     <p>
-                        Founded in 1971, the Singapore Aircargo Agents Association (<span class="brand-saaa">SAAA</span>) serves as the representative body for airfreight forwarding companies in Singapore.
+                        Founded in 1971, the Singapore Aircargo Agents Association (SAAA) serves as the representative body for airfreight forwarding companies in Singapore.
                     </p>
                     <p>
                         We work closely with government agencies, international aviation bodies, and industry stakeholders to advance the interests of our members and ensure Singapore remains a leading air cargo hub in Asia.
@@ -2086,6 +2118,7 @@
 
                     <div class="about-quick-links">
                         <a href="history.html" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 12px; padding: 8px 14px; white-space: nowrap;">Our History</a>
+                        <a href="milestones.html" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 12px; padding: 8px 14px; white-space: nowrap;">Milestones</a>
                         <a href="organization.html" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 12px; padding: 8px 14px; white-space: nowrap;">Organization Structure</a>
                         <a href="stc.html" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 12px; padding: 8px 14px; white-space: nowrap;">Standard Trading Conditions</a>
                         <a href="programmes.html" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 12px; padding: 8px 14px; white-space: nowrap;">Programmes</a>
@@ -2281,13 +2314,13 @@
                     Trusted by Industry <span class="accent">Leaders</span>
                 </h2>
                 <p class="section-desc">
-                    Over 200 member companies trust <span class="brand-saaa">SAAA</span> to represent their interests and advance the air cargo profession – freight forwarders, agents, airlines and service providers.
+                    Over 200 member companies trust SAAA to represent their interests and advance the air cargo profession – freight forwarders, agents, airlines and service providers.
                 </p>
             </div>
 
             <div class="members-cta">
-                <a href="coming-soon.html" class="btn btn-primary">Membership Sign-up</a>
-                <a href="members-listing.html" class="btn btn-secondary"><span class="brand-saaa">SAAA</span> Members Listing</a>
+                <a href="membership-application.html" class="btn btn-primary">Membership Sign-up</a>
+                <a href="members-listing.html" class="btn btn-secondary">SAAA Members Listing</a>
                 <a href="members-login.html" class="btn btn-secondary">Members Portal Log In</a>
             </div>
 
@@ -2326,16 +2359,12 @@
                     <img src="images/members/clients-slide-04.jpg" alt="Member companies">
                     <img src="images/members/clients-slide-05.jpg" alt="Member companies">
                     <img src="images/members/clients-slide-06.jpg" alt="Member companies">
-                    <img src="images/members/clients-slide-07.jpg" alt="Member companies">
-                    <img src="images/members/clients-slide-08.jpg" alt="Member companies">
                     <img src="images/members/clients-slide-01.jpg" alt="Member companies">
                     <img src="images/members/clients-slide-02.jpg" alt="Member companies">
                     <img src="images/members/clients-slide-03.jpg" alt="Member companies">
                     <img src="images/members/clients-slide-04.jpg" alt="Member companies">
                     <img src="images/members/clients-slide-05.jpg" alt="Member companies">
                     <img src="images/members/clients-slide-06.jpg" alt="Member companies">
-                    <img src="images/members/clients-slide-07.jpg" alt="Member companies">
-                    <img src="images/members/clients-slide-08.jpg" alt="Member companies">
                 </div>
             </div>
         </div>
@@ -2349,66 +2378,51 @@
                     <div class="tag">Strategic Partners</div>
                     <h3>In Collaboration With</h3>
                 </div>
-                <div class="partners-grid">
-                    <div class="partner-item">
-                        <div class="partner-logo"><img src="images/iata-logo.svg" alt="IATA Logo"></div>
-                        <h4>IATA</h4>
-                        <p>International Air Transport Association</p>
+                <div class="partner-marquee-section">
+                    <div class="partner-marquee-row">
+                        <div class="partner-marquee-label">Industry</div>
+                        <div class="member-carousel-wrapper">
+                            <div class="member-strips">
+                                <img src="images/iata-logo.svg" alt="IATA">
+                                <img src="images/icao-logo.svg" alt="ICAO">
+                                <img src="images/partners/sats-logo.svg" alt="SATS">
+                                <img src="images/partners/dnata-logo.jpg" alt="dnata">
+                                <img src="images/partners/ccn-partner.png" alt="Cargo Community Network">
+                                <img src="images/iata-logo.svg" alt="IATA">
+                                <img src="images/icao-logo.svg" alt="ICAO">
+                                <img src="images/partners/sats-logo.svg" alt="SATS">
+                                <img src="images/partners/dnata-logo.jpg" alt="dnata">
+                                <img src="images/partners/ccn-partner.png" alt="Cargo Community Network">
+                            </div>
+                        </div>
                     </div>
-                    <div class="partner-item">
-                        <div class="partner-logo"><img src="images/caas-logo.png" alt="CAAS Logo"></div>
-                        <h4>CAAS</h4>
-                        <p>Civil Aviation Authority of Singapore</p>
+                    <div class="partner-marquee-row reverse">
+                        <div class="partner-marquee-label">Government Agencies</div>
+                        <div class="member-carousel-wrapper">
+                            <div class="member-strips">
+                                <img src="images/caas-logo.png" alt="CAAS">
+                                <img src="images/esg-logo.jpg" alt="Enterprise Singapore">
+                                <img src="images/partners/imda-crest.png" alt="IMDA">
+                                <img src="images/partners/mindef-partner.png" alt="MINDEF">
+                                <img src="images/partners/wsg-logo.png" alt="Workforce Singapore">
+                                <img src="images/caas-logo.png" alt="CAAS">
+                                <img src="images/esg-logo.jpg" alt="Enterprise Singapore">
+                                <img src="images/partners/imda-crest.png" alt="IMDA">
+                                <img src="images/partners/mindef-partner.png" alt="MINDEF">
+                                <img src="images/partners/wsg-logo.png" alt="Workforce Singapore">
+                            </div>
+                        </div>
                     </div>
-                    <div class="partner-item">
-                        <div class="partner-logo"><img src="images/icao-logo.svg" alt="ICAO Logo"></div>
-                        <h4>ICAO</h4>
-                        <p>International Civil Aviation Organization</p>
-                    </div>
-                    <div class="partner-item">
-                        <div class="partner-logo"><img src="images/esg-logo.jpg" alt="Enterprise Singapore Logo"></div>
-                        <h4>Enterprise Singapore</h4>
-                        <p>Government agency for business growth</p>
-                    </div>
-                    <div class="partner-item">
-                        <div class="partner-logo"><img src="images/partners/imda-crest.png" alt="IMDA Logo"></div>
-                        <h4>IMDA</h4>
-                        <p>Infocomm Media Development Authority</p>
-                    </div>
-                    <div class="partner-item">
-                        <div class="partner-logo"><img src="images/partners/mindef-partner.png" alt="MINDEF Logo"></div>
-                        <h4>MINDEF</h4>
-                        <p>Ministry of Defence Singapore</p>
-                    </div>
-                    <div class="partner-item">
-                        <div class="partner-logo"><img src="images/partners/wsg-logo.png" alt="WSG Logo"></div>
-                        <h4>WSG</h4>
-                        <p>Workforce Singapore</p>
-                    </div>
-                    <div class="partner-item">
-                        <div class="partner-logo"><img src="images/partners/sats-logo.svg" alt="SATS Logo"></div>
-                        <h4>SATS</h4>
-                        <p>SATS Ltd</p>
-                    </div>
-                    <div class="partner-item">
-                        <div class="partner-logo"><img src="images/partners/dnata-logo.jpg" alt="dnata Logo"></div>
-                        <h4>dnata</h4>
-                        <p>dnata Singapore</p>
-                    </div>
-                    <div class="partner-item">
-                        <div class="partner-logo"><img src="images/partners/rp-logo.jpg" alt="Republic Polytechnic Logo"></div>
-                        <h4>Republic Polytechnic</h4>
-                        <p>Education & Training</p>
-                    </div>
-                    <div class="partner-item">
-                        <div class="partner-logo"><img src="images/partners/tp-partner.png" alt="Temasek Polytechnic Logo"></div>
-                        <h4>Temasek Polytechnic</h4>
-                        <p>Education & Training</p>
-                    </div>
-                    <div class="partner-item">
-                        <div class="partner-logo"><img src="images/partners/ccn-partner.png" alt="Cargo Community Network Logo"></div>
-                        <h4>Cargo Community Network</h4>
-                        <p>Air Cargo Technology</p>
+                    <div class="partner-marquee-row">
+                        <div class="partner-marquee-label">Institutes of Higher Learning (IHLs)</div>
+                        <div class="member-carousel-wrapper">
+                            <div class="member-strips">
+                                <img src="images/partners/rp-logo.jpg" alt="Republic Polytechnic">
+                                <img src="images/partners/tp-partner.png" alt="Temasek Polytechnic">
+                                <img src="images/partners/rp-logo.jpg" alt="Republic Polytechnic">
+                                <img src="images/partners/tp-partner.png" alt="Temasek Polytechnic">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
