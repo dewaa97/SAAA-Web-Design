@@ -276,9 +276,13 @@ a.imdd-institution-logo:hover {
     transition: opacity 0.15s ease;
 }
 
-/* Subpages: align first section with sidebar panel inset (18px), not flush to column top */
+/* Subpages: keep section tag below sticky nav when content is scrolled to the shell top */
+body[data-imdd-page]:not([data-imdd-page="home"]) .imdd-page-shell {
+    scroll-margin-top: calc(var(--imdd-site-nav-height, 80px) + 16px);
+}
+
 body[data-imdd-page]:not([data-imdd-page="home"]) .imdd-main > .imdd-section:first-child {
-    padding-top: 18px;
+    padding-top: 48px;
 }
 
 /* Contact section — hub page */

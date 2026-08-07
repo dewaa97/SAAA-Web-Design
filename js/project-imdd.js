@@ -861,8 +861,22 @@
             return Object.prototype.hasOwnProperty.call(hubPages, getFilename(href));
         }
 
+        function getImddNavScrollOffset() {
+            var navHeight = parseInt(
+                getComputedStyle(document.documentElement).getPropertyValue('--imdd-site-nav-height'),
+                10
+            );
+            if (!navHeight || Number.isNaN(navHeight)) {
+                var navInner = document.querySelector('nav .nav-inner');
+                navHeight = navInner ? navInner.offsetHeight : 80;
+            }
+            return navHeight + 16;
+        }
+
         function scrollToContent() {
-            shellEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            var offset = getImddNavScrollOffset();
+            var targetTop = shellEl.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
         }
 
         function loadPage(href, options) {
