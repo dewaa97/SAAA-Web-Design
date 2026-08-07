@@ -345,7 +345,7 @@
     function mountFileUploadFromInput(input, options) {
         var field = input.closest('.imdd-form-field');
         var root = document.createElement('div');
-        root.className = 'file-upload';
+        root.className = 'file-upload' + (options.compact ? ' file-upload--compact' : '');
         root.innerHTML =
             '<input type="file" class="file-upload-input" data-file-input name="' + escapeHtml(input.name) + '">' +
             '<div class="file-upload-zone" data-file-zone role="button" tabindex="0">' +

@@ -283,6 +283,66 @@
     background: var(--red-50);
 }
 
+/* Compact file upload (inline / membership conditional rows) */
+.file-upload--compact .file-upload-zone {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    min-height: 0;
+    max-height: 52px;
+    padding: 10px 14px;
+    text-align: left;
+}
+
+.file-upload--compact .file-upload-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.file-upload--compact .file-upload-title,
+.file-upload--compact .file-upload-hint {
+    display: none;
+}
+
+.file-upload--compact .file-upload-browse {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--slate-700);
+}
+
+.file-upload--compact.has-file .file-upload-zone {
+    display: none;
+}
+
+.file-upload--compact.has-file .file-upload-preview {
+    margin-top: 0;
+    padding: 8px 10px;
+}
+
+.file-upload--compact .file-upload-file-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+}
+
+.file-upload--compact .file-upload-file-name {
+    font-size: 12px;
+}
+
+.file-upload--compact .file-upload-remove {
+    padding: 5px 9px;
+    font-size: 11px;
+}
+
+@media (max-width: 480px) {
+    .file-upload--compact .file-upload-zone {
+        max-height: none;
+        min-height: 44px;
+    }
+}
+
 /* Field validation */
 .imdd-required-mark {
     color: var(--red-600);

@@ -1245,9 +1245,18 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
 .conditional-row-left,
 .conditional-row-right {
     min-width: 0;
+    align-self: start;
 }
 .conditional-row-right .membership-form-field {
     width: 100%;
+    gap: 6px;
+}
+.conditional-row-right .membership-field-hint {
+    font-size: 11px;
+    line-height: 1.35;
+}
+.conditional-row-right .file-upload {
+    margin-top: 0;
 }
 .membership-bank-grid {
     display: grid;

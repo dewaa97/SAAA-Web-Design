@@ -58,16 +58,15 @@
         if (iataUpload && !iataUpload.dataset.membershipWidgetMounted) {
             api.mountFileUploadFromInput(iataUpload, {
                 fieldKey: 'iataUpload',
-                accept: '.pdf,.jpg,.jpeg,.png,.doc,.docx'
+                accept: '.pdf,.jpg,.jpeg,.png,.doc,.docx',
+                compact: true
             });
             var uploadRoot = form.querySelector('[data-file-input][name="iataUpload"]');
             if (uploadRoot) {
                 var zone = uploadRoot.closest('.file-upload');
                 if (zone) {
-                    var title = zone.querySelector('.file-upload-title');
-                    var hint = zone.querySelector('.file-upload-hint');
-                    if (title) title.textContent = 'Upload IATA Supporting Documents';
-                    if (hint) hint.textContent = 'PDF, JPG, PNG, DOC, or DOCX up to 10MB';
+                    var browse = zone.querySelector('.file-upload-browse');
+                    if (browse) browse.textContent = 'Click to upload';
                 }
             }
             iataUpload.dataset.membershipWidgetMounted = 'true';
