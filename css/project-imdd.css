@@ -146,129 +146,136 @@ a.imdd-institution-logo:hover {
     100% { transform: translateX(-50%); }
 }
 
-/* Option 2: Dark ribbon tab bar — centered below hero, sticky on scroll */
-.imdd-subnav {
+/* Page shell — left sidebar + main content (matches events listing-sidebar pattern) */
+.imdd-page-shell {
+    padding: 32px 0 0;
+}
+
+.imdd-layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.imdd-sidebar {
     position: sticky;
-    top: var(--imdd-site-nav-height, 80px);
-    z-index: 90;
-    padding: 0;
-    background: #0f172a;
-    border-bottom: 3px solid var(--red-600);
+    top: calc(var(--imdd-site-nav-height, 80px) + 16px);
+    z-index: 10;
 }
 
-.imdd-subnav-shell {
-    margin-top: 0;
-    padding: 0;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    backdrop-filter: none;
-}
-
-.imdd-subnav-grid {
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    gap: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.imdd-subnav-grid::-webkit-scrollbar {
+.imdd-sidebar-toggle {
     display: none;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px;
+    margin-bottom: 0;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+    background: white;
+    color: var(--slate-800);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.imdd-subnav-link {
-    position: relative;
-    display: inline-flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+.imdd-sidebar-toggle:hover {
+    border-color: var(--red-200);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+.imdd-sidebar-toggle svg {
+    flex-shrink: 0;
+    transition: transform 0.2s;
+}
+
+.imdd-sidebar-toggle[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+}
+
+.imdd-sidebar-panel {
+    padding: 18px;
+    background: var(--slate-50);
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+}
+
+.imdd-sidebar-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--slate-500);
+    margin-bottom: 16px;
+}
+
+.imdd-sidebar-nav {
+    display: flex;
+    flex-direction: column;
     gap: 8px;
-    min-height: 54px;
-    padding: 14px 20px;
-    border-radius: 0;
-    background: transparent;
-    text-align: center;
-    white-space: nowrap;
-    flex-shrink: 0;
-    border-bottom: 3px solid transparent;
-    margin-bottom: -3px;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
-.imdd-subnav-link::before {
-    display: none;
+.imdd-sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--slate-200);
+    background: white;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--slate-600);
+    text-align: left;
+    transition: all 0.2s;
+    line-height: 1.3;
 }
 
-.imdd-subnav-link + .imdd-subnav-link {
-    box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.08);
+.imdd-sidebar-link:hover,
+.imdd-sidebar-link.is-active {
+    background: var(--red-600);
+    border-color: var(--red-600);
+    color: white;
 }
 
-.imdd-subnav-link:hover {
-    background: rgba(255, 255, 255, 0.06);
-    transform: none;
-}
-
-.imdd-subnav-link.is-active {
-    background: rgba(196, 30, 58, 0.18);
-    border-bottom-color: #fca5a5;
-    box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.08);
-}
-
-.imdd-subnav-icon {
-    width: auto;
-    height: auto;
+.imdd-sidebar-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0;
-    background: transparent;
-    color: rgba(255, 255, 255, 0.45);
     flex-shrink: 0;
+    color: var(--slate-400);
     transition: color 0.2s;
 }
 
-.imdd-subnav-link:hover .imdd-subnav-icon {
-    background: transparent;
-    color: rgba(255, 255, 255, 0.85);
-    box-shadow: none;
+.imdd-sidebar-link:hover .imdd-sidebar-icon,
+.imdd-sidebar-link.is-active .imdd-sidebar-icon {
+    color: white;
 }
 
-.imdd-subnav-link.is-active .imdd-subnav-icon {
-    background: transparent;
-    color: #fca5a5;
-    box-shadow: none;
-}
-
-.imdd-subnav-icon svg {
+.imdd-sidebar-icon svg {
     width: 16px;
     height: 16px;
 }
 
-.imdd-subnav-label {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    text-transform: none;
-    color: rgba(255, 255, 255, 0.68);
-    line-height: 1.2;
+.imdd-sidebar-label {
+    font-family: 'Inter', sans-serif;
 }
 
-.imdd-subnav-link:hover .imdd-subnav-label {
-    color: rgba(255, 255, 255, 0.95);
+.imdd-main {
+    min-width: 0;
 }
 
-.imdd-subnav-link.is-active .imdd-subnav-label {
-    color: white;
-    font-weight: 700;
+.imdd-main > .imdd-section {
+    padding-top: 0;
 }
 
-.imdd-subnav-label-short {
-    display: none;
+.imdd-main > .imdd-section:first-child {
+    padding-top: 0;
 }
 
 /* Contact section — hub page */
@@ -1031,6 +1038,36 @@ a.imdd-institution-logo:hover {
     .imdd-companies-grid {
         grid-template-columns: 1fr 1fr;
     }
+
+    .imdd-page-shell {
+        padding-top: 24px;
+    }
+
+    .imdd-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .imdd-sidebar {
+        position: static;
+    }
+
+    .imdd-sidebar-toggle {
+        display: flex;
+    }
+
+    .imdd-sidebar-panel {
+        display: none;
+        margin-top: 12px;
+    }
+
+    .imdd-sidebar-panel.is-open {
+        display: block;
+    }
+
+    .imdd-sidebar-title {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1053,49 +1090,6 @@ a.imdd-institution-logo:hover {
 
     .imdd-spotlight-quote blockquote {
         font-size: 1rem;
-    }
-
-    .imdd-subnav .container {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .imdd-subnav-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1px;
-        background: rgba(255, 255, 255, 0.1);
-        overflow-x: visible;
-    }
-
-    .imdd-subnav-link {
-        flex-direction: column;
-        gap: 4px;
-        min-height: 56px;
-        padding: 10px 8px;
-        text-align: center;
-        background: #0f172a;
-        margin-bottom: 0;
-        border-bottom: none;
-        box-shadow: none;
-    }
-
-    .imdd-subnav-link + .imdd-subnav-link {
-        box-shadow: none;
-    }
-
-    .imdd-subnav-label-full {
-        display: none;
-    }
-
-    .imdd-subnav-label-short {
-        display: inline;
-    }
-
-    .imdd-subnav-label {
-        font-size: 11px;
-        line-height: 1.25;
-        white-space: normal;
     }
 
     .imdd-contact-card {

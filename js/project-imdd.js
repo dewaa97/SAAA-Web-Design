@@ -68,20 +68,29 @@
     }
 
     function renderHubNav() {
-        var grid = document.getElementById('imdd-hub-nav');
-        if (!grid) return;
+        var nav = document.getElementById('imdd-hub-nav');
+        if (!nav) return;
 
-        grid.innerHTML = content.hubNav.map(function (item) {
+        nav.innerHTML = content.hubNav.map(function (item) {
             var isActive = item.id === pageId;
-            var shortLabel = item.shortLabel || item.label;
             return (
-                '<a href="' + escapeHtml(item.href) + '" class="imdd-subnav-link' + (isActive ? ' is-active' : '') + '" title="' + escapeHtml(item.description) + '"' + (isActive ? ' aria-current="page"' : '') + '>' +
-                    '<span class="imdd-subnav-icon" aria-hidden="true">' + getHubIcon(item.icon) + '</span>' +
-                    '<span class="imdd-subnav-label imdd-subnav-label-full">' + escapeHtml(item.label) + '</span>' +
-                    '<span class="imdd-subnav-label imdd-subnav-label-short">' + escapeHtml(shortLabel) + '</span>' +
+                '<a href="' + escapeHtml(item.href) + '" class="imdd-sidebar-link' + (isActive ? ' is-active' : '') + '" title="' + escapeHtml(item.description) + '"' + (isActive ? ' aria-current="page"' : '') + '>' +
+                    '<span class="imdd-sidebar-icon" aria-hidden="true">' + getHubIcon(item.icon) + '</span>' +
+                    '<span class="imdd-sidebar-label">' + escapeHtml(item.label) + '</span>' +
                 '</a>'
             );
         }).join('');
+    }
+
+    function initSidebarToggle() {
+        var toggle = document.querySelector('.imdd-sidebar-toggle');
+        var panel = document.getElementById('imdd-sidebar-panel');
+        if (!toggle || !panel) return;
+
+        toggle.addEventListener('click', function () {
+            var isOpen = panel.classList.toggle('is-open');
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
     }
 
     function renderTestimonialCard(item) {
@@ -753,6 +762,7 @@
 
     renderInstitutionMarquee();
     renderHubNav();
+    initSidebarToggle();
     renderObjectives();
     renderPhases();
     renderTrainingProgrammes();

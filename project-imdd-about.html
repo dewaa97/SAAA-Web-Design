@@ -111,17 +111,21 @@
 </div>
 </div>
 </section>
-<nav class="imdd-subnav" aria-label="Project IMDD navigation">
-    <div class="container">
-        <div class="imdd-subnav-shell">
-            <div class="imdd-subnav-grid" id="imdd-hub-nav"></div>
-        </div>
-    </div>
-</nav>
-
+<div class="imdd-page-shell">
+    <div class="container imdd-layout">
+        <aside class="imdd-sidebar" aria-label="Project IMDD navigation">
+            <button type="button" class="imdd-sidebar-toggle" aria-expanded="false" aria-controls="imdd-sidebar-panel">
+                <span>Project IMDD</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="imdd-sidebar-panel" id="imdd-sidebar-panel">
+                <div class="imdd-sidebar-title">Project IMDD</div>
+                <nav class="imdd-sidebar-nav" id="imdd-hub-nav"></nav>
+            </div>
+        </aside>
+        <main class="imdd-main">
 
 <section class="imdd-section">
-    <div class="container">
         <div class="imdd-section-header">
             <div class="section-tag">About Us</div>
             <h2>Why Project IMDD?</h2>
@@ -141,8 +145,11 @@
         </div>
         <div class="imdd-phases-grid" id="imdd-phases"></div>
         <div style="margin-top: 40px;" id="imdd-case-study" class="imdd-case-study"></div>
+</section>
+        </main>
     </div>
-</section><footer>
+</div>
+<footer>
 <div class="container">
 <div class="footer-grid">
 <div>
