@@ -125,7 +125,6 @@
 <option value="Ordinary">Ordinary</option>
 <option value="Associate">Associate</option>
 </select>
-<span class="membership-field-hint">Ordinary members are freight forwarders and agents; Associate members are airlines and service providers.</span>
 </div>
 </div>
 <p class="membership-field-label">Industry Classification <span class="membership-field-optional">(select all that apply)</span></p>
@@ -190,30 +189,51 @@
 
 <div class="membership-form-section">
 <h4>Additional Information</h4>
-<div class="membership-form-grid">
-<div class="membership-form-field imdd-form-field"><label for="iataMember">Existing IATA Member?</label>
+<div class="conditional-rows">
+<div class="conditional-row">
+<div class="conditional-row-left">
+<div class="membership-form-field imdd-form-field">
+<label for="iataMember">Existing IATA Member?</label>
 <select id="iataMember" name="iataMember"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select>
 </div>
-<div class="membership-form-field imdd-form-field membership-conditional-field full" id="iataUploadField">
+</div>
+<div class="conditional-row-right">
+<div class="membership-form-field membership-conditional-field" id="iataUploadField">
 <label for="iataUpload">IATA Supporting Documents</label>
 <input id="iataUpload" name="iataUpload" type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
 <span class="membership-field-hint">Upload supporting documents for your IATA membership.</span>
 </div>
-<div class="membership-form-field imdd-form-field"><label for="otherAssociations">Member of Other Logistics Associations?</label>
+</div>
+</div>
+<div class="conditional-row">
+<div class="conditional-row-left">
+<div class="membership-form-field imdd-form-field">
+<label for="otherAssociations">Member of Other Logistics Associations?</label>
 <select id="otherAssociations" name="otherAssociations"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select>
 <span class="membership-field-hint">e.g. SLA, CDAS, STA</span>
 </div>
-<div class="membership-form-field membership-conditional-field full" id="otherAssociationsField">
+</div>
+<div class="conditional-row-right">
+<div class="membership-form-field membership-conditional-field" id="otherAssociationsField">
 <label for="otherAssociationsDetails">Association Name(s)</label>
 <input id="otherAssociationsDetails" name="otherAssociationsDetails" type="text" placeholder="List association name(s)">
 </div>
-<div class="membership-form-field imdd-form-field full"><label for="criminalHistory">Directors/Officers Criminal Offence History?</label>
+</div>
+</div>
+<div class="conditional-row">
+<div class="conditional-row-left">
+<div class="membership-form-field imdd-form-field">
+<label for="criminalHistory">Directors/Officers Criminal Offence History?</label>
 <select id="criminalHistory" name="criminalHistory"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select>
 <span class="membership-field-hint">Any director, shareholder or principal officer previously found guilty of a criminal offence.</span>
 </div>
-<div class="membership-form-field full membership-conditional-field" id="criminalHistoryField">
+</div>
+<div class="conditional-row-right">
+<div class="membership-form-field membership-conditional-field" id="criminalHistoryField">
 <label for="criminalHistoryDetails">Criminal Offence Details</label>
 <textarea id="criminalHistoryDetails" name="criminalHistoryDetails" rows="3" placeholder="Provide details if applicable"></textarea>
+</div>
+</div>
 </div>
 </div>
 </div>

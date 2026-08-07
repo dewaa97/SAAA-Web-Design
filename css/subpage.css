@@ -1231,6 +1231,24 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
 .membership-conditional-field.is-visible {
     display: flex;
 }
+.conditional-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.conditional-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+}
+.conditional-row-left,
+.conditional-row-right {
+    min-width: 0;
+}
+.conditional-row-right .membership-form-field {
+    width: 100%;
+}
 .membership-bank-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1340,6 +1358,7 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     .membership-form-field .combobox,
     .membership-form-field .date-picker { width: 100%; }
     .membership-form-actions .btn { width: 100%; }
+    .conditional-row { grid-template-columns: 1fr; }
 }
 
 ::-webkit-scrollbar { width: 8px; }
