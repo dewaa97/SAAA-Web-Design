@@ -861,7 +861,12 @@
             return Object.prototype.hasOwnProperty.call(hubPages, getFilename(href));
         }
 
-        function getImddNavScrollOffset() {
+        function getImddNavHeight() {
+            var nav = document.querySelector('nav');
+            if (nav) {
+                return nav.getBoundingClientRect().height;
+            }
+
             var navHeight = parseInt(
                 getComputedStyle(document.documentElement).getPropertyValue('--imdd-site-nav-height'),
                 10
@@ -870,13 +875,23 @@
                 var navInner = document.querySelector('nav .nav-inner');
                 navHeight = navInner ? navInner.offsetHeight : 80;
             }
-            return navHeight + 16;
+            return navHeight;
         }
 
-        function scrollToContent() {
-            var offset = getImddNavScrollOffset();
-            var targetTop = shellEl.getBoundingClientRect().top + window.scrollY - offset;
-            window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
+        function getImddContentScrollTop() {
+            var heroEl = document.getElementById('imdd-hero');
+            var boundary = heroEl
+                ? heroEl.getBoundingClientRect().bottom + window.scrollY
+                : shellEl.getBoundingClientRect().top + window.scrollY;
+            return Math.max(0, Math.ceil(boundary - getImddNavHeight()));
+        }
+
+        function scrollToContent(options) {
+            options = options || {};
+            window.scrollTo({
+                top: getImddContentScrollTop(),
+                behavior: options.behavior || 'smooth'
+            });
         }
 
         function loadPage(href, options) {
@@ -944,6 +959,11 @@
         var currentFile = getFilename(window.location.pathname);
         if (hubPages[currentFile]) {
             history.replaceState({ imddPage: hubPages[currentFile], imddHref: currentFile }, '', currentFile);
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                    scrollToContent({ behavior: 'auto' });
+                });
+            });
         }
     }
 
