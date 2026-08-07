@@ -74,15 +74,6 @@
             select.dataset.membershipWidgetMounted = 'true';
         });
 
-        var declarationDate = document.getElementById('declarationDate');
-        if (declarationDate && !declarationDate.dataset.membershipWidgetMounted) {
-            widgets.declarationDate = api.mountDatePickerFromInput(declarationDate, {
-                placeholder: 'Pick a date',
-                fieldKey: 'declarationDate'
-            });
-            declarationDate.dataset.membershipWidgetMounted = 'true';
-        }
-
         function customizeCompactUpload(fieldName, title, hint, browseText) {
             var uploadRoot = form.querySelector('[data-file-input][name="' + fieldName + '"]');
             if (!uploadRoot) return;
@@ -234,29 +225,7 @@
             clearFieldError(field);
         });
 
-        if (widgets.declarationDate) widgets.declarationDate.setInvalid(false);
         if (widgets.paymentProof) widgets.paymentProof.setInvalid(false);
-
-        var declarationNameField = form.querySelector('[data-imdd-field="declarationName"]');
-        if (!getFieldValue('declarationName')) {
-            setFieldError(declarationNameField, 'Enter the authorised signatory name.');
-            valid = false;
-            if (!firstErrorField) firstErrorField = declarationNameField;
-        }
-
-        var declarationDesignationField = form.querySelector('[data-imdd-field="declarationDesignation"]');
-        if (!getFieldValue('declarationDesignation')) {
-            setFieldError(declarationDesignationField, 'Enter the designation.');
-            valid = false;
-            if (!firstErrorField) firstErrorField = declarationDesignationField;
-        }
-
-        var declarationDateField = form.querySelector('[data-imdd-field="declarationDate"]');
-        if (!getFieldValue('declarationDate')) {
-            setFieldError(declarationDateField, 'Pick a date.', widgets.declarationDate);
-            valid = false;
-            if (!firstErrorField) firstErrorField = declarationDateField;
-        }
 
         var paymentProofField = form.querySelector('[data-imdd-field="paymentProof"]');
         if (!getUploadedFileName('paymentProof')) {
@@ -339,11 +308,6 @@
         addLine('Association Name(s)', getFieldValue('otherAssociationsDetails'));
         addLine('Criminal Offence History', getFieldValue('criminalHistory'));
         addLine('Criminal Offence Details', getFieldValue('criminalHistoryDetails'));
-
-        addSection('Declaration');
-        addLine('Authorised Signatory Name', getFieldValue('declarationName'));
-        addLine('Designation', getFieldValue('declarationDesignation'));
-        addLine('Date', getFieldValue('declarationDate'));
 
         addSection('Payment & Comments');
         addLine('Payment Proof', getUploadedFileName('paymentProof'));

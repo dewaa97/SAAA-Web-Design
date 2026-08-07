@@ -1405,7 +1405,7 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     padding-left: 18px;
     line-height: 1.8;
 }
-.membership-payment-proof-field { margin-top: 24px; }
+.membership-payment-proof-field { margin-top: 40px; }
 .membership-payment-proof-field .file-upload-zone {
     min-height: 160px;
     padding: 28px 20px;
@@ -1414,14 +1414,8 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     width: 44px;
     height: 44px;
 }
-.membership-declaration-block { margin-top: 24px; }
+.membership-comments-field { margin-top: 28px; }
 .membership-form-actions { margin-top: 24px; }
-.membership-form-note {
-    margin-top: 16px;
-    font-size: 13px;
-    color: var(--slate-500);
-    line-height: 1.6;
-}
 @media (max-width: 768px) {
     .milestone-item { grid-template-columns: 1fr; gap: 8px; }
     .membership-form-grid,
