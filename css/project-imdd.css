@@ -276,8 +276,9 @@ a.imdd-institution-logo:hover {
     transition: opacity 0.15s ease;
 }
 
-.imdd-main > .imdd-section:first-child {
-    padding-top: 0;
+/* Subpages: align first section with sidebar panel inset (18px), not flush to column top */
+body[data-imdd-page]:not([data-imdd-page="home"]) .imdd-main > .imdd-section:first-child {
+    padding-top: 18px;
 }
 
 /* Contact section — hub page */
