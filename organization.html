@@ -136,64 +136,231 @@
             line-height: 1.4;
         }
         .secretariat-section { background: var(--slate-50); }
-        .secretariat-chart { display: flex; flex-direction: column; align-items: center; gap: 18px; }
-        .secretariat-tier { width: 100%; display: flex; justify-content: center; align-items: flex-start; gap: 20px; }
-        .secretariat-node .sec-card,
-        .secretariat-tier-top .sec-card,
-        .secretariat-tier-cargo .sec-card { width: min(100%, 340px); }
-        .secretariat-link { width: 2px; height: 30px; background: var(--slate-200); }
-        .secretariat-tier-branches {
-            position: relative;
-            max-width: 1080px;
-            padding-top: 24px;
+        .secretariat-chart {
+            --sec-line: var(--slate-300);
+            --sec-box-min: 200px;
+            --sec-box-max: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1120px;
+            margin: 0 auto;
         }
-        .secretariat-tier-branches::before {
+        .secretariat-tier { width: 100%; display: flex; justify-content: center; align-items: flex-start; }
+        .secretariat-tier-top .sec-card {
+            width: fit-content;
+            max-width: min(100%, var(--sec-box-max));
+            min-width: min(100%, var(--sec-box-min));
+        }
+        .secretariat-vline {
+            width: 2px;
+            height: 28px;
+            background: var(--sec-line);
+            flex-shrink: 0;
+        }
+        .secretariat-tier-split {
+            --sec-split-gap: 32px;
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(240px, 1fr) minmax(480px, 2fr);
+            gap: var(--sec-split-gap);
+            width: 100%;
+            padding-top: 28px;
+        }
+        .secretariat-tier-split::before {
             content: "";
             position: absolute;
             top: 0;
-            left: 14%;
-            right: 14%;
+            /* Align horizontal bar with 1fr:2fr column centers (not 25%/75% equal split) */
+            left: calc((100% - var(--sec-split-gap)) / 6);
+            right: calc((100% - var(--sec-split-gap)) / 3);
             height: 2px;
-            background: var(--slate-200);
+            background: var(--sec-line);
         }
-        .sec-card { background: white; border: 1px solid var(--slate-200); border-radius: var(--radius); padding: 20px; text-align: center; transition: all 0.3s; flex: 0 1 240px; min-width: 180px; }
-        .sec-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); border-color: var(--red-200); transform: translateY(-3px); }
-        .secretariat-tier-branches .sec-card {
+        .secretariat-branch {
             position: relative;
-            flex: 1 1 0;
-            min-width: 220px;
-            max-width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            min-width: 0;
         }
-        .secretariat-tier-branches .sec-card::before {
+        .secretariat-branch::before {
             content: "";
             position: absolute;
-            top: -25px;
+            top: -28px;
             left: 50%;
             width: 2px;
-            height: 25px;
+            height: 28px;
             transform: translateX(-50%);
-            background: var(--slate-200);
+            background: var(--sec-line);
         }
-        .sec-card .dept-badge { display: inline-block; padding: 3px 10px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border-radius: 100px; background: var(--slate-100); color: var(--slate-600); margin-bottom: 10px; }
-        .sec-card .dept-badge.executive { background: var(--red-600); color: white; }
-        .sec-card .dept-badge.corp-affairs { background: #7c3aed; color: white; }
-        .sec-card .dept-badge.membership { background: #0891b2; color: white; }
-        .sec-card .dept-badge.industry-projects { background: #d97706; color: white; }
-        .sec-card .dept-badge.training { background: #059669; color: white; }
-        .sec-card .dept-badge.biz-ops { background: #1d4ed8; color: white; }
-        .sec-card .dept-badge.finance { background: #be185d; color: white; }
-        .sec-card .dept-badge.cargo-services { background: #ea580c; color: white; }
-        .sec-card .name { font-family: Space Grotesk, sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--slate-900); margin-bottom: 4px; }
-        .sec-card .title { font-size: 13px; color: var(--slate-500); margin-bottom: 6px; line-height: 1.4; }
-        .sec-card .sec-email { display: inline-block; font-size: 13px; color: var(--red-600); font-weight: 500; transition: color 0.2s; }
-        .sec-card .sec-email:hover { color: var(--red-700); text-decoration: underline; }
-        .business-ops-card .dept-badge { display: inline-block; }
-        .business-ops-card .team-list { display: grid; gap: 14px; margin-top: 6px; }
-        .business-ops-card .team-person { padding-top: 14px; border-top: 1px solid var(--slate-100); }
-        .business-ops-card .team-person:first-child { padding-top: 0; border-top: none; }
-        .business-ops-card .name { font-size: 1rem; }
-        .business-ops-card .title { margin-bottom: 4px; }
-        .business-ops-card .sec-email { display: inline-block; }
+        .branch-header {
+            width: fit-content;
+            max-width: min(100%, 340px);
+            min-width: min(100%, var(--sec-box-min));
+            background: white;
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius);
+            padding: 12px 16px;
+            text-align: center;
+            font-family: Space Grotesk, sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--slate-800);
+            margin-bottom: 0;
+        }
+        .branch-header.cargo { font-size: 0.88rem; line-height: 1.35; }
+        .branch-departments {
+            --branch-connector-h: 24px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            width: 100%;
+            padding-top: var(--branch-connector-h);
+        }
+        /* Vertical drop from branch header to child junction (Singapore single column) */
+        .branch-departments:not(.cargo-grid)::before {
+            content: "";
+            position: absolute;
+            top: calc(-1 * var(--branch-connector-h));
+            left: 50%;
+            width: 2px;
+            height: calc(2 * var(--branch-connector-h));
+            transform: translateX(-50%);
+            background: var(--sec-line);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .branch-departments.cargo-grid {
+            --cargo-col-gap: 16px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--cargo-col-gap);
+            width: 100%;
+            align-items: start;
+        }
+        /* Center vertical from branch header down to cargo horizontal split */
+        .branch-departments.cargo-grid::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: var(--branch-connector-h);
+            transform: translate(-50%, -100%);
+            background: var(--sec-line);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .dept-column {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            min-width: 0;
+        }
+        .dept-column::before {
+            content: "";
+            position: absolute;
+            top: calc(-1 * var(--branch-connector-h));
+            left: 50%;
+            width: 2px;
+            height: var(--branch-connector-h);
+            transform: translateX(-50%);
+            background: var(--sec-line);
+            z-index: 1;
+            pointer-events: none;
+        }
+        /* Horizontal split across 3 cargo columns (gap-aware column centers) */
+        .branch-departments.cargo-grid::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: calc((100% - 2 * var(--cargo-col-gap)) / 6);
+            right: calc((100% - 2 * var(--cargo-col-gap)) / 6);
+            height: 2px;
+            background: var(--sec-line);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .dept-pill {
+            display: inline-block;
+            width: fit-content;
+            max-width: 100%;
+            padding: 8px 12px;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            line-height: 1.35;
+            border-radius: 100px;
+            text-align: center;
+            color: white;
+            margin-bottom: 12px;
+        }
+        .dept-pill.executive { background: var(--red-600); }
+        .dept-pill.membership { background: #0891b2; }
+        .dept-pill.corp-affairs { background: #7c3aed; }
+        .dept-pill.training { background: #059669; }
+        .dept-pill.biz-ops { background: #1d4ed8; }
+        .sec-card {
+            background: white;
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius);
+            padding: 16px 14px;
+            text-align: center;
+            transition: all 0.3s;
+            width: fit-content;
+            max-width: min(100%, var(--sec-box-max));
+            min-width: min(100%, var(--sec-box-min));
+        }
+        .sec-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); border-color: var(--slate-300); transform: translateY(-2px); }
+        .dept-card {
+            width: fit-content;
+            max-width: min(100%, var(--sec-box-max));
+            min-width: min(100%, var(--sec-box-min));
+            background: white;
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius);
+            padding: 14px 12px;
+            text-align: center;
+        }
+        .dept-card .dept-pill { margin-bottom: 14px; }
+        .staff-list { display: grid; gap: 14px; width: 100%; }
+        .staff-person { padding-top: 14px; border-top: 1px solid var(--slate-100); }
+        .staff-person:first-child { padding-top: 0; border-top: none; }
+        .sec-card .name,
+        .staff-person .name {
+            font-family: Space Grotesk, sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--slate-900);
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+        .sec-card .title,
+        .staff-person .title {
+            font-size: 12px;
+            color: var(--slate-500);
+            margin-bottom: 6px;
+            line-height: 1.45;
+        }
+        .sec-card .sec-email,
+        .staff-person .sec-email {
+            display: inline-block;
+            font-size: 12px;
+            color: var(--red-600);
+            font-weight: 500;
+            word-break: break-word;
+            transition: color 0.2s;
+        }
+        .sec-card .sec-email:hover,
+        .staff-person .sec-email:hover { color: var(--red-700); text-decoration: underline; }
         .back-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; font-size: 14px; font-weight: 600; color: var(--slate-700); border: 1px solid var(--slate-300); border-radius: var(--radius-sm); transition: all 0.2s; }
         .back-link:hover { border-color: var(--red-400); color: var(--red-600); }
         footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
@@ -212,6 +379,18 @@
         .footer-bottom .legal a:hover { color: white; }
         
         
+        @media (max-width: 1100px) {
+            .branch-departments {
+                padding-top: 0;
+            }
+            .branch-departments:not(.cargo-grid)::before,
+            .branch-departments.cargo-grid::after { display: none; }
+            .branch-departments.cargo-grid {
+                grid-template-columns: 1fr;
+            }
+            .branch-departments.cargo-grid::before,
+            .dept-column::before { display: none; }
+        }
         @media (max-width: 1024px) {
             .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
             .council-row {
@@ -224,16 +403,28 @@
                 width: 150px;
                 height: 150px;
             }
-            .secretariat-tier-branches {
-                flex-direction: column;
-                align-items: center;
+            .secretariat-tier-split {
+                grid-template-columns: 1fr;
+                gap: 40px;
                 padding-top: 0;
             }
-            .secretariat-tier-branches::before,
-            .secretariat-tier-branches .sec-card::before { display: none; }
-            .secretariat-tier-branches .sec-card {
-                width: min(100%, 380px);
-                max-width: 380px;
+            .secretariat-tier-split::before { display: none; }
+            .secretariat-branch::before { display: none; }
+            .branch-departments {
+                padding-top: 0;
+            }
+            .branch-departments:not(.cargo-grid)::before,
+            .branch-departments.cargo-grid::after { display: none; }
+            .branch-departments.cargo-grid {
+                grid-template-columns: 1fr;
+            }
+            .branch-departments.cargo-grid::before { display: none; }
+            .dept-column::before { display: none; }
+            .branch-header,
+            .dept-card,
+            .sec-card {
+                width: fit-content;
+                max-width: min(100%, 420px);
             }
         }
         @media (max-width: 768px) {
@@ -265,11 +456,9 @@
             .member-name { font-size: 1rem; }
             .member-role { font-size: 11px; }
             .member-company { font-size: 10px; }
-            .secretariat-tier { flex-direction: column; align-items: stretch; }
-            .secretariat-tier-top .sec-card,
-            .secretariat-tier-cargo .sec-card,
-            .secretariat-tier-branches .sec-card { width: 100%; max-width: none; min-width: 0; }
-            .secretariat-link { height: 20px; }
+            .secretariat-vline { height: 20px; }
+            .branch-departments { --branch-connector-h: 20px; }
+            .branch-departments.cargo-grid { gap: 24px; }
             .footer-grid { grid-template-columns: 1fr; gap: 32px; }
             .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
             .section { padding: 60px 0; }
@@ -345,7 +534,6 @@
         </div>
         <div class="nav-dropdown-menu">
             <a href="events.html">Calendar of Events</a>
-            <a href="events.html#past-events">Past Events</a>
         </div>
     </div>
     <div class="nav-dropdown">
@@ -548,82 +736,104 @@
             <p class="section-desc" style="margin:0 auto;">The combined SAAA Secretariat and SAAA Cargo Services structure supporting member engagement, training, documentation services, and finance operations.</p>
         </div>
         <div class="secretariat-chart">
+            <!-- Level 1: CEO -->
             <div class="secretariat-tier secretariat-tier-top">
-                <article class="sec-card secretariat-node">
-                    <div class="dept-badge executive">SAAA Secretariat</div>
+                <article class="sec-card ceo-card">
+                    <div class="dept-pill executive">SAAA Secretariat</div>
                     <div class="name">Pauline Tok</div>
-                    <div class="title">Executive Director</div>
+                    <div class="title">Chief Executive Officer</div>
                     <a href="mailto:pauline.tok@saaa.org.sg" class="sec-email">pauline.tok@saaa.org.sg</a>
                 </article>
             </div>
-            <div class="secretariat-link"></div>
-            <div class="secretariat-tier secretariat-tier-branches">
-                <article class="sec-card">
-                    <div class="dept-badge corp-affairs">Corporate Affairs</div>
-                    <div class="name">Azlinda Bte Hassan</div>
-                    <div class="title">Assistant Manager, HR and Finance</div>
-                    <a href="mailto:azlinda.hassan@saaa.org.sg" class="sec-email">azlinda.hassan@saaa.org.sg</a>
-                </article>
-                <article class="sec-card">
-                    <div class="dept-badge membership">Membership &amp; Events</div>
-                    <div class="name">Pammie Loh</div>
-                    <div class="title">Executive, Industry Engagement</div>
-                    <a href="mailto:pammie.loh@saaa.org.sg" class="sec-email">pammie.loh@saaa.org.sg</a>
-                </article>
-                <article class="sec-card">
-                    <div class="dept-badge industry-projects">Industry Projects</div>
-                    <div class="name">Evelyn Tan</div>
-                    <div class="title">Senior Manager</div>
-                    <a href="mailto:evelyn.tan@saaa.org.sg" class="sec-email">evelyn.tan@saaa.org.sg</a>
-                </article>
-            </div>
-            <div class="secretariat-link"></div>
-            <div class="secretariat-tier secretariat-tier-cargo">
-                <article class="sec-card secretariat-node">
-                    <div class="dept-badge cargo-services">SAAA Cargo Services</div>
-                    <div class="name">SAAA Cargo Services Pte Ltd</div>
-                    <div class="title">Operational arm for training, documentation, and finance support.</div>
-                </article>
-            </div>
-            <div class="secretariat-link"></div>
-            <div class="secretariat-tier secretariat-tier-branches">
-                <article class="sec-card">
-                    <div class="dept-badge training">Training &amp; Development</div>
-                    <div class="name">Peggy Lim</div>
-                    <div class="title">Executive, Training</div>
-                    <a href="mailto:peggy.lim@saaa.org.sg" class="sec-email">peggy.lim@saaa.org.sg</a>
-                </article>
-                <article class="sec-card business-ops-card">
-                    <div class="dept-badge biz-ops">Business Operations</div>
-                    <div class="team-list">
-                        <div class="team-person">
-                            <div class="name">Evelyn Tan</div>
-                            <div class="title">Senior Manager</div>
-                            <a href="mailto:evelyn.tan@saaa.org.sg" class="sec-email">evelyn.tan@saaa.org.sg</a>
+
+            <div class="secretariat-vline" aria-hidden="true"></div>
+
+            <!-- Level 2: Two branches -->
+            <div class="secretariat-tier secretariat-tier-split">
+                <!-- Branch 1: SAAA@Singapore -->
+                <section class="secretariat-branch">
+                    <header class="branch-header">SAAA@Singapore</header>
+                    <div class="branch-departments">
+                        <article class="dept-card">
+                            <div class="dept-pill membership">Membership &amp; Events</div>
+                            <div class="staff-list">
+                                <div class="staff-person">
+                                    <div class="name">Pammie Loh</div>
+                                    <div class="title">Events and Partnership Manager</div>
+                                    <a href="mailto:pammie.loh@saaa.org.sg" class="sec-email">pammie.loh@saaa.org.sg</a>
+                                </div>
+                                <div class="staff-person">
+                                    <div class="name">Zyman Tan</div>
+                                    <div class="title">Assistant Manager, Events &amp; Outreach</div>
+                                    <a href="mailto:zyman.tan@saaa.org.sg" class="sec-email">zyman.tan@saaa.org.sg</a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Branch 2: SAAA Cargo Services Pte Ltd -->
+                <section class="secretariat-branch">
+                    <header class="branch-header cargo">SAAA Cargo Services Pte Ltd</header>
+                    <div class="branch-departments cargo-grid">
+                        <div class="dept-column">
+                            <article class="dept-card">
+                                <div class="dept-pill corp-affairs">Corporate Affairs &amp; Finance</div>
+                                <div class="staff-list">
+                                    <div class="staff-person">
+                                        <div class="name">Azlinda Bte Hassan</div>
+                                        <div class="title">Senior Manager, Corporate Services</div>
+                                        <a href="mailto:finance@saaa.org.sg" class="sec-email">finance@saaa.org.sg</a>
+                                    </div>
+                                </div>
+                            </article>
                         </div>
-                        <div class="team-person">
-                            <div class="name">Andrew Soh</div>
-                            <div class="title">Officer, Tradenet &amp; Documentation</div>
-                            <a href="mailto:scs@saaa.org.sg" class="sec-email">scs@saaa.org.sg</a>
+                        <div class="dept-column">
+                            <article class="dept-card">
+                                <div class="dept-pill training">Training &amp; Development</div>
+                                <div class="staff-list">
+                                    <div class="staff-person">
+                                        <div class="name">Fatah Nawawi</div>
+                                        <div class="title">Manager - Training &amp; Development</div>
+                                        <a href="mailto:muhd.fatah@saaa.org.sg" class="sec-email">muhd.fatah@saaa.org.sg</a>
+                                    </div>
+                                    <div class="staff-person">
+                                        <div class="name">Peggy Lim</div>
+                                        <div class="title">Assistant Manager - Training &amp; Development</div>
+                                        <a href="mailto:peggy.lim@saaa.org.sg" class="sec-email">peggy.lim@saaa.org.sg</a>
+                                    </div>
+                                </div>
+                            </article>
                         </div>
-                        <div class="team-person">
-                            <div class="name">Eddie Ang</div>
-                            <div class="title">Officer, Tradenet &amp; Documentation</div>
-                            <a href="mailto:scs@saaa.org.sg" class="sec-email">scs@saaa.org.sg</a>
-                        </div>
-                        <div class="team-person">
-                            <div class="name">Siti Junaidah Bte Mohamed Normaya</div>
-                            <div class="title">Officer, Tradenet &amp; Documentation</div>
-                            <a href="mailto:scs@saaa.org.sg" class="sec-email">scs@saaa.org.sg</a>
+                        <div class="dept-column">
+                            <article class="dept-card">
+                                <div class="dept-pill biz-ops">Business Operations</div>
+                                <div class="staff-list">
+                                    <div class="staff-person">
+                                        <div class="name">Andrew Soh</div>
+                                        <div class="title">Senior Executive, Tradenet Documentation</div>
+                                        <a href="mailto:scs@saaa.org.sg" class="sec-email">scs@saaa.org.sg</a>
+                                    </div>
+                                    <div class="staff-person">
+                                        <div class="name">Siti Junaidah Bte Mohamed Normaya</div>
+                                        <div class="title">Executive, Admin &amp; Tradenet Documentation</div>
+                                        <a href="mailto:scs@saaa.org.sg" class="sec-email">scs@saaa.org.sg</a>
+                                    </div>
+                                    <div class="staff-person">
+                                        <div class="name">Muhd Izwan</div>
+                                        <div class="title">Tradenet Documentation Officer</div>
+                                        <a href="mailto:scs@saaa.org.sg" class="sec-email">scs@saaa.org.sg</a>
+                                    </div>
+                                    <div class="staff-person">
+                                        <div class="name">Nurnadhirah</div>
+                                        <div class="title">Officer, Admin &amp; Tradenet Documentations</div>
+                                        <a href="mailto:projectadmin@saaa.org.sg" class="sec-email">projectadmin@saaa.org.sg</a>
+                                    </div>
+                                </div>
+                            </article>
                         </div>
                     </div>
-                </article>
-                <article class="sec-card">
-                    <div class="dept-badge finance">Finance</div>
-                    <div class="name">Azlinda Bte Hassan</div>
-                    <div class="title">Executive, Human Resource &amp; Finance</div>
-                    <a href="mailto:azlinda.hassan@saaa.org.sg" class="sec-email">azlinda.hassan@saaa.org.sg</a>
-                </article>
+                </section>
             </div>
         </div>
     </div>
@@ -635,7 +845,7 @@
                 <div class="footer-brand">
                     <img src="images/saaa-logo.png" alt="SAAA Logo" style="height:32px;">
                 </div>
-                <p class="footer-about">The Singapore Aircargo Agents Association representing the collective interests of airfreight forwarders since 1985.</p>
+                <p class="footer-about">The Singapore Aircargo Agents Association representing the collective interests of airfreight forwarders since 1971.</p>
             </div>
             <div>
                 <div class="footer-title">Quick Links</div>
