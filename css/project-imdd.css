@@ -352,15 +352,6 @@ a.imdd-institution-logo:hover {
     flex-shrink: 0;
 }
 
-/* Subpage hero */
-.imdd-page-hero {
-    padding: 56px 0 48px;
-}
-
-.imdd-page-hero .hero-bg {
-    object-position: center 35%;
-}
-
 /* Section blocks */
 .imdd-section {
     padding: 80px 0;
