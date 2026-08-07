@@ -138,6 +138,8 @@
         .secretariat-section { background: var(--slate-50); }
         .secretariat-chart {
             --sec-line: var(--slate-300);
+            --sec-box-min: 200px;
+            --sec-box-max: 320px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -146,7 +148,11 @@
             margin: 0 auto;
         }
         .secretariat-tier { width: 100%; display: flex; justify-content: center; align-items: flex-start; }
-        .secretariat-tier-top .sec-card { width: min(100%, 360px); }
+        .secretariat-tier-top .sec-card {
+            width: fit-content;
+            max-width: min(100%, var(--sec-box-max));
+            min-width: min(100%, var(--sec-box-min));
+        }
         .secretariat-vline {
             width: 2px;
             height: 28px;
@@ -191,11 +197,13 @@
             background: var(--sec-line);
         }
         .branch-header {
-            width: min(100%, 340px);
+            width: fit-content;
+            max-width: min(100%, 340px);
+            min-width: min(100%, var(--sec-box-min));
             background: white;
             border: 1px solid var(--slate-200);
             border-radius: var(--radius);
-            padding: 14px 18px;
+            padding: 12px 16px;
             text-align: center;
             font-family: Space Grotesk, sans-serif;
             font-size: 0.95rem;
@@ -256,7 +264,8 @@
         }
         .dept-pill {
             display: inline-block;
-            width: 100%;
+            width: fit-content;
+            max-width: 100%;
             padding: 8px 12px;
             font-size: 9px;
             font-weight: 700;
@@ -277,23 +286,22 @@
             background: white;
             border: 1px solid var(--slate-200);
             border-radius: var(--radius);
-            padding: 18px 16px;
+            padding: 16px 14px;
             text-align: center;
             transition: all 0.3s;
-            width: 100%;
+            width: fit-content;
+            max-width: min(100%, var(--sec-box-max));
+            min-width: min(100%, var(--sec-box-min));
         }
         .sec-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); border-color: var(--slate-300); transform: translateY(-2px); }
-        .sec-card.ceo-card .dept-pill {
-            width: fit-content;
-            max-width: 100%;
-            margin-bottom: 12px;
-        }
         .dept-card {
-            width: min(100%, 300px);
+            width: fit-content;
+            max-width: min(100%, var(--sec-box-max));
+            min-width: min(100%, var(--sec-box-min));
             background: white;
             border: 1px solid var(--slate-200);
             border-radius: var(--radius);
-            padding: 16px 14px;
+            padding: 14px 12px;
             text-align: center;
         }
         .dept-card .dept-pill { margin-bottom: 14px; }
@@ -378,8 +386,12 @@
             }
             .branch-departments.cargo-grid::before { display: none; }
             .dept-column::before { display: none; }
-            .branch-header { width: 100%; max-width: 420px; }
-            .dept-card { max-width: 420px; }
+            .branch-header,
+            .dept-card,
+            .sec-card {
+                width: fit-content;
+                max-width: min(100%, 420px);
+            }
         }
         @media (max-width: 768px) {
             
