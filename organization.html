@@ -212,24 +212,49 @@
             margin-bottom: 0;
         }
         .branch-header.cargo { font-size: 0.88rem; line-height: 1.35; }
-        .branch-vline {
-            width: 2px;
-            height: 24px;
-            background: var(--sec-line);
-        }
         .branch-departments {
+            --branch-connector-h: 24px;
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 0;
             width: 100%;
+            padding-top: var(--branch-connector-h);
+        }
+        /* Vertical drop from branch header to child junction (Singapore single column) */
+        .branch-departments:not(.cargo-grid)::before {
+            content: "";
+            position: absolute;
+            top: calc(-1 * var(--branch-connector-h));
+            left: 50%;
+            width: 2px;
+            height: calc(2 * var(--branch-connector-h));
+            transform: translateX(-50%);
+            background: var(--sec-line);
+            z-index: 1;
+            pointer-events: none;
         }
         .branch-departments.cargo-grid {
+            --cargo-col-gap: 16px;
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 16px;
+            gap: var(--cargo-col-gap);
             width: 100%;
             align-items: start;
+        }
+        /* Center vertical from branch header down to cargo horizontal split */
+        .branch-departments.cargo-grid::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: var(--branch-connector-h);
+            transform: translate(-50%, -100%);
+            background: var(--sec-line);
+            z-index: 1;
+            pointer-events: none;
         }
         .dept-column {
             position: relative;
@@ -242,25 +267,26 @@
         .dept-column::before {
             content: "";
             position: absolute;
-            top: -24px;
+            top: calc(-1 * var(--branch-connector-h));
             left: 50%;
             width: 2px;
-            height: 24px;
+            height: var(--branch-connector-h);
             transform: translateX(-50%);
             background: var(--sec-line);
+            z-index: 1;
+            pointer-events: none;
         }
+        /* Horizontal split across 3 cargo columns (gap-aware column centers) */
         .branch-departments.cargo-grid::before {
             content: "";
             position: absolute;
             top: 0;
-            left: 16.66%;
-            right: 16.66%;
+            left: calc((100% - 2 * var(--cargo-col-gap)) / 6);
+            right: calc((100% - 2 * var(--cargo-col-gap)) / 6);
             height: 2px;
             background: var(--sec-line);
-        }
-        .branch-departments.cargo-grid {
-            position: relative;
-            padding-top: 24px;
+            z-index: 1;
+            pointer-events: none;
         }
         .dept-pill {
             display: inline-block;
@@ -354,9 +380,13 @@
         
         
         @media (max-width: 1100px) {
+            .branch-departments {
+                padding-top: 0;
+            }
+            .branch-departments:not(.cargo-grid)::before,
+            .branch-departments.cargo-grid::after { display: none; }
             .branch-departments.cargo-grid {
                 grid-template-columns: 1fr;
-                padding-top: 0;
             }
             .branch-departments.cargo-grid::before,
             .dept-column::before { display: none; }
@@ -380,9 +410,13 @@
             }
             .secretariat-tier-split::before { display: none; }
             .secretariat-branch::before { display: none; }
+            .branch-departments {
+                padding-top: 0;
+            }
+            .branch-departments:not(.cargo-grid)::before,
+            .branch-departments.cargo-grid::after { display: none; }
             .branch-departments.cargo-grid {
                 grid-template-columns: 1fr;
-                padding-top: 0;
             }
             .branch-departments.cargo-grid::before { display: none; }
             .dept-column::before { display: none; }
@@ -422,8 +456,8 @@
             .member-name { font-size: 1rem; }
             .member-role { font-size: 11px; }
             .member-company { font-size: 10px; }
-            .secretariat-vline,
-            .branch-vline { height: 20px; }
+            .secretariat-vline { height: 20px; }
+            .branch-departments { --branch-connector-h: 20px; }
             .branch-departments.cargo-grid { gap: 24px; }
             .footer-grid { grid-template-columns: 1fr; gap: 32px; }
             .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
@@ -719,7 +753,6 @@
                 <!-- Branch 1: SAAA@Singapore -->
                 <section class="secretariat-branch">
                     <header class="branch-header">SAAA@Singapore</header>
-                    <div class="branch-vline" aria-hidden="true"></div>
                     <div class="branch-departments">
                         <article class="dept-card">
                             <div class="dept-pill membership">Membership &amp; Events</div>
@@ -742,7 +775,6 @@
                 <!-- Branch 2: SAAA Cargo Services Pte Ltd -->
                 <section class="secretariat-branch">
                     <header class="branch-header cargo">SAAA Cargo Services Pte Ltd</header>
-                    <div class="branch-vline" aria-hidden="true"></div>
                     <div class="branch-departments cargo-grid">
                         <div class="dept-column">
                             <article class="dept-card">
