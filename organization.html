@@ -154,10 +154,11 @@
             flex-shrink: 0;
         }
         .secretariat-tier-split {
+            --sec-split-gap: 32px;
             position: relative;
             display: grid;
             grid-template-columns: minmax(240px, 1fr) minmax(480px, 2fr);
-            gap: 32px;
+            gap: var(--sec-split-gap);
             width: 100%;
             padding-top: 28px;
         }
@@ -165,8 +166,9 @@
             content: "";
             position: absolute;
             top: 0;
-            left: 25%;
-            right: 25%;
+            /* Align horizontal bar with 1fr:2fr column centers (not 25%/75% equal split) */
+            left: calc((100% - var(--sec-split-gap)) / 6);
+            right: calc((100% - var(--sec-split-gap)) / 3);
             height: 2px;
             background: var(--sec-line);
         }
@@ -281,7 +283,11 @@
             width: 100%;
         }
         .sec-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); border-color: var(--slate-300); transform: translateY(-2px); }
-        .sec-card.ceo-card .dept-pill { margin-bottom: 12px; }
+        .sec-card.ceo-card .dept-pill {
+            width: fit-content;
+            max-width: 100%;
+            margin-bottom: 12px;
+        }
         .dept-card {
             width: min(100%, 300px);
             background: white;
