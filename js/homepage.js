@@ -129,4 +129,78 @@
         window.addEventListener('resize', update);
         update();
     })();
+
+    // Logo marquees — members and strategic partners
+    (function () {
+        var MEMBER_LOGOS = [
+            { src: 'images/members/logos/dhl.jpg', alt: 'DHL' },
+            { src: 'images/members/logos/kuehne-nagel-in-singapore.png', alt: 'Kuehne+Nagel' },
+            { src: 'images/members/logos/yusen-logistics-pte-ltd.png', alt: 'Yusen Logistics' },
+            { src: 'images/members/logos/jas-forwarding-worldwide-pte-ltd.png', alt: 'JAS Forwarding' },
+            { src: 'images/members/logos/dnata-singapore-pte-ltd.png', alt: 'dnata Singapore' },
+            { src: 'images/members/logos/sats-airport-services-pte-ltd.png', alt: 'SATS' },
+            { src: 'images/members/logos/ups-pte-ltd.png', alt: 'UPS' },
+            { src: 'images/members/logos/b-h-worldwide-sg-pte-ltd.png', alt: 'B&H Worldwide' },
+            { src: 'images/members/logos/global-airfreight-international-pte-ltd.png', alt: 'Global Airfreight International' },
+            { src: 'images/members/logos/scanwell-logistics-singapore-pte-ltd.png', alt: 'Scanwell Logistics' },
+            { src: 'images/members/logos/st-logistics-pte-ltd.png', alt: 'ST Logistics' },
+            { src: 'images/members/logos/seko.png', alt: 'SEKO' },
+            { src: 'images/members/logos/alliance-21-pte-ltd.jpg', alt: 'Alliance 21' },
+            { src: 'images/members/logos/logwin-air-ocean-singapore-pte-ltd.png', alt: 'Logwin' },
+            { src: 'images/members/logos/rcs-logistics-singapore-pte-ltd.png', alt: 'RCS Logistics' },
+            { src: 'images/members/logos/quickflo-logistics-pte-ltd.png', alt: 'Quickflo Logistics' },
+            { src: 'images/members/logos/cargo-community-network-pte-ltd.jpg', alt: 'Cargo Community Network' },
+            { src: 'images/members/logos/aspac-aircargo-services-pte-ltd.jpg', alt: 'ASPAC Aircargo Services' },
+            { src: 'images/members/logos/acs-freight-services-pte-ltd.jpg', alt: 'ACS Freight Services' },
+            { src: 'images/members/logos/baylink-logistics-pte-ltd.jpg', alt: 'Baylink Logistics' },
+            { src: 'images/members/logos/evo-logistics-pte-ltd.png', alt: 'EVO Logistics' },
+            { src: 'images/members/logos/harbour-handlers-pte-ltd.png', alt: 'Harbour Handlers' },
+            { src: 'images/members/logos/mercury-freight-distribution-pte-ltd.png', alt: 'Mercury Freight' },
+            { src: 'images/members/logos/pacific-logistics-group-pte-ltd.png', alt: 'Pacific Logistics Group' }
+        ];
+
+        var PARTNER_LOGOS = {
+            industry: [
+                { src: 'images/partners/iata-partner.png', alt: 'IATA' },
+                { src: 'images/partners/icao-partner.svg', alt: 'ICAO' },
+                { src: 'images/partners/sats-partner.png', alt: 'SATS' },
+                { src: 'images/partners/dnata-partner.png', alt: 'dnata' },
+                { src: 'images/partners/ccn-partner.png', alt: 'Cargo Community Network' }
+            ],
+            government: [
+                { src: 'images/partners/caas-partner.png', alt: 'CAAS' },
+                { src: 'images/partners/esg-partner.png', alt: 'Enterprise Singapore' },
+                { src: 'images/partners/imda-crest.png', alt: 'IMDA' },
+                { src: 'images/partners/mindef-partner.png', alt: 'MINDEF' },
+                { src: 'images/partners/wsg-partner.png', alt: 'Workforce Singapore' }
+            ],
+            ihls: [
+                { src: 'images/partners/rp-partner.png', alt: 'Republic Polytechnic' },
+                { src: 'images/partners/tp-partner.png', alt: 'Temasek Polytechnic' },
+                { src: 'images/partners/sp-logo.png', alt: 'Singapore Polytechnic' },
+                { src: 'images/partners/nyp-logo.svg', alt: 'Nanyang Polytechnic' },
+                { src: 'images/partners/np-logo.svg', alt: 'Ngee Ann Polytechnic' },
+                { src: 'images/partners/ite-logo.png', alt: 'ITE' }
+            ]
+        };
+
+        function buildLogoCells(logos) {
+            return logos.map(function (logo) {
+                return '<div class="logo-cell"><img src="' + logo.src + '" alt="' + logo.alt + '" loading="lazy"></div>';
+            }).join('');
+        }
+
+        function populateStrip(container, logos) {
+            if (!container || !logos.length) return;
+            var cells = buildLogoCells(logos);
+            container.innerHTML = cells + cells;
+        }
+
+        populateStrip(document.querySelector('[data-member-marquee]'), MEMBER_LOGOS);
+
+        document.querySelectorAll('[data-partner-strip]').forEach(function (strip) {
+            var key = strip.getAttribute('data-partner-strip');
+            populateStrip(strip, PARTNER_LOGOS[key] || []);
+        });
+    })();
 })();

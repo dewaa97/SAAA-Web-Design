@@ -2,38 +2,61 @@
     var form = document.getElementById('membership-application-form');
     if (!form) return;
 
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
+    function mountWidgets() {
+        if (!window.SaaaImddFormWidgets) return;
 
-        var formData = new FormData(form);
-        var lines = ['SAAA Membership Application', ''];
+        var api = SaaaImddFormWidgets;
 
-        function addSection(title) {
-            lines.push(title);
-            lines.push('');
-        }
-
-        function addField(label, name) {
-            var value = formData.get(name);
-            if (value && String(value).trim()) {
-                lines.push(label + ': ' + value);
-            }
-        }
-
-        function addCheckedGroup(label, names) {
-            var selected = names.filter(function (name) {
-                return form.querySelector('input[name="' + name + '"]:checked');
-            }).map(function (name) {
-                return form.querySelector('input[name="' + name + '"]').value;
+        var membershipType = document.getElementById('membershipType');
+        if (membershipType && !membershipType.dataset.membershipWidgetMounted) {
+            api.mountComboboxFromSelect(membershipType, {
+                placeholder: 'Select membership type',
+                searchable: false,
+                fieldKey: 'membershipType'
             });
-            if (selected.length) {
-                lines.push(label + ': ' + selected.join(', '));
-            }
+            membershipType.dataset.membershipWidgetMounted = 'true';
         }
 
-        addSection('Types of Membership');
-        addCheckedGroup('Membership to enroll', ['membershipOrdinary', 'membershipAssociate']);
-        addCheckedGroup('Industry Classification', [
+        ['iataMember', 'otherAssociations', 'criminalHistory'].forEach(function (id) {
+            var select = document.getElementById(id);
+            if (!select || select.dataset.membershipWidgetMounted) return;
+            api.mountComboboxFromSelect(select, {
+                placeholder: 'Select',
+                searchable: false,
+                fieldKey: id
+            });
+            select.dataset.membershipWidgetMounted = 'true';
+        });
+
+        var declarationDate = document.getElementById('declarationDate');
+        if (declarationDate && !declarationDate.dataset.membershipWidgetMounted) {
+            api.mountDatePickerFromInput(declarationDate, {
+                placeholder: 'Pick a date',
+                fieldKey: 'declarationDate'
+            });
+            declarationDate.dataset.membershipWidgetMounted = 'true';
+        }
+    }
+
+    mountWidgets();
+
+    function getFieldValue(name) {
+        if (form.querySelector('input[type="radio"][name="' + name + '"]')) {
+            var checkedRadio = form.querySelector('input[type="radio"][name="' + name + '"]:checked');
+            return checkedRadio ? checkedRadio.value : '';
+        }
+
+        var checkbox = form.querySelector('input[type="checkbox"][name="' + name + '"]');
+        if (checkbox) {
+            return checkbox.checked ? checkbox.value : '';
+        }
+
+        var field = form.querySelector('[name="' + name + '"]');
+        return field && field.value ? String(field.value).trim() : '';
+    }
+
+    function getCheckedIndustries() {
+        var names = [
             'industryFreightForwarder',
             'industryGroundHandling',
             'industryAirline',
@@ -43,51 +66,82 @@
             'industryAirRelated',
             'industryGovernmentBodies',
             'industryOthers'
-        ]);
+        ];
 
-        addSection('A. Details of Applicant Company');
-        addCheckedGroup('Company Type', ['companyLimited', 'companyPartnership', 'companySole']);
-        addField('Name of Applicant Company', 'companyName');
-        addField('Address of Main Office', 'mainOfficeAddress');
-        addField('Correspondence Address', 'correspondenceAddress');
-        addField('Telephone', 'companyTelephone');
-        addField('Fax', 'companyFax');
-        addField('Email Address of Company', 'companyEmail');
-        addField('Website Address of Company', 'companyWebsite');
-        addField('Staff Strength of Company', 'staffStrength');
+        return names.filter(function (name) {
+            var input = form.querySelector('input[name="' + name + '"]');
+            return input && input.checked;
+        }).map(function (name) {
+            return form.querySelector('input[name="' + name + '"]').value;
+        });
+    }
 
-        addSection('Contact Person 1');
-        addField('Name', 'contact1Name');
-        addField('Designation', 'contact1Designation');
-        addField('Email Address', 'contact1Email');
-        addField('Contact Number (Office)', 'contact1Office');
-        addField('Contact Number (Mobile)', 'contact1Mobile');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-        addSection('Contact Person 2');
-        addField('Name', 'contact2Name');
-        addField('Designation', 'contact2Designation');
-        addField('Email Address', 'contact2Email');
-        addField('Contact Number (Office)', 'contact2Office');
-        addField('Contact Number (Mobile)', 'contact2Mobile');
+        var lines = ['SAAA Membership Application 2026', ''];
 
-        addSection('B. Other Information');
-        addField('Existing IATA member', 'iataMember');
-        addField('Member of other logistics associations', 'otherAssociations');
-        addField('Details of other associations', 'otherAssociationsDetails');
-        addField('Directors/officers criminal offence history', 'criminalHistory');
-        addField('Criminal offence details', 'criminalHistoryDetails');
+        function addSection(title) {
+            lines.push(title);
+            lines.push('');
+        }
 
-        addSection('C. Applicant Declaration');
-        addField('Signature Name', 'declarationName');
-        addField('Designation', 'declarationDesignation');
-        addField('Date', 'declarationDate');
+        function addLine(label, value) {
+            if (value && String(value).trim()) {
+                lines.push(label + ': ' + value);
+            }
+        }
+
+        addSection('Membership Type & Classification');
+        addLine('Membership Type', getFieldValue('membershipType'));
+        var industries = getCheckedIndustries();
+        if (industries.length) {
+            lines.push('Industry Classification: ' + industries.join(', '));
+        }
+
+        addSection('Company Information');
+        addLine('Company Type', getFieldValue('companyType'));
+        addLine('Company Name', getFieldValue('companyName'));
+        addLine('Main Office Address', getFieldValue('mainOfficeAddress'));
+        addLine('Correspondence Address', getFieldValue('correspondenceAddress'));
+        addLine('Telephone', getFieldValue('companyTelephone'));
+        addLine('Fax', getFieldValue('companyFax'));
+        addLine('Company Email', getFieldValue('companyEmail'));
+        addLine('Company Website', getFieldValue('companyWebsite'));
+        addLine('Staff Strength', getFieldValue('staffStrength'));
+
+        addSection('Primary Contact');
+        addLine('Name', getFieldValue('contact1Name'));
+        addLine('Designation', getFieldValue('contact1Designation'));
+        addLine('Email', getFieldValue('contact1Email'));
+        addLine('Office Number', getFieldValue('contact1Office'));
+        addLine('Mobile Number', getFieldValue('contact1Mobile'));
+
+        addSection('Secondary Contact');
+        addLine('Name', getFieldValue('contact2Name'));
+        addLine('Designation', getFieldValue('contact2Designation'));
+        addLine('Email', getFieldValue('contact2Email'));
+        addLine('Office Number', getFieldValue('contact2Office'));
+        addLine('Mobile Number', getFieldValue('contact2Mobile'));
+
+        addSection('Additional Information');
+        addLine('Existing IATA Member', getFieldValue('iataMember'));
+        addLine('Member of Other Logistics Associations', getFieldValue('otherAssociations'));
+        addLine('Association Details', getFieldValue('otherAssociationsDetails'));
+        addLine('Criminal Offence History', getFieldValue('criminalHistory'));
+        addLine('Criminal Offence Details', getFieldValue('criminalHistoryDetails'));
+
+        addSection('Declaration');
+        addLine('Authorised Signatory Name', getFieldValue('declarationName'));
+        addLine('Designation', getFieldValue('declarationDesignation'));
+        addLine('Date', getFieldValue('declarationDate'));
 
         lines.push('');
         lines.push('Please attach the following documents to your email before sending:');
         lines.push('1. ACRA Business Profile');
         lines.push('2. For freight forwarder ordinary member enrolment: two employee certificates as stated in the application form');
 
-        var subject = encodeURIComponent('SAAA Membership Application');
+        var subject = encodeURIComponent('SAAA Membership Application 2026');
         var body = encodeURIComponent(lines.join('\n'));
         window.location.href = 'mailto:saaasin@saaa.org.sg?subject=' + subject + '&body=' + body;
     });

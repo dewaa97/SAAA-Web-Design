@@ -1156,36 +1156,75 @@
             flex-shrink: 0;
         }
 
+        .logo-cell {
+            flex-shrink: 0;
+            width: 148px;
+            height: 64px;
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-cell img {
+            max-height: 48px;
+            max-width: 120px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .member-strips .logo-cell {
+            margin-right: 0;
+        }
+
         @keyframes member-scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
         .partner-marquee-section {
-            padding: 24px 0 0;
+            padding: 0;
+        }
+
+        .partner-marquee-row {
+            background: white;
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-lg);
+            padding: 20px 0 16px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
         }
 
         .partner-marquee-row + .partner-marquee-row {
-            margin-top: 20px;
+            margin-top: 16px;
         }
 
         .partner-marquee-label {
-            text-align: center;
-            font-size: 13px;
+            text-align: left;
+            font-size: 12px;
             font-weight: 700;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--slate-500);
-            margin-bottom: 16px;
+            color: var(--red-600);
+            margin: 0 24px 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--slate-100);
         }
 
         .partner-marquee-row .member-carousel-wrapper {
-            margin-bottom: 8px;
+            margin-bottom: 0;
         }
 
-        .partner-marquee-row .member-strips img {
+        .partner-marquee-row .logo-cell {
+            width: 160px;
             height: 56px;
-            margin-right: 40px;
+            padding: 6px 24px;
+        }
+
+        .partner-marquee-row .logo-cell img {
+            max-height: 44px;
+            max-width: 128px;
         }
 
         .partner-marquee-row.reverse .member-strips {
@@ -1899,6 +1938,7 @@
         </div>
         <div class="nav-dropdown-menu">
             <a href="history.html">Our History</a>
+            <a href="milestones.html">Our Milestones</a>
             <a href="organization.html">Organisation Structure</a>
             <a href="stc.html">Standard Trading Conditions</a>
             <a href="programmes.html">Programmes</a>
@@ -1913,7 +1953,6 @@
         </div>
         <div class="nav-dropdown-menu">
             <a href="membership-application.html">Membership Sign-Up</a>
-            <a href="milestones.html">Milestones</a>
             <a href="members-listing.html">SAAA Members Listing</a>
             <a href="members-login.html">Members Portal Log In</a>
         </div>
@@ -2352,20 +2391,7 @@
                 <h3>Trusted by Leading Air Cargo Companies</h3>
             </div>
             <div class="member-carousel-wrapper">
-                <div class="member-strips">
-                    <img src="images/members/clients-slide-01.jpg" alt="Member companies">
-                    <img src="images/members/clients-slide-02.jpg" alt="Member companies">
-                    <img src="images/members/clients-slide-03.jpg" alt="Member companies">
-                    <img src="images/members/clients-slide-04.jpg" alt="Member companies">
-                    <img src="images/members/clients-slide-05.jpg" alt="Member companies">
-                    <img src="images/members/clients-slide-06.jpg" alt="Member companies">
-                    <img src="images/members/clients-slide-01.jpg" alt="Member companies">
-                    <img src="images/members/clients-slide-02.jpg" alt="Member companies">
-                    <img src="images/members/clients-slide-03.jpg" alt="Member companies">
-                    <img src="images/members/clients-slide-04.jpg" alt="Member companies">
-                    <img src="images/members/clients-slide-05.jpg" alt="Member companies">
-                    <img src="images/members/clients-slide-06.jpg" alt="Member companies">
-                </div>
+                <div class="member-strips" id="member-logo-strip" data-member-marquee></div>
             </div>
         </div>
     </section>
@@ -2382,46 +2408,19 @@
                     <div class="partner-marquee-row">
                         <div class="partner-marquee-label">Industry</div>
                         <div class="member-carousel-wrapper">
-                            <div class="member-strips">
-                                <img src="images/iata-logo.svg" alt="IATA">
-                                <img src="images/icao-logo.svg" alt="ICAO">
-                                <img src="images/partners/sats-logo.svg" alt="SATS">
-                                <img src="images/partners/dnata-logo.jpg" alt="dnata">
-                                <img src="images/partners/ccn-partner.png" alt="Cargo Community Network">
-                                <img src="images/iata-logo.svg" alt="IATA">
-                                <img src="images/icao-logo.svg" alt="ICAO">
-                                <img src="images/partners/sats-logo.svg" alt="SATS">
-                                <img src="images/partners/dnata-logo.jpg" alt="dnata">
-                                <img src="images/partners/ccn-partner.png" alt="Cargo Community Network">
-                            </div>
+                            <div class="member-strips" data-partner-strip="industry"></div>
                         </div>
                     </div>
                     <div class="partner-marquee-row reverse">
                         <div class="partner-marquee-label">Government Agencies</div>
                         <div class="member-carousel-wrapper">
-                            <div class="member-strips">
-                                <img src="images/caas-logo.png" alt="CAAS">
-                                <img src="images/esg-logo.jpg" alt="Enterprise Singapore">
-                                <img src="images/partners/imda-crest.png" alt="IMDA">
-                                <img src="images/partners/mindef-partner.png" alt="MINDEF">
-                                <img src="images/partners/wsg-logo.png" alt="Workforce Singapore">
-                                <img src="images/caas-logo.png" alt="CAAS">
-                                <img src="images/esg-logo.jpg" alt="Enterprise Singapore">
-                                <img src="images/partners/imda-crest.png" alt="IMDA">
-                                <img src="images/partners/mindef-partner.png" alt="MINDEF">
-                                <img src="images/partners/wsg-logo.png" alt="Workforce Singapore">
-                            </div>
+                            <div class="member-strips" data-partner-strip="government"></div>
                         </div>
                     </div>
                     <div class="partner-marquee-row">
                         <div class="partner-marquee-label">Institutes of Higher Learning (IHLs)</div>
                         <div class="member-carousel-wrapper">
-                            <div class="member-strips">
-                                <img src="images/partners/rp-logo.jpg" alt="Republic Polytechnic">
-                                <img src="images/partners/tp-partner.png" alt="Temasek Polytechnic">
-                                <img src="images/partners/rp-logo.jpg" alt="Republic Polytechnic">
-                                <img src="images/partners/tp-partner.png" alt="Temasek Polytechnic">
-                            </div>
+                            <div class="member-strips" data-partner-strip="ihls"></div>
                         </div>
                     </div>
                 </div>

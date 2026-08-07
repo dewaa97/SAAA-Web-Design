@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/nav-dropdown.css">
     <link rel="stylesheet" href="css/subpage.css">
+    <link rel="stylesheet" href="css/combobox.css">
+    <link rel="stylesheet" href="css/imdd-form-widgets.css">
 </head>
 <body>
 
@@ -28,6 +30,7 @@
         </div>
         <div class="nav-dropdown-menu">
             <a href="history.html">Our History</a>
+            <a href="milestones.html">Our Milestones</a>
             <a href="organization.html">Organisation Structure</a>
             <a href="stc.html">Standard Trading Conditions</a>
             <a href="programmes.html">Programmes</a>
@@ -42,7 +45,6 @@
         </div>
         <div class="nav-dropdown-menu">
             <a href="membership-application.html">Membership Sign-Up</a>
-            <a href="milestones.html">Milestones</a>
             <a href="members-listing.html">SAAA Members Listing</a>
             <a href="members-login.html">Members Portal Log In</a>
         </div>
@@ -113,13 +115,20 @@
 
 <form id="membership-application-form">
 <div class="membership-form-section">
-<h4>Types of Membership</h4>
-<p class="form-desc" style="margin-bottom: 16px;">Membership to enroll:</p>
-<div class="membership-checkbox-group">
-<label class="membership-checkbox-item"><input type="checkbox" name="membershipOrdinary" value="Ordinary"> Ordinary</label>
-<label class="membership-checkbox-item"><input type="checkbox" name="membershipAssociate" value="Associate"> Associate</label>
+<h4>Membership Type &amp; Classification</h4>
+<p class="form-desc" style="margin-bottom: 16px;">Select the membership category you are applying for and your company&rsquo;s industry classification.</p>
+<div class="membership-form-grid">
+<div class="membership-form-field imdd-form-field full">
+<label for="membershipType">Membership Type</label>
+<select id="membershipType" name="membershipType" required>
+<option value="">Select membership type</option>
+<option value="Ordinary">Ordinary</option>
+<option value="Associate">Associate</option>
+</select>
+<span class="membership-field-hint">Ordinary members are freight forwarders and agents; Associate members are airlines and service providers.</span>
 </div>
-<p class="form-desc" style="margin: 20px 0 16px;">Industry Classification:</p>
+</div>
+<p class="membership-field-label">Industry Classification <span class="membership-field-optional">(select all that apply)</span></p>
 <div class="membership-checkbox-group">
 <label class="membership-checkbox-item"><input type="checkbox" name="industryFreightForwarder" value="Freight Forwarder"> Freight Forwarder</label>
 <label class="membership-checkbox-item"><input type="checkbox" name="industryGroundHandling" value="Ground Handling Company"> Ground Handling Company</label>
@@ -134,78 +143,98 @@
 </div>
 
 <div class="membership-form-section">
-<h4>A. Details of Applicant Company</h4>
-<p class="form-desc" style="margin-bottom: 16px;">Company Type:</p>
-<div class="membership-checkbox-group">
-<label class="membership-checkbox-item"><input type="checkbox" name="companyLimited" value="Limited Liability Company"> Limited Liability Company</label>
-<label class="membership-checkbox-item"><input type="checkbox" name="companyPartnership" value="Partnership"> Partnership</label>
-<label class="membership-checkbox-item"><input type="checkbox" name="companySole" value="Sole Proprietorship"> Sole Proprietorship</label>
+<h4>Company Information</h4>
+<p class="membership-field-label">Company Type</p>
+<div class="membership-radio-group">
+<label class="membership-radio-item"><input type="radio" name="companyType" value="Limited Liability Company" required> Limited Liability Company</label>
+<label class="membership-radio-item"><input type="radio" name="companyType" value="Partnership"> Partnership</label>
+<label class="membership-radio-item"><input type="radio" name="companyType" value="Sole Proprietorship"> Sole Proprietorship</label>
 </div>
 <div class="membership-form-grid" style="margin-top: 20px;">
-<div class="membership-form-field full"><label for="companyName">a. Name of Applicant Company</label><input id="companyName" name="companyName" type="text" required></div>
-<div class="membership-form-field full"><label for="mainOfficeAddress">b. Address of Main Office</label><textarea id="mainOfficeAddress" name="mainOfficeAddress" rows="3" required></textarea></div>
-<div class="membership-form-field full"><label for="correspondenceAddress">c. Correspondence Address (if differs from above)</label><textarea id="correspondenceAddress" name="correspondenceAddress" rows="3"></textarea></div>
-<div class="membership-form-field"><label for="companyTelephone">d. Telephone</label><input id="companyTelephone" name="companyTelephone" type="text"></div>
-<div class="membership-form-field"><label for="companyFax">d. Fax</label><input id="companyFax" name="companyFax" type="text"></div>
-<div class="membership-form-field"><label for="companyEmail">e. Email Address of Company</label><input id="companyEmail" name="companyEmail" type="email" required></div>
-<div class="membership-form-field"><label for="companyWebsite">f. Website Address of Company</label><input id="companyWebsite" name="companyWebsite" type="url"></div>
-<div class="membership-form-field"><label for="staffStrength">Staff Strength of Company</label><input id="staffStrength" name="staffStrength" type="text"></div>
+<div class="membership-form-field full"><label for="companyName">Company Name</label><input id="companyName" name="companyName" type="text" required placeholder="Registered company name"></div>
+<div class="membership-form-field full"><label for="mainOfficeAddress">Main Office Address</label><textarea id="mainOfficeAddress" name="mainOfficeAddress" rows="3" required placeholder="Full address of main office"></textarea></div>
+<div class="membership-form-field full"><label for="correspondenceAddress">Correspondence Address <span class="membership-field-optional">(if different)</span></label><textarea id="correspondenceAddress" name="correspondenceAddress" rows="3" placeholder="Leave blank if same as main office"></textarea></div>
+<div class="membership-form-field"><label for="companyTelephone">Telephone</label><input id="companyTelephone" name="companyTelephone" type="text" placeholder="Office telephone"></div>
+<div class="membership-form-field"><label for="companyFax">Fax</label><input id="companyFax" name="companyFax" type="text" placeholder="Office fax"></div>
+<div class="membership-form-field"><label for="companyEmail">Company Email</label><input id="companyEmail" name="companyEmail" type="email" required placeholder="company@example.com"></div>
+<div class="membership-form-field"><label for="companyWebsite">Company Website</label><input id="companyWebsite" name="companyWebsite" type="url" placeholder="https://"></div>
+<div class="membership-form-field"><label for="staffStrength">Staff Strength</label><input id="staffStrength" name="staffStrength" type="text" placeholder="Number of employees"></div>
+</div>
 </div>
 
-<h4 style="margin-top: 28px;">g. Contact Person from Applicant Company</h4>
-<p class="form-desc">A maximum of two (2) Accredited Representatives are permitted for an Ordinary Member and one (1) for an Associate Member. An Accredited Representative should be a person in the minimum capacity of Manager.</p>
-
+<div class="membership-form-section">
+<h4>Contact Persons</h4>
+<p class="form-desc" style="margin-bottom: 16px;">A maximum of two Accredited Representatives are permitted for an Ordinary Member and one for an Associate Member. Each representative should be at Manager level or above.</p>
+<h5 class="membership-subheading">Primary Contact</h5>
 <div class="membership-form-grid">
-<div class="membership-form-field"><label for="contact1Name">Contact Person 1 — Name</label><input id="contact1Name" name="contact1Name" type="text" required></div>
+<div class="membership-form-field"><label for="contact1Name">Full Name</label><input id="contact1Name" name="contact1Name" type="text" required></div>
 <div class="membership-form-field"><label for="contact1Designation">Designation</label><input id="contact1Designation" name="contact1Designation" type="text" required></div>
 <div class="membership-form-field"><label for="contact1Email">Email Address</label><input id="contact1Email" name="contact1Email" type="email" required></div>
-<div class="membership-form-field"><label for="contact1Office">Contact Number (Office)</label><input id="contact1Office" name="contact1Office" type="text"></div>
-<div class="membership-form-field"><label for="contact1Mobile">Contact Number (Mobile)</label><input id="contact1Mobile" name="contact1Mobile" type="text"></div>
+<div class="membership-form-field"><label for="contact1Office">Office Number</label><input id="contact1Office" name="contact1Office" type="text"></div>
+<div class="membership-form-field"><label for="contact1Mobile">Mobile Number</label><input id="contact1Mobile" name="contact1Mobile" type="text"></div>
 </div>
-
-<div class="membership-form-grid" style="margin-top: 16px;">
-<div class="membership-form-field"><label for="contact2Name">Contact Person 2 — Name</label><input id="contact2Name" name="contact2Name" type="text"></div>
+<h5 class="membership-subheading" style="margin-top: 24px;">Secondary Contact <span class="membership-field-optional">(optional)</span></h5>
+<div class="membership-form-grid">
+<div class="membership-form-field"><label for="contact2Name">Full Name</label><input id="contact2Name" name="contact2Name" type="text"></div>
 <div class="membership-form-field"><label for="contact2Designation">Designation</label><input id="contact2Designation" name="contact2Designation" type="text"></div>
 <div class="membership-form-field"><label for="contact2Email">Email Address</label><input id="contact2Email" name="contact2Email" type="email"></div>
-<div class="membership-form-field"><label for="contact2Office">Contact Number (Office)</label><input id="contact2Office" name="contact2Office" type="text"></div>
-<div class="membership-form-field"><label for="contact2Mobile">Contact Number (Mobile)</label><input id="contact2Mobile" name="contact2Mobile" type="text"></div>
+<div class="membership-form-field"><label for="contact2Office">Office Number</label><input id="contact2Office" name="contact2Office" type="text"></div>
+<div class="membership-form-field"><label for="contact2Mobile">Mobile Number</label><input id="contact2Mobile" name="contact2Mobile" type="text"></div>
 </div>
 </div>
 
 <div class="membership-form-section">
-<h4>B. Other Information</h4>
+<h4>Additional Information</h4>
 <div class="membership-form-grid">
-<div class="membership-form-field"><label for="iataMember">1. Are you currently an existing member of IATA?</label>
-<select id="iataMember" name="iataMember"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
-<div class="membership-form-field"><label for="otherAssociations">2. Registered member in other logistics related associations?</label>
-<select id="otherAssociations" name="otherAssociations"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
-<div class="membership-form-field full"><label for="otherAssociationsDetails">If yes, please state (e.g. SLA, CDAS, STA)</label><input id="otherAssociationsDetails" name="otherAssociationsDetails" type="text"></div>
-<div class="membership-form-field"><label for="criminalHistory">3. Any director/shareholder/officer previously found guilty of a criminal offence?</label>
-<select id="criminalHistory" name="criminalHistory"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
-<div class="membership-form-field full"><label for="criminalHistoryDetails">If yes, please state details</label><textarea id="criminalHistoryDetails" name="criminalHistoryDetails" rows="3"></textarea></div>
+<div class="membership-form-field imdd-form-field"><label for="iataMember">Existing IATA Member?</label>
+<select id="iataMember" name="iataMember"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select>
+<span class="membership-field-hint">If yes, please attach supporting documents to your email.</span>
+</div>
+<div class="membership-form-field imdd-form-field"><label for="otherAssociations">Member of Other Logistics Associations?</label>
+<select id="otherAssociations" name="otherAssociations"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select>
+<span class="membership-field-hint">e.g. SLA, CDAS, STA</span>
+</div>
+<div class="membership-form-field full"><label for="otherAssociationsDetails">Association Details</label><input id="otherAssociationsDetails" name="otherAssociationsDetails" type="text" placeholder="List associations if applicable"></div>
+<div class="membership-form-field imdd-form-field full"><label for="criminalHistory">Directors/Officers Criminal Offence History?</label>
+<select id="criminalHistory" name="criminalHistory"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select>
+<span class="membership-field-hint">Any director, shareholder or principal officer previously found guilty of a criminal offence.</span>
+</div>
+<div class="membership-form-field full"><label for="criminalHistoryDetails">Criminal Offence Details</label><textarea id="criminalHistoryDetails" name="criminalHistoryDetails" rows="3" placeholder="Provide details if applicable"></textarea></div>
 </div>
 </div>
 
 <div class="membership-form-section">
-<h4>C. Applicant&rsquo;s Declaration</h4>
-<p class="form-desc">We declare that all information given is accurate and correct and we have not wilfully withheld any material fact. We declare that, if admitted as a member of SAAA@Singapore, we shall be bound by the Constitution and Byelaws of the Association and will undertake to support the Association&rsquo;s objectives. We also undertake to inform the Association within seven days of any changes to the above information as and when applicable.</p>
-<p class="form-desc">We hereby undertake to pay the Association&rsquo;s entrance fee of $600 (promotional rate), along with the pro-rated subscription fee for the first year. The standard annual subscription fee thereafter is $1,000.</p>
+<h4>Declaration &amp; Payment</h4>
+<p class="form-desc">We declare that all information given is accurate and correct and we have not wilfully withheld any material fact. If admitted as a member of SAAA@Singapore, we shall be bound by the Constitution and Byelaws of the Association and will undertake to support the Association&rsquo;s objectives. We undertake to inform the Association within seven days of any changes to the above information.</p>
+<p class="form-desc">We hereby undertake to pay the entrance fee of $600 (promotional rate), along with the pro-rated subscription fee for the first year. The standard annual subscription fee thereafter is $1,000.</p>
 
 <div class="membership-payment-box">
-<strong>Payment Details</strong><br>
-Beneficiary Name: SAAA@SINGAPORE<br>
-Bank Name: DBS BANK LTD (7171)<br>
-Bank Account No: 004-011061-7 | Swift Code: DBSSSGSG | Branch: 004<br>
-Currency: SGD | Company UEN: S71SS0030A | PayNow ID: S71SS0030A<br>
-Email remittance to: <a href="mailto:finance@saaa.org.sg">finance@saaa.org.sg</a>
+<div class="membership-payment-grid">
+<div>
+<strong>Bank Transfer Details</strong>
+<ul class="membership-payment-list">
+<li>Beneficiary: SAAA@SINGAPORE</li>
+<li>Bank: DBS BANK LTD (7171)</li>
+<li>Account No: 004-011061-7</li>
+<li>Swift Code: DBSSSGSG | Branch: 004</li>
+<li>Currency: SGD | UEN: S71SS0030A</li>
+<li>Email remittance to: <a href="mailto:finance@saaa.org.sg">finance@saaa.org.sg</a></li>
+</ul>
+</div>
+<div class="membership-paynow-block">
+<img src="images/paynow-logo.svg" alt="PayNow" class="membership-paynow-logo">
+<p><strong>PayNow ID:</strong> S71SS0030A</p>
+<p class="membership-field-hint">Scan or use the PayNow ID above when making payment.</p>
+</div>
+</div>
 </div>
 
 <div class="membership-form-grid" style="margin-top: 20px;">
-<div class="membership-form-field"><label for="declarationName">Name</label><input id="declarationName" name="declarationName" type="text" required></div>
+<div class="membership-form-field"><label for="declarationName">Authorised Signatory Name</label><input id="declarationName" name="declarationName" type="text" required></div>
 <div class="membership-form-field"><label for="declarationDesignation">Designation</label><input id="declarationDesignation" name="declarationDesignation" type="text" required></div>
-<div class="membership-form-field"><label for="declarationDate">Date</label><input id="declarationDate" name="declarationDate" type="date" required></div>
+<div class="membership-form-field imdd-form-field"><label for="declarationDate">Date</label><input id="declarationDate" name="declarationDate" type="date" required></div>
 </div>
-<p class="membership-form-note">Company stamp and signature should be included when you submit the completed form and supporting documents.</p>
+<p class="membership-form-note">Please include your company stamp and signature when you submit the completed form and supporting documents.</p>
 </div>
 
 <div class="membership-form-section membership-official-use">
@@ -269,6 +298,8 @@ Email remittance to: <a href="mailto:finance@saaa.org.sg">finance@saaa.org.sg</a
 </footer>
 
 <script src="js/nav.js"></script>
+<script src="js/combobox.js"></script>
+<script src="js/imdd-form-widgets.js"></script>
 <script src="js/membership-application.js"></script>
 </body>
 </html>
