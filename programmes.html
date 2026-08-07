@@ -839,6 +839,27 @@
         :root {
             --blue-50: #eff6ff;
         }
+
+        .brand-saaa {
+            color: var(--red-600);
+        }
+
+        .programme-cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .steps-timeline-list--4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        @media (max-width: 1099px) {
+            .steps-timeline-list--4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
@@ -952,9 +973,125 @@
             <div class="programme-card">
                 <h2>Project IMDD</h2>
                 <p>
-                    A talent development initiative enhancing logistics skills through mentorship, skills competency training, and long-term career progression for young talents in Singapore.
+                    <strong>Project IMDD</strong> is a talent development initiative led by <span class="brand-saaa">SAAA</span>@Singapore as part of SAAA's industry programmes. It focuses on enhancing the logistics skills of young talents in Singapore's air cargo and logistics sector through mentorship, hands-on training, and long-term career development.
                 </p>
-                <a href="project-imdd.html" class="btn btn-primary" style="margin-top: 8px;">View Project IMDD</a>
+                <p>
+                    Partnering with ITE and the five polytechnics, the programme pairs students with forward-looking SAAA member companies through internships and work-study initiatives. By investing in skills competency training before company-specific development, Project IMDD aims to attract, develop, and retain the next generation of high-skilled, tech-savvy logisticians.
+                </p>
+                <p>
+                    The initiative leverages digitalisation, sustainability, and generative artificial intelligence to address evolving supply chain challenges — building a sustainable talent pipeline for the air cargo industry.
+                </p>
+
+                <ul class="features-list">
+                    <li>
+                        <span class="icon-check">&#10003;</span>
+                        Mentorship with partner logistics companies
+                    </li>
+                    <li>
+                        <span class="icon-check">&#10003;</span>
+                        SAAA skills competency training programmes
+                    </li>
+                    <li>
+                        <span class="icon-check">&#10003;</span>
+                        Partnerships with ITE and polytechnics
+                    </li>
+                    <li>
+                        <span class="icon-check">&#10003;</span>
+                        Career progression and further education pathways
+                    </li>
+                </ul>
+
+                <h3 class="subsection-title">Who It's For</h3>
+                <div class="apply-intro">
+                    <p>
+                        <strong>For Employers:</strong> SAAA member companies can partner with Project IMDD to attract and retain young talent, access quality skills-based training, and build a loyal workforce that grows into skilled logistics professionals. <a href="project-imdd-employers.html">Learn more for employers</a>
+                    </p>
+                    <p>
+                        <strong>For Applicants:</strong> Students and young talents exploring a future in logistics can gain hands-on experience across diverse roles, with holistic career progression beyond traditional internships. <a href="project-imdd-applicants.html">Learn more for applicants</a>
+                    </p>
+                    <p>
+                        Browse <a href="project-imdd-companies.html">partner companies</a> currently offering internship and work-study opportunities through Project IMDD.
+                    </p>
+                </div>
+
+                <h3 class="subsection-title">How to Get Involved</h3>
+                <div class="apply-intro">
+                    <p>
+                        Interested employers and applicants can explore the full Project IMDD hub for programme details, training schedules, company listings, and application information.
+                    </p>
+                </div>
+
+                <div class="application-process">
+                    <h4>Programme Pathway</h4>
+                    <div class="steps-timeline">
+                        <ol class="steps-timeline-list steps-timeline-list--4" aria-label="Project IMDD programme pathway">
+                            <li class="step-timeline-item">
+                                <div class="step-icon-wrap icon-1" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                </div>
+                                <div class="step-timeline-rail" aria-hidden="true">
+                                    <span class="step-timeline-number">1</span>
+                                </div>
+                                <div class="step-timeline-body">
+                                    <h4>Selection</h4>
+                                    <p>Interns are paired with pre-validated SAAA member logistics companies for internship or work-study placements.</p>
+                                </div>
+                            </li>
+                            <li class="step-timeline-item">
+                                <div class="step-icon-wrap icon-2" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                                </div>
+                                <div class="step-timeline-rail" aria-hidden="true">
+                                    <span class="step-timeline-number">2</span>
+                                </div>
+                                <div class="step-timeline-body">
+                                    <h4>Skills Training</h4>
+                                    <p>Selected candidates undergo complimentary SAAA skills competency training throughout the programme.</p>
+                                </div>
+                            </li>
+                            <li class="step-timeline-item">
+                                <div class="step-icon-wrap icon-3" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                </div>
+                                <div class="step-timeline-rail" aria-hidden="true">
+                                    <span class="step-timeline-number">3</span>
+                                </div>
+                                <div class="step-timeline-body">
+                                    <h4>Mentorship</h4>
+                                    <p>Accelerated talent development through mentorship as full-time employees with partner companies.</p>
+                                </div>
+                            </li>
+                            <li class="step-timeline-item">
+                                <div class="step-icon-wrap icon-4" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                </div>
+                                <div class="step-timeline-rail" aria-hidden="true">
+                                    <span class="step-timeline-number">4</span>
+                                </div>
+                                <div class="step-timeline-body">
+                                    <h4>Further Education</h4>
+                                    <p>Direct entry to Work Study Degree or Work Study Specialist Diploma programmes.</p>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="programme-cta-row">
+                    <a href="project-imdd.html" class="btn btn-primary">View Project IMDD Hub</a>
+                    <a href="project-imdd-employers.html" class="btn btn-secondary">For Employers</a>
+                    <a href="project-imdd-applicants.html" class="btn btn-secondary">For Applicants</a>
+                </div>
+
+                <div class="contact-block">
+                    <p><strong>For more enquiries on Project IMDD, please contact</strong></p>
+                    <div class="contact-row">
+                        <span class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <a href="mailto:events@saaa.org.sg" class="contact-email">events@saaa.org.sg</a>
+                        </span>
+                    </div>
+                </div>
             </div>
 
             <!-- Career Conversion Programme (CCP) -->
