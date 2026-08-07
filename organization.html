@@ -140,6 +140,7 @@
             --sec-line: var(--slate-300);
             --sec-box-min: 200px;
             --sec-box-max: 320px;
+            --branch-connector-h: 32px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -167,6 +168,7 @@
             gap: var(--sec-split-gap);
             width: 100%;
             padding-top: 28px;
+            isolation: isolate;
         }
         .secretariat-tier-split::before {
             content: "";
@@ -177,6 +179,8 @@
             right: calc((100% - var(--sec-split-gap)) / 3);
             height: 2px;
             background: var(--sec-line);
+            z-index: 0;
+            pointer-events: none;
         }
         .secretariat-branch {
             position: relative;
@@ -185,6 +189,7 @@
             align-items: center;
             gap: 0;
             min-width: 0;
+            z-index: 0;
         }
         .secretariat-branch::before {
             content: "";
@@ -195,12 +200,17 @@
             height: 28px;
             transform: translateX(-50%);
             background: var(--sec-line);
+            z-index: 0;
+            pointer-events: none;
         }
         .branch-header {
             width: fit-content;
             max-width: min(100%, 340px);
             min-width: min(100%, var(--sec-box-min));
-            background: white;
+            position: relative;
+            z-index: 2;
+            isolation: isolate;
+            background: var(--white);
             border: 1px solid var(--slate-200);
             border-radius: var(--radius);
             padding: 12px 16px;
@@ -209,11 +219,40 @@
             font-size: 0.95rem;
             font-weight: 700;
             color: var(--slate-800);
-            margin-bottom: 0;
+            margin-bottom: var(--branch-connector-h);
+            /* Opaque halo masks connector lines at label edges */
+            box-shadow: 0 0 0 6px var(--white);
         }
-        .branch-header.cargo { font-size: 0.88rem; line-height: 1.35; }
+        /* Center strip masks vertical/horizontal connector lines behind label */
+        .branch-header::before {
+            content: "";
+            position: absolute;
+            left: -24px;
+            right: -24px;
+            top: 50%;
+            height: 8px;
+            transform: translateY(-50%);
+            background: var(--white);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .branch-header::after {
+            content: "";
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            width: 10px;
+            height: calc(100% + 40px);
+            transform: translateX(-50%);
+            background: var(--white);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .branch-header.cargo {
+            font-size: 0.88rem;
+            line-height: 1.35;
+        }
         .branch-departments {
-            --branch-connector-h: 24px;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -221,8 +260,9 @@
             gap: 0;
             width: 100%;
             padding-top: var(--branch-connector-h);
+            z-index: 0;
         }
-        /* Vertical drop from branch header to child junction (Singapore single column) */
+        /* Vertical drop: margin gap + padding down to dept card (Singapore) */
         .branch-departments:not(.cargo-grid)::before {
             content: "";
             position: absolute;
@@ -232,7 +272,7 @@
             height: calc(2 * var(--branch-connector-h));
             transform: translateX(-50%);
             background: var(--sec-line);
-            z-index: 1;
+            z-index: 0;
             pointer-events: none;
         }
         .branch-departments.cargo-grid {
@@ -253,7 +293,7 @@
             height: var(--branch-connector-h);
             transform: translate(-50%, -100%);
             background: var(--sec-line);
-            z-index: 1;
+            z-index: 0;
             pointer-events: none;
         }
         .dept-column {
@@ -273,7 +313,7 @@
             height: var(--branch-connector-h);
             transform: translateX(-50%);
             background: var(--sec-line);
-            z-index: 1;
+            z-index: 0;
             pointer-events: none;
         }
         /* Horizontal split across 3 cargo columns (gap-aware column centers) */
@@ -285,7 +325,7 @@
             right: calc((100% - 2 * var(--cargo-col-gap)) / 6);
             height: 2px;
             background: var(--sec-line);
-            z-index: 1;
+            z-index: 0;
             pointer-events: none;
         }
         .dept-pill {
@@ -309,7 +349,9 @@
         .dept-pill.training { background: #059669; }
         .dept-pill.biz-ops { background: #1d4ed8; }
         .sec-card {
-            background: white;
+            position: relative;
+            z-index: 2;
+            background: var(--white);
             border: 1px solid var(--slate-200);
             border-radius: var(--radius);
             padding: 16px 14px;
@@ -318,13 +360,16 @@
             width: fit-content;
             max-width: min(100%, var(--sec-box-max));
             min-width: min(100%, var(--sec-box-min));
+            box-shadow: 0 0 0 6px var(--white);
         }
         .sec-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); border-color: var(--slate-300); transform: translateY(-2px); }
         .dept-card {
+            position: relative;
+            z-index: 2;
             width: fit-content;
             max-width: min(100%, var(--sec-box-max));
             min-width: min(100%, var(--sec-box-min));
-            background: white;
+            background: var(--white);
             border: 1px solid var(--slate-200);
             border-radius: var(--radius);
             padding: 14px 12px;
@@ -379,7 +424,22 @@
         .footer-bottom .legal a:hover { color: white; }
         
         
+        @media (max-width: 1280px) and (min-width: 1101px) {
+            .secretariat-chart {
+                --branch-connector-h: 36px;
+            }
+        }
         @media (max-width: 1100px) {
+            .branch-header,
+            .sec-card {
+                box-shadow: none;
+            }
+            .branch-header::after {
+                display: none;
+            }
+            .branch-header::before {
+                display: none;
+            }
             .branch-departments {
                 padding-top: 0;
             }
@@ -457,7 +517,9 @@
             .member-role { font-size: 11px; }
             .member-company { font-size: 10px; }
             .secretariat-vline { height: 20px; }
-            .branch-departments { --branch-connector-h: 20px; }
+            .secretariat-chart { --branch-connector-h: 28px; }
+            .branch-header,
+            .sec-card { box-shadow: none; }
             .branch-departments.cargo-grid { gap: 24px; }
             .footer-grid { grid-template-columns: 1fr; gap: 32px; }
             .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
