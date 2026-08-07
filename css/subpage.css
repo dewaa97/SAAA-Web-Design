@@ -924,6 +924,24 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     gap: 8px;
 }
 
+.milestone-era-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: white;
+    border: 2px solid var(--red-100);
+    color: var(--red-600);
+    box-shadow: 0 4px 12px rgba(196, 30, 58, 0.12);
+}
+
+.milestone-era-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
 .milestone-era-badge {
     display: flex;
     align-items: center;
@@ -964,6 +982,26 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--slate-900);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.milestone-era-header-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--red-50);
+    color: var(--red-600);
+    flex-shrink: 0;
+}
+
+.milestone-era-header-icon svg {
+    width: 18px;
+    height: 18px;
 }
 
 .milestone-events {
@@ -973,11 +1011,33 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
 
 .milestone-event {
     display: grid;
-    grid-template-columns: 88px 1fr;
-    gap: 20px;
+    grid-template-columns: 36px 88px 1fr;
+    gap: 16px;
     padding: 18px 24px;
     border-bottom: 1px solid var(--slate-100);
     align-items: start;
+    transition: background-color 0.2s ease;
+}
+
+.milestone-event:hover {
+    background: var(--slate-50);
+}
+
+.milestone-event-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--red-50);
+    color: var(--red-600);
+    margin-top: 2px;
+}
+
+.milestone-event-icon svg {
+    width: 16px;
+    height: 16px;
 }
 
 .milestone-event:last-child { border-bottom: none; }
@@ -1007,7 +1067,11 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     .milestones-journey::before { left: 20px; }
     .milestone-era { grid-template-columns: 48px 1fr; gap: 16px; }
     .milestone-era-badge { width: 44px; height: 44px; font-size: 10px; }
-    .milestone-event { grid-template-columns: 1fr; gap: 10px; }
+    .milestone-era-icon { width: 34px; height: 34px; }
+    .milestone-era-icon svg { width: 16px; height: 16px; }
+    .milestone-event { grid-template-columns: 32px 1fr; gap: 10px; }
+    .milestone-event-year { grid-column: 2; justify-self: start; }
+    .milestone-event-text { grid-column: 2; }
     .milestone-era-header { font-size: 1.25rem; }
 }
 
@@ -1155,6 +1219,57 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
 .membership-form-field .date-picker {
     width: 100%;
 }
+.membership-type-field {
+    max-width: 320px;
+}
+.membership-type-field .combobox {
+    max-width: 320px;
+}
+.membership-conditional-field {
+    display: none;
+}
+.membership-conditional-field.is-visible {
+    display: flex;
+}
+.membership-bank-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+}
+.membership-bank-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 14px;
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-sm);
+}
+.membership-bank-item.full-width {
+    grid-column: 1 / -1;
+}
+.membership-bank-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--slate-500);
+}
+.membership-bank-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--slate-800);
+    line-height: 1.5;
+    word-break: break-word;
+}
+.membership-bank-value a {
+    color: var(--red-600);
+    text-decoration: none;
+}
+.membership-bank-value a:hover {
+    text-decoration: underline;
+}
 .membership-payment-grid {
     display: grid;
     grid-template-columns: 1.4fr 1fr;
@@ -1178,8 +1293,17 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     text-align: center;
 }
 .membership-paynow-logo {
-    max-width: 160px;
+    max-width: 120px;
     height: auto;
+}
+.membership-paynow-qr {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    background: white;
+    padding: 8px;
+    border: 1px solid var(--slate-200);
 }
 .membership-official-use {
     padding: 24px;
@@ -1207,9 +1331,15 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
 @media (max-width: 768px) {
     .milestone-item { grid-template-columns: 1fr; gap: 8px; }
     .membership-form-grid,
-    .membership-checkbox-group { grid-template-columns: 1fr; }
+    .membership-checkbox-group,
+    .membership-bank-grid { grid-template-columns: 1fr; }
     .membership-payment-grid { grid-template-columns: 1fr; }
     .membership-form-card { padding: 24px; }
+    .membership-type-field,
+    .membership-type-field .combobox { max-width: 100%; }
+    .membership-form-field .combobox,
+    .membership-form-field .date-picker { width: 100%; }
+    .membership-form-actions .btn { width: 100%; }
 }
 
 ::-webkit-scrollbar { width: 8px; }

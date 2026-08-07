@@ -1147,28 +1147,20 @@
             animation-play-state: paused;
         }
 
-        .member-strips img {
-            height: 70px;
-            width: auto;
-            object-fit: contain;
-            display: block;
-            margin-right: 32px;
-            flex-shrink: 0;
-        }
-
         .logo-cell {
             flex-shrink: 0;
-            width: 148px;
-            height: 64px;
-            padding: 8px 20px;
+            width: 160px;
+            height: 72px;
+            padding: 8px 16px;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-sizing: border-box;
         }
 
         .logo-cell img {
+            max-width: 100%;
             max-height: 48px;
-            max-width: 120px;
             width: auto;
             height: auto;
             object-fit: contain;
@@ -1214,17 +1206,6 @@
 
         .partner-marquee-row .member-carousel-wrapper {
             margin-bottom: 0;
-        }
-
-        .partner-marquee-row .logo-cell {
-            width: 160px;
-            height: 56px;
-            padding: 6px 24px;
-        }
-
-        .partner-marquee-row .logo-cell img {
-            max-height: 44px;
-            max-width: 128px;
         }
 
         .partner-marquee-row.reverse .member-strips {
@@ -1813,6 +1794,20 @@
                 justify-content: center;
             }
 
+            .logo-cell {
+                width: 140px;
+                height: 64px;
+                padding: 6px 12px;
+            }
+
+            .logo-cell img {
+                max-height: 40px;
+            }
+
+            .partner-marquee-label {
+                margin: 0 16px 12px;
+            }
+
             .training-row .content .title {
                 font-size: 15px;
             }
@@ -1938,7 +1933,7 @@
         </div>
         <div class="nav-dropdown-menu">
             <a href="history.html">Our History</a>
-            <a href="milestones.html">Our Milestones</a>
+            <a href="milestones.html">Milestones</a>
             <a href="organization.html">Organisation Structure</a>
             <a href="stc.html">Standard Trading Conditions</a>
             <a href="programmes.html">Programmes</a>

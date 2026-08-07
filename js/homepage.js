@@ -163,7 +163,7 @@
             industry: [
                 { src: 'images/partners/iata-partner.png', alt: 'IATA' },
                 { src: 'images/partners/icao-partner.svg', alt: 'ICAO' },
-                { src: 'images/partners/sats-partner.png', alt: 'SATS' },
+                { src: 'images/partners/sats-logo.svg', alt: 'SATS' },
                 { src: 'images/partners/dnata-partner.png', alt: 'dnata' },
                 { src: 'images/partners/ccn-partner.png', alt: 'Cargo Community Network' }
             ],
@@ -176,7 +176,7 @@
             ],
             ihls: [
                 { src: 'images/partners/rp-partner.png', alt: 'Republic Polytechnic' },
-                { src: 'images/partners/tp-partner.png', alt: 'Temasek Polytechnic' },
+                { src: 'images/partners/tp-logo.svg', alt: 'Temasek Polytechnic' },
                 { src: 'images/partners/sp-logo.png', alt: 'Singapore Polytechnic' },
                 { src: 'images/partners/nyp-logo.svg', alt: 'Nanyang Polytechnic' },
                 { src: 'images/partners/np-logo.svg', alt: 'Ngee Ann Polytechnic' },

@@ -30,7 +30,7 @@
         </div>
         <div class="nav-dropdown-menu">
             <a href="history.html">Our History</a>
-            <a href="milestones.html">Our Milestones</a>
+            <a href="milestones.html">Milestones</a>
             <a href="organization.html">Organisation Structure</a>
             <a href="stc.html">Standard Trading Conditions</a>
             <a href="programmes.html">Programmes</a>
@@ -118,7 +118,7 @@
 <h4>Membership Type &amp; Classification</h4>
 <p class="form-desc" style="margin-bottom: 16px;">Select the membership category you are applying for and your company&rsquo;s industry classification.</p>
 <div class="membership-form-grid">
-<div class="membership-form-field imdd-form-field full">
+<div class="membership-form-field imdd-form-field membership-type-field">
 <label for="membershipType">Membership Type</label>
 <select id="membershipType" name="membershipType" required>
 <option value="">Select membership type</option>
@@ -138,7 +138,11 @@
 <label class="membership-checkbox-item"><input type="checkbox" name="industryLocalTrucking" value="Local Trucking"> Local Trucking</label>
 <label class="membership-checkbox-item"><input type="checkbox" name="industryAirRelated" value="Air Related"> Air Related</label>
 <label class="membership-checkbox-item"><input type="checkbox" name="industryGovernmentBodies" value="Government Bodies"> Government Bodies</label>
-<label class="membership-checkbox-item"><input type="checkbox" name="industryOthers" value="Others"> Others</label>
+<label class="membership-checkbox-item"><input type="checkbox" name="industryOthers" id="industryOthers" value="Others"> Others</label>
+</div>
+<div class="membership-form-field full membership-conditional-field" id="industryOthersField">
+<label for="industryOthersSpecify">Please specify industry</label>
+<input id="industryOthersSpecify" name="industryOthersSpecify" type="text" placeholder="Enter your industry classification">
 </div>
 </div>
 
@@ -164,22 +168,23 @@
 
 <div class="membership-form-section">
 <h4>Contact Persons</h4>
-<p class="form-desc" style="margin-bottom: 16px;">A maximum of two Accredited Representatives are permitted for an Ordinary Member and one for an Associate Member. Each representative should be at Manager level or above.</p>
-<h5 class="membership-subheading">Primary Contact</h5>
+<p class="form-desc" style="margin-bottom: 8px;">A maximum of two Accredited Representatives are permitted for an Ordinary Member and one for an Associate Member.</p>
+<p class="membership-form-note" style="margin-top: 0; margin-bottom: 16px;"><sup>1</sup> An Accredited Representative should be a person in the minimum capacity of Manager, who can decide on the Company&rsquo;s behalf.</p>
+<h5 class="membership-subheading">Contact Person 1</h5>
 <div class="membership-form-grid">
-<div class="membership-form-field"><label for="contact1Name">Full Name</label><input id="contact1Name" name="contact1Name" type="text" required></div>
+<div class="membership-form-field"><label for="contact1Name">Name</label><input id="contact1Name" name="contact1Name" type="text" required></div>
 <div class="membership-form-field"><label for="contact1Designation">Designation</label><input id="contact1Designation" name="contact1Designation" type="text" required></div>
-<div class="membership-form-field"><label for="contact1Email">Email Address</label><input id="contact1Email" name="contact1Email" type="email" required></div>
-<div class="membership-form-field"><label for="contact1Office">Office Number</label><input id="contact1Office" name="contact1Office" type="text"></div>
-<div class="membership-form-field"><label for="contact1Mobile">Mobile Number</label><input id="contact1Mobile" name="contact1Mobile" type="text"></div>
+<div class="membership-form-field"><label for="contact1Email">Email</label><input id="contact1Email" name="contact1Email" type="email" required></div>
+<div class="membership-form-field"><label for="contact1Office">Contact Number (Office)</label><input id="contact1Office" name="contact1Office" type="text"></div>
+<div class="membership-form-field"><label for="contact1Mobile">Contact Number (Mobile)</label><input id="contact1Mobile" name="contact1Mobile" type="text"></div>
 </div>
-<h5 class="membership-subheading" style="margin-top: 24px;">Secondary Contact <span class="membership-field-optional">(optional)</span></h5>
+<h5 class="membership-subheading" style="margin-top: 24px;">Contact Person 2 <span class="membership-field-optional">(optional)</span></h5>
 <div class="membership-form-grid">
-<div class="membership-form-field"><label for="contact2Name">Full Name</label><input id="contact2Name" name="contact2Name" type="text"></div>
+<div class="membership-form-field"><label for="contact2Name">Name</label><input id="contact2Name" name="contact2Name" type="text"></div>
 <div class="membership-form-field"><label for="contact2Designation">Designation</label><input id="contact2Designation" name="contact2Designation" type="text"></div>
-<div class="membership-form-field"><label for="contact2Email">Email Address</label><input id="contact2Email" name="contact2Email" type="email"></div>
-<div class="membership-form-field"><label for="contact2Office">Office Number</label><input id="contact2Office" name="contact2Office" type="text"></div>
-<div class="membership-form-field"><label for="contact2Mobile">Mobile Number</label><input id="contact2Mobile" name="contact2Mobile" type="text"></div>
+<div class="membership-form-field"><label for="contact2Email">Email</label><input id="contact2Email" name="contact2Email" type="email"></div>
+<div class="membership-form-field"><label for="contact2Office">Contact Number (Office)</label><input id="contact2Office" name="contact2Office" type="text"></div>
+<div class="membership-form-field"><label for="contact2Mobile">Contact Number (Mobile)</label><input id="contact2Mobile" name="contact2Mobile" type="text"></div>
 </div>
 </div>
 
@@ -188,18 +193,28 @@
 <div class="membership-form-grid">
 <div class="membership-form-field imdd-form-field"><label for="iataMember">Existing IATA Member?</label>
 <select id="iataMember" name="iataMember"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select>
-<span class="membership-field-hint">If yes, please attach supporting documents to your email.</span>
+</div>
+<div class="membership-form-field imdd-form-field membership-conditional-field full" id="iataUploadField">
+<label for="iataUpload">IATA Supporting Documents</label>
+<input id="iataUpload" name="iataUpload" type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+<span class="membership-field-hint">Upload supporting documents for your IATA membership.</span>
 </div>
 <div class="membership-form-field imdd-form-field"><label for="otherAssociations">Member of Other Logistics Associations?</label>
 <select id="otherAssociations" name="otherAssociations"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select>
 <span class="membership-field-hint">e.g. SLA, CDAS, STA</span>
 </div>
-<div class="membership-form-field full"><label for="otherAssociationsDetails">Association Details</label><input id="otherAssociationsDetails" name="otherAssociationsDetails" type="text" placeholder="List associations if applicable"></div>
+<div class="membership-form-field membership-conditional-field full" id="otherAssociationsField">
+<label for="otherAssociationsDetails">Association Name(s)</label>
+<input id="otherAssociationsDetails" name="otherAssociationsDetails" type="text" placeholder="List association name(s)">
+</div>
 <div class="membership-form-field imdd-form-field full"><label for="criminalHistory">Directors/Officers Criminal Offence History?</label>
 <select id="criminalHistory" name="criminalHistory"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select>
 <span class="membership-field-hint">Any director, shareholder or principal officer previously found guilty of a criminal offence.</span>
 </div>
-<div class="membership-form-field full"><label for="criminalHistoryDetails">Criminal Offence Details</label><textarea id="criminalHistoryDetails" name="criminalHistoryDetails" rows="3" placeholder="Provide details if applicable"></textarea></div>
+<div class="membership-form-field full membership-conditional-field" id="criminalHistoryField">
+<label for="criminalHistoryDetails">Criminal Offence Details</label>
+<textarea id="criminalHistoryDetails" name="criminalHistoryDetails" rows="3" placeholder="Provide details if applicable"></textarea>
+</div>
 </div>
 </div>
 
@@ -212,19 +227,24 @@
 <div class="membership-payment-grid">
 <div>
 <strong>Bank Transfer Details</strong>
-<ul class="membership-payment-list">
-<li>Beneficiary: SAAA@SINGAPORE</li>
-<li>Bank: DBS BANK LTD (7171)</li>
-<li>Account No: 004-011061-7</li>
-<li>Swift Code: DBSSSGSG | Branch: 004</li>
-<li>Currency: SGD | UEN: S71SS0030A</li>
-<li>Email remittance to: <a href="mailto:finance@saaa.org.sg">finance@saaa.org.sg</a></li>
-</ul>
+<div class="membership-bank-grid">
+<div class="membership-bank-item"><span class="membership-bank-label">Beneficiary Name</span><span class="membership-bank-value">SAAA@SINGAPORE</span></div>
+<div class="membership-bank-item"><span class="membership-bank-label">Bank Name</span><span class="membership-bank-value">DBS BANK LTD</span></div>
+<div class="membership-bank-item"><span class="membership-bank-label">Bank Code</span><span class="membership-bank-value">7171</span></div>
+<div class="membership-bank-item"><span class="membership-bank-label">Bank Branch Code</span><span class="membership-bank-value">004</span></div>
+<div class="membership-bank-item full-width"><span class="membership-bank-label">Bank Address</span><span class="membership-bank-value">12 MARINA BOULEVARD, MARINA BAY FINANCIAL CENTRE TOWER 3, S-018982</span></div>
+<div class="membership-bank-item"><span class="membership-bank-label">Bank Account No.</span><span class="membership-bank-value">004-011061-7</span></div>
+<div class="membership-bank-item"><span class="membership-bank-label">Swift Code</span><span class="membership-bank-value">DBSSSGSG</span></div>
+<div class="membership-bank-item"><span class="membership-bank-label">Currency</span><span class="membership-bank-value">SGD</span></div>
+<div class="membership-bank-item"><span class="membership-bank-label">Company&rsquo;s UEN</span><span class="membership-bank-value">S71SS0030A</span></div>
+<div class="membership-bank-item"><span class="membership-bank-label">Email Remittance To</span><span class="membership-bank-value"><a href="mailto:finance@saaa.org.sg">finance@saaa.org.sg</a></span></div>
+</div>
 </div>
 <div class="membership-paynow-block">
 <img src="images/paynow-logo.svg" alt="PayNow" class="membership-paynow-logo">
+<img src="images/paynow-qr.png" alt="PayNow QR Code for S71SS0030A" class="membership-paynow-qr">
 <p><strong>PayNow ID:</strong> S71SS0030A</p>
-<p class="membership-field-hint">Scan or use the PayNow ID above when making payment.</p>
+<p class="membership-field-hint">Scan the QR code or use the PayNow ID above when making payment.</p>
 </div>
 </div>
 </div>
@@ -241,16 +261,31 @@
 <h4>For Official Use</h4>
 <p class="form-desc">This section is for SAAA internal processing. Applicants do not need to complete the fields below.</p>
 <div class="membership-form-grid">
-<div class="membership-form-field"><label>Approved as</label><input type="text" disabled placeholder="Ordinary / Associate Member"></div>
-<div class="membership-form-field"><label>Proposer (Company Name)</label><input type="text" disabled></div>
-<div class="membership-form-field"><label>Seconder (Company Name)</label><input type="text" disabled></div>
+<div class="membership-form-field imdd-form-field"><label for="officialApprovedAs">Approved as</label>
+<select id="officialApprovedAs" name="officialApprovedAs" disabled>
+<option value="">Select</option>
+<option value="Ordinary Member">Ordinary Member</option>
+<option value="Associate Member">Associate Member</option>
+</select>
+</div>
+<div class="membership-form-field imdd-form-field"><label for="officialProposer">Proposer (Company Name)</label>
+<select id="officialProposer" name="officialProposer" disabled>
+<option value="">Select proposer</option>
+<option value="Pending">Pending</option>
+</select>
+</div>
+<div class="membership-form-field imdd-form-field"><label for="officialSeconder">Seconder (Company Name)</label>
+<select id="officialSeconder" name="officialSeconder" disabled>
+<option value="">Select seconder</option>
+<option value="Pending">Pending</option>
+</select>
+</div>
 </div>
 </div>
 
 <div class="membership-form-actions">
-<button type="submit" class="btn btn-primary">Prepare Email Application</button>
+<button type="submit" class="btn btn-primary">Submit</button>
 </div>
-<p class="membership-form-note">Office &amp; Mailing Address: 7 Airline Road, #04-06 Cargo Agents Building E, Singapore 819834 | T: +65 6545 4620 / 6545 4721 | F: +65 6542 6820</p>
 </form>
 </div>
 </div>
