@@ -1,5 +1,6 @@
 window.projectImddContent = {
     contactEmail: 'events@saaa.org.sg',
+    contactIntro: 'Reach out to the SAAA events team for programme enquiries and partnerships.',
     brochure: {
         year: 2026,
         fileUrl: 'https://41af8c4f-3239-4ac0-bbd7-d906f1f394a5.filesusr.com/ugd/8c57ed_49126f063d164c3d949c8ce40f9e1dde.pdf',

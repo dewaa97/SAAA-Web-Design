@@ -30,7 +30,8 @@
             calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>',
             building: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h1M9 11h1M9 15h1M14 7h1M14 11h1M14 15h1M8 21v-4h8v4"/></svg>',
             users: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
-            briefcase: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>'
+            briefcase: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>',
+            mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>'
         };
 
         return icons[icon] || icons.info;
@@ -72,11 +73,12 @@
 
         grid.innerHTML = content.hubNav.map(function (item) {
             var isActive = item.id === pageId;
-            var label = item.label;
+            var shortLabel = item.shortLabel || item.label;
             return (
                 '<a href="' + escapeHtml(item.href) + '" class="imdd-subnav-link' + (isActive ? ' is-active' : '') + '" title="' + escapeHtml(item.description) + '"' + (isActive ? ' aria-current="page"' : '') + '>' +
                     '<span class="imdd-subnav-icon" aria-hidden="true">' + getHubIcon(item.icon) + '</span>' +
-                    '<span class="imdd-subnav-label">' + escapeHtml(label) + '</span>' +
+                    '<span class="imdd-subnav-label imdd-subnav-label-full">' + escapeHtml(item.label) + '</span>' +
+                    '<span class="imdd-subnav-label imdd-subnav-label-short">' + escapeHtml(shortLabel) + '</span>' +
                 '</a>'
             );
         }).join('');
@@ -717,6 +719,7 @@
         var quoteSource = document.getElementById('imdd-quote-source');
         var introEl = document.getElementById('imdd-intro');
         var missionEl = document.getElementById('imdd-mission');
+        var contactIntroEl = document.getElementById('imdd-contact-intro');
         var contactLinks = document.querySelectorAll('[data-imdd-contact]');
         var spotlightImage = document.getElementById('imdd-spotlight-image');
 
@@ -728,9 +731,23 @@
             spotlightImage.src = 'images/project-imdd/hero-outreach.jpg';
             spotlightImage.alt = 'Project IMDD outreach and mentorship';
         }
+        if (contactIntroEl && content.contactIntro) {
+            contactIntroEl.textContent = content.contactIntro;
+        }
         contactLinks.forEach(function (link) {
-            link.href = 'mailto:' + content.contactEmail;
-            link.textContent = content.contactEmail;
+            if (link.tagName === 'A') {
+                link.href = 'mailto:' + content.contactEmail;
+            }
+
+            var emailEl = link.querySelector('.imdd-contact-email');
+            if (emailEl) {
+                emailEl.textContent = content.contactEmail;
+                return;
+            }
+
+            if (link.childElementCount === 0) {
+                link.textContent = content.contactEmail;
+            }
         });
     }
 
