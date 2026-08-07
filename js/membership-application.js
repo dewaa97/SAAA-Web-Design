@@ -17,7 +17,7 @@
             membershipType.dataset.membershipWidgetMounted = 'true';
         }
 
-        ['iataMember', 'otherAssociations', 'criminalHistory', 'officialApprovedAs', 'officialProposer', 'officialSeconder'].forEach(function (id) {
+        ['iataMember', 'otherAssociations', 'criminalHistory'].forEach(function (id) {
             var select = document.getElementById(id);
             if (!select || select.dataset.membershipWidgetMounted) return;
 
