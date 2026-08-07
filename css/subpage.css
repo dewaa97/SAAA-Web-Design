@@ -1264,17 +1264,23 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
 .membership-payment-methods {
     display: grid;
     grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
-    gap: 20px;
+    gap: 32px 40px;
     margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--slate-200);
 }
-.membership-payment-card {
-    background: var(--white);
-    border: 1px solid var(--slate-200);
-    border-radius: var(--radius-lg);
-    padding: 24px;
-    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+.membership-payment-column {
+    min-width: 0;
 }
-.membership-payment-card-header {
+.membership-payment-column--paynow {
+    padding-left: 40px;
+    border-left: 1px solid var(--slate-200);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.membership-payment-header {
     margin-bottom: 20px;
 }
 .membership-payment-title {
@@ -1290,44 +1296,30 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     line-height: 1.5;
 }
 .membership-bank-details {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
-.membership-bank-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 16px 0;
-}
-.membership-bank-group:first-child {
-    padding-top: 0;
-}
-.membership-bank-group + .membership-bank-group {
-    border-top: 1px solid var(--slate-100);
-}
-.membership-bank-row {
     display: grid;
-    grid-template-columns: minmax(110px, 140px) minmax(0, 1fr);
-    gap: 8px 20px;
-    align-items: baseline;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 32px;
+    margin: 0;
 }
-.membership-bank-row--pair {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px 32px;
-}
-.membership-bank-pair-item {
+.membership-bank-item {
     display: flex;
     flex-direction: column;
     gap: 4px;
     min-width: 0;
+}
+.membership-bank-item--full {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(120px, 140px) minmax(0, 1fr);
+    gap: 4px 20px;
+    align-items: baseline;
 }
 .membership-bank-label {
     font-size: 13px;
     font-weight: 400;
     color: var(--slate-500);
     line-height: 1.4;
+    margin: 0;
 }
 .membership-bank-value {
     font-size: 14px;
@@ -1338,9 +1330,7 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     margin: 0;
 }
 .membership-bank-remittance {
-    margin: 4px 0 0;
-    padding-top: 16px;
-    border-top: 1px solid var(--slate-100);
+    margin: 16px 0 0;
     font-size: 13px;
     color: var(--slate-600);
     line-height: 1.6;
@@ -1352,12 +1342,6 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
 }
 .membership-bank-remittance a:hover {
     text-decoration: underline;
-}
-.membership-payment-card--paynow {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
 }
 .membership-paynow-header {
     display: flex;
@@ -1440,11 +1424,17 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     .membership-form-grid,
     .membership-checkbox-group,
     .membership-payment-methods { grid-template-columns: 1fr; }
-    .membership-bank-row {
+    .membership-payment-column--paynow {
+        padding-left: 0;
+        padding-top: 32px;
+        border-left: none;
+        border-top: 1px solid var(--slate-200);
+    }
+    .membership-bank-details { grid-template-columns: 1fr; }
+    .membership-bank-item--full {
         grid-template-columns: 1fr;
         gap: 4px;
     }
-    .membership-bank-row--pair { flex-direction: column; gap: 12px; }
     .membership-form-card { padding: 24px; }
     .membership-type-field,
     .membership-type-field .combobox { max-width: 100%; }
