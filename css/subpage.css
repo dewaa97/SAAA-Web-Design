@@ -1205,6 +1205,9 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     color: var(--slate-700);
     margin-bottom: 12px;
 }
+.membership-form-grid + .membership-field-label {
+    margin-top: 20px;
+}
 .membership-field-optional {
     font-weight: 500;
     color: var(--slate-500);
