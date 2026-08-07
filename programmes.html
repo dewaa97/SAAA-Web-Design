@@ -851,13 +851,113 @@
             margin-top: 24px;
         }
 
-        .steps-timeline-list--4 {
-            grid-template-columns: repeat(4, 1fr);
+        /* IMDD Programme Pathway — 2×2 grid cards with left accent */
+        .programme-pathway {
+            margin-top: 32px;
         }
 
-        @media (max-width: 1099px) {
-            .steps-timeline-list--4 {
-                grid-template-columns: repeat(2, 1fr);
+        .programme-pathway > h4 {
+            font-size: 1.1rem;
+            color: var(--slate-900);
+            margin-bottom: 20px;
+        }
+
+        .pathway-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .pathway-card {
+            position: relative;
+            display: flex;
+            background: var(--slate-50);
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .pathway-card:hover {
+            border-color: var(--red-200);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .pathway-card-accent {
+            width: 4px;
+            flex-shrink: 0;
+        }
+
+        .pathway-accent-1 { background: #2563eb; }
+        .pathway-accent-2 { background: #d97706; }
+        .pathway-accent-3 { background: #16a34a; }
+        .pathway-accent-4 { background: #7c3aed; }
+
+        .pathway-card-content {
+            padding: 20px 24px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .pathway-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .pathway-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .pathway-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .pathway-icon-1 { background: #dbeafe; color: #2563eb; }
+        .pathway-icon-2 { background: #fef3c7; color: #d97706; }
+        .pathway-icon-3 { background: #dcfce7; color: #16a34a; }
+        .pathway-icon-4 { background: #ede9fe; color: #7c3aed; }
+
+        .pathway-step-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--slate-400);
+        }
+
+        .pathway-card h5 {
+            font-size: 1rem;
+            color: var(--slate-900);
+            margin-bottom: 8px;
+        }
+
+        .pathway-card p {
+            font-size: 14px;
+            color: var(--slate-600);
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        @media (max-width: 640px) {
+            .pathway-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pathway-card-content {
+                padding: 18px 20px;
             }
         }
     </style>
@@ -1021,60 +1121,62 @@
                     </p>
                 </div>
 
-                <div class="application-process">
+                <div class="programme-pathway">
                     <h4>Programme Pathway</h4>
-                    <div class="steps-timeline">
-                        <ol class="steps-timeline-list steps-timeline-list--4" aria-label="Project IMDD programme pathway">
-                            <li class="step-timeline-item">
-                                <div class="step-icon-wrap icon-1" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <ol class="pathway-grid" aria-label="Project IMDD programme pathway">
+                        <li class="pathway-card">
+                            <div class="pathway-card-accent pathway-accent-1" aria-hidden="true"></div>
+                            <div class="pathway-card-content">
+                                <div class="pathway-card-header">
+                                    <div class="pathway-icon pathway-icon-1" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                    </div>
+                                    <span class="pathway-step-label">Step 1</span>
                                 </div>
-                                <div class="step-timeline-rail" aria-hidden="true">
-                                    <span class="step-timeline-number">1</span>
+                                <h5>Selection</h5>
+                                <p>Interns are paired with pre-validated SAAA member logistics companies for internship or work-study placements.</p>
+                            </div>
+                        </li>
+                        <li class="pathway-card">
+                            <div class="pathway-card-accent pathway-accent-2" aria-hidden="true"></div>
+                            <div class="pathway-card-content">
+                                <div class="pathway-card-header">
+                                    <div class="pathway-icon pathway-icon-2" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                                    </div>
+                                    <span class="pathway-step-label">Step 2</span>
                                 </div>
-                                <div class="step-timeline-body">
-                                    <h4>Selection</h4>
-                                    <p>Interns are paired with pre-validated SAAA member logistics companies for internship or work-study placements.</p>
+                                <h5>Skills Training</h5>
+                                <p>Selected candidates undergo complimentary SAAA skills competency training throughout the programme.</p>
+                            </div>
+                        </li>
+                        <li class="pathway-card">
+                            <div class="pathway-card-accent pathway-accent-3" aria-hidden="true"></div>
+                            <div class="pathway-card-content">
+                                <div class="pathway-card-header">
+                                    <div class="pathway-icon pathway-icon-3" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    </div>
+                                    <span class="pathway-step-label">Step 3</span>
                                 </div>
-                            </li>
-                            <li class="step-timeline-item">
-                                <div class="step-icon-wrap icon-2" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                                <h5>Mentorship</h5>
+                                <p>Accelerated talent development through mentorship as full-time employees with partner companies.</p>
+                            </div>
+                        </li>
+                        <li class="pathway-card">
+                            <div class="pathway-card-accent pathway-accent-4" aria-hidden="true"></div>
+                            <div class="pathway-card-content">
+                                <div class="pathway-card-header">
+                                    <div class="pathway-icon pathway-icon-4" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                    </div>
+                                    <span class="pathway-step-label">Step 4</span>
                                 </div>
-                                <div class="step-timeline-rail" aria-hidden="true">
-                                    <span class="step-timeline-number">2</span>
-                                </div>
-                                <div class="step-timeline-body">
-                                    <h4>Skills Training</h4>
-                                    <p>Selected candidates undergo complimentary SAAA skills competency training throughout the programme.</p>
-                                </div>
-                            </li>
-                            <li class="step-timeline-item">
-                                <div class="step-icon-wrap icon-3" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                                </div>
-                                <div class="step-timeline-rail" aria-hidden="true">
-                                    <span class="step-timeline-number">3</span>
-                                </div>
-                                <div class="step-timeline-body">
-                                    <h4>Mentorship</h4>
-                                    <p>Accelerated talent development through mentorship as full-time employees with partner companies.</p>
-                                </div>
-                            </li>
-                            <li class="step-timeline-item">
-                                <div class="step-icon-wrap icon-4" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                                </div>
-                                <div class="step-timeline-rail" aria-hidden="true">
-                                    <span class="step-timeline-number">4</span>
-                                </div>
-                                <div class="step-timeline-body">
-                                    <h4>Further Education</h4>
-                                    <p>Direct entry to Work Study Degree or Work Study Specialist Diploma programmes.</p>
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
+                                <h5>Further Education</h5>
+                                <p>Direct entry to Work Study Degree or Work Study Specialist Diploma programmes.</p>
+                            </div>
+                        </li>
+                    </ol>
                 </div>
 
                 <div class="programme-cta-row">
