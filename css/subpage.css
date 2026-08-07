@@ -1405,6 +1405,7 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     padding-left: 18px;
     line-height: 1.8;
 }
+.membership-payment-proof-field { margin-top: 24px; }
 .membership-form-actions { margin-top: 24px; }
 .membership-form-note {
     margin-top: 16px;

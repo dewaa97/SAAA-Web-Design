@@ -54,6 +54,19 @@
             declarationDate.dataset.membershipWidgetMounted = 'true';
         }
 
+        function customizeCompactUpload(fieldName, title, hint, browseText) {
+            var uploadRoot = form.querySelector('[data-file-input][name="' + fieldName + '"]');
+            if (!uploadRoot) return;
+            var zone = uploadRoot.closest('.file-upload');
+            if (!zone) return;
+            var titleEl = zone.querySelector('.file-upload-title');
+            var hintEl = zone.querySelector('.file-upload-hint');
+            var browse = zone.querySelector('.file-upload-browse');
+            if (titleEl) titleEl.textContent = title;
+            if (hintEl) hintEl.textContent = hint;
+            if (browse) browse.textContent = browseText;
+        }
+
         var iataUpload = document.getElementById('iataUpload');
         if (iataUpload && !iataUpload.dataset.membershipWidgetMounted) {
             api.mountFileUploadFromInput(iataUpload, {
@@ -61,15 +74,29 @@
                 accept: '.pdf,.jpg,.jpeg,.png,.doc,.docx',
                 compact: true
             });
-            var uploadRoot = form.querySelector('[data-file-input][name="iataUpload"]');
-            if (uploadRoot) {
-                var zone = uploadRoot.closest('.file-upload');
-                if (zone) {
-                    var browse = zone.querySelector('.file-upload-browse');
-                    if (browse) browse.textContent = 'Click to upload';
-                }
-            }
+            customizeCompactUpload(
+                'iataUpload',
+                'Upload Documents',
+                'PDF, JPG, PNG, DOC, or DOCX up to 10MB',
+                'Click to upload'
+            );
             iataUpload.dataset.membershipWidgetMounted = 'true';
+        }
+
+        var paymentProof = document.getElementById('paymentProof');
+        if (paymentProof && !paymentProof.dataset.membershipWidgetMounted) {
+            api.mountFileUploadFromInput(paymentProof, {
+                fieldKey: 'paymentProof',
+                accept: '.pdf,.jpg,.jpeg,.png,.doc,.docx',
+                compact: true
+            });
+            customizeCompactUpload(
+                'paymentProof',
+                'Upload Payment Proof',
+                'PDF, JPG, PNG, DOC, or DOCX up to 10MB',
+                'Click to upload'
+            );
+            paymentProof.dataset.membershipWidgetMounted = 'true';
         }
     }
 
@@ -113,6 +140,14 @@
 
     mountWidgets();
     setupConditionalFields();
+
+    function getUploadedFileName(name) {
+        var fileInput = form.querySelector('[data-file-input][name="' + name + '"]');
+        if (fileInput && fileInput.files && fileInput.files[0]) {
+            return fileInput.files[0].name;
+        }
+        return '';
+    }
 
     function getFieldValue(name) {
         if (form.querySelector('input[type="radio"][name="' + name + '"]')) {
@@ -218,12 +253,21 @@
         addLine('Designation', getFieldValue('declarationDesignation'));
         addLine('Date', getFieldValue('declarationDate'));
 
+        addSection('Payment & Comments');
+        addLine('Payment Proof', getUploadedFileName('paymentProof'));
+        addLine('Additional Comments', getFieldValue('comments'));
+
         lines.push('');
         lines.push('Please attach the following documents to your email before sending:');
         lines.push('1. ACRA Business Profile');
         lines.push('2. For freight forwarder ordinary member enrolment: two employee certificates as stated in the application form');
+        var attachmentIndex = 3;
         if (getFieldValue('iataMember') === 'Yes') {
-            lines.push('3. IATA supporting documents (also uploaded via the form if applicable)');
+            lines.push(attachmentIndex + '. IATA supporting documents (also uploaded via the form if applicable)');
+            attachmentIndex += 1;
+        }
+        if (getUploadedFileName('paymentProof')) {
+            lines.push(attachmentIndex + '. Payment proof: ' + getUploadedFileName('paymentProof'));
         }
 
         var subject = encodeURIComponent('SAAA Membership Application 2026');
