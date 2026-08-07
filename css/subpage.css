@@ -1406,6 +1406,15 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     line-height: 1.8;
 }
 .membership-payment-proof-field { margin-top: 24px; }
+.membership-payment-proof-field .file-upload-zone {
+    min-height: 160px;
+    padding: 28px 20px;
+}
+.membership-payment-proof-field .file-upload-icon {
+    width: 44px;
+    height: 44px;
+}
+.membership-declaration-block { margin-top: 24px; }
 .membership-form-actions { margin-top: 24px; }
 .membership-form-note {
     margin-top: 16px;

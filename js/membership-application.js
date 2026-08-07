@@ -2,6 +2,35 @@
     var form = document.getElementById('membership-application-form');
     if (!form) return;
 
+    var widgets = {};
+
+    function ensureFieldError(field) {
+        var error = field.querySelector('.imdd-field-error');
+        if (!error) {
+            error = document.createElement('p');
+            error.className = 'imdd-field-error';
+            error.setAttribute('aria-live', 'polite');
+            field.appendChild(error);
+        }
+        return error;
+    }
+
+    function clearFieldError(field) {
+        if (!field) return;
+        field.classList.remove('has-error');
+        var error = field.querySelector('.imdd-field-error');
+        if (error) error.textContent = '';
+    }
+
+    function setFieldError(field, message, widget) {
+        if (!field) return;
+        field.classList.add('has-error');
+        ensureFieldError(field).textContent = message;
+        if (widget && typeof widget.setInvalid === 'function') {
+            widget.setInvalid(true);
+        }
+    }
+
     function mountWidgets() {
         if (!window.SaaaImddFormWidgets) return;
 
@@ -47,7 +76,7 @@
 
         var declarationDate = document.getElementById('declarationDate');
         if (declarationDate && !declarationDate.dataset.membershipWidgetMounted) {
-            api.mountDatePickerFromInput(declarationDate, {
+            widgets.declarationDate = api.mountDatePickerFromInput(declarationDate, {
                 placeholder: 'Pick a date',
                 fieldKey: 'declarationDate'
             });
@@ -85,17 +114,24 @@
 
         var paymentProof = document.getElementById('paymentProof');
         if (paymentProof && !paymentProof.dataset.membershipWidgetMounted) {
-            api.mountFileUploadFromInput(paymentProof, {
+            widgets.paymentProof = api.mountFileUploadFromInput(paymentProof, {
                 fieldKey: 'paymentProof',
                 accept: '.pdf,.jpg,.jpeg,.png,.doc,.docx',
-                compact: true
+                onChange: function () {
+                    clearFieldError(form.querySelector('[data-imdd-field="paymentProof"]'));
+                    if (widgets.paymentProof) widgets.paymentProof.setInvalid(false);
+                }
             });
-            customizeCompactUpload(
-                'paymentProof',
-                'Upload Payment Proof',
-                'PDF, JPG, PNG, DOC, or DOCX up to 10MB',
-                'Click to upload'
-            );
+            var paymentProofZone = form.querySelector('[data-file-input][name="paymentProof"]');
+            if (paymentProofZone) {
+                var zone = paymentProofZone.closest('.file-upload');
+                if (zone) {
+                    var titleEl = zone.querySelector('.file-upload-title');
+                    var hintEl = zone.querySelector('.file-upload-hint');
+                    if (titleEl) titleEl.textContent = 'Upload Payment Proof';
+                    if (hintEl) hintEl.textContent = 'Upload your receipt or remittance proof (PDF, JPG, PNG, DOC, or DOCX up to 10MB)';
+                }
+            }
             paymentProof.dataset.membershipWidgetMounted = 'true';
         }
     }
@@ -190,8 +226,64 @@
         });
     }
 
+    function validateForm() {
+        var valid = true;
+        var firstErrorField = null;
+
+        form.querySelectorAll('[data-imdd-field]').forEach(function (field) {
+            clearFieldError(field);
+        });
+
+        if (widgets.declarationDate) widgets.declarationDate.setInvalid(false);
+        if (widgets.paymentProof) widgets.paymentProof.setInvalid(false);
+
+        var declarationNameField = form.querySelector('[data-imdd-field="declarationName"]');
+        if (!getFieldValue('declarationName')) {
+            setFieldError(declarationNameField, 'Enter the authorised signatory name.');
+            valid = false;
+            if (!firstErrorField) firstErrorField = declarationNameField;
+        }
+
+        var declarationDesignationField = form.querySelector('[data-imdd-field="declarationDesignation"]');
+        if (!getFieldValue('declarationDesignation')) {
+            setFieldError(declarationDesignationField, 'Enter the designation.');
+            valid = false;
+            if (!firstErrorField) firstErrorField = declarationDesignationField;
+        }
+
+        var declarationDateField = form.querySelector('[data-imdd-field="declarationDate"]');
+        if (!getFieldValue('declarationDate')) {
+            setFieldError(declarationDateField, 'Pick a date.', widgets.declarationDate);
+            valid = false;
+            if (!firstErrorField) firstErrorField = declarationDateField;
+        }
+
+        var paymentProofField = form.querySelector('[data-imdd-field="paymentProof"]');
+        if (!getUploadedFileName('paymentProof')) {
+            setFieldError(paymentProofField, 'Upload your payment proof.', widgets.paymentProof);
+            valid = false;
+            if (!firstErrorField) firstErrorField = paymentProofField;
+        }
+
+        if (!valid) {
+            if (firstErrorField) {
+                firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            return false;
+        }
+
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return false;
+        }
+
+        return true;
+    }
+
     form.addEventListener('submit', function (event) {
         event.preventDefault();
+
+        if (!validateForm()) return;
 
         var lines = ['SAAA Membership Application 2026', ''];
 
