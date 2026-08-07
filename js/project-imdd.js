@@ -3,6 +3,8 @@
     if (!content) return;
 
     var pageId = document.body.getAttribute('data-imdd-page') || 'home';
+    var isNavigating = false;
+    var testimonialResizeBound = false;
 
     function escapeHtml(value) {
         return String(value)
@@ -71,8 +73,10 @@
         var nav = document.getElementById('imdd-hub-nav');
         if (!nav) return;
 
+        var activePageId = document.body.getAttribute('data-imdd-page') || pageId;
+
         nav.innerHTML = content.hubNav.map(function (item) {
-            var isActive = item.id === pageId;
+            var isActive = item.id === activePageId;
             return (
                 '<a href="' + escapeHtml(item.href) + '" class="imdd-sidebar-link' + (isActive ? ' is-active' : '') + '" title="' + escapeHtml(item.description) + '"' + (isActive ? ' aria-current="page"' : '') + '>' +
                     '<span class="imdd-sidebar-icon" aria-hidden="true">' + getHubIcon(item.icon) + '</span>' +
@@ -196,7 +200,10 @@
 
         if (prev) prev.addEventListener('click', function () { move(-1); });
         if (next) next.addEventListener('click', function () { move(1); });
-        window.addEventListener('resize', buildTrack);
+        if (!testimonialResizeBound) {
+            testimonialResizeBound = true;
+            window.addEventListener('resize', buildTrack);
+        }
         buildTrack();
     }
 
@@ -656,12 +663,16 @@
     }
 
     function bindForms() {
-        var forms = document.querySelectorAll('[data-imdd-form]');
-        forms.forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                event.preventDefault();
+        if (document.body.dataset.imddFormsBound) return;
+        document.body.dataset.imddFormsBound = 'true';
 
-                var formType = form.getAttribute('data-imdd-form');
+        document.addEventListener('submit', function (event) {
+            var form = event.target.closest('[data-imdd-form]');
+            if (!form || !form.closest('.imdd-main')) return;
+
+            event.preventDefault();
+
+            var formType = form.getAttribute('data-imdd-form');
 
                 if (formType === 'Internship Application' && !validateInternshipForm(form)) {
                     return;
@@ -719,7 +730,6 @@
                 var subject = encodeURIComponent('Project IMDD — ' + formType);
                 var body = encodeURIComponent(lines.join('\n'));
                 window.location.href = 'mailto:' + content.contactEmail + '?subject=' + subject + '&body=' + body;
-            });
         });
     }
 
@@ -760,20 +770,171 @@
         });
     }
 
-    renderInstitutionMarquee();
-    renderHubNav();
+    function resetMainWidgetState() {
+        var mainEl = document.querySelector('.imdd-main');
+        if (!mainEl) return;
+
+        mainEl.querySelectorAll('[data-imdd-validation-bound]').forEach(function (form) {
+            delete form.dataset.imddValidationBound;
+        });
+        mainEl.querySelectorAll('[data-imdd-widget-mounted]').forEach(function (element) {
+            delete element.dataset.imddWidgetMounted;
+        });
+        mainEl.querySelectorAll('form[data-imdd-form]').forEach(function (form) {
+            delete form._imddWidgets;
+        });
+    }
+
+    function initImddPageContent(targetPageId) {
+        pageId = targetPageId;
+        document.body.setAttribute('data-imdd-page', targetPageId);
+
+        renderHubNav();
+
+        if (targetPageId === 'home') {
+            renderInstitutionMarquee();
+            initTestimonialCarousel();
+            initStaticContent();
+        }
+
+        if (targetPageId === 'about') {
+            renderObjectives();
+            renderPhases();
+            renderCaseStudy();
+        }
+
+        if (targetPageId === 'program') {
+            renderTrainingProgrammes();
+        }
+
+        if (targetPageId === 'employers') {
+            renderEmployerQuestions();
+            mountEmployerFormWidgets();
+        }
+
+        if (targetPageId === 'applicants') {
+            renderApplicantIntro();
+        }
+
+        if (targetPageId === 'companies') {
+            renderCompanies();
+            initCompaniesActions();
+        }
+
+        if (targetPageId === 'apply') {
+            initInternshipApplicationForm();
+        }
+
+        document.querySelectorAll('[data-imdd-contact]').forEach(function (link) {
+            if (link.tagName === 'A') {
+                link.href = 'mailto:' + content.contactEmail;
+            }
+
+            var emailEl = link.querySelector('.imdd-contact-email');
+            if (emailEl) {
+                emailEl.textContent = content.contactEmail;
+                return;
+            }
+
+            if (link.childElementCount === 0) {
+                link.textContent = content.contactEmail;
+            }
+        });
+    }
+
+    function initImddClientNav() {
+        var mainEl = document.querySelector('.imdd-main');
+        var shellEl = document.querySelector('.imdd-page-shell');
+        if (!mainEl || !shellEl) return;
+
+        var hubPages = {};
+        content.hubNav.forEach(function (item) {
+            hubPages[item.href] = item.id;
+        });
+
+        function getFilename(url) {
+            var value = String(url || '').split('?')[0];
+            return value.split('/').pop() || '';
+        }
+
+        function isHubPage(href) {
+            return Object.prototype.hasOwnProperty.call(hubPages, getFilename(href));
+        }
+
+        function scrollToContent() {
+            shellEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function loadPage(href, options) {
+            options = options || {};
+            var filename = getFilename(href);
+            var targetPageId = hubPages[filename];
+            if (!targetPageId || isNavigating) return Promise.resolve();
+
+            var currentFile = getFilename(window.location.pathname);
+            if (currentFile === filename && !options.force) {
+                scrollToContent();
+                return Promise.resolve();
+            }
+
+            isNavigating = true;
+            mainEl.classList.add('is-loading');
+
+            return fetch(filename, { credentials: 'same-origin' })
+                .then(function (response) {
+                    if (!response.ok) throw new Error('Failed to load page');
+                    return response.text();
+                })
+                .then(function (html) {
+                    var parser = new DOMParser();
+                    var doc = parser.parseFromString(html, 'text/html');
+                    var newMain = doc.querySelector('.imdd-main');
+                    if (!newMain) throw new Error('Missing main content');
+
+                    mainEl.innerHTML = newMain.innerHTML;
+                    document.title = doc.title;
+                    resetMainWidgetState();
+                    initImddPageContent(targetPageId);
+
+                    if (options.pushState !== false) {
+                        history.pushState({ imddPage: targetPageId, imddHref: filename }, '', filename);
+                    }
+
+                    scrollToContent();
+                })
+                .catch(function () {
+                    window.location.href = filename;
+                })
+                .finally(function () {
+                    mainEl.classList.remove('is-loading');
+                    isNavigating = false;
+                });
+        }
+
+        document.addEventListener('click', function (event) {
+            var link = event.target.closest('.imdd-sidebar-link');
+            if (!link || event.defaultPrevented) return;
+
+            var href = link.getAttribute('href');
+            if (!href || !isHubPage(href)) return;
+
+            event.preventDefault();
+            loadPage(href, { pushState: true });
+        });
+
+        window.addEventListener('popstate', function (event) {
+            if (!event.state || !event.state.imddHref) return;
+            loadPage(event.state.imddHref, { pushState: false, force: true });
+        });
+
+        var currentFile = getFilename(window.location.pathname);
+        if (hubPages[currentFile]) {
+            history.replaceState({ imddPage: hubPages[currentFile], imddHref: currentFile }, '', currentFile);
+        }
+    }
+
     initSidebarToggle();
-    renderObjectives();
-    renderPhases();
-    renderTrainingProgrammes();
-    renderEmployerQuestions();
-    renderApplicantIntro();
-    renderCompanies();
-    initCompaniesActions();
-    initInternshipApplicationForm();
-    mountEmployerFormWidgets();
-    initTestimonialCarousel();
-    renderCaseStudy();
     bindForms();
-    initStaticContent();
+    initImddPageContent(pageId);
+    initImddClientNav();
 })();

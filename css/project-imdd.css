@@ -270,6 +270,12 @@ a.imdd-institution-logo:hover {
     min-width: 0;
 }
 
+.imdd-main.is-loading {
+    opacity: 0.55;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
 .imdd-main > .imdd-section:first-child {
     padding-top: 0;
 }
