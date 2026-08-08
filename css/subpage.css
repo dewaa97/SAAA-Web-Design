@@ -1122,7 +1122,7 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
 
 /* Legacy milestone classes kept for compatibility */
 .milestones-timeline { display: flex; flex-direction: column; gap: 40px; }
-.milestone-decade { border: 1px solid var(--slate-200); border-radius: var(--radius-lg); overflow: hidden; background: white; }
+.milestones-timeline .milestone-decade { border: 1px solid var(--slate-200); border-radius: var(--radius-lg); overflow: hidden; background: white; }
 .milestone-decade-header {
     padding: 20px 24px;
     background: var(--slate-50);
