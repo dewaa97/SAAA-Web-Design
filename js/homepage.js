@@ -160,27 +160,35 @@
         ];
 
         var PARTNER_LOGOS = {
-            industry: [
-                { src: 'images/partners/iata.svg', alt: 'IATA', scale: 1.35 },
-                { src: 'images/partners/icao.svg', alt: 'ICAO', scale: 1.25 },
-                { src: 'images/partners/sats.png', alt: 'SATS' },
-                { src: 'images/partners/dnata.svg', alt: 'dnata' },
-                { src: 'images/partners/ccn.png', alt: 'Cargo Community Network' }
-            ],
             government: [
                 { src: 'images/partners/caas.png', alt: 'CAAS' },
-                { src: 'images/partners/enterprisesg.svg', alt: 'Enterprise Singapore' },
-                { src: 'images/partners/imda.svg', alt: 'IMDA', scale: 1.15 },
-                { src: 'images/partners/mindef.png', alt: 'MINDEF' },
-                { src: 'images/partners/wsg.png', alt: 'Workforce Singapore' }
+                { src: 'images/partners/esg.png', alt: 'Enterprise Singapore' },
+                { src: 'images/partners/ica.png', alt: 'ICA' },
+                { src: 'images/partners/imda.png', alt: 'IMDA' },
+                { src: 'images/partners/mindef.jpeg', alt: 'MINDEF' },
+                { src: 'images/partners/mot.png', alt: 'MOT' },
+                { src: 'images/partners/swda.png', alt: 'SWDA' },
+                { src: 'images/partners/sc.jpeg', alt: 'Singapore Customs' },
+                { src: 'images/partners/wshc.jpeg', alt: 'WSHC' }
+            ],
+            industry: [
+                { src: 'images/partners/aais.jpeg', alt: 'AAIS' },
+                { src: 'images/partners/asme.jpeg', alt: 'ASME' },
+                { src: 'images/partners/aon.png', alt: 'AON' },
+                { src: 'images/partners/ccn.png', alt: 'Cargo Community Network' },
+                { src: 'images/partners/dnata.jpeg', alt: 'dnata Singapore' },
+                { src: 'images/partners/e2i.jpeg', alt: 'e2i' },
+                { src: 'images/partners/iata.jpeg', alt: 'IATA' },
+                { src: 'images/partners/ihrp.jpeg', alt: 'IHRP' },
+                { src: 'images/partners/lscms.jpeg', alt: 'LSCMS' },
+                { src: 'images/partners/sats.jpeg', alt: 'SATS' },
+                { src: 'images/partners/snef.png', alt: 'SNEF' },
+                { src: 'images/partners/ssia.png', alt: 'SSIA' }
             ],
             ihls: [
-                { src: 'images/partners/rp.png', alt: 'Republic Polytechnic' },
-                { src: 'images/partners/tp.svg', alt: 'Temasek Polytechnic' },
-                { src: 'images/partners/sp.png', alt: 'Singapore Polytechnic' },
-                { src: 'images/partners/nyp.svg', alt: 'Nanyang Polytechnic' },
-                { src: 'images/partners/np.png', alt: 'Ngee Ann Polytechnic' },
-                { src: 'images/partners/ite.png', alt: 'ITE' }
+                { src: 'images/partners/ite.png', alt: 'ITE' },
+                { src: 'images/partners/rp.jpeg', alt: 'Republic Polytechnic' },
+                { src: 'images/partners/tp.jpeg', alt: 'Temasek Polytechnic' }
             ]
         };
 
