@@ -206,7 +206,13 @@ def build_page(title, badge, hero_title, hero_accent, hero_desc, section_tag, se
 '''
 
 
-PERMIT_CTA = 'https://main.d1zqfaeaa5ju6p.amplifyapp.com/'
+SCS_APP_BASE_URL = 'https://main.d1zqfaeaa5ju6p.amplifyapp.com'
+
+
+def cta_button(path, label):
+    return f'''<div style="margin-top: 32px;">
+<a href="{SCS_APP_BASE_URL}{path}" target="_blank" rel="noopener" class="btn btn-primary">{label}</a>
+</div>'''
 
 pages = {
     'coming-soon.html': build_page(
@@ -271,9 +277,7 @@ pages = {
 </div>
 </div>
 </div>''',
-        f'''<div style="margin-top: 32px;">
-<a href="{PERMIT_CTA}" target="_blank" rel="noopener" class="btn btn-primary">Proceed to Register</a>
-</div>''',
+        cta_button('/permit', 'Proceed to Register'),
     ),
     'neutral-airway-bill.html': build_page(
         'Neutral Airway Bill — SAAA',
@@ -294,6 +298,7 @@ pages = {
 <p>Deliveries are made on every Tuesdays and Fridays, provided orders are received by 12pm on Mondays and Thursdays respectively.</p>
 <p>Self-collection is also available during office hours at our office, 7 Airline Road #04-06 Cargo Agents Building E Singapore 819834.</p>
 </div>''',
+        cta_button('/airway-bill', 'Proceed to Order'),
     ),
     'bar-code-labels.html': build_page(
         'Bar Code Labels — SAAA',
@@ -312,6 +317,7 @@ pages = {
 <div class="notice-box">
 <strong>Please note:</strong> There is no delivery on every 1st of the month due to stock-take. There will be no supply of Classic Coated Woodfree label set with effect from 1st January 2022 onwards.
 </div>''',
+        cta_button('/barcode', 'Proceed to Order'),
     ),
 }
 
