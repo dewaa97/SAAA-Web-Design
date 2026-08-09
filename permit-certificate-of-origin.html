@@ -47,8 +47,8 @@
         .info-card { margin: 28px 0; padding: 28px; background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); }
         .info-card h3 { margin-top: 0; }
         .info-card p:last-child { margin-bottom: 0; }
-        .contact-hours-card { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-        .contact-hours-card h3 { margin-bottom: 4px; }
+        .contact-hours-title { margin-bottom: 20px; }
+        .contact-hours-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
         .contact-block h4 { font-size: 0.95rem; color: var(--slate-900); margin-bottom: 12px; }
         .contact-list, .hours-list { list-style: none; margin: 0; padding: 0; }
         .contact-list li { display: flex; flex-wrap: wrap; gap: 8px 16px; padding: 10px 0; border-bottom: 1px solid var(--slate-200); font-size: 15px; color: var(--slate-600); }
@@ -78,7 +78,7 @@
         .footer-bottom .legal a { font-size: 13px; color: var(--slate-500); transition: color 0.3s; }
         .footer-bottom .legal a:hover { color: white; }
         @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } .footer-grid { grid-template-columns: 1fr 1fr 1fr; } }
-        @media (max-width: 768px) { .logo-img { height: 60px; } .hero h1 { font-size: 2.5rem; } .hero { padding: 60px 0; min-height: 400px; } .hero-actions .btn { width: 100%; justify-content: center; } .section { padding: 60px 0; } .section-title { font-size: 1.75rem; } .footer-grid { grid-template-columns: 1fr; gap: 32px; } .footer-bottom { flex-direction: column; gap: 16px; text-align: center; } .hours-list li { flex-direction: column; align-items: flex-start; gap: 4px; } }
+        @media (max-width: 768px) { .logo-img { height: 60px; } .hero h1 { font-size: 2.5rem; } .hero { padding: 60px 0; min-height: 400px; } .hero-actions .btn { width: 100%; justify-content: center; } .section { padding: 60px 0; } .section-title { font-size: 1.75rem; } .footer-grid { grid-template-columns: 1fr; gap: 32px; } .footer-bottom { flex-direction: column; gap: 16px; text-align: center; } .contact-hours-grid { grid-template-columns: 1fr; } .hours-list li { flex-direction: column; align-items: flex-start; gap: 4px; } }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--slate-50); }
         ::-webkit-scrollbar-thumb { background: var(--slate-300); border-radius: 100px; }
@@ -199,8 +199,8 @@
 <p>ACES is an electronic submission of Cargo Manifest Declaration. SAAA will provide the manifest submission services to Singapore Customs.</p>
 
 <div class="info-card contact-hours-card">
-<h3>Contact &amp; Operating Hours</h3>
-
+<h3 class="contact-hours-title">Contact &amp; Operating Hours</h3>
+<div class="contact-hours-grid">
 <div class="contact-block">
 <h4>Contact Us</h4>
 <ul class="contact-list">
@@ -209,12 +209,10 @@
 <li><span>Email</span><a href="mailto:scs@saaa.org.sg">scs@saaa.org.sg</a></li>
 </ul>
 </div>
-
 <div class="contact-block">
 <h4>Address</h4>
 <p>105 Airport Cargo Road #01-107, SATS Airfreight Terminal 3, Core H, Singapore 819462</p>
 </div>
-
 <div class="contact-block">
 <h4>Operating Hours</h4>
 <ul class="hours-list">
@@ -222,6 +220,7 @@
 <li><span class="hours-day">Saturday</span><span class="hours-time">09:00 – 20:00</span></li>
 <li><span class="hours-day">Sunday &amp; Public Holidays</span><span class="hours-time">10:00 – 20:00</span></li>
 </ul>
+</div>
 </div>
 </div>
 <div style="margin-top: 32px;">
