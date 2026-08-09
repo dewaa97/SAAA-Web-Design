@@ -180,7 +180,7 @@
                 { src: 'images/partners/e2i.jpeg', alt: 'e2i' },
                 { src: 'images/partners/iata.jpeg', alt: 'IATA' },
                 { src: 'images/partners/ihrp.jpeg', alt: 'IHRP' },
-                { src: 'images/partners/lscms.jpeg', alt: 'LSCMS' },
+                { src: 'images/partners/lscms.png', alt: 'LSCMS' },
                 { src: 'images/partners/sats.jpeg', alt: 'SATS' },
                 { src: 'images/partners/snef.png', alt: 'SNEF' },
                 { src: 'images/partners/ssia.png', alt: 'SSIA' }
