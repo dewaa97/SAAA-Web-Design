@@ -1674,18 +1674,27 @@
 
         .about-quick-links {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             gap: 8px;
             margin-top: 24px;
             align-items: flex-start;
             width: 100%;
-            max-width: 100%;
         }
 
         .about-quick-links .btn {
             font-size: 12px;
             padding: 8px 14px;
             white-space: nowrap;
+            flex: 0 0 auto;
+        }
+
+        /* Span full container width in 2-column layout so 5 buttons fit one row */
+        @media (min-width: 1025px) {
+            .about-quick-links {
+                width: calc(200% + 60px);
+                max-width: calc(100vw - 48px);
+                flex-wrap: nowrap;
+            }
         }
 
         /* Responsive */
@@ -1711,7 +1720,8 @@
 
             .about-quick-links {
                 width: 100%;
-                max-width: 100%;
+                max-width: none;
+                flex-wrap: nowrap;
             }
 
             .training-row .action {
@@ -1776,6 +1786,17 @@
 
             .events-grid {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 800px) and (min-width: 769px) {
+            .about-quick-links {
+                flex-wrap: wrap;
+            }
+
+            .about-quick-links .btn {
+                font-size: 11px;
+                padding: 7px 12px;
             }
         }
 
