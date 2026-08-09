@@ -258,7 +258,7 @@ pages = {
 
 <div class="contact-block">
 <h4>Address</h4>
-<p>Room 107, Ground Floor SATS Airfreight Terminal 3, Core H Singapore 819462</p>
+<p>105 Airport Cargo Road #01-107, SATS Airfreight Terminal 3, Core H, Singapore 819462</p>
 </div>
 
 <div class="contact-block">
