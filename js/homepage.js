@@ -161,8 +161,8 @@
 
         var PARTNER_LOGOS = {
             industry: [
-                { src: 'images/partners/iata.svg', alt: 'IATA' },
-                { src: 'images/partners/icao.svg', alt: 'ICAO' },
+                { src: 'images/partners/iata.svg', alt: 'IATA', scale: 1.35 },
+                { src: 'images/partners/icao.svg', alt: 'ICAO', scale: 1.25 },
                 { src: 'images/partners/sats.png', alt: 'SATS' },
                 { src: 'images/partners/dnata.svg', alt: 'dnata' },
                 { src: 'images/partners/ccn.png', alt: 'Cargo Community Network' }
@@ -170,7 +170,7 @@
             government: [
                 { src: 'images/partners/caas.png', alt: 'CAAS' },
                 { src: 'images/partners/enterprisesg.svg', alt: 'Enterprise Singapore' },
-                { src: 'images/partners/imda.svg', alt: 'IMDA' },
+                { src: 'images/partners/imda.svg', alt: 'IMDA', scale: 1.15 },
                 { src: 'images/partners/mindef.png', alt: 'MINDEF' },
                 { src: 'images/partners/wsg.png', alt: 'Workforce Singapore' }
             ],
@@ -184,23 +184,26 @@
             ]
         };
 
-        function buildLogoCells(logos) {
+        function buildLogoCells(logos, isPartner) {
             return logos.map(function (logo) {
-                return '<div class="logo-cell"><img src="' + logo.src + '" alt="' + logo.alt + '" loading="lazy"></div>';
+                var scaleStyle = isPartner && logo.scale
+                    ? ' style="--logo-scale: ' + logo.scale + '"'
+                    : '';
+                return '<div class="logo-cell"><img src="' + logo.src + '" alt="' + logo.alt + '" loading="lazy"' + scaleStyle + '></div>';
             }).join('');
         }
 
-        function populateStrip(container, logos) {
+        function populateStrip(container, logos, isPartner) {
             if (!container || !logos.length) return;
-            var cells = buildLogoCells(logos);
+            var cells = buildLogoCells(logos, isPartner);
             container.innerHTML = cells + cells;
         }
 
-        populateStrip(document.querySelector('[data-member-marquee]'), MEMBER_LOGOS);
+        populateStrip(document.querySelector('[data-member-marquee]'), MEMBER_LOGOS, false);
 
         document.querySelectorAll('[data-partner-strip]').forEach(function (strip) {
             var key = strip.getAttribute('data-partner-strip');
-            populateStrip(strip, PARTNER_LOGOS[key] || []);
+            populateStrip(strip, PARTNER_LOGOS[key] || [], true);
         });
     })();
 })();
