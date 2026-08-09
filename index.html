@@ -436,9 +436,13 @@
         /* About Section */
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
             gap: 60px;
             align-items: start;
+        }
+
+        .about-grid > * {
+            min-width: 0;
         }
 
         .about-text p {
@@ -450,9 +454,10 @@
 
         .about-features {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 16px;
             margin-top: 32px;
+            width: 100%;
         }
 
         .about-feature {
@@ -460,6 +465,7 @@
             background: var(--slate-50);
             border-radius: var(--radius);
             border: 1px solid var(--slate-100);
+            min-width: 0;
         }
 
         .about-feature-number {
@@ -474,12 +480,14 @@
             font-size: 15px;
             margin-bottom: 6px;
             color: var(--slate-800);
+            overflow-wrap: break-word;
         }
 
         .about-feature p {
             font-size: 14px;
             color: var(--slate-600);
             margin: 0;
+            overflow-wrap: break-word;
         }
 
         /* Services */
@@ -1670,8 +1678,8 @@
             gap: 8px;
             margin-top: 24px;
             align-items: flex-start;
-            width: max-content;
-            max-width: calc(100% + 112px);
+            width: 100%;
+            max-width: 100%;
         }
 
         .about-quick-links .btn {
@@ -1681,6 +1689,12 @@
         }
 
         /* Responsive */
+        @media (max-width: 1180px) and (min-width: 1025px) {
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 1024px) {
             .hero-grid,
             .about-grid,
