@@ -161,26 +161,26 @@
 
         var PARTNER_LOGOS = {
             industry: [
-                { src: 'images/partners/iata-partner.png', alt: 'IATA' },
-                { src: 'images/partners/icao-partner.svg', alt: 'ICAO' },
-                { src: 'images/partners/sats-logo.svg', alt: 'SATS' },
-                { src: 'images/partners/dnata-partner.png', alt: 'dnata' },
-                { src: 'images/partners/ccn-partner.png', alt: 'Cargo Community Network' }
+                { src: 'images/partners/iata.svg', alt: 'IATA' },
+                { src: 'images/partners/icao.svg', alt: 'ICAO' },
+                { src: 'images/partners/sats.png', alt: 'SATS' },
+                { src: 'images/partners/dnata.svg', alt: 'dnata' },
+                { src: 'images/partners/ccn.png', alt: 'Cargo Community Network' }
             ],
             government: [
-                { src: 'images/partners/caas-partner.png', alt: 'CAAS' },
-                { src: 'images/partners/esg-partner.png', alt: 'Enterprise Singapore' },
-                { src: 'images/partners/imda-crest.png', alt: 'IMDA' },
-                { src: 'images/partners/mindef-partner.png', alt: 'MINDEF' },
-                { src: 'images/partners/wsg-partner.png', alt: 'Workforce Singapore' }
+                { src: 'images/partners/caas.png', alt: 'CAAS' },
+                { src: 'images/partners/enterprisesg.svg', alt: 'Enterprise Singapore' },
+                { src: 'images/partners/imda.svg', alt: 'IMDA' },
+                { src: 'images/partners/mindef.png', alt: 'MINDEF' },
+                { src: 'images/partners/wsg.png', alt: 'Workforce Singapore' }
             ],
             ihls: [
-                { src: 'images/partners/rp-partner.png', alt: 'Republic Polytechnic' },
-                { src: 'images/partners/tp-logo.svg', alt: 'Temasek Polytechnic' },
-                { src: 'images/partners/sp-logo.png', alt: 'Singapore Polytechnic' },
-                { src: 'images/partners/nyp-logo.svg', alt: 'Nanyang Polytechnic' },
-                { src: 'images/partners/np-logo.svg', alt: 'Ngee Ann Polytechnic' },
-                { src: 'images/partners/ite-logo.png', alt: 'ITE' }
+                { src: 'images/partners/rp.png', alt: 'Republic Polytechnic' },
+                { src: 'images/partners/tp.svg', alt: 'Temasek Polytechnic' },
+                { src: 'images/partners/sp.png', alt: 'Singapore Polytechnic' },
+                { src: 'images/partners/nyp.svg', alt: 'Nanyang Polytechnic' },
+                { src: 'images/partners/np.png', alt: 'Ngee Ann Polytechnic' },
+                { src: 'images/partners/ite.png', alt: 'ITE' }
             ]
         };
 
