@@ -30,9 +30,9 @@
         .hero-fade { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg,#0f0f1a 0%,rgba(15,15,26,0.97) 20%,rgba(15,15,26,0.88) 35%,rgba(15,15,26,0.65) 50%,rgba(15,15,26,0.35) 62%,rgba(15,15,26,0.15) 72%,transparent 85%); z-index: 2; pointer-events: none; }
         .hero .container { position: relative; z-index: 3; }
         .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; }
-        .hero h1 { font-size: 3.5rem; color: white; margin-bottom: 20px; max-width: 600px; }
-        .hero h1 .accent { color: #ff6b7a; }
-        .hero p { font-size: 18px; color: rgba(255,255,255,0.75); margin-bottom: 32px; max-width: 520px; line-height: 1.6; }
+        .hero-grid h1 { font-size: 3.5rem; color: white; margin-bottom: 20px; }
+        .hero-grid h1 .accent { color: #ff6b7a; }
+        .hero-grid p { font-size: 18px; color: rgba(255,255,255,0.75); margin-bottom: 32px; line-height: 1.6; }
         .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
         .section { padding: 80px 0; }
         .section-header { margin-bottom: 48px; }
@@ -78,7 +78,7 @@
         .footer-bottom .legal a { font-size: 13px; color: var(--slate-500); transition: color 0.3s; }
         .footer-bottom .legal a:hover { color: white; }
         @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } .footer-grid { grid-template-columns: 1fr 1fr 1fr; } }
-        @media (max-width: 768px) { .logo-img { height: 60px; } .hero h1 { font-size: 2.5rem; } .hero { padding: 60px 0; min-height: 400px; } .hero-actions .btn { width: 100%; justify-content: center; } .section { padding: 60px 0; } .section-title { font-size: 1.75rem; } .footer-grid { grid-template-columns: 1fr; gap: 32px; } .footer-bottom { flex-direction: column; gap: 16px; text-align: center; } .contact-hours-grid { grid-template-columns: 1fr; } .hours-list li { flex-direction: column; align-items: flex-start; gap: 4px; } }
+        @media (max-width: 768px) { .logo-img { height: 60px; } .hero-grid h1 { font-size: 2.5rem; } .hero { padding: 60px 0; min-height: 400px; } .hero-actions .btn { width: 100%; justify-content: center; } .section { padding: 60px 0; } .section-title { font-size: 1.75rem; } .footer-grid { grid-template-columns: 1fr; gap: 32px; } .footer-bottom { flex-direction: column; gap: 16px; text-align: center; } .contact-hours-grid { grid-template-columns: 1fr; } .hours-list li { flex-direction: column; align-items: flex-start; gap: 4px; } }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--slate-50); }
         ::-webkit-scrollbar-thumb { background: var(--slate-300); border-radius: 100px; }
@@ -171,8 +171,9 @@
 <div class="hero-fade"></div>
 <div class="container">
 <div class="hero-grid">
-<div><h1>Permit &amp; <span class="accent">Certificate of Origin</span></h1>
-<p>SAAA Cargo Services offers a comprehensive range of trade documentation and customs services, providing businesses with convenient, reliable, and efficient solutions to support their import and export operations.</p>
+<div>
+<h1>Permit &amp; <span class="accent">Certificate of Origin</span></h1>
+<p>Permit declaration, Certificate of Origin collection, and ACES cargo manifest services for the air cargo industry.</p>
 </div>
 </div>
 </div>
@@ -183,16 +184,15 @@
 <div class="section-header">
 <div class="section-tag">Permit Services</div>
 <h2 class="section-title">Permit &amp; Certificate of <span class="accent">Origin</span></h2>
-<p class="section-desc">SAAA Cargo Services offers a comprehensive range of trade documentation and customs services, providing businesses with convenient, reliable, and efficient solutions to support their import and export operations.</p>
+<p class="section-desc">SAAA Cargo Services provides permit and documentation support to facilitate cargo clearance for members and walk-in customers.</p>
 </div>
 <div class="page-content">
 <h3>Permit Declaration</h3>
-<p>SAAA Cargo Services provides permit declaration services for walk-in customers. Conveniently located with accessible operating hours, our office offers a hassle-free one-stop service for customers to apply for import permits and proceed with the clearance of cargo from the terminals. We also provide export permit application services to support your shipping requirements.</p>
+<p>SAAA Cargo Services provide permit services for all walk-ins. The operating hours and office location makes it convenient for customers to apply import permits and subsequently proceeds with clearing of cargoes from terminals. We also provide services for export permits.</p>
 
 <div class="info-card">
 <h3>Certificate of Origin</h3>
-<p>Since 1 March 2006, SAAA has served as an authorised collection centre for Certificate of Origin (CO). Applicants can conveniently submit their applications through the CrimsonLogic portal and select SAAA as their preferred collection centre. Once approved, the certificates can be collected from our office upon payment of the applicable certificate fee.</p>
-<p style="margin-top: 16px; margin-bottom: 0;">For added convenience, SAAA also offers a courier delivery service for Certificate of Origin.</p>
+<p>Our operations office is also a collection centre for Certificate of Origins since 01 March 2006. Agents can conveniently apply these via Crimsonlogic portal and select SAAA as the collection centre. These certificates can be collected at our office with fees charged.</p>
 </div>
 
 <h3>ACES Cargo Manifest</h3>
@@ -224,10 +224,7 @@
 </div>
 </div>
 <div style="margin-top: 32px;">
-<a href="https://saaa-certificate-of-origin-permit.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary">
-<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-Online Courier Form
-</a>
+<a href="https://main.d1zqfaeaa5ju6p.amplifyapp.com/" target="_blank" rel="noopener" class="btn btn-primary">Proceed to Register</a>
 </div>
 </div>
 </div>
