@@ -288,12 +288,13 @@ a.imdd-institution-logo:hover {
 
 .imdd-main {
     min-width: 0;
+    contain: layout style;
+    transition: opacity 0.12s ease;
 }
 
-.imdd-main.is-loading {
-    opacity: 0.55;
+.imdd-main.is-nav-swapping {
+    opacity: 0;
     pointer-events: none;
-    transition: opacity 0.15s ease;
 }
 
 /* Subpages: keep section tag below sticky nav when content is scrolled to the shell top */

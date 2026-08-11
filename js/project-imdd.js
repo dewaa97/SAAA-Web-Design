@@ -5,6 +5,9 @@
     var pageId = document.body.getAttribute('data-imdd-page') || 'home';
     var isNavigating = false;
     var testimonialResizeBound = false;
+    var pageCache = Object.create(null);
+    var prefetching = Object.create(null);
+    var navSwapFadeMs = 120;
 
     function escapeHtml(value) {
         return String(value)
@@ -914,6 +917,92 @@
             return Object.prototype.hasOwnProperty.call(hubPages, getFilename(href));
         }
 
+        function parseHubPageHtml(html) {
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(html, 'text/html');
+            var newMain = doc.querySelector('.imdd-main');
+            if (!newMain) throw new Error('Missing main content');
+
+            return {
+                mainHtml: newMain.innerHTML,
+                title: doc.title
+            };
+        }
+
+        function fetchHubPageHtml(filename) {
+            if (pageCache[filename]) {
+                return Promise.resolve(pageCache[filename]);
+            }
+
+            if (!prefetching[filename]) {
+                prefetching[filename] = fetch(filename, { credentials: 'same-origin' })
+                    .then(function (response) {
+                        if (!response.ok) throw new Error('Failed to load page');
+                        return response.text();
+                    })
+                    .then(function (html) {
+                        pageCache[filename] = html;
+                        return html;
+                    })
+                    .finally(function () {
+                        delete prefetching[filename];
+                    });
+            }
+
+            return prefetching[filename];
+        }
+
+        function prefetchHubPage(href) {
+            var filename = getFilename(href);
+            if (!hubPages[filename] || pageCache[filename] || prefetching[filename]) return;
+            fetchHubPageHtml(filename).catch(function () {});
+        }
+
+        function bindHubNavPrefetch() {
+            var nav = document.getElementById('imdd-hub-nav');
+            if (!nav || nav.dataset.imddPrefetchBound === 'true') return;
+            nav.dataset.imddPrefetchBound = 'true';
+
+            function queuePrefetch(event) {
+                var link = event.target.closest('.imdd-sidebar-link');
+                if (!link) return;
+                prefetchHubPage(link.getAttribute('href'));
+            }
+
+            nav.addEventListener('pointerenter', queuePrefetch, true);
+            nav.addEventListener('focusin', queuePrefetch);
+        }
+
+        function swapMainContent(parsed, targetPageId, filename, pushState) {
+            var lockedHeight = mainEl.offsetHeight;
+            mainEl.style.minHeight = lockedHeight + 'px';
+            mainEl.classList.add('is-nav-swapping');
+
+            return new Promise(function (resolve) {
+                window.setTimeout(function () {
+                    var template = document.createElement('template');
+                    template.innerHTML = parsed.mainHtml;
+                    mainEl.replaceChildren.apply(mainEl, Array.prototype.slice.call(template.content.childNodes));
+
+                    document.title = parsed.title;
+                    resetMainWidgetState();
+                    initImddPageContent(targetPageId);
+
+                    if (pushState !== false) {
+                        history.pushState({ imddPage: targetPageId, imddHref: filename }, '', filename);
+                    }
+
+                    requestAnimationFrame(function () {
+                        mainEl.classList.remove('is-nav-swapping');
+                        window.setTimeout(function () {
+                            mainEl.style.minHeight = '';
+                            resolve();
+                        }, navSwapFadeMs);
+                    });
+                }, navSwapFadeMs);
+            });
+        }
+
         function loadPage(href, options) {
             options = options || {};
             var filename = getFilename(href);
@@ -926,33 +1015,15 @@
             }
 
             isNavigating = true;
-            mainEl.classList.add('is-loading');
 
-            return fetch(filename, { credentials: 'same-origin' })
-                .then(function (response) {
-                    if (!response.ok) throw new Error('Failed to load page');
-                    return response.text();
-                })
+            return fetchHubPageHtml(filename)
                 .then(function (html) {
-                    var parser = new DOMParser();
-                    var doc = parser.parseFromString(html, 'text/html');
-                    var newMain = doc.querySelector('.imdd-main');
-                    if (!newMain) throw new Error('Missing main content');
-
-                    mainEl.innerHTML = newMain.innerHTML;
-                    document.title = doc.title;
-                    resetMainWidgetState();
-                    initImddPageContent(targetPageId);
-
-                    if (options.pushState !== false) {
-                        history.pushState({ imddPage: targetPageId, imddHref: filename }, '', filename);
-                    }
+                    return swapMainContent(parseHubPageHtml(html), targetPageId, filename, options.pushState);
                 })
                 .catch(function () {
                     window.location.href = filename;
                 })
                 .finally(function () {
-                    mainEl.classList.remove('is-loading');
                     isNavigating = false;
                 });
         }
@@ -983,6 +1054,8 @@
         if (hubPages[currentFile]) {
             history.replaceState({ imddPage: hubPages[currentFile], imddHref: currentFile }, '', currentFile);
         }
+
+        bindHubNavPrefetch();
     }
 
     initSidebarToggle();
