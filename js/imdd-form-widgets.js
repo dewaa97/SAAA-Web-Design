@@ -254,8 +254,9 @@
 
         var picker = new DatePicker(root, {
             placeholder: options.placeholder || 'Pick a date',
-            onChange: function () {
+            onChange: function (iso) {
                 if (field) field.classList.remove('has-error');
+                if (options.onChange) options.onChange(iso);
             }
         });
 

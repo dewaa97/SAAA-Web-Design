@@ -17,8 +17,34 @@
     let currentPage = 1;
     let upcomingPage = 1;
     let pastPage = 1;
+    let dateFromPicker = null;
+    let dateToPicker = null;
 
     const isAnnouncementsSplit = type === 'announcements' && document.getElementById('upcoming-announcements');
+
+    function mountDatePickers(onChange) {
+        if (!window.SaaaImddFormWidgets) return;
+
+        if (dateFromInput) {
+            dateFromPicker = window.SaaaImddFormWidgets.mountDatePickerFromInput(dateFromInput, {
+                placeholder: 'From date',
+                onChange: function () {
+                    dateFrom = dateFromPicker ? dateFromPicker.getValue() : '';
+                    onChange();
+                }
+            });
+        }
+
+        if (dateToInput) {
+            dateToPicker = window.SaaaImddFormWidgets.mountDatePickerFromInput(dateToInput, {
+                placeholder: 'To date',
+                onChange: function () {
+                    dateTo = dateToPicker ? dateToPicker.getValue() : '';
+                    onChange();
+                }
+            });
+        }
+    }
 
     function bindInputs(onChange) {
         if (searchInput) {
@@ -28,14 +54,18 @@
             });
         }
 
-        [dateFromInput, dateToInput].forEach(function (input) {
-            if (!input) return;
-            input.addEventListener('change', function () {
-                dateFrom = dateFromInput ? dateFromInput.value : '';
-                dateTo = dateToInput ? dateToInput.value : '';
-                onChange();
+        if (window.SaaaImddFormWidgets) {
+            mountDatePickers(onChange);
+        } else {
+            [dateFromInput, dateToInput].forEach(function (input) {
+                if (!input) return;
+                input.addEventListener('change', function () {
+                    dateFrom = dateFromInput ? dateFromInput.value : '';
+                    dateTo = dateToInput ? dateToInput.value : '';
+                    onChange();
+                });
             });
-        });
+        }
 
         window.saaaListing.bindSidebarFilters(sidebar, function (value) {
             categoryFilter = value;
