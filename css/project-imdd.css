@@ -15,7 +15,7 @@
 /* Spotlight section — separate from hero, no overlap */
 .imdd-spotlight {
     padding: 32px 0 64px;
-    background: var(--slate-50);
+    background: transparent;
     border-bottom: 1px solid var(--slate-200);
     scroll-margin-top: calc(var(--imdd-site-nav-height, 80px) + 60px);
 }
@@ -281,8 +281,12 @@ body[data-imdd-page]:not([data-imdd-page="home"]) .imdd-page-shell {
     scroll-margin-top: calc(var(--imdd-site-nav-height, 80px) + 16px);
 }
 
-body[data-imdd-page]:not([data-imdd-page="home"]) .imdd-main > .imdd-section:first-child {
-    padding-top: 48px;
+body[data-imdd-page] .imdd-page-shell {
+    padding-top: 8px;
+}
+
+body[data-imdd-page] .imdd-main > .imdd-section:first-child {
+    padding-top: 16px;
 }
 
 /* Contact section — hub page */
@@ -377,13 +381,8 @@ body[data-imdd-page]:not([data-imdd-page="home"]) .imdd-main > .imdd-section:fir
     margin-bottom: 16px;
 }
 
-/* Overview (home) — tighter top spacing and gap before spotlight */
-body[data-imdd-page="home"] .imdd-page-shell {
-    padding-top: 8px;
-}
-
+/* Overview (home) — gap before spotlight */
 body[data-imdd-page="home"] #why-project-imdd {
-    padding-top: 16px;
     padding-bottom: 12px;
 }
 
@@ -1110,12 +1109,15 @@ body[data-imdd-page="home"] #why-project-imdd + .imdd-spotlight {
         padding-bottom: 30px;
     }
 
-    body[data-imdd-page="home"] .imdd-page-shell {
+    body[data-imdd-page] .imdd-page-shell {
         padding-top: 4px;
     }
 
-    body[data-imdd-page="home"] #why-project-imdd {
+    body[data-imdd-page] .imdd-main > .imdd-section:first-child {
         padding-top: 12px;
+    }
+
+    body[data-imdd-page="home"] #why-project-imdd {
         padding-bottom: 8px;
     }
 
