@@ -70,9 +70,9 @@
   --color-slate-50: var(--slate-50);
   --color-slate-800: var(--slate-800);
   --color-slate-900: var(--slate-900);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-inter);
   --font-display: var(--font-space-grotesk);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-space-grotesk);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -126,6 +126,18 @@ h4,
 h5,
 h6 {
   font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.section .section-header {
+  text-align: left;
+}
+
+.section-header .section-desc {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 /* History / subpage content (shared with static site) */
@@ -174,14 +186,15 @@ h6 {
   margin: 24px 0 32px;
 }
 
-.council-member {
+.council-grid .council-member {
   padding: 16px;
-  background: var(--slate-50);
+  background: var(--white);
   border-radius: var(--radius);
   border: 1px solid var(--slate-100);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
 }
 
-.council-member .role {
+.council-grid .council-member .role {
   font-size: 12px;
   font-weight: 700;
   color: var(--red-600);
@@ -190,16 +203,82 @@ h6 {
   margin-bottom: 4px;
 }
 
-.council-member .name {
+.council-grid .council-member .name {
   font-size: 14px;
   font-weight: 600;
   color: var(--slate-800);
   margin-bottom: 2px;
 }
 
-.council-member .org {
+.council-grid .council-member .org {
   font-size: 13px;
   color: var(--slate-500);
+}
+
+/* Legacy .btn classes paired with shadcn Button — match static subpage.css */
+[data-slot="button"].btn,
+a.btn[data-slot="button"] {
+  height: auto;
+  min-height: unset;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+  line-height: 1.5;
+  gap: 8px;
+}
+
+[data-slot="button"].btn-primary,
+a.btn-primary[data-slot="button"] {
+  background: var(--red-600) !important;
+  color: #ffffff !important;
+  border: none;
+}
+
+[data-slot="button"].btn-primary:hover,
+a.btn-primary[data-slot="button"]:hover {
+  background: var(--red-700) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(196, 30, 58, 0.25);
+}
+
+[data-slot="button"].btn-secondary,
+a.btn-secondary[data-slot="button"] {
+  background: transparent !important;
+  color: var(--slate-700) !important;
+  border: 1px solid var(--slate-300) !important;
+}
+
+[data-slot="button"].btn-secondary:hover,
+a.btn-secondary[data-slot="button"]:hover {
+  border-color: var(--red-400) !important;
+  color: var(--red-600) !important;
+  background: transparent !important;
+}
+
+[data-slot="button"].btn-outline-white,
+a.btn-outline-white[data-slot="button"] {
+  background: transparent !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+[data-slot="button"].btn-outline-white:hover,
+a.btn-outline-white[data-slot="button"]:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+.about-quick-links .btn,
+.about-quick-links [data-slot="button"] {
+  font-size: 12px;
+  padding: 8px 14px;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  height: auto;
+  border-radius: var(--radius-sm);
 }
 
 .services-list {
@@ -488,8 +567,9 @@ h6 {
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-inter), "Inter", system-ui, sans-serif;
   }
   html {
-    @apply font-sans;
+    font-family: var(--font-inter), "Inter", system-ui, sans-serif;
   }
 }

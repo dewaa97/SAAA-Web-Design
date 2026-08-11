@@ -36,8 +36,8 @@ export default function MilestonesPage() {
                     <div className="milestone-card">
                       <h3 className="milestone-decade">{decade.decade}</h3>
                       <ul className="milestone-events">
-                        {decade.events.map((event) => (
-                          <li key={`${decade.decade}-${event.year}`}>
+                        {decade.events.map((event, index) => (
+                          <li key={`${decade.decade}-${event.year}-${index}`}>
                             <span className="milestone-year">{event.year}</span> {event.text}
                           </li>
                         ))}
@@ -55,8 +55,8 @@ export default function MilestonesPage() {
                     <div className="milestone-card">
                       <h3 className="milestone-decade">{decade.decade}</h3>
                       <ul className="milestone-events">
-                        {decade.events.map((event) => (
-                          <li key={`${decade.decade}-${event.year}`}>
+                        {decade.events.map((event, index) => (
+                          <li key={`${decade.decade}-${event.year}-${index}`}>
                             <span className="milestone-year">{event.year}</span> {event.text}
                           </li>
                         ))}

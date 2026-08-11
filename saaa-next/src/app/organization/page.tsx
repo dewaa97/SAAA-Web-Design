@@ -25,7 +25,6 @@ export default function OrganizationPage() {
             tag="Council"
             title={<>SAAA <span className="brand-saaa">Council</span> Organization</>}
             description="Elected by member companies, the Council sets the strategic direction for SAAA and represents the interests of the airfreight forwarding community."
-            className="text-center"
           />
           <div className="council-chart">
             {councilRows.map((row) => (
@@ -58,7 +57,6 @@ export default function OrganizationPage() {
             tag="Secretariat"
             title={<>SAAA <span className="brand-saaa">Secretariat</span></>}
             description="The combined SAAA Secretariat and SAAA Cargo Services structure supporting member engagement, training, documentation services, and finance operations."
-            className="text-center"
           />
           <div className="secretariat-chart">
             <div className="secretariat-tier secretariat-tier-top">
@@ -82,7 +80,7 @@ export default function OrganizationPage() {
                         <div className={`dept-pill ${department.pillClass}`}>{department.pill}</div>
                         <div className="staff-list">
                           {department.staff.map((person) => (
-                            <div key={person.email} className="staff-person">
+                            <div key={`${person.name}-${person.email}`} className="staff-person">
                               <div className="name">{person.name}</div>
                               <div className="title">{person.title}</div>
                               <a href={`mailto:${person.email}`} className="sec-email">{person.email}</a>

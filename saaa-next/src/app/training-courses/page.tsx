@@ -14,16 +14,24 @@ export const metadata = createPageMetadata({
 export default function TrainingCoursesPage() {
   return (
     <SubpageLayout
-      title={<>Training <span className="accent">Courses</span></>}
-      description="Competency-based training programmes covering dangerous goods regulations, airfreight operations, and industry best practices."
+      title={
+        <>
+          <span className="brand-saaa">SAAA</span> Training Courses
+        </>
+      }
+      description="Competency-based training programs covering dangerous goods regulations, airfreight operations, and industry best practices. Browse the full course catalog below."
       imageAlt="SAAA Training Courses"
     >
-      <section className="section training-page-section">
+      <section className="section">
         <div className="container">
           <SectionHeader
-            tag="Training"
-            title={<>SAAA <span className="brand-saaa">Training</span> Courses</>}
-            description="Browse the full training catalogue. Contact admin@saaa.org.sg for enrolment enquiries."
+            tag="Training & Courses"
+            title={
+              <>
+                Full Course <span className="accent">Catalog</span>
+              </>
+            }
+            description="Filter by program category and browse all available SAAA training courses with dates and vacancy information."
           />
           <TrainingCoursesListing />
         </div>

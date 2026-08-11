@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { aboutFeatures, aboutQuickLinks } from "@/lib/content/homepage";
 import { siteConfig } from "@/lib/config/site";
@@ -44,9 +43,9 @@ export function HomeAboutSection() {
 
             <div className="about-quick-links">
               {aboutQuickLinks.map((link) => (
-                <Button key={link.href} asChild size="sm" className="about-quick-link-btn">
-                  <Link href={link.href}>{link.label}</Link>
-                </Button>
+                <Link key={link.href} href={link.href} className="btn btn-primary about-quick-link-btn">
+                  {link.label}
+                </Link>
               ))}
             </div>
           </div>

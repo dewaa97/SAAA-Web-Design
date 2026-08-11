@@ -4,13 +4,14 @@ type ListingPaginationProps = {
   page: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+  className?: string;
 };
 
-export function ListingPagination({ page, totalPages, onPageChange }: ListingPaginationProps) {
+export function ListingPagination({ page, totalPages, onPageChange, className }: ListingPaginationProps) {
   if (totalPages <= 1) return null;
 
   return (
-    <div className="listing-pagination" role="navigation" aria-label="Pagination">
+    <div className={["listing-pagination", className].filter(Boolean).join(" ")} role="navigation" aria-label="Pagination">
       <button
         type="button"
         className="listing-pagination-arrow"
