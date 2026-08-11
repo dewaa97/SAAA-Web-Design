@@ -69,21 +69,34 @@
         track.innerHTML = html + html;
     }
 
-    function renderHubNav() {
+    function ensureHubNavRendered() {
         var nav = document.getElementById('imdd-hub-nav');
-        if (!nav) return;
-
-        var activePageId = document.body.getAttribute('data-imdd-page') || pageId;
+        if (!nav || nav.dataset.imddNavRendered === 'true') return;
 
         nav.innerHTML = content.hubNav.map(function (item) {
-            var isActive = item.id === activePageId;
             return (
-                '<a href="' + escapeHtml(item.href) + '" class="imdd-sidebar-link' + (isActive ? ' is-active' : '') + '" title="' + escapeHtml(item.description) + '"' + (isActive ? ' aria-current="page"' : '') + '>' +
+                '<a href="' + escapeHtml(item.href) + '" class="imdd-sidebar-link" data-imdd-nav-id="' + escapeHtml(item.id) + '" title="' + escapeHtml(item.description) + '">' +
                     '<span class="imdd-sidebar-icon" aria-hidden="true">' + getHubIcon(item.icon) + '</span>' +
                     '<span class="imdd-sidebar-label">' + escapeHtml(item.label) + '</span>' +
                 '</a>'
             );
         }).join('');
+        nav.dataset.imddNavRendered = 'true';
+    }
+
+    function updateHubNavActive(activePageId) {
+        var nav = document.getElementById('imdd-hub-nav');
+        if (!nav) return;
+
+        nav.querySelectorAll('.imdd-sidebar-link[data-imdd-nav-id]').forEach(function (link) {
+            var isActive = link.getAttribute('data-imdd-nav-id') === activePageId;
+            link.classList.toggle('is-active', isActive);
+            if (isActive) {
+                link.setAttribute('aria-current', 'page');
+            } else {
+                link.removeAttribute('aria-current');
+            }
+        });
     }
 
     function initSidebarToggle() {
@@ -830,7 +843,7 @@
         pageId = targetPageId;
         document.body.setAttribute('data-imdd-page', targetPageId);
 
-        renderHubNav();
+        updateHubNavActive(targetPageId);
 
         if (targetPageId === 'home') {
             renderInstitutionMarquee();
@@ -895,39 +908,6 @@
             return Object.prototype.hasOwnProperty.call(hubPages, getFilename(href));
         }
 
-        function getImddNavHeight() {
-            var nav = document.querySelector('nav');
-            if (nav) {
-                return nav.getBoundingClientRect().height;
-            }
-
-            var navHeight = parseInt(
-                getComputedStyle(document.documentElement).getPropertyValue('--imdd-site-nav-height'),
-                10
-            );
-            if (!navHeight || Number.isNaN(navHeight)) {
-                var navInner = document.querySelector('nav .nav-inner');
-                navHeight = navInner ? navInner.offsetHeight : 80;
-            }
-            return navHeight;
-        }
-
-        function getImddContentScrollTop() {
-            var heroEl = document.getElementById('imdd-hero');
-            var boundary = heroEl
-                ? heroEl.getBoundingClientRect().bottom + window.scrollY
-                : shellEl.getBoundingClientRect().top + window.scrollY;
-            return Math.max(0, Math.ceil(boundary - getImddNavHeight()));
-        }
-
-        function scrollToContent(options) {
-            options = options || {};
-            window.scrollTo({
-                top: getImddContentScrollTop(),
-                behavior: options.behavior || 'smooth'
-            });
-        }
-
         function loadPage(href, options) {
             options = options || {};
             var filename = getFilename(href);
@@ -936,7 +916,6 @@
 
             var currentFile = getFilename(window.location.pathname);
             if (currentFile === filename && !options.force) {
-                scrollToContent();
                 return Promise.resolve();
             }
 
@@ -962,8 +941,6 @@
                     if (options.pushState !== false) {
                         history.pushState({ imddPage: targetPageId, imddHref: filename }, '', filename);
                     }
-
-                    scrollToContent();
                 })
                 .catch(function () {
                     window.location.href = filename;
@@ -982,6 +959,12 @@
             if (!href || !isHubPage(href)) return;
 
             event.preventDefault();
+
+            var targetPageId = hubPages[getFilename(href)];
+            if (targetPageId) {
+                updateHubNavActive(targetPageId);
+            }
+
             loadPage(href, { pushState: true });
         });
 
@@ -993,16 +976,12 @@
         var currentFile = getFilename(window.location.pathname);
         if (hubPages[currentFile]) {
             history.replaceState({ imddPage: hubPages[currentFile], imddHref: currentFile }, '', currentFile);
-            requestAnimationFrame(function () {
-                requestAnimationFrame(function () {
-                    scrollToContent({ behavior: 'auto' });
-                });
-            });
         }
     }
 
     initSidebarToggle();
     bindForms();
+    ensureHubNavRendered();
     initImddPageContent(pageId);
     initImddClientNav();
 })();
