@@ -373,6 +373,10 @@ body[data-imdd-page]:not([data-imdd-page="home"]) .imdd-main > .imdd-section:fir
     padding-bottom: 40px;
 }
 
+#why-project-imdd .imdd-section-header {
+    margin-bottom: 0;
+}
+
 #why-project-imdd .imdd-lead {
     margin-bottom: 16px;
 }
