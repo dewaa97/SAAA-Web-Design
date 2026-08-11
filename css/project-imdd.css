@@ -373,10 +373,6 @@ body[data-imdd-page]:not([data-imdd-page="home"]) .imdd-main > .imdd-section:fir
     padding-bottom: 40px;
 }
 
-#why-project-imdd .imdd-section-header {
-    margin-bottom: 0;
-}
-
 #why-project-imdd .imdd-lead {
     margin-bottom: 16px;
 }
@@ -410,6 +406,12 @@ body[data-imdd-page="home"] #why-project-imdd + .imdd-spotlight {
 
 .imdd-section-header {
     margin-bottom: 40px;
+}
+
+/* Lead/intro outside header: keep ~12px h2 gap, not 40px header block gap */
+.imdd-section-header:has(+ .imdd-lead),
+.imdd-section-header:has(+ * > .imdd-lead:first-child) {
+    margin-bottom: 0;
 }
 
 .imdd-section-header .section-tag {
