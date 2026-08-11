@@ -24,22 +24,20 @@
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     gap: 32px;
-    align-items: stretch;
+    align-items: center;
 }
 
 .imdd-spotlight-image {
     border-radius: var(--radius-lg);
-    overflow: hidden;
-    min-height: 320px;
     box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
 }
 
 .imdd-spotlight-image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     display: block;
-    min-height: 320px;
+    border-radius: var(--radius-lg);
 }
 
 .imdd-spotlight-quote {
@@ -1149,11 +1147,6 @@ body[data-imdd-page="home"] #why-project-imdd + .imdd-spotlight {
 
     .imdd-spotlight-grid {
         grid-template-columns: 1fr;
-    }
-
-    .imdd-spotlight-image,
-    .imdd-spotlight-image img {
-        min-height: 220px;
     }
 
     .imdd-spotlight-quote {
