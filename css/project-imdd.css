@@ -377,6 +377,20 @@ body[data-imdd-page]:not([data-imdd-page="home"]) .imdd-main > .imdd-section:fir
     margin-bottom: 16px;
 }
 
+/* Overview (home) — tighter top spacing and gap before spotlight */
+body[data-imdd-page="home"] .imdd-page-shell {
+    padding-top: 12px;
+}
+
+body[data-imdd-page="home"] #why-project-imdd {
+    padding-top: 24px;
+    padding-bottom: 12px;
+}
+
+body[data-imdd-page="home"] #why-project-imdd + .imdd-spotlight {
+    padding-top: 8px;
+}
+
 #testimonials.imdd-section {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -1088,6 +1102,19 @@ body[data-imdd-page]:not([data-imdd-page="home"]) .imdd-main > .imdd-section:fir
 @media (max-width: 768px) {
     #why-project-imdd {
         padding-bottom: 30px;
+    }
+
+    body[data-imdd-page="home"] .imdd-page-shell {
+        padding-top: 8px;
+    }
+
+    body[data-imdd-page="home"] #why-project-imdd {
+        padding-top: 16px;
+        padding-bottom: 8px;
+    }
+
+    body[data-imdd-page="home"] #why-project-imdd + .imdd-spotlight {
+        padding-top: 4px;
     }
 
     .imdd-spotlight {
