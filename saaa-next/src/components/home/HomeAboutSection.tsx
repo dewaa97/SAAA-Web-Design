@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { aboutFeatures, aboutQuickLinks } from "@/lib/content/homepage";
 import { siteConfig } from "@/lib/config/site";
 
@@ -39,26 +41,28 @@ export function HomeAboutSection() {
                 <span className="about-contact-phone">{siteConfig.contact.associationPhone}</span>
               </span>
             </div>
+
+            <div className="about-quick-links">
+              {aboutQuickLinks.map((link) => (
+                <Button key={link.href} asChild size="sm" className="about-quick-link-btn">
+                  <Link href={link.href}>{link.label}</Link>
+                </Button>
+              ))}
+            </div>
           </div>
 
           <div>
             <div className="about-features">
               {aboutFeatures.map((feature) => (
-                <div key={feature.number} className="about-feature">
-                  <div className="about-feature-number">{feature.number}</div>
-                  <h4>{feature.title}</h4>
-                  <p>{feature.description}</p>
-                </div>
+                <Card key={feature.number} className="about-feature">
+                  <CardContent className="about-feature-content">
+                    <div className="about-feature-number">{feature.number}</div>
+                    <h4>{feature.title}</h4>
+                    <p>{feature.description}</p>
+                  </CardContent>
+                </Card>
               ))}
             </div>
-          </div>
-
-          <div className="about-quick-links">
-            {aboutQuickLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="btn btn-primary">
-                {link.label}
-              </Link>
-            ))}
           </div>
         </div>
       </div>

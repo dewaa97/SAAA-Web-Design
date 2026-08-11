@@ -5,7 +5,7 @@ import {
   formatEventMonth,
   homepageEvents,
 } from "@/lib/content/events";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 
 export function HomeEventsSection() {
   return (
@@ -18,7 +18,9 @@ export function HomeEventsSection() {
               Events & <span className="accent">Networking</span>
             </h2>
           </div>
-          <Button variant="secondary" href="/events">View All Events</Button>
+          <Button asChild variant="outline" className="btn btn-secondary">
+            <Link href="/events">View All Events</Link>
+          </Button>
         </div>
 
         <div className="events-grid">

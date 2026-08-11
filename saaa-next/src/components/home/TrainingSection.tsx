@@ -2,31 +2,92 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   filterTrainingCourses,
   formatTrainingDate,
+  formatTrainingDuration,
+  formatTrainingLocation,
+  formatTrainingTime,
   getTrainingCount,
   trainingTabs,
+  type TrainingCourse,
   type TrainingTabId,
 } from "@/lib/content/trainingCourses";
+import { paginate } from "@/lib/utils/listing";
 
 const itemsPerPage = 6;
 
+function TrainingSchedule({ course, rowId }: { course: TrainingCourse; rowId: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const sessions = course.sessions;
+
+  if (!sessions.length) return null;
+
+  return (
+    <div className="training-schedule">
+      <button
+        type="button"
+        className="training-schedule-toggle"
+        aria-expanded={expanded}
+        aria-controls={`schedule-panel-${rowId}`}
+        onClick={() => setExpanded((current) => !current)}
+      >
+        {expanded ? "Hide training schedule" : "Click here for training schedule"}
+      </button>
+      <div className="training-schedule-panel" id={`schedule-panel-${rowId}`} hidden={!expanded}>
+        <div className="training-schedule-label">Training Schedule</div>
+        {sessions.map((session, index) => {
+          const prefix = sessions.length > 1 ? `Day ${index + 1}: ` : "";
+          return (
+            <div key={`${session.date}-${index}`} className="training-schedule-item">
+              {prefix}
+              {formatTrainingDate(session.date)} · {formatTrainingTime(session.startTime)} –{" "}
+              {formatTrainingTime(session.endTime)}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function TrainingRow({ course, index }: { course: TrainingCourse; index: number }) {
+  const number = String(index + 1).padStart(2, "0");
+  const rowId = `${course.id}-${index}`;
+
+  return (
+    <div className="training-row" data-category={course.category}>
+      <div className="number">{number}</div>
+      <div className="content">
+        <div className="title">{course.title}</div>
+        <div className="function">{course.functionName}</div>
+        <div className="meta">
+          <span>{formatTrainingDuration(course.dayCount)}</span>
+          <span>{course.vacanciesLeft} vacancies left</span>
+          <span className="training-meta-location">{formatTrainingLocation(course)}</span>
+        </div>
+        <TrainingSchedule course={course} rowId={rowId} />
+      </div>
+      <div className="action">
+        <a href="#" className="btn-small primary">
+          Book Now
+        </a>
+      </div>
+    </div>
+  );
+}
+
 export function TrainingSection() {
   const [activeTab, setActiveTab] = useState<TrainingTabId>("all");
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
 
   const filteredCourses = useMemo(() => filterTrainingCourses(activeTab), [activeTab]);
-  const totalPages = Math.max(1, Math.ceil(filteredCourses.length / itemsPerPage));
-  const safePage = Math.min(page, totalPages - 1);
-  const visibleCourses = filteredCourses.slice(
-    safePage * itemsPerPage,
-    safePage * itemsPerPage + itemsPerPage,
-  );
+  const paged = paginate(filteredCourses, page, itemsPerPage);
 
   const handleTabChange = (tabId: TrainingTabId) => {
     setActiveTab(tabId);
-    setPage(0);
+    setPage(1);
   };
 
   return (
@@ -46,7 +107,7 @@ export function TrainingSection() {
         <div className="training-contact-row">
           <div className="training-contact-label">Contact SAAA Cargo Services Pte Ltd</div>
           <span className="training-contact-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-600)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-600)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
               <polyline points="22,6 12,13 2,6" />
             </svg>
@@ -55,7 +116,7 @@ export function TrainingSection() {
             </a>
           </span>
           <span className="training-contact-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-600)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-600)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.96 12.96 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.96 12.96 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
             </svg>
             <span className="training-contact-link">(+65) 6545 5006</span>
@@ -65,12 +126,14 @@ export function TrainingSection() {
         <div data-training-root data-items-per-page={itemsPerPage}>
           <div className="training-toolbar-row">
             <div className="training-tabs-scroll">
-              <div className="training-tabs">
+              <div className="training-tabs" role="tablist" aria-label="Training categories">
                 {trainingTabs.map((tab) => (
                   <button
                     key={tab.id}
                     className={`training-tab${activeTab === tab.id ? " active" : ""}`}
                     type="button"
+                    role="tab"
+                    aria-selected={activeTab === tab.id}
                     onClick={() => handleTabChange(tab.id)}
                   >
                     {tab.label}
@@ -79,51 +142,58 @@ export function TrainingSection() {
                 ))}
               </div>
             </div>
-            <Link href="/training-courses" className="btn btn-secondary">
-              View All Training
-            </Link>
+            <Button variant="outline" asChild className="training-view-all-btn btn btn-secondary">
+              <Link href="/training-courses">View All Training</Link>
+            </Button>
           </div>
 
-          <div className="training-list">
-            {visibleCourses.map((course) => (
-              <article key={course.id} className="training-row">
-                <div className="training-row-main">
-                  <h4 className="training-row-title">{course.title}</h4>
-                  <p className="training-row-function">{course.functionName}</p>
-                </div>
-                <div className="training-row-meta">
-                  <span className="training-row-date">
-                    {formatTrainingDate(course.scheduleStartDate)}
-                  </span>
-                  <span className="training-row-mode">
-                    {course.deliveryMode === "classroom" ? "Classroom" : "Virtual"}
-                  </span>
-                  <span className="training-row-vacancy">{course.vacanciesLeft} vacancies</span>
-                </div>
-              </article>
-            ))}
+          <div className="training-list" data-training-list>
+            {!filteredCourses.length ? (
+              <div className="training-empty">No courses available in this category yet.</div>
+            ) : (
+              paged.items.map((course, index) => (
+                <TrainingRow
+                  key={course.id}
+                  course={course}
+                  index={(paged.page - 1) * itemsPerPage + index}
+                />
+              ))
+            )}
           </div>
 
-          {totalPages > 1 && (
-            <div className="training-pagination">
+          {paged.totalPages > 1 && (
+            <div className="training-pagination" data-training-pagination>
               <button
                 type="button"
-                className="training-page-btn"
-                disabled={safePage === 0}
-                onClick={() => setPage((current) => Math.max(0, current - 1))}
+                className="pagination-arrow"
+                disabled={paged.page === 1}
+                aria-label="Previous page"
+                onClick={() => setPage(paged.page - 1)}
               >
-                Previous
+                ←
               </button>
-              <span className="training-page-indicator">
-                Page {safePage + 1} of {totalPages}
-              </span>
+              {Array.from({ length: paged.totalPages }, (_, pageIndex) => {
+                const pageNumber = pageIndex + 1;
+                return (
+                  <button
+                    key={pageNumber}
+                    type="button"
+                    className={pageNumber === paged.page ? "active" : ""}
+                    aria-label={`Page ${pageNumber}`}
+                    onClick={() => setPage(pageNumber)}
+                  >
+                    {pageNumber}
+                  </button>
+                );
+              })}
               <button
                 type="button"
-                className="training-page-btn"
-                disabled={safePage >= totalPages - 1}
-                onClick={() => setPage((current) => Math.min(totalPages - 1, current + 1))}
+                className="pagination-arrow"
+                disabled={paged.page === paged.totalPages}
+                aria-label="Next page"
+                onClick={() => setPage(paged.page + 1)}
               >
-                Next
+                →
               </button>
             </div>
           )}

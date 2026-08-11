@@ -90,3 +90,15 @@ export const aboutQuickLinks = [
   { label: "Standard Trading Conditions", href: "/stc" },
   { label: "Programmes", href: "/programmes" },
 ];
+
+export const memberCtaLinks = [
+  { label: "Membership Sign-up", href: "/membership-application", variant: "primary" as const },
+  { label: "SAAA Members Listing", href: "/members-listing", variant: "secondary" as const },
+  { label: "Members Portal Log In", href: "/members-login", variant: "secondary" as const },
+];
+
+export const memberStats = [
+  { number: "120+", label: "Ordinary Members", sublabel: "Freight forwarders & agents" },
+  { number: "60+", label: "Associate Members", sublabel: "Airlines & service providers" },
+  { number: "15+", label: "Council Board", sublabel: "Elected industry leaders" },
+];

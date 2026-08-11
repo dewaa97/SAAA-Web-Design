@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { SubpageLayout } from "@/components/layout/SubpageLayout";
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import {
   ccpProgramme,
   pendingProgramme,
@@ -26,7 +26,7 @@ export default function ProgrammesPage() {
     >
       <section className="section">
         <div className="container">
-          <Card>
+          <Card className="programme-card">
             <h2>{projectImddProgramme.title}</h2>
             {projectImddProgramme.paragraphs.map((paragraph) => (
               <p key={paragraph.slice(0, 40)}>{paragraph}</p>
@@ -80,7 +80,9 @@ export default function ProgrammesPage() {
             </div>
 
             <div className="programme-cta-row">
-              <Button href="/project-imdd">View Project IMDD Hub</Button>
+              <Button asChild className="btn btn-primary">
+                <Link href="/project-imdd">View Project IMDD Hub</Link>
+              </Button>
             </div>
 
             <div className="contact-block">
@@ -95,7 +97,7 @@ export default function ProgrammesPage() {
             </div>
           </Card>
 
-          <Card>
+          <Card className="programme-card">
             <h2>{ccpProgramme.title}</h2>
             <p>
               The{" "}
@@ -107,8 +109,8 @@ export default function ProgrammesPage() {
             <p>{ccpProgramme.description}</p>
           </Card>
 
-          <Card>
-            <Badge variant="comingSoon">{pendingProgramme.badge}</Badge>
+          <Card className="programme-card">
+            <Badge className="badge-coming-soon">{pendingProgramme.badge}</Badge>
             <h2>{pendingProgramme.title}</h2>
             <p>{pendingProgramme.description}</p>
           </Card>

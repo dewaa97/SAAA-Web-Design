@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SubpageLayout } from "@/components/layout/SubpageLayout";
 import { HtmlContent } from "@/components/ui/HtmlContent";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { allEvents, formatEventSchedule, getEventById, isBookingOpen } from "@/lib/content/events";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import "@/styles/legacy/subpage.css";
@@ -53,7 +53,9 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
           <p className="article-contact">Contact: <a href={`mailto:${event.contact}`}>{event.contact}</a></p>
           <div className="article-detail-actions">
             {isBookingOpen(event) ? (
-              <Button href={`/event-booking?event=${event.id}`}>Register Now</Button>
+              <Button asChild className="btn btn-primary">
+                <Link href={`/event-booking?event=${event.id}`}>Register Now</Link>
+              </Button>
             ) : null}
             <Link href="/events" className="btn btn-secondary">Back to Events</Link>
           </div>

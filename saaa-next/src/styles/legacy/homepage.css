@@ -489,11 +489,16 @@
         }
 
         .about-feature {
-            padding: 20px;
+            padding: 0;
             background: var(--slate-50);
             border-radius: var(--radius);
             border: 1px solid var(--slate-100);
             min-width: 0;
+            box-shadow: none;
+        }
+
+        .about-feature-content {
+            padding: 20px;
         }
 
         .about-feature-number {
@@ -664,7 +669,8 @@
             margin-bottom: 0;
         }
 
-        .training-toolbar-row .btn {
+        .training-toolbar-row .btn,
+        .training-toolbar-row .training-view-all-btn {
             flex-shrink: 0;
         }
 
@@ -1004,6 +1010,20 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
             margin-bottom: 28px;
+        }
+
+        .members-intro {
+            text-align: center;
+            max-width: 560px;
+            margin: 0 auto 48px;
+        }
+
+        .members-intro .section-title {
+            margin: 0 auto 16px;
+        }
+
+        .publication-header-copy .section-desc {
+            max-width: 640px;
         }
 
         .members-cta {
@@ -1701,21 +1721,23 @@
         
 
         .about-quick-links {
-            grid-column: 1 / -1;
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-top: 32px;
+            margin-top: 20px;
             align-items: flex-start;
             width: 100%;
             min-width: 0;
         }
 
-        .about-quick-links .btn {
+        .about-quick-links .btn,
+        .about-quick-links .about-quick-link-btn {
             font-size: 12px;
             padding: 8px 14px;
             white-space: nowrap;
             flex: 0 0 auto;
+            height: auto;
+            border-radius: var(--radius-sm);
         }
 
         /* Single row only when full container width comfortably fits all buttons */

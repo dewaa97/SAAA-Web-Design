@@ -1,3 +1,9 @@
+export type TrainingSession = {
+  date: string;
+  startTime: string;
+  endTime: string;
+};
+
 export type TrainingCourse = {
   id: string;
   category: string;
@@ -10,12 +16,42 @@ export type TrainingCourse = {
   scheduleEndTime: string;
   vacanciesLeft: number;
   classroomAddress: string;
+  sessions: TrainingSession[];
 };
 
 const classroomAddress =
   "SAAA Training Centre, CT Hub, 2 Kallang Avenue, Singapore 339407";
 
-const rawCourses: Omit<TrainingCourse, "classroomAddress">[] = [
+function buildSessions(
+  startDate: string,
+  dayCount: number,
+  startTime: string,
+  endTime: string,
+): TrainingSession[] {
+  const sessions: TrainingSession[] = [];
+  const cursor = new Date(`${startDate}T00:00:00`);
+  let added = 0;
+
+  while (added < dayCount) {
+    const dayOfWeek = cursor.getDay();
+    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+      const year = cursor.getFullYear();
+      const month = String(cursor.getMonth() + 1).padStart(2, "0");
+      const day = String(cursor.getDate()).padStart(2, "0");
+      sessions.push({
+        date: `${year}-${month}-${day}`,
+        startTime,
+        endTime,
+      });
+      added++;
+    }
+    cursor.setDate(cursor.getDate() + 1);
+  }
+
+  return sessions;
+}
+
+const rawCourses: Omit<TrainingCourse, "classroomAddress" | "sessions">[] = [
   { id: "dg-7-1-initial", category: "cbta-dg", title: "Transport of Dangerous Goods by Air – Initial as per the IATA Dangerous Goods Training Guidance 7.1 (Supervised assessment)", functionName: "Preparing Dangerous Goods Consignment", dayCount: 5, deliveryMode: "classroom", scheduleStartDate: "2026-08-24", scheduleStartTime: "09:00", scheduleEndTime: "17:00", vacanciesLeft: 8 },
   { id: "dg-7-2-initial", category: "cbta-dg", title: "Transport of Dangerous Goods by Air – Initial as per the IATA Dangerous Goods Training Guidance 7.2 (Supervised assessment)", functionName: "Processing or Accepting Goods Presented as General Cargo", dayCount: 1, deliveryMode: "virtual", scheduleStartDate: "2026-08-26", scheduleStartTime: "09:00", scheduleEndTime: "17:00", vacanciesLeft: 5 },
   { id: "dg-7-3-initial", category: "cbta-dg", title: "Transport of Dangerous Goods by Air – Initial as per the IATA Dangerous Goods Training Guidance 7.3 (Supervised Assessment)", functionName: "Processing or Accepting Dangerous Goods Consignments", dayCount: 4, deliveryMode: "classroom", scheduleStartDate: "2026-08-28", scheduleStartTime: "09:00", scheduleEndTime: "17:00", vacanciesLeft: 11 },
@@ -33,6 +69,12 @@ const rawCourses: Omit<TrainingCourse, "classroomAddress">[] = [
 export const trainingCourses: TrainingCourse[] = rawCourses.map((course) => ({
   ...course,
   classroomAddress,
+  sessions: buildSessions(
+    course.scheduleStartDate,
+    course.dayCount,
+    course.scheduleStartTime,
+    course.scheduleEndTime,
+  ),
 }));
 
 export const trainingTabs = [
@@ -60,4 +102,22 @@ export function formatTrainingDate(date: string) {
     month: "short",
     year: "numeric",
   });
+}
+
+export function formatTrainingDuration(dayCount: number) {
+  return dayCount === 1 ? "1 Day" : `${dayCount} Days`;
+}
+
+export function formatTrainingTime(timeValue: string) {
+  const [hoursPart, minutes = "00"] = timeValue.split(":");
+  let hours = parseInt(hoursPart, 10);
+  const period = hours >= 12 ? "PM" : "AM";
+  hours %= 12;
+  if (hours === 0) hours = 12;
+  return `${hours}:${minutes} ${period}`;
+}
+
+export function formatTrainingLocation(course: TrainingCourse) {
+  if (course.deliveryMode === "virtual") return "Virtual";
+  return course.classroomAddress;
 }

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ImddLayout } from "@/components/layout/ImddLayout";
-import { Badge } from "@/components/ui/Badge";
+import { Badge } from "@/components/ui/badge";
 import { imddContent, imddProgramContent } from "@/lib/content/imdd";
 import { createPageMetadata } from "@/lib/seo/metadata";
 

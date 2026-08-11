@@ -1,5 +1,5 @@
 import { ImddLayout } from "@/components/layout/ImddLayout";
-import { Badge } from "@/components/ui/Badge";
+import { Badge } from "@/components/ui/badge";
 import { ImddApplicantForm } from "@/components/imdd/ImddApplicantForm";
 import { imddApplicantContent, imddContent } from "@/lib/content/imdd";
 import { createPageMetadata } from "@/lib/seo/metadata";
