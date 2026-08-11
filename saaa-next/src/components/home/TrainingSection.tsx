@@ -8,7 +8,7 @@ import {
   getTrainingCount,
   trainingTabs,
   type TrainingTabId,
-} from "@/data/trainingCourses";
+} from "@/lib/content/trainingCourses";
 
 const itemsPerPage = 6;
 

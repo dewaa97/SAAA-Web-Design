@@ -1,22 +1,25 @@
-import type { LogoItem } from "@/data/marquees";
+import Image from "next/image";
+import type { LogoItem } from "@/lib/content/marquees";
 
-type LogoMarqueeProps = {
+type LogoCellsProps = {
   logos: LogoItem[];
   isPartner?: boolean;
 };
 
-function LogoCells({ logos, isPartner = false }: LogoMarqueeProps) {
+function LogoCells({ logos, isPartner = false }: LogoCellsProps) {
   const cells = [...logos, ...logos];
 
   return (
     <>
       {cells.map((logo, index) => (
         <div key={`${logo.src}-${index}`} className="logo-cell">
-          <img
+          <Image
             src={logo.src}
             alt={logo.alt}
-            loading="lazy"
+            width={120}
+            height={60}
             style={isPartner && logo.scale ? { ["--logo-scale" as string]: logo.scale } : undefined}
+            loading="lazy"
           />
         </div>
       ))}

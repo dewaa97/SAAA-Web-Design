@@ -1,13 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   getNavDropdowns,
   getTrainingHref,
   socialLinks,
   type NavVariant,
-} from "@/data/navigation";
+} from "@/lib/content/navigation";
 
 const chevronIcon = (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -15,9 +16,7 @@ const chevronIcon = (
   </svg>
 );
 
-import type { ReactNode } from "react";
-
-const socialIcons: Record<string, ReactNode> = {
+const socialIcons: Record<string, React.ReactNode> = {
   LinkedIn: (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
@@ -46,32 +45,38 @@ export function SiteNav({ variant = "subpage" }: SiteNavProps) {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const navLinksRef = useRef<HTMLDivElement>(null);
 
-  const closeMenu = useCallback(() => {
+  const closeMenu = () => {
     setMobileOpen(false);
     setOpenDropdown(null);
-  }, []);
+  };
 
-  const isMobileNav = useCallback(() => {
+  const isMobileNav = () => {
     return window.matchMedia("(max-width: 1100px)").matches;
-  }, []);
+  };
 
   useEffect(() => {
     const handleResize = () => {
-      if (!isMobileNav()) closeMenu();
+      if (!window.matchMedia("(max-width: 1100px)").matches) {
+        setMobileOpen(false);
+        setOpenDropdown(null);
+      }
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [closeMenu, isMobileNav]);
+  }, []);
 
   useEffect(() => {
+    if (!mobileOpen) return;
+
     const handleDocumentClick = (event: MouseEvent) => {
-      if (!mobileOpen || !navLinksRef.current) return;
-      const target = event.target as Node;
-      if (!navLinksRef.current.contains(target)) closeMenu();
+      if (!navLinksRef.current?.contains(event.target as Node)) {
+        setMobileOpen(false);
+        setOpenDropdown(null);
+      }
     };
     document.addEventListener("click", handleDocumentClick);
     return () => document.removeEventListener("click", handleDocumentClick);
-  }, [closeMenu, mobileOpen]);
+  }, [mobileOpen]);
 
   const handleHashClick = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!href.startsWith("#")) return;
@@ -83,11 +88,18 @@ export function SiteNav({ variant = "subpage" }: SiteNavProps) {
   };
 
   return (
-    <nav>
+    <nav aria-label="Main navigation">
       <div className="container">
         <div className="nav-inner">
           <Link href="/" className="logo">
-            <img src="/images/saaa-logo.png" alt="SAAA Logo" className="logo-img" />
+            <Image
+              src="/images/saaa-logo.png"
+              alt="SAAA Logo"
+              className="logo-img"
+              width={180}
+              height={72}
+              priority
+            />
           </Link>
 
           <div ref={navLinksRef} className={`nav-links${mobileOpen ? " mobile-open" : ""}`}>

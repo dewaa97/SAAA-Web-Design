@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
-/* SAAA design tokens — mirrored from static site css/ */
+@import "../styles/legacy/homepage.css";
+@import "../../public/css/nav-dropdown.css";
+
 :root {
   --red-600: #c41e3a;
   --red-700: #9b1b2f;
   --red-50: #fef2f2;
   --red-100: #fee2e2;
   --blue-600: #1e40af;
-  --blue-700: #1e3a8a;
-  --blue-50: #eff6ff;
   --slate-50: #f8fafc;
   --slate-100: #f1f5f9;
   --slate-200: #e2e8f0;
@@ -25,7 +25,335 @@
   --radius-lg: 16px;
 }
 
-/* Legacy CSS from static site (visual parity during migration) */
-@import "../styles/legacy/homepage.css";
-@import "../../public/css/nav-dropdown.css";
-@import "../../public/css/training.css";
+@theme inline {
+  --color-saaa-red: var(--red-600);
+  --color-saaa-red-dark: var(--red-700);
+  --color-saaa-red-soft: var(--red-50);
+  --color-slate-50: var(--slate-50);
+  --color-slate-800: var(--slate-800);
+  --color-slate-900: var(--slate-900);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space-grotesk);
+}
+
+body {
+  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+  color: var(--slate-800);
+  background: var(--white);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+}
+
+/* History / subpage content (shared with static site) */
+.history-content p {
+  color: var(--slate-600);
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.history-highlight {
+  margin: 28px 0 32px;
+  padding: 28px;
+  background: var(--slate-50);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+}
+
+.history-highlight .mini-tag {
+  display: inline-block;
+  padding: 6px 12px;
+  background: var(--red-50);
+  color: var(--red-600);
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.history-highlight h3 {
+  font-size: 1.35rem;
+  color: var(--slate-900);
+  margin-bottom: 12px;
+}
+
+.history-highlight p {
+  margin-bottom: 0;
+}
+
+.council-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 24px 0 32px;
+}
+
+.council-member {
+  padding: 16px;
+  background: var(--slate-50);
+  border-radius: var(--radius);
+  border: 1px solid var(--slate-100);
+}
+
+.council-member .role {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--red-600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.council-member .name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--slate-800);
+  margin-bottom: 2px;
+}
+
+.council-member .org {
+  font-size: 13px;
+  color: var(--slate-500);
+}
+
+.services-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.services-list .item {
+  padding: 16px 20px;
+  background: var(--slate-50);
+  border-radius: var(--radius);
+  border: 1px solid var(--slate-100);
+  font-size: 14px;
+  color: var(--slate-700);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.services-list .item .num {
+  font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--red-600);
+  width: 24px;
+  flex-shrink: 0;
+}
+
+.vm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.vm-card {
+  padding: 32px;
+  background: var(--slate-50);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--slate-200);
+}
+
+.vm-card h3 {
+  font-size: 1.5rem;
+  color: var(--slate-900);
+  margin-bottom: 16px;
+}
+
+.vm-card p {
+  color: var(--slate-600);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.core-values {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.value-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--slate-600);
+}
+
+.value-item strong {
+  color: var(--slate-800);
+}
+
+.value-letter {
+  width: 32px;
+  height: 32px;
+  background: var(--red-600);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.objectives-list {
+  list-style: none;
+  padding: 0;
+}
+
+.objectives-list li {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--slate-100);
+  font-size: 15px;
+  color: var(--slate-600);
+  line-height: 1.6;
+  display: flex;
+  gap: 12px;
+}
+
+.objectives-list li:last-child {
+  border-bottom: none;
+}
+
+.objectives-list li .num {
+  font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--red-600);
+  flex-shrink: 0;
+  width: 28px;
+}
+
+.membership-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 32px;
+}
+
+.membership-card {
+  padding: 24px;
+  background: var(--slate-50);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--slate-200);
+}
+
+.membership-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+  color: var(--slate-800);
+}
+
+.membership-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.membership-card ul li {
+  padding: 8px 0;
+  font-size: 14px;
+  color: var(--slate-600);
+  border-bottom: 1px solid var(--slate-100);
+  line-height: 1.5;
+}
+
+.membership-card ul li:last-child {
+  border-bottom: none;
+}
+
+.section-border-bottom {
+  border-bottom: 1px solid var(--slate-200);
+}
+
+.footer-logo-img {
+  height: 32px;
+  width: auto;
+  margin-bottom: 12px;
+}
+
+.footer-contact-list {
+  font-size: 13px;
+}
+
+.footer-contact-item {
+  margin-bottom: 14px;
+}
+
+.footer-contact-name {
+  font-weight: 700;
+  color: white;
+}
+
+.footer-contact-muted {
+  color: var(--slate-300);
+}
+
+.footer-contact-link {
+  color: var(--slate-300);
+}
+
+.footer-powered {
+  font-size: 12px;
+  color: var(--slate-500);
+}
+
+.footer-powered-link {
+  color: var(--slate-400);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.events-title-inline {
+  margin-bottom: 0;
+}
+
+.about-contact-phone {
+  font-weight: 500;
+}
+
+.imdd-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.logo-cell img[data-logo-scale] {
+  transform: scale(var(--logo-scale, 1));
+}
+
+.hero .hero-bg {
+  width: auto !important;
+  height: 140% !important;
+  max-width: none !important;
+}
+
+@media (max-width: 1024px) {
+  .vm-grid,
+  .membership-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .council-grid,
+  .services-list {
+    grid-template-columns: 1fr;
+  }
+}
