@@ -288,6 +288,11 @@
                 '</li>'
             );
         }).join('');
+
+        var note = document.getElementById('imdd-employer-note');
+        if (note) {
+            note.textContent = content.employerNote;
+        }
     }
 
     function renderApplicantIntro() {
@@ -859,6 +864,7 @@
         }
 
         if (targetPageId === 'employers') {
+            renderEmployerQuestions();
             mountEmployerFormWidgets();
         }
 

@@ -644,6 +644,14 @@ body[data-imdd-page="home"] #why-project-imdd + .imdd-spotlight {
     margin-bottom: 20px;
 }
 
+.imdd-thinking-box {
+    margin-bottom: 32px;
+}
+
+.imdd-thinking-note {
+    margin-bottom: 0;
+}
+
 .imdd-check-list {
     list-style: none;
     padding: 0;
