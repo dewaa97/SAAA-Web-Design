@@ -1738,10 +1738,11 @@
             }
         }
 
-        /* Responsive */
-        @media (max-width: 1180px) and (min-width: 1025px) {
-            .about-features {
+        /* Stack about section when 2-column layout would cramp nowrap quick-links */
+        @media (max-width: 1199px) and (min-width: 1025px) {
+            .about-grid {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
         }
 

@@ -19,27 +19,62 @@
     let categoryFilter = 'all';
     let upcomingPage = 1;
     let pastPage = 1;
+    let dateFromPicker = null;
+    let dateToPicker = null;
+
+    function resetPages() {
+        upcomingPage = 1;
+        pastPage = 1;
+    }
+
+    function mountDatePickers() {
+        if (!window.SaaaImddFormWidgets) return;
+
+        if (dateFromInput) {
+            dateFromPicker = window.SaaaImddFormWidgets.mountDatePickerFromInput(dateFromInput, {
+                placeholder: 'From date',
+                onChange: function () {
+                    dateFrom = dateFromPicker ? dateFromPicker.getValue() : '';
+                    resetPages();
+                    render();
+                }
+            });
+        }
+
+        if (dateToInput) {
+            dateToPicker = window.SaaaImddFormWidgets.mountDatePickerFromInput(dateToInput, {
+                placeholder: 'To date',
+                onChange: function () {
+                    dateTo = dateToPicker ? dateToPicker.getValue() : '';
+                    resetPages();
+                    render();
+                }
+            });
+        }
+    }
 
     function bindInputs() {
         if (searchInput) {
             searchInput.addEventListener('input', function () {
                 searchQuery = searchInput.value.trim().toLowerCase();
-                upcomingPage = 1;
-                pastPage = 1;
+                resetPages();
                 render();
             });
         }
 
-        [dateFromInput, dateToInput].forEach(function (input) {
-            if (!input) return;
-            input.addEventListener('change', function () {
-                dateFrom = dateFromInput ? dateFromInput.value : '';
-                dateTo = dateToInput ? dateToInput.value : '';
-                upcomingPage = 1;
-                pastPage = 1;
-                render();
+        if (window.SaaaImddFormWidgets) {
+            mountDatePickers();
+        } else {
+            [dateFromInput, dateToInput].forEach(function (input) {
+                if (!input) return;
+                input.addEventListener('change', function () {
+                    dateFrom = dateFromInput ? dateFromInput.value : '';
+                    dateTo = dateToInput ? dateToInput.value : '';
+                    resetPages();
+                    render();
+                });
             });
-        });
+        }
 
         window.saaaListing.bindSidebarFilters(sidebar, function (value) {
             categoryFilter = value;
