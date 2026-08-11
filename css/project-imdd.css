@@ -152,7 +152,8 @@ a.imdd-institution-logo:hover {
 .imdd-layout {
     display: grid;
     grid-template-columns: 220px minmax(0, 1fr);
-    gap: 24px;
+    column-gap: 32px;
+    row-gap: 24px;
     align-items: start;
 }
 
@@ -214,7 +215,7 @@ a.imdd-institution-logo:hover {
 .imdd-sidebar-nav {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     /* Reset global site <nav> styles from nav-dropdown.css */
     position: static;
     top: auto;
@@ -289,6 +290,10 @@ body[data-imdd-page]:not([data-imdd-page="home"]) .imdd-page-shell {
 
 body[data-imdd-page] .imdd-page-shell {
     padding-top: 8px;
+}
+
+body[data-imdd-page="home"] .imdd-page-shell {
+    padding-top: 24px;
 }
 
 body[data-imdd-page] .imdd-main > .imdd-section:first-child {
@@ -1127,6 +1132,10 @@ body[data-imdd-page="home"] #why-project-imdd + .imdd-spotlight {
 
     body[data-imdd-page] .imdd-page-shell {
         padding-top: 4px;
+    }
+
+    body[data-imdd-page="home"] .imdd-page-shell {
+        padding-top: 16px;
     }
 
     body[data-imdd-page] .imdd-main > .imdd-section:first-child {
