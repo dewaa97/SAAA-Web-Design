@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @import "../styles/legacy/homepage.css";
+@import "../styles/legacy/subpage.css";
+@import "../styles/legacy/organization.css";
 @import "../../public/css/nav-dropdown.css";
 
 :root {
@@ -343,6 +345,19 @@ h6 {
   width: auto !important;
   height: 140% !important;
   max-width: none !important;
+}
+
+.text-center .section-header {
+  text-align: center;
+}
+
+.text-center .section-desc {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.service-cta {
+  margin-top: 32px;
 }
 
 @media (max-width: 1024px) {

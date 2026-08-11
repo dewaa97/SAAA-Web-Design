@@ -74,12 +74,51 @@ saaa-next/
 │   └── styles/legacy/    # Migrated static-site CSS
 ```
 
-## Migrated routes (Phase 1)
+## Migrated routes (Phase 1 + Phase 2)
 
+### Core
 - `/` — Homepage
 - `/history` — Our History
 - `/programmes` — Industry programmes hub
-- `/project-imdd` — Project IMDD overview (hub pattern with sidebar nav)
+- `/coming-soon` — Placeholder for in-progress features
+
+### About
+- `/milestones` — SAAA timeline
+- `/organization` — Council & Secretariat
+- `/stc` — Standard Trading Conditions
+
+### Members
+- `/members-listing` — Member directory
+- `/membership-application` — Membership sign-up form
+- `/members-login` — Members portal login
+
+### Services
+- `/permit-certificate-of-origin` — Permits & COO
+- `/neutral-airway-bill` — NAB ordering
+- `/bar-code-labels` — Bar code labels
+
+### Training
+- `/training-courses` — Full training catalogue
+- `/training-opening` — Training centre archive announcement
+
+### Events
+- `/events` — Calendar of events
+- `/events/[id]` — Event detail
+- `/event-booking` — Event registration form
+- `/event-booking-summary` — Registration confirmation
+
+### Publications
+- `/announcements` — Announcements listing
+- `/featured-news` — Featured news listing
+- `/publications` — Perspectives newsletter archive
+- `/article-detail` — Article detail (query: `?id=`)
+
+### Project IMDD (route group)
+- `/project-imdd` — Overview
+- `/project-imdd/program` — Training programmes
+- `/project-imdd/companies` — Partner companies
+- `/project-imdd/applicants` — Internship application (`?company=` preselect)
+- `/project-imdd/employers` — Employer enquiry form
 
 ## Environment
 

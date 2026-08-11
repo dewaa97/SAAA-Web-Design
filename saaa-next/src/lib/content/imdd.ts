@@ -81,3 +81,283 @@ export const imddContent = {
     { name: "Dylan Ang", role: "ITE Graduate in Nitec International Logistics", quote: "I was an intern with my current company and heard about a pilot program called project IMDD. I decided to participate and after completing my internship, the company offered me a full-time employment. For the first 2 months, i was mentored on how to manage e-commerce shipments and learn about air freight operations. My GPA is 3.8. However, embarking on project IMDD, i realized that the skills i received is worth more than grades." },
   ] satisfies ImddTestimonial[],
 };
+
+export type ImddCompany = {
+  name: string;
+  logo: string;
+  url?: string;
+  hasApply?: boolean;
+};
+
+export type ImddTrainingProgramme = {
+  title: string;
+  date: string;
+  time: string;
+  location: string;
+  fee: string;
+  image: string;
+};
+
+export const imddProgramContent = {
+  trainingIntro: "Continuous learning is a journey and is paramount to the effectiveness of your workforce. SAAA leads by offering both practical, easy to implement and cost effective solutions to the logistics community with trainers who are professional practitioners.",
+  trainingProgrammes: [
+  {
+    "title": "Building Up a Built-Up Pallet (Practical)",
+    "date": "13 Nov 2025",
+    "time": "9am to 5pm",
+    "location": "TBC",
+    "fee": "FOC IMDD Interns",
+    "image": "/images/project-imdd/program-built-up-pallet.jpg"
+  },
+  {
+    "title": "Overview of Airline Operations (Turkish Airline)",
+    "date": "3 Dec 2025",
+    "time": "9am to 5pm",
+    "location": "SAAA Training Centre",
+    "fee": "FOC IMDD Interns",
+    "image": "/images/project-imdd/program-airline-operations.jpg"
+  },
+  {
+    "title": "AI Solutions for Freight Forwarding Operations (Workshop)",
+    "date": "30 Apr 2026",
+    "time": "2pm to 4pm",
+    "location": "SFS Global Office",
+    "fee": "FOC IMDD Interns",
+    "image": "/images/project-imdd/program-ai-workshop.jpg"
+  },
+  {
+    "title": "CeMAT South East Asia 2026",
+    "date": "13 May 2026",
+    "time": "9am to 6pm",
+    "location": "Singapore Expo",
+    "fee": "FOC IMDD Interns",
+    "image": "/images/project-imdd/program-cemat.jpg"
+  }
+] satisfies ImddTrainingProgramme[],
+  brochure: {
+  "year": 2026,
+  "fileUrl": "https://41af8c4f-3239-4ac0-bbd7-d906f1f394a5.filesusr.com/ugd/8c57ed_49126f063d164c3d949c8ce40f9e1dde.pdf",
+  "label": "View Internship Vacancies Brochure"
+},
+};
+
+export const imddEmployerContent = {
+  questions: [
+  "How to attract and retain young talents?",
+  "Competing for manpower with other industries?",
+  "Where to find manpower, poaching from competitors?",
+  "No time to expose young talents to other logistics verticals to broaden their insights?",
+  "Not sure where to send young talents to quality skill-based training to enhance their skillsets?"
+],
+  note: "By investing in their growth, companies can build a loyal workforce that can evolve into skilled professionals over time.",
+  contactEmail: "events@saaa.org.sg",
+};
+
+export const imddApplicantContent = {
+  intro: [
+  "Thinking about a future in logistics? Project IMDD offers hands-on training tailored to the logistics industry and gives you the chance to explore a wide spectrum of exciting roles and opportunities across the diverse world of logistics.",
+  "Project IMDD stands out by focusing on holistic career progression, offering hands-on experience across all aspects of logistics while supporting university advancement opportunities—going beyond the limited scope of traditional internships."
+],
+  internshipApplication: {
+  "open": true,
+  "eventLabel": "Outreach@ITE College East on 22nd May 2026",
+  "closedMessage": "Internship applications are currently closed. Please visit the Companies page during the next Project IMDD outreach event for application links."
+},
+  brochure: {
+  "year": 2026,
+  "fileUrl": "https://41af8c4f-3239-4ac0-bbd7-d906f1f394a5.filesusr.com/ugd/8c57ed_49126f063d164c3d949c8ce40f9e1dde.pdf",
+  "label": "View Internship Vacancies Brochure"
+},
+  contactEmail: "events@saaa.org.sg",
+};
+
+export const imddCompanies = [
+  {
+    "name": "ACS Freight Services Pte Ltd",
+    "logo": "/images/members/logos/acs-freight-services-pte-ltd.jpg",
+    "url": "https://acsfrt.com.sg/"
+  },
+  {
+    "name": "Air Market Logistics (S) Pte Ltd",
+    "logo": "/images/members/logos/air-market-express-s-pte-ltd.jpg",
+    "url": "https://airmarket.com.sg/about-airmarket/"
+  },
+  {
+    "name": "Alliance 21 Pte Ltd",
+    "logo": "/images/members/logos/alliance-21-pte-ltd.jpg",
+    "url": "https://alex.world/",
+    "hasApply": true
+  },
+  {
+    "name": "Aspac Aircargo Services Pte Ltd",
+    "logo": "/images/members/logos/aspac-aircargo-services-pte-ltd.jpg",
+    "url": "https://aspac-aircargo.com.sg/"
+  },
+  {
+    "name": "B&H Worldwide (SG) Pte Ltd",
+    "logo": "/images/members/logos/b-h-worldwide-sg-pte-ltd.png",
+    "url": "https://bhworldwide.com/working-with-us/?utm_source=projectimdd&utm_medium=referral&utm_campaign=projectimdd",
+    "hasApply": true
+  },
+  {
+    "name": "Clasquin Singapore Pte Ltd",
+    "logo": "/images/project-imdd/companies/clasquin-singapore-pte-ltd.png",
+    "url": "https://www.clasquin.com/en/"
+  },
+  {
+    "name": "Commonwealth Kokubu Logistics Pte Ltd",
+    "logo": "/images/project-imdd/companies/commonwealth-kokubu-logistics-pte-ltd.png",
+    "url": "https://www.cklogasia.com/"
+  },
+  {
+    "name": "Crane Worldwide Logistics (S) Pte Ltd",
+    "logo": "/images/project-imdd/companies/crane-worldwide-logistics-s-pte-ltd.jpg",
+    "url": "https://www.craneww.com/locations/singapore/singapore/",
+    "hasApply": true
+  },
+  {
+    "name": "Dachser (Singapore) Pte Ltd",
+    "logo": "/images/project-imdd/companies/dachser-singapore-pte-ltd.png",
+    "url": "https://www.dachser.com/en/"
+  },
+  {
+    "name": "Flycraft SG Pte Ltd",
+    "logo": "/images/project-imdd/companies/flycraft-sg-pte-ltd.jpg",
+    "url": "https://www.flycraft.sg/"
+  },
+  {
+    "name": "Global Airfreight International Pte Ltd",
+    "logo": "/images/members/logos/global-airfreight-international-pte-ltd.png",
+    "url": "https://www.globalair.com.sg/"
+  },
+  {
+    "name": "KC INTL LOGISTICS SINGAPORE PTE LTD",
+    "logo": "/images/project-imdd/companies/kc-intl-logistics-singapore-pte-ltd.png",
+    "hasApply": true,
+    "url": "https://www.kc-intl.com/"
+  },
+  {
+    "name": "Leschaco Pte Ltd",
+    "logo": "/images/project-imdd/companies/leschaco-pte-ltd.jpg",
+    "url": "https://www.leschaco.com/en/start.html"
+  },
+  {
+    "name": "LOGISTEED Singapore Pte Ltd",
+    "logo": "/images/members/logos/logisteed-asia-pacific-pte-ltd.png",
+    "url": "https://sg.logisteed.com/"
+  },
+  {
+    "name": "Logwin Air+Ocean Singapore Pte Ltd",
+    "logo": "/images/members/logos/logwin-air-ocean-singapore-pte-ltd.png",
+    "url": "https://www.logwin-logistics.com/index.php"
+  },
+  {
+    "name": "Morrison Express Logistics Pte Ltd",
+    "logo": "/images/project-imdd/companies/morrison-express-logistics-pte-ltd.png",
+    "url": "https://www.morrisonexpress.com/"
+  },
+  {
+    "name": "Nanhai Business Solutions",
+    "logo": "/images/project-imdd/companies/nanhai-business-solutions.jpg",
+    "url": "https://www.yusen-logistics.com/sg_en/about-us/nanhai-business-solutions"
+  },
+  {
+    "name": "NGFS (Singapore) Pte Ltd",
+    "logo": "/images/project-imdd/companies/ngfs-singapore-pte-ltd.png",
+    "url": "https://www.ngfsworld.com/"
+  },
+  {
+    "name": "Ninja Logistics Pte. Ltd.",
+    "logo": "/images/project-imdd/companies/ninja-logistics-pte-ltd.png",
+    "hasApply": true,
+    "url": "https://www.ninjavan.co/en-sg/support/contact-us"
+  },
+  {
+    "name": "SAAA@Singapore",
+    "logo": "/images/saaa-logo.png",
+    "url": "http://saaa.org.sg/",
+    "hasApply": true
+  },
+  {
+    "name": "SATS Ltd",
+    "logo": "/images/sats-logo.png",
+    "url": "https://www.sats.com.sg/"
+  },
+  {
+    "name": "SFS Global Logistics Pte Ltd",
+    "logo": "/images/project-imdd/companies/sfs-global-logistics-pte-ltd.png",
+    "url": "https://www.sfspharma.com/"
+  },
+  {
+    "name": "Sky Leader Freight Pte Ltd",
+    "logo": "/images/members/logos/sky-leader-freight-pte-ltd.png",
+    "url": "https://www.linkedin.com/company/skyleaderfreight/?originalSubdomain=sg",
+    "hasApply": true
+  },
+  {
+    "name": "Skylift Consolidator (Pte) Ltd",
+    "logo": "/images/members/logos/skylift-consolidator-pte-ltd.png",
+    "url": "https://www.skylift.com.sg/"
+  },
+  {
+    "name": "Speedmark Air Transportation Pte Ltd",
+    "logo": "/images/members/logos/speedmark-air-transportation-pte-ltd.jpg",
+    "url": "https://www.speedmark.com.sg/"
+  },
+  {
+    "name": "Union Air Freight (S) Pte Ltd",
+    "logo": "/images/members/logos/union-air-freight-s-pte-ltd.png",
+    "url": "http://www.uafsin.com.sg/",
+    "hasApply": true
+  },
+  {
+    "name": "VTQ85 Transport Pte Ltd",
+    "logo": "/images/project-imdd/companies/vtq85-transport-pte-ltd.jpg"
+  },
+  {
+    "name": "Yat Lye Airfreight Pte Ltd",
+    "logo": "/images/project-imdd/companies/yat-lye-airfreight-pte-ltd.png",
+    "url": "https://yatlyeairfrt.sg/"
+  },
+  {
+    "name": "Yusen Logistics (Singapore) Pte Ltd",
+    "logo": "/images/members/logos/yusen-logistics-singapore-pte-ltd.png",
+    "url": "https://www.yusen-logistics.com/"
+  }
+] satisfies ImddCompany[];
+
+export const imddTestimonialsFull = [
+  {
+    "name": "Jovi Ng",
+    "role": "ITE Graduate in Higher Nitec Events Management",
+    "quote": "I had no experience in logistics when I joined my current company that took me onboard for work study diploma under a pilot program called Project IMDD. My mentor vigorously trained me in control tower supply chain management. Subsequently progressing into airfreight operations and vaccines management. Over the course of training that I received, my GPA went from 2.4 to current 3.8."
+  },
+  {
+    "name": "Thomas Ting",
+    "role": "ITE Graduate in Human Resource",
+    "quote": "During interview, i was informed about project IMDD and was glad that the company took me onboard for work study diploma despite not having any prior knowledge about logistics. Over the course of 2 years, I was mentored on pharma cold chain management for air export and import. I now have a clear understanding of air operations and I'm able to execute and manage critical pharmaceutical shipments confidently. Also my GPA prior to joining the company was 1.8 to currently 4. A grade that I thought was not achievable. Thank you Project IMDD"
+  },
+  {
+    "name": "Dylan Ang",
+    "role": "ITE Graduate in Nitec International Logistics",
+    "quote": "I was an intern with my current company and heard about a pilot program called project IMDD. I decided to participate and after completing my internship, the company offered me a full-time employment. For the first 2 months, i was mentored on how to manage e-commerce shipments and learn about air freight operations. My GPA is 3.8. However, embarking on project IMDD, i realized that the skills i received is worth more than grades."
+  },
+  {
+    "name": "Syauqii",
+    "role": "ITE Graduate in Higher Nitec International Logistics",
+    "quote": "I was initially skeptical about a pilot program called Project IMDD as my role was a driver in 2023. Unbeknownst to me, the training was stringent as the job requires me to comply to Standard Operating Procedures as i am collecting and delivering life saving pharmaceutical shipments using technology for real-time temperature monitoring. Today, as a highly trained and experienced supervisor, I'm mentoring the younger talents. This is beyond just a typical driver's role, the soft skills, employment of technology, technical know-how and meeting customers on the ground is beyond my comprehension. I realized that the starting role of the driver in project IMDD is more than meets the eye."
+  },
+  {
+    "name": "Kerwin",
+    "role": "ITE Graduate in Nitec Logistics Services",
+    "quote": "I was 6 months into my work-study diploma with a company that suddenly decided not to continue with the program. I contacted my previous company that I had internship with when I was still a student, and found out about project IMDD. One month into my new company, I'm already meeting customers packing high valued shipments at customer's premise, and lodging the shipment to the airline terminal. On top of that, I'm being mentored to manage a fulfilment warehouse for thermal packaging solutions. I live in the west and the company is located in the east, I realized that distance should never be considered when applying for jobs. Project IMDD is living to its standards!"
+  }
+] satisfies ImddTestimonial[];
+
+export function getApplyCompanies() {
+  return imddCompanies.filter((c) => c.hasApply);
+}
+
+export function getCompanySlug(name: string) {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
