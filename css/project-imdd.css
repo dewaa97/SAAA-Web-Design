@@ -631,21 +631,14 @@ body[data-imdd-page="home"] #why-project-imdd + .imdd-spotlight {
     align-items: start;
 }
 
-.imdd-employers-panel {
-    padding: 32px;
-    background: white;
-    border: 1px solid var(--slate-200);
-    border-radius: var(--radius-lg);
+.imdd-thinking-box {
+    margin-bottom: 40px;
 }
 
-.imdd-employers-panel h3 {
+.imdd-thinking-box h3 {
     font-size: 1.35rem;
     color: var(--slate-900);
     margin-bottom: 20px;
-}
-
-.imdd-thinking-box {
-    margin-bottom: 32px;
 }
 
 .imdd-thinking-note {
