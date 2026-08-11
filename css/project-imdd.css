@@ -379,11 +379,11 @@ body[data-imdd-page]:not([data-imdd-page="home"]) .imdd-main > .imdd-section:fir
 
 /* Overview (home) — tighter top spacing and gap before spotlight */
 body[data-imdd-page="home"] .imdd-page-shell {
-    padding-top: 12px;
+    padding-top: 20px;
 }
 
 body[data-imdd-page="home"] #why-project-imdd {
-    padding-top: 24px;
+    padding-top: 32px;
     padding-bottom: 12px;
 }
 
@@ -1105,11 +1105,11 @@ body[data-imdd-page="home"] #why-project-imdd + .imdd-spotlight {
     }
 
     body[data-imdd-page="home"] .imdd-page-shell {
-        padding-top: 8px;
+        padding-top: 12px;
     }
 
     body[data-imdd-page="home"] #why-project-imdd {
-        padding-top: 16px;
+        padding-top: 20px;
         padding-bottom: 8px;
     }
 
