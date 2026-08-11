@@ -52,8 +52,7 @@ window.projectImddContent = {
         { name: 'Temasek Polytechnic', logo: 'images/project-imdd/temasek-polytechnic.svg', url: 'https://www.tp.edu.sg' }
     ],
     hubNav: [
-        { id: 'home', label: 'Overview', shortLabel: 'Overview', href: 'project-imdd.html', description: 'Project snapshot, partner institutions, and talent stories.', icon: 'home' },
-        { id: 'about', label: 'About Us', shortLabel: 'About', href: 'project-imdd-about.html', description: 'Mission, objectives, concept phases, and pilot case study.', icon: 'info' },
+        { id: 'home', label: 'Overview', shortLabel: 'Overview', href: 'project-imdd.html', description: 'Why Project IMDD, mission, partner institutions, and talent stories.', icon: 'home' },
         { id: 'program', label: 'Program', shortLabel: 'Program', href: 'project-imdd-program.html', description: 'Complimentary training programmes for IMDD interns.', icon: 'calendar' },
         { id: 'employers', label: 'For Employers', shortLabel: 'Employers', href: 'project-imdd-employers.html', description: 'Partner with Project IMDD and submit your company enquiry.', icon: 'building' },
         { id: 'applicants', label: 'For Applicants', shortLabel: 'Applicants', href: 'project-imdd-applicants.html', description: 'Explore logistics careers and internship opportunities.', icon: 'users' },

@@ -286,6 +286,36 @@
         }).join('');
     }
 
+    function companySlug(name) {
+        return String(name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    }
+
+    function resolveCompanyPreselect(param) {
+        if (!param) return '';
+
+        var decoded = decodeURIComponent(param).trim();
+        if (!decoded) return '';
+
+        var applyCompanies = getApplyCompanies();
+        var exact = applyCompanies.find(function (company) {
+            return company.name === decoded;
+        });
+        if (exact) return exact.name;
+
+        var normalized = decoded.toLowerCase();
+        var bySlug = applyCompanies.find(function (company) {
+            return companySlug(company.name) === normalized;
+        });
+        if (bySlug) return bySlug.name;
+
+        if (/^\d+$/.test(decoded)) {
+            var byIndex = applyCompanies[parseInt(decoded, 10)];
+            if (byIndex) return byIndex.name;
+        }
+
+        return decoded;
+    }
+
     function renderCompanyOptions(selectedName) {
         var options = ['<option value="">Select</option>'];
         getApplyCompanies().forEach(function (company) {
@@ -582,7 +612,7 @@
         if (formEl) formEl.style.display = '';
 
         var params = new URLSearchParams(window.location.search);
-        var preselect = params.get('company') || '';
+        var preselect = resolveCompanyPreselect(params.get('company') || params.get('companyId') || '');
 
         ['imdd-company-1', 'imdd-company-2', 'imdd-company-3', 'imdd-company-4'].forEach(function (id, index) {
             var select = document.getElementById(id);
@@ -593,6 +623,15 @@
         if (formEl) {
             mountInternshipFormWidgets(formEl);
             initInternshipFormValidation(formEl);
+        }
+
+        if (preselect || window.location.hash === '#imdd-internship-form') {
+            requestAnimationFrame(function () {
+                var formRoot = document.getElementById('imdd-internship-form');
+                if (formRoot) {
+                    formRoot.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         }
     }
 
@@ -615,7 +654,7 @@
                 links += '<a class="imdd-company-action imdd-company-action-outline" href="' + escapeHtml(company.url) + '" target="_blank" rel="noopener noreferrer">Read More</a>';
             }
             if (company.hasApply && app.open) {
-                links += '<a class="imdd-company-action imdd-company-action-primary" href="project-imdd-apply.html?company=' + encodeURIComponent(company.name) + '">Apply</a>';
+                links += '<a class="imdd-company-action imdd-company-action-primary" href="project-imdd-applicants.html?company=' + encodeURIComponent(company.name) + '#imdd-internship-form">Apply</a>';
             }
 
             return (
@@ -643,7 +682,7 @@
 
         if (applyBtn) {
             if (app.open) {
-                applyBtn.href = 'project-imdd-apply.html';
+                applyBtn.href = 'project-imdd-applicants.html#imdd-internship-form';
                 applyBtn.style.display = '';
             } else {
                 applyBtn.style.display = 'none';
@@ -795,10 +834,6 @@
             renderInstitutionMarquee();
             initTestimonialCarousel();
             initStaticContent();
-        }
-
-        if (targetPageId === 'about') {
-            initStaticContent();
             renderObjectives();
             renderPhases();
             renderCaseStudy();
@@ -809,21 +844,17 @@
         }
 
         if (targetPageId === 'employers') {
-            renderEmployerQuestions();
             mountEmployerFormWidgets();
         }
 
         if (targetPageId === 'applicants') {
             renderApplicantIntro();
+            initInternshipApplicationForm();
         }
 
         if (targetPageId === 'companies') {
             renderCompanies();
             initCompaniesActions();
-        }
-
-        if (targetPageId === 'apply') {
-            initInternshipApplicationForm();
         }
 
         document.querySelectorAll('[data-imdd-contact]').forEach(function (link) {
