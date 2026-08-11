@@ -24,20 +24,23 @@
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     gap: 32px;
-    align-items: start;
+    align-items: stretch;
 }
 
 .imdd-spotlight-image {
     border-radius: var(--radius-lg);
     box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
     overflow: hidden;
+    min-height: 0;
 }
 
 .imdd-spotlight-image img {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
     border-radius: var(--radius-lg);
+    object-fit: cover;
+    object-position: center right;
 }
 
 .imdd-spotlight-quote {
@@ -69,6 +72,16 @@
     color: var(--slate-500);
     font-style: normal;
     line-height: 1.6;
+}
+
+.imdd-quote-attribution {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.imdd-quote-source {
+    display: block;
 }
 
 /* Institution logo marquee */

@@ -774,6 +774,7 @@
 
     function initStaticContent() {
         var quoteEl = document.getElementById('imdd-quote-text');
+        var quoteAuthor = document.getElementById('imdd-quote-author');
         var quoteSource = document.getElementById('imdd-quote-source');
         var introEl = document.getElementById('imdd-intro');
         var missionEl = document.getElementById('imdd-mission');
@@ -782,7 +783,8 @@
         var spotlightImage = document.getElementById('imdd-spotlight-image');
 
         if (quoteEl) quoteEl.textContent = '"' + content.quote.text + '"';
-        if (quoteSource) quoteSource.textContent = '— ' + content.quote.author + ' · Source: ' + content.quote.source;
+        if (quoteAuthor) quoteAuthor.textContent = '— ' + content.quote.author;
+        if (quoteSource) quoteSource.textContent = 'Source: ' + content.quote.source;
         if (introEl) introEl.textContent = content.intro;
         if (missionEl) missionEl.textContent = content.mission;
         if (spotlightImage) {
