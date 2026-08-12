@@ -173,7 +173,7 @@
             ],
             industry: [
                 { src: 'images/partners/aais.jpeg', alt: 'AAIS' },
-                { src: 'images/partners/asme.jpeg', alt: 'ASME' },
+                { src: 'images/partners/asme.png', alt: 'ASME', scale: 1.5 },
                 { src: 'images/partners/aon.png', alt: 'AON' },
                 { src: 'images/partners/ccn.png', alt: 'Cargo Community Network' },
                 { src: 'images/partners/dnata.jpeg', alt: 'dnata Singapore' },
@@ -194,10 +194,14 @@
 
         function buildLogoCells(logos, isPartner) {
             return logos.map(function (logo) {
-                var scaleStyle = isPartner && logo.scale
-                    ? ' style="--logo-scale: ' + logo.scale + '"'
-                    : '';
-                return '<div class="logo-cell"><img src="' + logo.src + '" alt="' + logo.alt + '" loading="lazy"' + scaleStyle + '></div>';
+                var attrs = '';
+                if (isPartner && logo.scale) {
+                    attrs += ' style="--logo-scale: ' + logo.scale + '"';
+                }
+                if (logo.className) {
+                    attrs += ' class="' + logo.className + '"';
+                }
+                return '<div class="logo-cell"><img src="' + logo.src + '" alt="' + logo.alt + '" loading="lazy"' + attrs + '></div>';
             }).join('');
         }
 
