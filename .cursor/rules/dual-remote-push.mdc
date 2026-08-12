@@ -1,0 +1,37 @@
+---
+description: Always push the current branch to both Dewaa and FlyingCape remotes
+alwaysApply: true
+---
+
+# Dual remote push (Dewaa + FlyingCape)
+
+When the user asks to push in this repository, **always push the current branch to BOTH remotes**, not only `origin`.
+
+## Remotes
+
+| Role | Remote name | URL |
+|------|-------------|-----|
+| FlyingCape | `origin` | `git@github.com:Flying-Cape/saaa-web-design.git` |
+| Dewaa | `dewaa97` | `git@github.com:dewaa97/SAAA-Web-Design.git` |
+
+## Required push behavior
+
+1. Push the **current checked-out branch** to `origin` and to `dewaa97`.
+2. Use non-force push only (`git push <remote> <branch>`).
+3. **Do not force-push** unless the user explicitly asks for a force push.
+4. After pushing, briefly report the result for each remote.
+
+Example (current branch is `main`):
+
+```bash
+git push origin main
+git push dewaa97 main
+```
+
+Or with the branch name from `git branch --show-current`.
+
+## Notes
+
+- Indonesian preference from the user: always push to both repos ("dewaa sama flyingcape").
+- Do not rewrite git user config.
+- Do not push unrelated local WIP unless the user asked to commit those changes first.
