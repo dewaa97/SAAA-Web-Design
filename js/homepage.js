@@ -168,12 +168,12 @@
                 { src: 'images/partners/mindef.jpeg', alt: 'MINDEF' },
                 { src: 'images/partners/mot.png', alt: 'MOT' },
                 { src: 'images/partners/swda.png', alt: 'SWDA' },
-                { src: 'images/partners/sc.jpeg', alt: 'Singapore Customs' },
+                { src: 'images/partners/singapore-customs.png', alt: 'Singapore Customs', scale: 1.25 },
                 { src: 'images/partners/wshc.jpeg', alt: 'WSHC' }
             ],
             industry: [
-                { src: 'images/partners/aais.jpeg', alt: 'AAIS' },
-                { src: 'images/partners/asme.png', alt: 'ASME', scale: 1.5 },
+                { src: 'images/partners/aais.png', alt: 'AAIS', scale: 1.15 },
+                { src: 'images/partners/asme.png', alt: 'ASME', scale: 1.2 },
                 { src: 'images/partners/aon.png', alt: 'AON' },
                 { src: 'images/partners/ccn.png', alt: 'Cargo Community Network' },
                 { src: 'images/partners/dnata.jpeg', alt: 'dnata Singapore' },
@@ -183,11 +183,11 @@
                 { src: 'images/partners/lscms.png', alt: 'LSCMS' },
                 { src: 'images/partners/sats.jpeg', alt: 'SATS' },
                 { src: 'images/partners/snef.png', alt: 'SNEF' },
-                { src: 'images/partners/ssia.png', alt: 'SSIA' }
+                { src: 'images/partners/ssia.png', alt: 'SSIA', scale: 1.1 }
             ],
             ihls: [
                 { src: 'images/partners/ite.png', alt: 'ITE' },
-                { src: 'images/partners/rp.jpeg', alt: 'Republic Polytechnic' },
+                { src: 'images/partners/rp.png', alt: 'Republic Polytechnic', scale: 1.15 },
                 { src: 'images/partners/tp.jpeg', alt: 'Temasek Polytechnic' }
             ]
         };
@@ -205,10 +205,49 @@
             }).join('');
         }
 
+        // Classic seamless marquee: build one sequence wide enough to fill the
+        // viewport, then duplicate that half so translateX(-50%) loops without a gap.
+        function sequenceRepeatsNeeded(container, logos) {
+            var wrapper = container.parentElement;
+            var viewportWidth = wrapper ? wrapper.clientWidth : 0;
+            if (!viewportWidth || !logos.length) return 1;
+
+            var probe = container.querySelector('.logo-cell');
+            var cellWidth = probe ? probe.offsetWidth : 160;
+            var gap = 0;
+            if (window.getComputedStyle) {
+                var style = window.getComputedStyle(container);
+                gap = parseFloat(style.columnGap || style.gap) || 0;
+            }
+            var sequenceWidth = logos.length * cellWidth + Math.max(0, logos.length - 1) * gap;
+            if (!sequenceWidth) return 1;
+            return Math.max(1, Math.ceil(viewportWidth / sequenceWidth));
+        }
+
+        function buildSeamlessHtml(logos, isPartner, repeats) {
+            var cells = buildLogoCells(logos, isPartner);
+            var half = '';
+            for (var i = 0; i < repeats; i++) half += cells;
+            return half + half;
+        }
+
         function populateStrip(container, logos, isPartner) {
             if (!container || !logos.length) return;
-            var cells = buildLogoCells(logos, isPartner);
-            container.innerHTML = cells + cells;
+
+            function fill() {
+                // Probe one set first so cell width / gap match live CSS
+                container.innerHTML = buildLogoCells(logos, isPartner);
+                var repeats = sequenceRepeatsNeeded(container, logos);
+                container.innerHTML = buildSeamlessHtml(logos, isPartner, repeats);
+            }
+
+            fill();
+
+            var resizeTimer;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(fill, 150);
+            });
         }
 
         populateStrip(document.querySelector('[data-member-marquee]'), MEMBER_LOGOS, false);

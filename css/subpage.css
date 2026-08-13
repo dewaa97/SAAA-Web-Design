@@ -187,8 +187,9 @@ a { text-decoration: none; color: inherit; }
 }
 .alpha-btn:hover, .alpha-btn.active { background: var(--red-600); border-color: var(--red-600); color: white; }
 
-/* Members grid */
-.members-grid {
+/* Members listing grid (not homepage stats) */
+#members-grid,
+.listing-main .members-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 20px;
@@ -202,6 +203,8 @@ a { text-decoration: none; color: inherit; }
     display: flex;
     flex-direction: column;
     gap: 16px;
+    align-items: center;
+    text-align: center;
 }
 .member-card:hover { border-color: var(--red-200); box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08); }
 .member-logo {
@@ -465,13 +468,19 @@ a { text-decoration: none; color: inherit; }
     justify-content: space-between;
     gap: 16px;
     margin-bottom: 24px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .training-toolbar-row .training-tabs-scroll {
-    flex: 1;
+    flex: 1 1 0;
     min-width: 0;
+    width: auto;
+    max-width: none;
     margin-bottom: 0;
+}
+
+.training-toolbar-row .btn {
+    flex-shrink: 0;
 }
 
 .training-contact-row {
@@ -504,10 +513,14 @@ a { text-decoration: none; color: inherit; }
 
 .training-tabs-scroll {
     overflow-x: auto;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
     scrollbar-width: none;
     -ms-overflow-style: none;
     margin-bottom: 24px;
+    min-width: 0;
+    max-width: 100%;
 }
 
 .training-tabs-scroll::-webkit-scrollbar {
@@ -533,6 +546,8 @@ a { text-decoration: none; color: inherit; }
     border-radius: 100px;
     cursor: pointer;
     transition: all 0.2s;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .training-tab:hover {
@@ -598,11 +613,11 @@ a { text-decoration: none; color: inherit; }
 }
 
 .training-row .content .function {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--red-600);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--slate-500);
+    letter-spacing: 0;
+    text-transform: none;
     margin-bottom: 6px;
 }
 
@@ -1282,22 +1297,38 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
 }
 .membership-conditional-field.is-visible {
     display: flex;
+    flex-direction: column;
 }
 .conditional-rows {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    /* Slightly larger than default so compact upload can overflow without colliding */
+    gap: 24px;
+    /* Absorb last-row right field overflow (textarea) so it doesn't collide with the next section */
+    padding-bottom: 12px;
 }
+/*
+ * Paired Yes/No rows: left column owns vertical rhythm.
+ * Right follow-up sits in the same row (sejajar) but does not stretch the row
+ * height, so revealing it does not push questions below out of alignment.
+ */
 .conditional-row {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 16px;
+    column-gap: 16px;
     align-items: start;
+    position: relative;
 }
-.conditional-row-left,
+.conditional-row-left {
+    min-width: 0;
+    grid-column: 1;
+}
 .conditional-row-right {
     min-width: 0;
-    align-self: start;
+    grid-column: 2;
+    height: 0;
+    overflow: visible;
+    justify-self: stretch;
 }
 .conditional-row-right .membership-form-field {
     width: 100%;
@@ -1309,6 +1340,13 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
 }
 .conditional-row-right .file-upload {
     margin-top: 0;
+}
+.conditional-row-right .membership-conditional-field:not(.is-visible) {
+    display: none;
+}
+/* Keep compact upload from colliding with the next left question. */
+.conditional-row-right .file-upload--compact {
+    max-width: 100%;
 }
 .membership-payment-methods {
     display: grid;

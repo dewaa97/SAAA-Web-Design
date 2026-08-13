@@ -223,33 +223,123 @@
         buildTrack();
     }
 
-    function renderObjectives() {
-        var list = document.getElementById('imdd-objectives');
-        if (!list) return;
+    /* Flat Color Icons (education/career — no finance/$ motif). See images/imdd/icons/ATTRIBUTION.md */
+    var IMDD_ICON_BASE = 'images/imdd/icons/';
+    var imddInfographicIconFiles = {
+        school: 'school.svg',
+        handshake: 'handshake.svg',
+        retain: 'retain.svg',
+        education: 'education.svg',
+        skills: 'skills.svg',
+        visit: 'visit.svg',
+        talent: 'talent.svg',
+        selection: 'selection.svg',
+        training: 'training.svg',
+        mentorship: 'mentorship.svg',
+        project: 'project.svg',
+        further: 'further.svg',
+        followup: 'followup.svg'
+    };
 
-        list.innerHTML = content.objectives.map(function (item, index) {
+    function imddIconImg(name) {
+        var file = imddInfographicIconFiles[name] || imddInfographicIconFiles.skills;
+        return (
+            '<img class="imdd-freebie-icon" src="' + IMDD_ICON_BASE + file + '" alt="" width="48" height="48" loading="lazy" decoding="async" />'
+        );
+    }
+
+    function initInfographicReveal() {
+        var nodes = document.querySelectorAll('.imdd-reveal');
+        if (!nodes.length) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            nodes.forEach(function (node) {
+                node.classList.add('is-visible');
+            });
+            return;
+        }
+
+        if (!('IntersectionObserver' in window)) {
+            nodes.forEach(function (node) {
+                node.classList.add('is-visible');
+            });
+            return;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            });
+        }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+
+        nodes.forEach(function (node) {
+            observer.observe(node);
+        });
+    }
+
+    function renderObjectives() {
+        var mount = document.getElementById('imdd-objectives');
+        if (!mount) return;
+
+        var stops = content.objectives.map(function (item, index) {
+            var label = typeof item === 'string' ? item : item.label;
+            var detail = typeof item === 'string' ? '' : (item.detail || '');
+            var icon = typeof item === 'string' ? 'skills' : (item.icon || 'skills');
+            var isOutcome = index === content.objectives.length - 1;
+            var side = index % 2 === 0 ? 'left' : 'right';
+            var num = String(index + 1).padStart(2, '0');
+
             return (
-                '<li>' +
-                    '<span class="num">' + (index + 1) + '</span>' +
-                    '<span>' + escapeHtml(item) + '</span>' +
+                '<li class="imdd-obj-stop imdd-reveal imdd-obj-stop--' + side + (isOutcome ? ' is-outcome' : '') + '" style="--i:' + index + '">' +
+                    '<span class="imdd-obj-stub" aria-hidden="true"></span>' +
+                    '<div class="imdd-obj-node" aria-hidden="true">' +
+                        '<span class="imdd-obj-num">' + num + '</span>' +
+                    '</div>' +
+                    '<article class="imdd-obj-card">' +
+                        '<div class="imdd-obj-scene">' + imddIconImg(icon) + '</div>' +
+                        '<div class="imdd-obj-copy">' +
+                            '<h4>' + escapeHtml(label) + '</h4>' +
+                            (detail ? '<p>' + escapeHtml(detail) + '</p>' : '') +
+                        '</div>' +
+                    '</article>' +
                 '</li>'
             );
         }).join('');
+
+        mount.className = 'imdd-obj-path-wrap';
+        mount.innerHTML =
+            '<div class="imdd-obj-spine" aria-hidden="true"></div>' +
+            '<ol class="imdd-objectives-path" aria-label="Project IMDD objectives">' + stops + '</ol>';
     }
 
     function renderPhases() {
-        var grid = document.getElementById('imdd-phases');
-        if (!grid) return;
+        var mount = document.getElementById('imdd-phases');
+        if (!mount) return;
 
-        grid.innerHTML = content.phases.map(function (phase) {
+        var steps = content.phases.map(function (phase, index) {
+            var icon = phase.icon || 'selection';
+            var flow = index < content.phases.length - 1
+                ? '<span class="imdd-belt-flow imdd-belt-flow--' + (index + 1) + '" aria-hidden="true"></span>'
+                : '';
+
             return (
-                '<article class="imdd-phase-card">' +
-                    '<div class="phase-label">Phase ' + escapeHtml(phase.phase) + '</div>' +
-                    '<h4>' + escapeHtml(phase.title) + '</h4>' +
-                    '<p>' + escapeHtml(phase.description) + '</p>' +
-                '</article>'
+                '<li class="imdd-phase-step imdd-reveal imdd-phase-step--' + (index + 1) + '" style="--i:' + index + '">' +
+                    '<article class="imdd-phase-tile">' +
+                        '<span class="imdd-phase-badge">' + escapeHtml(phase.phase) + '</span>' +
+                        '<div class="imdd-phase-scene" aria-hidden="true">' + imddIconImg(icon) + '</div>' +
+                        '<h4>' + escapeHtml(phase.title) + '</h4>' +
+                        '<p>' + escapeHtml(phase.description) + '</p>' +
+                    '</article>' +
+                    flow +
+                '</li>'
             );
         }).join('');
+
+        mount.className = 'imdd-concept-belt-wrap';
+        mount.innerHTML =
+            '<ol class="imdd-concept-belt" aria-label="Project IMDD concept phases">' + steps + '</ol>';
     }
 
     function renderTrainingProgrammes() {
@@ -859,6 +949,7 @@
             initStaticContent();
             renderObjectives();
             renderPhases();
+            initInfographicReveal();
             renderCaseStudy();
         }
 

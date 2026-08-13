@@ -19,21 +19,21 @@ window.projectImddContent = {
     intro: 'Project IMDD focuses on enhancing the logistics skills of young talents through mentorship and a hands-on approach by providing skills-based knowledge, it aims to empower individuals in the field. The project leverages on Digitalization, Sustainability, and Generative Artificial Intelligence to address geopolitical challenges in Supply Chain Management',
     mission: "SAAA@Singapore's Project IMDD aims to attract talent to the logistics industry by offering skills competency training, mentorship, and long-term career development opportunities.",
     objectives: [
-        'To start from the root by partnering with the 5 polytechnics and ITE',
-        'To pair the students through internship or work-study initiatives with forward looking logistics companies',
-        'To retain talents though far-sighted career initiatives',
-        "To further talent's education with direct entry for Work Study Degree or Work Study Specialist Diploma",
-        "To develop skills competency training through SAAA training programmes before embarking on company specific skill's trainings",
-        'To expose talents through industry site visits organised by SAAA',
-        'To develop a pool of next generation of high skilled and tech savvy logisticians through this initiative'
+        { label: 'Partner from the root', detail: 'Partner with the 5 polytechnics and ITE', icon: 'school' },
+        { label: 'Pair with industry', detail: 'Internship or work-study with forward-looking logistics companies', icon: 'handshake' },
+        { label: 'Retain talent', detail: 'Far-sighted career initiatives that keep talent in logistics', icon: 'retain' },
+        { label: 'Further education', detail: 'Direct entry to Work Study Degree or Work Study Specialist Diploma', icon: 'education' },
+        { label: 'Build skills competency', detail: 'SAAA training programmes before company-specific skills training', icon: 'skills' },
+        { label: 'Industry exposure', detail: 'Site visits organised by SAAA', icon: 'visit' },
+        { label: 'Next-generation talent', detail: 'A pool of high-skilled, tech-savvy logisticians', icon: 'talent' }
     ],
     phases: [
-        { phase: '01', title: 'Selection', description: 'Interns undergo 5/6 months of internship with a pre-validated logistics company who are members of SAAA' },
-        { phase: '02', title: 'Basic Skills Competency Training', description: 'Selected candidates will undergo extensive training with SAAA over the duration of Project IMDD' },
-        { phase: '03', title: 'Accelerated Logistician Talent Development', description: 'Mentorship as a full-time employee with a partner logistics company' },
-        { phase: '04', title: 'Final Year Project', description: 'Participate in SAAA Logistics Skills Competition' },
-        { phase: '05', title: 'Further Education', description: 'Direct entry to Work Study Degree or Work Study Specialist Diploma' },
-        { phase: '06', title: 'Follow Up', description: 'Monitor the progression of this initiative for the next 5 years' }
+        { phase: '01', title: 'Selection', description: '5–6 month internship with a SAAA member logistics company', icon: 'selection' },
+        { phase: '02', title: 'Basic Skills Training', description: 'Extensive SAAA training throughout Project IMDD', icon: 'training' },
+        { phase: '03', title: 'Talent Development', description: 'Mentorship as a full-time employee with a partner company', icon: 'mentorship' },
+        { phase: '04', title: 'Final Year Project', description: 'Compete in the SAAA Logistics Skills Competition', icon: 'project' },
+        { phase: '05', title: 'Further Education', description: 'Direct entry to Work Study Degree or Specialist Diploma', icon: 'further' },
+        { phase: '06', title: 'Follow Up', description: 'Track progression of this initiative for the next 5 years', icon: 'followup' }
     ],
     caseStudy: {
         title: 'Case Study — SAAA Pilot Run',
@@ -61,7 +61,7 @@ window.projectImddContent = {
     trainingIntro: 'Continuous learning is a journey and is paramount to the effectiveness of your workforce. SAAA leads by offering both practical, easy to implement and cost effective solutions to the logistics community with trainers who are professional practitioners.',
     trainingProgrammes: [
         { title: 'Building Up a Built-Up Pallet (Practical)', date: '13 Nov 2025', time: '9am to 5pm', location: 'TBC', fee: 'FOC IMDD Interns', image: 'images/project-imdd/program-built-up-pallet.jpg' },
-        { title: 'Overview of Airline Operations (Turkish Airline)', date: '3 Dec 2025', time: '9am to 5pm', location: 'SAAA Training Centre', fee: 'FOC IMDD Interns', image: 'images/project-imdd/program-airline-operations.jpg' },
+        { title: 'Overview of Airline Operations', date: '3 Dec 2025', time: '9am to 5pm', location: 'SAAA Training Centre', fee: 'FOC IMDD Interns', image: 'images/project-imdd/program-airline-operations.jpg' },
         { title: 'AI Solutions for Freight Forwarding Operations (Workshop)', date: '30 Apr 2026', time: '2pm to 4pm', location: 'SFS Global Office', fee: 'FOC IMDD Interns', image: 'images/project-imdd/program-ai-workshop.jpg' },
         { title: 'CeMAT South East Asia 2026', date: '13 May 2026', time: '9am to 6pm', location: 'Singapore Expo', fee: 'FOC IMDD Interns', image: 'images/project-imdd/program-cemat.jpg' }
     ],
