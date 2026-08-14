@@ -12,6 +12,18 @@
     object-position: center 30%;
 }
 
+.imdd-hero .hero-grid h1 {
+    margin-bottom: 10px;
+}
+
+.imdd-hero .imdd-hero-tagline {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
 /* Spotlight section — separate from hero, no overlap */
 .imdd-spotlight {
     padding: 32px 0 64px;
@@ -498,78 +510,57 @@ body[data-imdd-page="home"] #why-project-imdd + .imdd-spotlight {
     margin: 0 auto;
 }
 
-/* ——— Objectives: straight central spine + horizontal stubs ——— */
-.imdd-obj-path-wrap,
+/* ——— Objectives: 3-3-1 pyramid grid (distinct from Concept belt) ——— */
+.imdd-obj-belt-wrap,
 .imdd-obj-mount {
     position: relative;
-    margin: 8px 0 12px;
-    padding: 12px 0 8px;
+    margin-top: 8px;
+    padding: 18px 8px 8px;
 }
 
-.imdd-obj-spine {
-    position: absolute;
-    left: 50%;
-    top: 28px;
-    bottom: 28px;
-    width: 4px;
-    margin-left: -2px;
-    border-radius: 999px;
-    background: linear-gradient(180deg, rgba(196, 30, 58, 0.55), rgba(196, 30, 58, 0.85));
-    pointer-events: none;
-    z-index: 0;
-}
-
-.imdd-obj-stub {
-    position: absolute;
-    top: 50%;
-    height: 3px;
-    width: 28px;
-    margin-top: -1.5px;
-    background: rgba(196, 30, 58, 0.75);
-    border-radius: 999px;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.imdd-obj-stop--left .imdd-obj-stub {
-    right: calc(50% + 22px);
-}
-
-.imdd-obj-stop--right .imdd-obj-stub {
-    left: calc(50% + 22px);
-}
-
-.imdd-objectives-path {
+.imdd-obj-belt {
     list-style: none;
     margin: 0;
     padding: 0;
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-}
-
-.imdd-obj-stop {
-    position: relative;
     display: grid;
-    grid-template-columns: 1fr 56px 1fr;
-    align-items: center;
-    gap: 16px;
-    min-height: 120px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px 20px;
 }
 
-.imdd-obj-node {
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: center;
-    z-index: 2;
+.imdd-obj-step {
+    position: relative;
+    min-width: 0;
 }
 
-.imdd-obj-num {
-    width: 44px;
-    height: 44px;
-    display: flex;
+.imdd-obj-step.is-outcome {
+    grid-column: 1 / -1;
+    max-width: 100%;
+    margin-inline: auto;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.imdd-obj-tile {
+    height: 100%;
+    padding: 14px 12px 16px;
+    background: #fff;
+    border: 1px solid var(--slate-200);
+    border-radius: 18px;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+    text-align: center;
+    position: relative;
+}
+
+.imdd-obj-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 6px;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     border-radius: 999px;
@@ -577,91 +568,168 @@ body[data-imdd-page="home"] #why-project-imdd + .imdd-spotlight {
     color: #fff;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 12px;
     letter-spacing: 0.04em;
-    box-shadow: 0 0 0 5px #fff, 0 0 0 7px rgba(196, 30, 58, 0.22);
+    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.18);
+    z-index: 1;
 }
 
-.imdd-obj-stop.is-outcome .imdd-obj-num {
+.imdd-obj-step.is-outcome .imdd-obj-badge {
     background: var(--red-600);
-    box-shadow: 0 0 0 5px #fff, 0 0 0 7px rgba(196, 30, 58, 0.32);
-}
-
-.imdd-obj-card {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 14px 16px;
-    background: #fff;
-    border: 1px solid var(--slate-200);
-    border-radius: 18px;
-    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
-    max-width: 420px;
-}
-
-.imdd-obj-stop--left .imdd-obj-card {
-    grid-column: 1;
-    grid-row: 1;
-    justify-self: end;
-    text-align: left;
-}
-
-.imdd-obj-stop--right .imdd-obj-card {
-    grid-column: 3;
-    grid-row: 1;
-    justify-self: start;
+    box-shadow: 0 2px 6px rgba(196, 30, 58, 0.22);
+    min-width: 44px;
+    height: 44px;
+    font-size: 14px;
 }
 
 .imdd-obj-scene {
-    flex-shrink: 0;
-    width: 88px;
-    height: 88px;
-    border-radius: 16px;
+    width: 100%;
+    max-width: 88px;
+    aspect-ratio: 1;
+    margin: 6px auto 10px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #fff;
     color: var(--slate-900);
     border: 1px solid rgba(196, 30, 58, 0.12);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+    position: relative;
 }
 
 .imdd-obj-scene .imdd-freebie-icon,
 .imdd-obj-scene img {
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
     display: block;
     object-fit: contain;
 }
 
-.imdd-obj-stop.is-outcome .imdd-obj-scene {
-    background: #fff8f8;
-    border-color: rgba(196, 30, 58, 0.22);
+.imdd-obj-step.is-outcome .imdd-obj-scene {
+    background: linear-gradient(145deg, #fff0f0 0%, #fff8f8 100%);
+    border-color: rgba(196, 30, 58, 0.32);
+    box-shadow: none;
 }
 
-.imdd-obj-copy {
-    min-width: 0;
+.imdd-obj-step.is-outcome .imdd-obj-scene .imdd-freebie-icon,
+.imdd-obj-step.is-outcome .imdd-obj-scene img {
+    width: 64px;
+    height: 64px;
 }
 
-.imdd-obj-copy h4 {
+.imdd-obj-tile h4 {
     margin: 0 0 4px;
-    font-size: 1.05rem;
+    font-size: 0.92rem;
     color: var(--slate-900);
+    line-height: 1.3;
     font-family: 'Space Grotesk', sans-serif;
     letter-spacing: -0.015em;
-    line-height: 1.25;
 }
 
-.imdd-obj-copy p {
+.imdd-obj-tile p {
     margin: 0;
-    font-size: 13.5px;
-    line-height: 1.4;
+    font-size: 12.5px;
     color: var(--slate-600);
+    line-height: 1.4;
 }
 
-.imdd-obj-stop.is-outcome .imdd-obj-card {
-    border-color: rgba(196, 30, 58, 0.28);
-    background: linear-gradient(135deg, #fff8f8 0%, #ffffff 70%);
+.imdd-obj-step.is-outcome .imdd-obj-tile {
+    border: 2px solid rgba(196, 30, 58, 0.34);
+    background: linear-gradient(135deg, #fff3f3 0%, #ffffff 55%, #fffafa 100%);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+    border-radius: 22px;
+    padding: 22px 18px 24px;
+    overflow: hidden;
+}
+
+.imdd-obj-outcome-tag {
+    display: inline-block;
+    margin: 0 0 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(196, 30, 58, 0.1);
+    color: var(--red-600);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.imdd-obj-step.is-outcome .imdd-obj-tile h4 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+}
+
+.imdd-obj-step.is-outcome .imdd-obj-tile p {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--slate-700);
+    max-width: 52ch;
+}
+
+.imdd-obj-step.is-outcome .imdd-obj-tile::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    bottom: 18px;
+    left: 0;
+    width: 6px;
+    border-radius: 0 6px 6px 0;
+    background: linear-gradient(180deg, var(--red-600) 0%, #e11d48 100%);
+}
+
+@media (min-width: 768px) {
+    .imdd-obj-step.is-outcome .imdd-obj-tile {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto auto;
+        column-gap: 28px;
+        row-gap: 6px;
+        align-items: center;
+        text-align: left;
+        padding: 28px 32px 28px 36px;
+        min-height: 148px;
+    }
+
+    .imdd-obj-step.is-outcome .imdd-obj-badge {
+        top: 20px;
+        left: 36px;
+    }
+
+    .imdd-obj-step.is-outcome .imdd-obj-scene {
+        grid-row: 1 / span 3;
+        grid-column: 1;
+        margin: 0;
+        max-width: 124px;
+        min-width: 124px;
+        border-radius: 18px;
+    }
+
+    .imdd-obj-step.is-outcome .imdd-obj-scene .imdd-freebie-icon,
+    .imdd-obj-step.is-outcome .imdd-obj-scene img {
+        width: 72px;
+        height: 72px;
+    }
+
+    .imdd-obj-step.is-outcome .imdd-obj-outcome-tag {
+        grid-column: 2;
+        margin-bottom: 2px;
+    }
+
+    .imdd-obj-step.is-outcome .imdd-obj-tile h4 {
+        grid-column: 2;
+        margin-top: 0;
+        font-size: 1.5rem;
+    }
+
+    .imdd-obj-step.is-outcome .imdd-obj-tile p {
+        grid-column: 2;
+        font-size: 15.5px;
+    }
 }
 
 /* ——— Concept: two-row process belt (no gray connector bars) ——— */
@@ -1375,6 +1443,15 @@ body[data-imdd-page="home"] #why-project-imdd + .imdd-spotlight {
         grid-template-columns: 1fr 1fr;
     }
 
+    .imdd-obj-belt {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px 16px;
+    }
+
+    .imdd-obj-step.is-outcome {
+        max-width: 100%;
+    }
+
     .imdd-phase-step--1 { grid-column: 1; grid-row: 1; }
     .imdd-phase-step--2 { grid-column: 2; grid-row: 1; }
     .imdd-phase-step--3 { grid-column: 1; grid-row: 2; }
@@ -1405,38 +1482,6 @@ body[data-imdd-page="home"] #why-project-imdd + .imdd-spotlight {
         right: auto;
         bottom: -26px;
         transform: translateX(-50%) rotate(135deg);
-    }
-
-    .imdd-obj-spine {
-        left: 28px;
-        margin-left: 0;
-        transform: none;
-    }
-
-    .imdd-obj-stub {
-        display: none;
-    }
-
-    .imdd-obj-stop {
-        grid-template-columns: 56px minmax(0, 1fr);
-        gap: 14px;
-        min-height: 0;
-    }
-
-    .imdd-obj-node {
-        grid-column: 1;
-    }
-
-    .imdd-obj-stop--left .imdd-obj-card,
-    .imdd-obj-stop--right .imdd-obj-card {
-        grid-column: 2;
-        justify-self: stretch;
-        max-width: none;
-    }
-
-    .imdd-obj-scene {
-        width: 72px;
-        height: 72px;
     }
 
     .imdd-page-shell {
@@ -1471,6 +1516,10 @@ body[data-imdd-page="home"] #why-project-imdd + .imdd-spotlight {
 }
 
 @media (max-width: 768px) {
+    .imdd-hero .imdd-hero-tagline {
+        font-size: 1rem;
+    }
+
     #why-project-imdd {
         padding-bottom: 30px;
     }
@@ -1550,6 +1599,37 @@ body[data-imdd-page="home"] #why-project-imdd + .imdd-spotlight {
         grid-template-columns: 1fr;
     }
 
+    .imdd-obj-belt {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .imdd-obj-step.is-outcome .imdd-obj-tile {
+        display: block;
+        text-align: center;
+        padding: 22px 18px 24px 24px;
+    }
+
+    .imdd-obj-step.is-outcome .imdd-obj-scene {
+        margin: 8px auto 12px;
+        max-width: 108px;
+    }
+
+    .imdd-obj-step.is-outcome .imdd-obj-scene .imdd-freebie-icon,
+    .imdd-obj-step.is-outcome .imdd-obj-scene img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .imdd-obj-step.is-outcome .imdd-obj-tile h4 {
+        font-size: 1.2rem;
+    }
+
+    .imdd-obj-step.is-outcome .imdd-obj-tile p {
+        font-size: 14px;
+        max-width: none;
+    }
+
     .imdd-phase-step--1,
     .imdd-phase-step--2,
     .imdd-phase-step--3,
@@ -1582,26 +1662,18 @@ body[data-imdd-page="home"] #why-project-imdd + .imdd-spotlight {
         height: 48px;
     }
 
-    .imdd-obj-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 14px;
-    }
-
     .imdd-obj-scene {
-        width: 64px;
-        height: 64px;
+        max-width: 80px;
     }
 
     .imdd-obj-scene .imdd-freebie-icon,
     .imdd-obj-scene img {
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
     }
 
-    .imdd-obj-copy h4 {
-        font-size: 0.98rem;
+    .imdd-obj-tile h4 {
+        font-size: 0.95rem;
     }
 
     .imdd-institution-logo {

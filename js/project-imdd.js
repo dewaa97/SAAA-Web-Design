@@ -283,35 +283,29 @@
         var mount = document.getElementById('imdd-objectives');
         if (!mount) return;
 
-        var stops = content.objectives.map(function (item, index) {
+        var steps = content.objectives.map(function (item, index) {
             var label = typeof item === 'string' ? item : item.label;
             var detail = typeof item === 'string' ? '' : (item.detail || '');
             var icon = typeof item === 'string' ? 'skills' : (item.icon || 'skills');
             var isOutcome = index === content.objectives.length - 1;
-            var side = index % 2 === 0 ? 'left' : 'right';
             var num = String(index + 1).padStart(2, '0');
 
             return (
-                '<li class="imdd-obj-stop imdd-reveal imdd-obj-stop--' + side + (isOutcome ? ' is-outcome' : '') + '" style="--i:' + index + '">' +
-                    '<span class="imdd-obj-stub" aria-hidden="true"></span>' +
-                    '<div class="imdd-obj-node" aria-hidden="true">' +
-                        '<span class="imdd-obj-num">' + num + '</span>' +
-                    '</div>' +
-                    '<article class="imdd-obj-card">' +
-                        '<div class="imdd-obj-scene">' + imddIconImg(icon) + '</div>' +
-                        '<div class="imdd-obj-copy">' +
-                            '<h4>' + escapeHtml(label) + '</h4>' +
-                            (detail ? '<p>' + escapeHtml(detail) + '</p>' : '') +
-                        '</div>' +
+                '<li class="imdd-obj-step imdd-reveal' + (isOutcome ? ' is-outcome' : '') + '" style="--i:' + index + '">' +
+                    '<article class="imdd-obj-tile">' +
+                        '<span class="imdd-obj-badge">' + num + '</span>' +
+                        '<div class="imdd-obj-scene" aria-hidden="true">' + imddIconImg(icon) + '</div>' +
+                        (isOutcome ? '<span class="imdd-obj-outcome-tag">Final outcome</span>' : '') +
+                        '<h4>' + escapeHtml(label) + '</h4>' +
+                        (detail ? '<p>' + escapeHtml(detail) + '</p>' : '') +
                     '</article>' +
                 '</li>'
             );
         }).join('');
 
-        mount.className = 'imdd-obj-path-wrap';
+        mount.className = 'imdd-obj-belt-wrap';
         mount.innerHTML =
-            '<div class="imdd-obj-spine" aria-hidden="true"></div>' +
-            '<ol class="imdd-objectives-path" aria-label="Project IMDD objectives">' + stops + '</ol>';
+            '<ol class="imdd-obj-belt" aria-label="Project IMDD objectives">' + steps + '</ol>';
     }
 
     function renderPhases() {
