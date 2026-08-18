@@ -410,18 +410,6 @@
             z-index: 0;
             pointer-events: none;
         }
-        .secretariat-mobile-group::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 2px;
-            height: var(--sec-connector-h);
-            transform: translateX(-50%);
-            background: var(--sec-line);
-            z-index: 0;
-            pointer-events: none;
-        }
         .branch-singapore {
             grid-column: 2;
             justify-self: start;
@@ -587,7 +575,6 @@
             .secretariat-tier-branches::before,
             .secretariat-trunk-zone::before,
             .secretariat-mobile-group::before,
-            .secretariat-mobile-group::after,
             .secretariat-branch::before {
                 display: none;
             }
