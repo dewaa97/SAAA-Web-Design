@@ -169,7 +169,7 @@
                 { src: 'images/partners/mot.png', alt: 'MOT' },
                 { src: 'images/partners/swda.png', alt: 'SWDA' },
                 { src: 'images/partners/singapore-customs.png', alt: 'Singapore Customs', scale: 1.25 },
-                { src: 'images/partners/wshc.jpeg', alt: 'WSHC' }
+                { src: 'images/partners/wshc.png', alt: 'WSHC', scale: 1.15 }
             ],
             industry: [
                 { src: 'images/partners/aais.png', alt: 'AAIS', scale: 1.15 },
@@ -177,11 +177,11 @@
                 { src: 'images/partners/aon.png', alt: 'AON' },
                 { src: 'images/partners/ccn.png', alt: 'Cargo Community Network' },
                 { src: 'images/partners/dnata.jpeg', alt: 'dnata Singapore' },
-                { src: 'images/partners/e2i.jpeg', alt: 'e2i' },
+                { src: 'images/partners/e2i.png', alt: 'e2i', scale: 1.2 },
                 { src: 'images/partners/iata.jpeg', alt: 'IATA' },
                 { src: 'images/partners/ihrp.jpeg', alt: 'IHRP' },
                 { src: 'images/partners/lscms.png', alt: 'LSCMS' },
-                { src: 'images/partners/sats.jpeg', alt: 'SATS' },
+                { src: 'images/partners/sats.png', alt: 'SATS', scale: 1.15 },
                 { src: 'images/partners/snef.png', alt: 'SNEF' },
                 { src: 'images/partners/ssia.png', alt: 'SSIA', scale: 1.1 }
             ],

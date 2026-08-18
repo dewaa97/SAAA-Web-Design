@@ -1,18 +1,21 @@
 (function () {
     const courses = window.saaaTrainingCourses || [];
+    const tabsConfig = window.saaaTrainingTabs || [];
     const root = document.querySelector('[data-training-root]');
     if (!root || !courses.length) return;
 
     const list = root.querySelector('[data-training-list]');
     const pagination = root.querySelector('[data-training-pagination]');
-    const tabs = root.querySelectorAll('[data-training-tab]');
+    const tabsContainer = root.querySelector('.training-tabs');
     const itemsPerPage = parseInt(root.getAttribute('data-items-per-page'), 10) || 6;
 
     let currentTab = 'all';
     let currentPage = 1;
+    let tabs = [];
 
-    function formatDuration(dayCount) {
-        return dayCount === 1 ? '1 Day' : dayCount + ' Days';
+    function formatDuration(course) {
+        if (course.dayCountLabel) return course.dayCountLabel;
+        return course.dayCount === 1 ? '1 Day' : course.dayCount + ' Days';
     }
 
     function formatTimeValue(timeValue) {
@@ -39,21 +42,47 @@
         return course.classroomAddress;
     }
 
-    function sessionLine(session, dayNumber, totalDays) {
-        const prefix = totalDays > 1 ? 'Day ' + dayNumber + ': ' : '';
-        return '<div class="training-schedule-item">' +
-            prefix + formatSessionDate(session.date) + ' · ' +
-            formatTimeValue(session.startTime) + ' – ' + formatTimeValue(session.endTime) +
-            '</div>';
-    }
+    function formatSessionScheduleLine(course, label) {
+        if (label) {
+            return label;
+        }
 
-    function renderSchedule(course, rowId) {
         const sessions = course.sessions || [];
         if (!sessions.length) return '';
 
+        if (sessions.length === 1) {
+            return formatSessionDate(sessions[0].date);
+        }
+
+        const first = formatSessionDate(sessions[0].date);
+        const last = formatSessionDate(sessions[sessions.length - 1].date);
+        const firstParts = first.split(' ');
+        const lastParts = last.split(' ');
+        const range = firstParts.length >= 3 && lastParts.length >= 3
+            ? firstParts[0] + ' - ' + lastParts[0] + ' ' + lastParts[1] + ' ' + lastParts[2]
+            : first + ' - ' + last;
+
+        return range;
+    }
+
+    function getScheduleLines(course) {
+        if (course.scheduleOptions && course.scheduleOptions.length) {
+            return course.scheduleOptions.map(function (label) {
+                return formatSessionScheduleLine(course, label);
+            });
+        }
+
+        const line = formatSessionScheduleLine(course);
+        return line ? [line] : [];
+    }
+
+    function renderSchedule(course, rowId) {
+        const lines = getScheduleLines(course);
+        if (!lines.length) return '';
+
         let panelHtml = '<div class="training-schedule-label">Training Schedule</div>';
-        sessions.forEach(function (session, index) {
-            panelHtml += sessionLine(session, index + 1, sessions.length);
+        lines.forEach(function (line) {
+            panelHtml += '<div class="training-schedule-item">' + line + '</div>';
         });
 
         return '<div class="training-schedule">' +
@@ -64,30 +93,98 @@
             '</div></div>';
     }
 
+    function getCategoryCount(tabName) {
+        if (tabName === 'all') return courses.length;
+        return courses.filter(function (course) { return course.category === tabName; }).length;
+    }
+
+    function getVisibleTabs() {
+        return tabsConfig.filter(function (tab) {
+            if (tab.id === 'others') return getCategoryCount('others') > 0;
+            return true;
+        });
+    }
+
+    function buildTabs() {
+        if (!tabsContainer) return;
+
+        const visibleTabs = getVisibleTabs();
+        tabsContainer.innerHTML = visibleTabs.map(function (tab, index) {
+            const count = getCategoryCount(tab.id);
+            const activeClass = index === 0 ? ' active' : '';
+            return '<button class="training-tab' + activeClass + '" type="button" data-training-tab="' + tab.id + '">' +
+                tab.label + '<span class="training-count">' + count + '</span></button>';
+        }).join('');
+
+        tabs = tabsContainer.querySelectorAll('[data-training-tab]');
+        currentTab = visibleTabs[0] ? visibleTabs[0].id : 'all';
+
+        tabs.forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                tabs.forEach(function (item) { item.classList.remove('active'); });
+                tab.classList.add('active');
+                currentTab = tab.getAttribute('data-training-tab');
+                currentPage = 1;
+                render();
+            });
+        });
+    }
+
     function getFilteredRows() {
         if (currentTab === 'all') return courses.slice();
         return courses.filter(function (course) { return course.category === currentTab; });
     }
 
+    function titleHtml(course) {
+        const badge = course.isOpeningSoon
+            ? '<span class="training-opening-soon-badge">Opening Soon</span>'
+            : '';
+
+        if (course.isOpeningSoon && !course.infoPageSlug) {
+            return '<a href="training-opening-soon.html?slug=' + encodeURIComponent(course.slug) + '" class="training-title-link">' +
+                course.title + '</a>' + badge;
+        }
+
+        if (course.infoPageSlug) {
+            return '<a href="training-course.html?slug=' + encodeURIComponent(course.slug) + '" class="training-title-link">' +
+                course.title + '</a>' + badge;
+        }
+
+        return course.title + badge;
+    }
+
+    function actionHtml(course) {
+        if (course.isOpeningSoon) {
+            return '<span class="btn-small primary training-book-disabled" aria-disabled="true">Book Now</span>';
+        }
+
+        if (course.bookNowUrl) {
+            return '<a href="' + course.bookNowUrl + '" class="btn-small primary">Book Now</a>';
+        }
+
+        return '';
+    }
+
     function rowHtml(course, index) {
         const number = String(index + 1).padStart(2, '0');
         const rowId = course.id + '-' + index;
+        const vacanciesHtml = typeof course.vacanciesLeft === 'number'
+            ? '<span>' + course.vacanciesLeft + ' vacancies left</span>'
+            : '';
 
         return '<div class="training-row" data-category="' + course.category + '">' +
             '<div class="number">' + number + '</div>' +
             '<div class="content">' +
-            '<div class="title">' + course.title + '</div>' +
+            '<div class="title">' + titleHtml(course) + '</div>' +
             '<div class="function">' + course.functionName + '</div>' +
             '<div class="meta">' +
-            '<span>' + formatDuration(course.dayCount) + '</span>' +
-            '<span>' + course.vacanciesLeft + ' vacancies left</span>' +
+            '<span>' + formatDuration(course) + '</span>' +
+            vacanciesHtml +
             '<span class="training-meta-location">' + formatLocation(course) + '</span>' +
             '</div>' +
             renderSchedule(course, rowId) +
             '</div>' +
-            '<div class="action">' +
-            '<a href="#" class="btn-small primary">Book Now</a>' +
-            '</div></div>';
+            '<div class="action">' + actionHtml(course) + '</div></div>';
     }
 
     function bindScheduleToggles() {
@@ -107,17 +204,6 @@
         });
     }
 
-    function updateTabCounts() {
-        tabs.forEach(function (tab) {
-            const tabName = tab.getAttribute('data-training-tab');
-            const count = tabName === 'all'
-                ? courses.length
-                : courses.filter(function (course) { return course.category === tabName; }).length;
-            const countEl = tab.querySelector('.training-count');
-            if (countEl) countEl.textContent = count;
-        });
-    }
-
     function render() {
         const filtered = getFilteredRows();
         const paged = window.saaaListing.paginate(filtered, currentPage, itemsPerPage);
@@ -126,7 +212,6 @@
         if (!filtered.length) {
             list.innerHTML = '<div class="training-empty">No courses available in this category yet.</div>';
             pagination.innerHTML = '';
-            updateTabCounts();
             return;
         }
 
@@ -141,19 +226,8 @@
             currentPage = page;
             render();
         });
-
-        updateTabCounts();
     }
 
-    tabs.forEach(function (tab) {
-        tab.addEventListener('click', function () {
-            tabs.forEach(function (item) { item.classList.remove('active'); });
-            tab.classList.add('active');
-            currentTab = tab.getAttribute('data-training-tab');
-            currentPage = 1;
-            render();
-        });
-    });
-
+    buildTabs();
     render();
 })();

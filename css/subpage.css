@@ -991,6 +991,7 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
 .milestone-icon-1990s { background: #ccfbf1; color: #0d9488; }
 .milestone-icon-2000s { background: #ffedd5; color: #ea580c; }
 .milestone-icon-2010s { background: #fce7f3; color: #db2777; }
+.milestone-icon-2020s { background: #dbeafe; color: #2563eb; }
 
 .milestone-card {
     position: relative;
@@ -1080,6 +1081,48 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     font-weight: 700;
     color: var(--red-600);
     margin-right: 6px;
+}
+
+/* Milestones — grouped by year (js/milestones-layout.js) */
+.milestones-tree .milestone-events-grouped {
+    gap: 18px;
+}
+
+.milestones-tree .milestone-year-group {
+    font-size: 15px;
+    color: var(--slate-600);
+    line-height: 1.7;
+}
+
+.milestones-tree .milestone-year-group > .milestone-year {
+    display: block;
+    margin-right: 0;
+    margin-bottom: 6px;
+}
+
+.milestones-tree .milestone-year-items {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.milestones-tree .milestone-year-items li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 15px;
+    color: var(--slate-600);
+    line-height: 1.7;
+}
+
+.milestones-tree .milestone-year-items li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--slate-400);
+    font-weight: 700;
 }
 
 @media (max-width: 768px) {
@@ -1257,6 +1300,18 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     color: var(--slate-700);
 }
 .membership-radio-item input { flex-shrink: 0; }
+.membership-radio-group--stacked {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+.membership-radio-group--stacked .membership-radio-item {
+    align-items: flex-start;
+    line-height: 1.5;
+}
+.membership-radio-group--stacked .membership-radio-item input {
+    margin-top: 3px;
+}
 .membership-subheading {
     font-size: 0.95rem;
     font-weight: 600;
