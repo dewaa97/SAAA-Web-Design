@@ -436,7 +436,7 @@ window.saaaContent = {
         {
             id: 'perspectives-contributions',
             title: 'Contribution of Articles in Perspectives',
-            date: 'NEW',
+            date: '1 July 2026',
             sortDate: '2026-07-01',
             status: 'upcoming',
             category: 'program',
