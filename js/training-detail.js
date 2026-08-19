@@ -20,7 +20,7 @@
         outline: 'Course Outline',
         whoShouldAttend: 'Who Should Attend?',
         accreditation: 'Accreditation & Examination',
-        fees: 'Course Fee'
+        fees: 'Course Fees'
     };
 
     function formatDuration(courseItem) {
