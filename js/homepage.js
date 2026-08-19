@@ -179,7 +179,7 @@
                 { src: 'images/partners/dnata.jpeg', alt: 'dnata Singapore' },
                 { src: 'images/partners/e2i.png', alt: 'e2i', scale: 1.2 },
                 { src: 'images/partners/iata.jpeg', alt: 'IATA' },
-                { src: 'images/partners/ihrp.jpeg', alt: 'IHRP' },
+                { src: 'images/partners/ihrp.png', alt: 'IHRP' },
                 { src: 'images/partners/lscms.png', alt: 'LSCMS' },
                 { src: 'images/partners/sats.png', alt: 'SATS', scale: 1.15 },
                 { src: 'images/partners/snef.png', alt: 'SNEF' },
