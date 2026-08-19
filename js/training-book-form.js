@@ -97,16 +97,27 @@
             '</select></div>';
     }
 
-    function mountCombobox(selectId, placeholder) {
+    function mountCombobox(selectId, placeholder, onChange) {
         if (!window.SaaaImddFormWidgets) return;
         var select = document.getElementById(selectId);
         if (!select || select.tagName !== 'SELECT' || select.dataset.trainingWidgetMounted) return;
         window.SaaaImddFormWidgets.mountComboboxFromSelect(select, {
             placeholder: placeholder || 'Select',
             searchable: false,
-            fieldKey: selectId
+            fieldKey: selectId,
+            onChange: onChange
         });
         select.dataset.trainingWidgetMounted = 'true';
+    }
+
+    function mountDatepicker(inputId) {
+        if (!window.SaaaImddFormWidgets) return;
+        var input = document.getElementById(inputId);
+        if (!input || input.dataset.trainingWidgetMounted) return;
+        window.SaaaImddFormWidgets.mountDatePickerFromInput(input, {
+            placeholder: 'Pick a date'
+        });
+        input.dataset.trainingWidgetMounted = 'true';
     }
 
     function renderParticipantFields(index) {
@@ -140,6 +151,7 @@
         container.innerHTML = html;
         for (var j = 1; j <= count; j += 1) {
             mountCombobox('traineeIdType_' + j);
+            mountDatepicker('dateOfBirth_' + j);
         }
     }
 
@@ -262,15 +274,11 @@
         '</div></form></div>';
 
     mountCombobox('courseDate', 'Select a course date');
-    mountCombobox('totalParticipants', 'select a number');
-
-    var totalSelect = document.getElementById('totalParticipants');
-    if (totalSelect) {
-        totalSelect.addEventListener('change', function () {
-            var count = parseInt(totalSelect.value, 10) || 0;
-            renderParticipantSections(Math.min(MAX_PARTICIPANTS, count));
-        });
-    }
+    mountCombobox('totalParticipants', 'select a number', function () {
+        var hidden = document.querySelector('[data-combobox-input][name="totalParticipants"]');
+        var count = parseInt(hidden ? hidden.value : '0', 10) || 0;
+        renderParticipantSections(Math.min(MAX_PARTICIPANTS, count));
+    });
 
     document.getElementById('training-book-form').addEventListener('submit', function (submitEvent) {
         submitEvent.preventDefault();

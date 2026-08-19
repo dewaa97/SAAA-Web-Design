@@ -1,0 +1,446 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e4]:
+      - link:
+        - /url: https://www.saaa.org.sg
+      - generic [ref=f1e6]:
+        - generic [ref=f1e7]:
+          - link [ref=f1e8] [cursor=pointer]:
+            - /url: https://www.facebook.com/pages/SAAA/834894096585648?fref=ts
+            - img "Visit Us On Facebook" [ref=f1e9]
+          - link [ref=f1e10] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/saaa-singapore-2b6861243/%20
+            - img "Visit Us On Linkedin" [ref=f1e11]
+          - link [ref=f1e12] [cursor=pointer]:
+            - /url: https://www.instagram.com/saaasingapore/
+            - img "Visit Us On Instagram" [ref=f1e13]
+        - generic [ref=f1e14]:
+          - link "saaasin@saaa.org.sg" [ref=f1e15] [cursor=pointer]:
+            - /url: mailto:saaasin@saaa.org.sg
+          - text: (+65)6545 4620
+    - generic [ref=f1e18]:
+      - navigation [ref=f1e20]:
+        - list [ref=f1e22]:
+          - listitem [ref=f1e23]:
+            - link [ref=f1e24] [cursor=pointer]:
+              - /url: https://www.saaa.org.sg/
+              - generic [ref=f1e25]: Home Home
+              - text: 
+            - text: Latest News Announcements Up Coming Events
+          - listitem [ref=f1e26]:
+            - link [ref=f1e27] [cursor=pointer]:
+              - /url: http://www.saaa.org.sg/?p=72
+              - generic [ref=f1e28]: About Us About Us
+              - text: 
+            - text: Welcome Note History & Milestones  Our History Our Milestones Vision & Mission Organization Structure  Council Organization Chart Secretariat Chart & Roles Committees Standard Trading Conditions
+          - listitem [ref=f1e29]:
+            - link [ref=f1e30] [cursor=pointer]:
+              - /url: http://www.saaa.org.sg/?p=1481
+              - generic [ref=f1e31]: Members Members
+              - text: 
+            - text: Listing of SAAA Members  Listing (By Logo) Listing (By Text) Members’ Category
+          - listitem [ref=f1e32]:
+            - link [ref=f1e33] [cursor=pointer]:
+              - /url: http://www.saaa.org.sg/?p=86
+              - generic [ref=f1e34]: Services Services
+              - text: 
+            - text: Neutral Airway Bill Bar Code Labels Permit & Certificate of Origin Facilities
+          - listitem [ref=f1e35]:
+            - link [ref=f1e36] [cursor=pointer]:
+              - /url: http://www.saaa.org.sg/?p=1214
+              - generic [ref=f1e37]: Training Training
+              - text: 
+            - text: History Program Calendar CBTA Updates SAAA Training Courses
+          - listitem [ref=f1e38]:
+            - link "Media & Gallery Media & Gallery" [ref=f1e39] [cursor=pointer]:
+              - /url: https://www.saaa.org.sg/media-gallery/
+          - listitem [ref=f1e41]:
+            - link "Publications Publications" [ref=f1e42] [cursor=pointer]:
+              - /url: https://www.saaa.org.sg/publications/
+          - listitem [ref=f1e44]:
+            - link "Partners Partners" [ref=f1e45] [cursor=pointer]:
+              - /url: https://www.saaa.org.sg/partner-new/
+          - listitem [ref=f1e47]:
+            - link "Contact Us Contact Us" [ref=f1e48] [cursor=pointer]:
+              - /url: https://www.saaa.org.sg/contact-us/
+      - text:        
+    - generic [ref=f1e53]:
+      - paragraph [ref=f1e54]:
+        - img "about us" [ref=f1e55]
+      - paragraph [ref=f1e56]:
+        - img "vm" [ref=f1e57]
+      - paragraph [ref=f1e58]:
+        - img "1200x1500" [ref=f1e59]
+  - generic [ref=f1e60]:
+    - table [ref=f1e62]:
+      - rowgroup [ref=f1e63]:
+        - row [ref=f1e64]:
+          - columnheader "SITE MAP" [ref=f1e65]
+          - columnheader [ref=f1e66]
+          - columnheader [ref=f1e67]
+          - columnheader [ref=f1e68]
+          - columnheader [ref=f1e69]
+          - columnheader
+          - columnheader [ref=f1e70]
+          - columnheader [ref=f1e71]
+        - row [ref=f1e72]:
+          - columnheader "Home" [ref=f1e73]
+          - columnheader "About Us" [ref=f1e74]
+          - columnheader "Members" [ref=f1e75]
+          - columnheader "Services" [ref=f1e76]
+          - columnheader "Training" [ref=f1e77]
+          - columnheader
+          - columnheader [ref=f1e78]:
+            - link "Media & Gallery" [ref=f1e80] [cursor=pointer]:
+              - /url: http://saaa.org.sg/media-gallery/
+          - columnheader [ref=f1e81]:
+            - link "Partners" [ref=f1e83] [cursor=pointer]:
+              - /url: http://www.saaa.org.sg/partner-new/
+          - columnheader [ref=f1e84]:
+            - link "Contact Us" [ref=f1e86] [cursor=pointer]:
+              - /url: http://saaa.org.sg/contact-us/
+        - row [ref=f1e87]:
+          - cell [ref=f1e88]:
+            - link "Latest News" [ref=f1e90] [cursor=pointer]:
+              - /url: http://saaa.org.sg/latest-news/
+          - cell [ref=f1e91]:
+            - link "Welcome Note" [ref=f1e93] [cursor=pointer]:
+              - /url: http://saaa.org.sg/welcome-note/
+          - cell [ref=f1e94]:
+            - link "Members' Category" [ref=f1e96] [cursor=pointer]:
+              - /url: http://saaa.org.sg/members-category/
+          - cell [ref=f1e97]:
+            - link "Neutral Airway Bill" [ref=f1e99] [cursor=pointer]:
+              - /url: http://saaa.org.sg/services/neutral-airway-bill/
+          - cell [ref=f1e100]:
+            - link "History" [ref=f1e102] [cursor=pointer]:
+              - /url: http://saaa.org.sg/training/history/
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e103]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e104]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=f1e105]:
+          - cell [ref=f1e106]:
+            - link "Announcements" [ref=f1e108] [cursor=pointer]:
+              - /url: http://saaa.org.sg/home-announcements/
+          - cell "History & Milestones" [ref=f1e109]
+          - cell [ref=f1e110]:
+            - link "Benefit for Members" [ref=f1e112] [cursor=pointer]:
+              - /url: http://saaa.org.sg/benefit-for-members/
+          - cell [ref=f1e113]:
+            - link "Bar Code Labels" [ref=f1e115] [cursor=pointer]:
+              - /url: http://saaa.org.sg/services/bar-code-labels/
+          - cell [ref=f1e116]:
+            - link "Program Calendar" [ref=f1e118] [cursor=pointer]:
+              - /url: http://saaa.org.sg/training/program-calendar/
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e119]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e120]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=f1e121]:
+          - cell [ref=f1e122]:
+            - link "Upcoming Events" [ref=f1e124] [cursor=pointer]:
+              - /url: http://saaa.org.sg/up-coming-events/
+          - cell [ref=f1e125]:
+            - text: "-"
+            - link "Our History" [ref=f1e127] [cursor=pointer]:
+              - /url: http://saaa.org.sg/history/
+          - cell [ref=f1e128]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e129]:
+            - link "Permit & Certificate of Origin" [ref=f1e131] [cursor=pointer]:
+              - /url: http://saaa.org.sg/services/permit-certificate-of-origin/
+          - cell [ref=f1e132]:
+            - link "Our Courses" [ref=f1e134] [cursor=pointer]:
+              - /url: http://saaa.org.sg/training/our-courses/
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e135]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e136]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=f1e137]:
+          - cell [ref=f1e138]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e139]:
+            - text: "-"
+            - link "Our Milestones" [ref=f1e141] [cursor=pointer]:
+              - /url: http://saaa.org.sg/our-milestones/
+          - cell [ref=f1e142]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e143]:
+            - link "Facilities" [ref=f1e145] [cursor=pointer]:
+              - /url: http://saaa.org.sg/?p=2556
+          - cell [ref=f1e146]
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e147]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e148]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row:
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: http://saaa.org.sg/about-us/council-and-secretariat/
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=f1e149]:
+          - cell [ref=f1e150]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e151]:
+            - link "Vision & Mission" [ref=f1e153] [cursor=pointer]:
+              - /url: http://saaa.org.sg/vision-mission/
+          - cell [ref=f1e154]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e155]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e156]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e157]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e158]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=f1e159]:
+          - cell [ref=f1e160]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell "Organization Structure" [ref=f1e161]
+          - cell [ref=f1e162]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e163]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e164]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e165]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e166]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=f1e167]:
+          - cell [ref=f1e168]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e169]:
+            - text: "-"
+            - link "Council Organization Chart" [ref=f1e171] [cursor=pointer]:
+              - /url: http://saaa.org.sg/organization/
+          - cell [ref=f1e172]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e173]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e174]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e175]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e176]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=f1e177]:
+          - cell [ref=f1e178]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e179]:
+            - text: "-"
+            - link "Secretariat Chart & Roles" [ref=f1e181] [cursor=pointer]:
+              - /url: http://saaa.org.sg/organization/secretariat-chart-roles/
+          - cell [ref=f1e182]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e183]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e184]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e185]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e186]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=f1e187]:
+          - cell [ref=f1e188]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e189]:
+            - link "Committees" [ref=f1e191] [cursor=pointer]:
+              - /url: http://saaa.org.sg/committees/
+          - cell [ref=f1e192]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e193]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e194]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e195]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e196]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=f1e197]:
+          - cell [ref=f1e198]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e199]:
+            - link "STC" [ref=f1e201] [cursor=pointer]:
+              - /url: http://saaa.org.sg/stc/
+          - cell [ref=f1e202]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e203]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e204]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e205]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=f1e206]:
+            - generic:
+              - link:
+                - /url: "#"
+    - paragraph [ref=f1e209]:
+      - generic [ref=f1e210]:
+        - link "SAAA Singapore Copyright © 2022" [ref=f1e211] [cursor=pointer]:
+          - /url: ""
+        - text: • Powered by
+        - link "Techstudio Solutions" [ref=f1e212] [cursor=pointer]:
+          - /url: http://techstudio.com.sg

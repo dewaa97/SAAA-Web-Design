@@ -1352,6 +1352,14 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
 .membership-form-plain .membership-field-hint + .membership-radio-group {
     margin-top: 4px;
 }
+#training-participant-sections:not(:empty) {
+    padding-bottom: 28px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--slate-200);
+}
+#training-participant-sections:not(:empty) + .membership-form-section {
+    border-top: none;
+}
 .membership-subheading {
     font-size: 0.95rem;
     font-weight: 600;

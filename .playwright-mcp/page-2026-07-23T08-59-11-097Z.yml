@@ -1,0 +1,492 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - link:
+        - /url: https://www.saaa.org.sg
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - link [ref=e8] [cursor=pointer]:
+            - /url: https://www.facebook.com/pages/SAAA/834894096585648?fref=ts
+            - img "Visit Us On Facebook" [ref=e9]
+          - link [ref=e10] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/saaa-singapore-2b6861243/%20
+            - img "Visit Us On Linkedin" [ref=e11]
+          - link [ref=e12] [cursor=pointer]:
+            - /url: https://www.instagram.com/saaasingapore/
+            - img "Visit Us On Instagram" [ref=e13]
+        - generic [ref=e14]:
+          - link "saaasin@saaa.org.sg" [ref=e15] [cursor=pointer]:
+            - /url: mailto:saaasin@saaa.org.sg
+          - text: (+65)6545 4620
+    - generic [ref=e18]:
+      - navigation [ref=e20]:
+        - list [ref=e22]:
+          - listitem [ref=e23]:
+            - link [ref=e24] [cursor=pointer]:
+              - /url: https://www.saaa.org.sg/
+              - generic [ref=e25]: Home Home
+              - text: 
+            - text: Latest News Announcements Up Coming Events
+          - listitem [ref=e26]:
+            - link [ref=e27] [cursor=pointer]:
+              - /url: http://www.saaa.org.sg/?p=72
+              - generic [ref=e28]: About Us About Us
+              - text: 
+            - text: Welcome Note History & Milestones  Our History Our Milestones Vision & Mission Organization Structure  Council Organization Chart Secretariat Chart & Roles Committees Standard Trading Conditions
+          - listitem [ref=e29]:
+            - link [ref=e30] [cursor=pointer]:
+              - /url: http://www.saaa.org.sg/?p=1481
+              - generic [ref=e31]: Members Members
+              - text: 
+            - text: Listing of SAAA Members  Listing (By Logo) Listing (By Text) Members’ Category
+          - listitem [ref=e32]:
+            - link [ref=e33] [cursor=pointer]:
+              - /url: http://www.saaa.org.sg/?p=86
+              - generic [ref=e34]: Services Services
+              - text: 
+            - text: Neutral Airway Bill Bar Code Labels Permit & Certificate of Origin Facilities
+          - listitem [ref=e35]:
+            - link [ref=e36] [cursor=pointer]:
+              - /url: http://www.saaa.org.sg/?p=1214
+              - generic [ref=e37]: Training Training
+              - text: 
+            - text: History Program Calendar CBTA Updates SAAA Training Courses
+          - listitem [ref=e38]:
+            - link "Media & Gallery Media & Gallery" [ref=e39] [cursor=pointer]:
+              - /url: https://www.saaa.org.sg/media-gallery/
+          - listitem [ref=e41]:
+            - link "Publications Publications" [ref=e42] [cursor=pointer]:
+              - /url: https://www.saaa.org.sg/publications/
+          - listitem [ref=e44]:
+            - link "Partners Partners" [ref=e45] [cursor=pointer]:
+              - /url: https://www.saaa.org.sg/partner-new/
+          - listitem [ref=e47]:
+            - link "Contact Us Contact Us" [ref=e48] [cursor=pointer]:
+              - /url: https://www.saaa.org.sg/contact-us/
+      - text:        
+    - generic [ref=e53]:
+      - paragraph [ref=e54]:
+        - img "about us" [ref=e55]
+      - generic [ref=e56]:
+        - paragraph [ref=e57]:
+          - link [ref=e58] [cursor=pointer]:
+            - /url: https://www.saaa.org.sg/wp-content/uploads/2015/03/history.jpg
+            - img "history" [ref=e59]
+        - paragraph [ref=e60]: Established on 21 April 1971, Madam Mary Wu, Managing Director of Singapore Baggage Transport Agency Pte Ltd, formed the Singapore Aircargo Agents Association (SAAA). Its purpose was to advocate the promotion, protection and development of the business of carriage of goods by air transportation, as well as enhancing competiveness of the Air Cargo Forwarding business.
+        - paragraph [ref=e61]: "SAAA was an amalgamation of six pioneering cargo agents. The members of the first Board comprised of:"
+        - paragraph [ref=e62]
+        - list [ref=e63]:
+          - listitem [ref=e64]: Mary Wu (Chairman) Singapore Baggage Transport Agency Pte Ltd
+        - paragraph [ref=e65]
+        - list [ref=e66]:
+          - listitem [ref=e67]: Amir Kassim (Deputy Chairman) Air Cargo International Pte Ltd
+        - paragraph [ref=e68]
+        - list [ref=e69]:
+          - listitem [ref=e70]: Cheah Eng Lin (Honorary Treasurer) Sam Foo Transport (Travel Service) Company Pte Ltd
+        - paragraph [ref=e71]
+        - list [ref=e72]:
+          - listitem [ref=e73]: Gustav Patrick Sims (Honorary Secretary) Singapore Baggage Transport Agency Pte Ltd
+        - paragraph [ref=e74]
+        - list [ref=e75]:
+          - listitem [ref=e76]: Paul Armstrong K.C. Dat (S) Pte Ltd
+        - paragraph [ref=e77]
+        - list [ref=e78]:
+          - listitem [ref=e79]: Siew Weng Joo Singapore Baggage Transport Agency Pte Ltd
+        - paragraph [ref=e80]
+        - list [ref=e81]:
+          - listitem [ref=e82]: Jackie Chua Hecny Transportation Pte Ltd
+        - paragraph [ref=e83]
+        - list [ref=e84]:
+          - listitem [ref=e85]: Alan C.Y. Low Central Air-Cargo Agency Pte Ltd
+        - paragraph [ref=e86]
+        - paragraph [ref=e87]: In the 70s, numerous new international agents were setting up their offices in Singapore. This became a growing concern for the local agents and it prompted SAAA to step in and help upgrade their services and skills to meet new challenging demands.
+        - paragraph [ref=e88]: "SAAA had since grown its membership base and work closely with various Government bodies and organisations to develop and propel the local Air Transportation industry. SAAA Cargo Services Pte Ltd was formed in 1988 as the commercial arm of SAAA to provide the following services to the industry:"
+        - paragraph [ref=e89]
+        - list [ref=e90]:
+          - listitem [ref=e91]: Tradenet Documentations
+        - list [ref=e92]:
+          - listitem [ref=e93]: Training courses (Accredited IATA Training Center)
+        - list [ref=e94]:
+          - listitem [ref=e95]: Sale of Bar Code Labels
+        - list [ref=e96]:
+          - listitem [ref=e97]: Neutral Airway Bills
+        - list [ref=e98]:
+          - listitem [ref=e99]: Issuing of Certificate of Origin
+        - paragraph [ref=e100]
+        - paragraph [ref=e101]: 2013 marks a significant year for SAAA. A rebranding exercise was completed and on 1 October, SAAA@Singapore was officially launched by Mrs. Josephine Teo, Senior Minister of State, Ministry of Transport and Ministry of Finance. The significant change is that SAAA@Singapore can now encompass all air logistics related sectors to better represent the industry.
+        - paragraph [ref=e102]
+      - paragraph [ref=e105]:
+        - img "1200x1500" [ref=e106]
+  - generic [ref=e107]:
+    - table [ref=e109]:
+      - rowgroup [ref=e110]:
+        - row [ref=e111]:
+          - columnheader "SITE MAP" [ref=e112]
+          - columnheader [ref=e113]
+          - columnheader [ref=e114]
+          - columnheader [ref=e115]
+          - columnheader [ref=e116]
+          - columnheader
+          - columnheader [ref=e117]
+          - columnheader [ref=e118]
+        - row [ref=e119]:
+          - columnheader "Home" [ref=e120]
+          - columnheader "About Us" [ref=e121]
+          - columnheader "Members" [ref=e122]
+          - columnheader "Services" [ref=e123]
+          - columnheader "Training" [ref=e124]
+          - columnheader
+          - columnheader [ref=e125]:
+            - link "Media & Gallery" [ref=e127] [cursor=pointer]:
+              - /url: http://saaa.org.sg/media-gallery/
+          - columnheader [ref=e128]:
+            - link "Partners" [ref=e130] [cursor=pointer]:
+              - /url: http://www.saaa.org.sg/partner-new/
+          - columnheader [ref=e131]:
+            - link "Contact Us" [ref=e133] [cursor=pointer]:
+              - /url: http://saaa.org.sg/contact-us/
+        - row [ref=e134]:
+          - cell [ref=e135]:
+            - link "Latest News" [ref=e137] [cursor=pointer]:
+              - /url: http://saaa.org.sg/latest-news/
+          - cell [ref=e138]:
+            - link "Welcome Note" [ref=e140] [cursor=pointer]:
+              - /url: http://saaa.org.sg/welcome-note/
+          - cell [ref=e141]:
+            - link "Members' Category" [ref=e143] [cursor=pointer]:
+              - /url: http://saaa.org.sg/members-category/
+          - cell [ref=e144]:
+            - link "Neutral Airway Bill" [ref=e146] [cursor=pointer]:
+              - /url: http://saaa.org.sg/services/neutral-airway-bill/
+          - cell [ref=e147]:
+            - link "History" [ref=e149] [cursor=pointer]:
+              - /url: http://saaa.org.sg/training/history/
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e150]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e151]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=e152]:
+          - cell [ref=e153]:
+            - link "Announcements" [ref=e155] [cursor=pointer]:
+              - /url: http://saaa.org.sg/home-announcements/
+          - cell "History & Milestones" [ref=e156]
+          - cell [ref=e157]:
+            - link "Benefit for Members" [ref=e159] [cursor=pointer]:
+              - /url: http://saaa.org.sg/benefit-for-members/
+          - cell [ref=e160]:
+            - link "Bar Code Labels" [ref=e162] [cursor=pointer]:
+              - /url: http://saaa.org.sg/services/bar-code-labels/
+          - cell [ref=e163]:
+            - link "Program Calendar" [ref=e165] [cursor=pointer]:
+              - /url: http://saaa.org.sg/training/program-calendar/
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e166]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e167]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=e168]:
+          - cell [ref=e169]:
+            - link "Upcoming Events" [ref=e171] [cursor=pointer]:
+              - /url: http://saaa.org.sg/up-coming-events/
+          - cell [ref=e172]:
+            - text: "-"
+            - link "Our History" [ref=e174] [cursor=pointer]:
+              - /url: http://saaa.org.sg/history/
+          - cell [ref=e175]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e176]:
+            - link "Permit & Certificate of Origin" [ref=e178] [cursor=pointer]:
+              - /url: http://saaa.org.sg/services/permit-certificate-of-origin/
+          - cell [ref=e179]:
+            - link "Our Courses" [ref=e181] [cursor=pointer]:
+              - /url: http://saaa.org.sg/training/our-courses/
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e182]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e183]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=e184]:
+          - cell [ref=e185]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e186]:
+            - text: "-"
+            - link "Our Milestones" [ref=e188] [cursor=pointer]:
+              - /url: http://saaa.org.sg/our-milestones/
+          - cell [ref=e189]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e190]:
+            - link "Facilities" [ref=e192] [cursor=pointer]:
+              - /url: http://saaa.org.sg/?p=2556
+          - cell [ref=e193]
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e194]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e195]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row:
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: http://saaa.org.sg/about-us/council-and-secretariat/
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=e196]:
+          - cell [ref=e197]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e198]:
+            - link "Vision & Mission" [ref=e200] [cursor=pointer]:
+              - /url: http://saaa.org.sg/vision-mission/
+          - cell [ref=e201]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e202]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e203]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e204]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e205]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=e206]:
+          - cell [ref=e207]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell "Organization Structure" [ref=e208]
+          - cell [ref=e209]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e210]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e211]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e212]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e213]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=e214]:
+          - cell [ref=e215]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e216]:
+            - text: "-"
+            - link "Council Organization Chart" [ref=e218] [cursor=pointer]:
+              - /url: http://saaa.org.sg/organization/
+          - cell [ref=e219]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e220]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e221]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e222]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e223]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=e224]:
+          - cell [ref=e225]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e226]:
+            - text: "-"
+            - link "Secretariat Chart & Roles" [ref=e228] [cursor=pointer]:
+              - /url: http://saaa.org.sg/organization/secretariat-chart-roles/
+          - cell [ref=e229]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e230]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e231]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e232]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e233]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=e234]:
+          - cell [ref=e235]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e236]:
+            - link "Committees" [ref=e238] [cursor=pointer]:
+              - /url: http://saaa.org.sg/committees/
+          - cell [ref=e239]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e240]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e241]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e242]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e243]:
+            - generic:
+              - link:
+                - /url: "#"
+        - row [ref=e244]:
+          - cell [ref=e245]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e246]:
+            - link "STC" [ref=e248] [cursor=pointer]:
+              - /url: http://saaa.org.sg/stc/
+          - cell [ref=e249]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e250]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e251]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e252]:
+            - generic:
+              - link:
+                - /url: "#"
+          - cell [ref=e253]:
+            - generic:
+              - link:
+                - /url: "#"
+    - paragraph [ref=e256]:
+      - generic [ref=e257]:
+        - link "SAAA Singapore Copyright © 2022" [ref=e258] [cursor=pointer]:
+          - /url: ""
+        - text: • Powered by
+        - link "Techstudio Solutions" [ref=e259] [cursor=pointer]:
+          - /url: http://techstudio.com.sg

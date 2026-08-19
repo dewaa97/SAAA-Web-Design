@@ -221,7 +221,7 @@
     };
 
     function mountDatePickerFromInput(input, options) {
-        var field = input.closest('.imdd-form-field');
+        var field = input.closest('.imdd-form-field') || input.closest('.membership-form-field');
         var label = field ? field.querySelector('label') : null;
         var labelId = label ? label.id || (input.id + '-label') : input.id + '-label';
         if (label && !label.id) label.id = labelId;
