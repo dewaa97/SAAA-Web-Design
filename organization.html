@@ -136,6 +136,18 @@
             line-height: 1.4;
         }
         .secretariat-section { background: var(--slate-50); }
+
+        .secretariat-chart-image {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .secretariat-chart-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
         /* V1 REFERENCE — tree layout with connector lines */
         .secretariat-chart-v1 {
             --sec-line: var(--slate-300);
@@ -1314,6 +1326,16 @@
             <h2 class="section-title"><span class="brand-saaa">SAAA</span> Secretariat</h2>
             <p class="section-desc" style="margin:0 auto;">The combined SAAA Secretariat and SAAA Cargo Services structure supporting member engagement, training, documentation services, and finance operations.</p>
         </div>
+        <div id="secretariat-chart-image" class="secretariat-chart-wrapper secretariat-chart-image">
+            <img
+                src="images/organization/saaa-secretariat-chart.svg"
+                alt="SAAA Secretariat organization chart — Pauline Tok, Chief Executive Officer, with Corporate Affairs, SAAA@Singapore, and SAAA Cargo Services departments"
+                width="1152"
+                height="893"
+                decoding="async"
+            >
+        </div>
+
         <div id="secretariat-chart-v1" class="secretariat-chart-wrapper" hidden>
         <div class="secretariat-chart secretariat-chart-v1">
             <div class="secretariat-tier secretariat-tier-ceo">
@@ -1611,7 +1633,7 @@
         </div>
         </div>
 
-        <div id="secretariat-chart-v3" class="secretariat-chart-wrapper">
+        <div id="secretariat-chart-v3" class="secretariat-chart-wrapper" hidden>
         <div class="secretariat-chart secretariat-chart-v3" id="sec-v3-root">
             <svg class="sec-v3-connectors" id="sec-v3-svg" aria-hidden="true"></svg>
             <div class="sec-v3-tree">
@@ -1826,10 +1848,12 @@
 (function () {
     var params = new URLSearchParams(window.location.search);
     var chartParam = params.get("chart");
-    var version = chartParam === "v1" ? "v1" : chartParam === "v2" ? "v2" : "v3";
+    var version = chartParam === "v1" ? "v1" : chartParam === "v2" ? "v2" : chartParam === "v3" ? "v3" : chartParam === "image" ? "image" : "image";
+    var imageChart = document.getElementById("secretariat-chart-image");
     var v1 = document.getElementById("secretariat-chart-v1");
     var v2 = document.getElementById("secretariat-chart-v2");
     var v3 = document.getElementById("secretariat-chart-v3");
+    if (imageChart) imageChart.hidden = version !== "image";
     if (v1) v1.hidden = version !== "v1";
     if (v2) v2.hidden = version !== "v2";
     if (v3) v3.hidden = version !== "v3";

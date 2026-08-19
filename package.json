@@ -1,0 +1,28 @@
+{
+  "name": "saaa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "publications-data.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Flying-Cape/saaa-web-design.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Flying-Cape/saaa-web-design/issues"
+  },
+  "homepage": "https://github.com/Flying-Cape/saaa-web-design#readme",
+  "dependencies": {
+    "html-to-image": "^1.11.13",
+    "puppeteer": "^25.8.0"
+  }
+}
