@@ -215,25 +215,27 @@
     var dgrSection = isDgCourse
         ? '<div class="membership-form-section">' +
             '<h4>Additional Information</h4>' +
+            '<div class="membership-form-plain">' +
             '<p class="membership-field-label">Do you have the DGR Manual 2026 Edition? *</p>' +
             '<span class="membership-field-hint">DGR Manual 2026 Edition, before GST: SAAA Member S$ 380.00 per copy / Non-SAAA Member S$ 450.00 per copy</span>' +
             '<div class="membership-radio-group membership-radio-group--stacked">' +
             '<label class="membership-radio-item">' +
             '<input type="radio" name="dgrManual" value="Yes - I will bring my own DGR book (latest edition) to the class." required>' +
-            ' Yes - I will bring my own DGR book (latest edition) to the class.</label>' +
+            '<span>Yes - I will bring my own DGR book (latest edition) to the class.</span></label>' +
             '<label class="membership-radio-item">' +
             '<input type="radio" name="dgrManual" value="No - I would like to buy 1 copy of DGR book (for each trainee). Book fee is to be charged together with the Course fee.">' +
-            ' No - I would like to buy 1 copy of DGR book (for each trainee). Book fee is to be charged together with the Course fee.</label>' +
-            '</div></div>'
+            '<span>No - I would like to buy 1 copy of DGR book (for each trainee). Book fee is to be charged together with the Course fee.</span></label>' +
+            '</div></div></div>'
         : '';
 
     var termsSection =
         '<div class="membership-form-section">' +
+        '<div class="membership-form-plain">' +
         '<div class="membership-form-field full">' +
         '<label class="membership-checkbox-item">' +
         '<input type="checkbox" name="termsAccepted" required>' +
         '<span>I agree with the Terms and Conditions as stated in the Information tab. *</span>' +
-        '</label></div></div>';
+        '</label></div></div></div>';
 
     root.innerHTML = '<div class="membership-form-card">' +
         '<h3>Course Registration</h3>' +
@@ -254,7 +256,6 @@
         '<div id="training-participant-sections"></div>' +
         dgrSection +
         termsSection +
-        '<p class="training-book-mailto-note">Submit opens your email client with a pre-filled message to admin@saaa.org.sg.</p>' +
         '<div class="membership-form-actions">' +
         '<button type="submit" class="btn btn-primary">Submit Registration</button>' +
         '<a href="training-course.html?slug=' + encodeURIComponent(course.slug) + '" class="btn btn-secondary">Cancel</a>' +

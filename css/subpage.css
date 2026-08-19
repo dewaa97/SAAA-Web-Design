@@ -1255,7 +1255,7 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     font-weight: 600;
     color: var(--slate-700);
 }
-.membership-form-field input,
+.membership-form-field input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]),
 .membership-form-field select,
 .membership-form-field textarea {
     width: 100%;
@@ -1266,12 +1266,27 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     font-family: inherit;
     background: white;
 }
-.membership-form-field input:focus,
+.membership-form-field input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="hidden"]):focus,
 .membership-form-field select:focus,
 .membership-form-field textarea:focus {
     outline: none;
     border-color: var(--red-600);
     box-shadow: 0 0 0 3px var(--red-50);
+}
+.membership-form-field .membership-checkbox-item,
+.membership-form-field .membership-radio-item {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--slate-700);
+}
+.membership-form-field .membership-checkbox-item input,
+.membership-form-field .membership-radio-item input {
+    width: auto;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
 }
 .membership-checkbox-group {
     display: grid;
@@ -1302,15 +1317,40 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
 .membership-radio-item input { flex-shrink: 0; }
 .membership-radio-group--stacked {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 10px;
+    width: 100%;
 }
 .membership-radio-group--stacked .membership-radio-item {
     align-items: flex-start;
     line-height: 1.5;
+    width: 100%;
+    max-width: 100%;
+}
+.membership-radio-group--stacked .membership-radio-item span {
+    flex: 1;
+    min-width: 0;
 }
 .membership-radio-group--stacked .membership-radio-item input {
     margin-top: 3px;
+}
+.membership-form-plain {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.membership-form-plain > .membership-form-field.full {
+    width: 100%;
+}
+.membership-form-plain .membership-checkbox-item {
+    width: 100%;
+    max-width: 100%;
+}
+.membership-form-plain .membership-field-label {
+    margin-bottom: 0;
+}
+.membership-form-plain .membership-field-hint + .membership-radio-group {
+    margin-top: 4px;
 }
 .membership-subheading {
     font-size: 0.95rem;
@@ -1557,7 +1597,12 @@ footer { background: var(--slate-900); color: white; padding: 60px 0 24px; }
     height: 44px;
 }
 .membership-comments-field { margin-top: 28px; }
-.membership-form-actions { margin-top: 24px; }
+.membership-form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 24px;
+}
 @media (max-width: 768px) {
     .milestone-item { grid-template-columns: 1fr; gap: 8px; }
     .membership-form-grid,

@@ -169,24 +169,6 @@
     border-top: 1px solid var(--slate-200);
 }
 
-.training-detail-card {
-    margin-top: 24px;
-    padding: 24px 28px;
-    background: var(--white);
-    border: 1px solid var(--slate-200);
-    border-radius: 16px;
-    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
-}
-
-.training-detail-card h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--slate-900);
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--slate-100);
-}
-
 .training-detail-card-body p,
 .training-detail-card-body li,
 .training-course-detail-section p,
@@ -269,14 +251,18 @@
 }
 
 .training-course-detail-section {
-    margin-top: 28px;
+    margin-top: 32px;
+}
+
+.training-course-detail-section:first-child {
+    margin-top: 24px;
 }
 
 .training-course-detail-section h3 {
-    font-size: 16px;
+    font-size: 1.125rem;
     font-weight: 700;
     margin-bottom: 12px;
-    color: var(--slate-800);
+    color: var(--slate-900);
 }
 
 .training-course-detail-section p,

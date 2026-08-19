@@ -74,8 +74,8 @@
         sectionsEl.innerHTML = Object.keys(sectionLabels).map(function (key) {
             const content = details[key];
             if (!content) return '';
-            return '<div class="training-detail-card"><h3>' + sectionLabels[key] + '</h3><div class="training-detail-card-body">' +
-                renderSection(key, content) + '</div></div>';
+            return '<div class="training-course-detail-section"><h3>' + sectionLabels[key] + '</h3>' +
+                renderSection(key, content) + '</div>';
         }).join('');
     }
 
